@@ -1,0 +1,220 @@
+<?php 
+if(isset($gfijo)){
+ if($gfijo){
+   $valg=$gfijo;
+ }else{
+   $valg="";	
+ }
+}else{
+   $valg="";	
+ }
+?>
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<title>S.A.R.T</title>
+
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+	<!-- BEGIN CORE CSS -->
+	<link rel="stylesheet" href="<?php echo base_url() ?>css/admin1.css">
+	<link rel="stylesheet" href="<?php echo base_url() ?>css/elements.css">
+	<!-- END CORE CSS -->
+
+	<!-- BEGIN PLUGINS CSS -->
+	<link rel="stylesheet" href="<?php echo base_url() ?>plugins/bootstrap-table/dist/bootstrap-table.min.css">
+	<link rel="stylesheet" href="<?php echo base_url() ?>plugins/scroll/css/perfect-scrollbar.css">
+	<link rel="stylesheet" href="<?php echo base_url() ?>css/plugins.css">
+	<!-- END PLUGINS CSS -->
+    <link rel="stylesheet" href="<?php echo base_url() ?>plugins/chosen/chosen.min.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>plugins/selectize/dist/css/selectize.bootstrap3.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>plugins/multiselect/css/multi-select.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>plugins/bootstrap-select/dist/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>plugins/pnikolov-bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>plugins/minicolors/jquery.minicolors.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>plugins/datepicker/css/datepicker.css">
+
+	<!-- BEGIN SHORTCUT AND TOUCH ICONS -->
+	<link rel="shortcut icon" href="<?php echo base_url() ?>img/icons/favicon.ico">
+	<link rel="apple-touch-icon" href="<?php echo base_url() ?>img/icons/apple-touch-icon.png">
+	<!-- END SHORTCUT AND TOUCH ICONS -->
+	<style type="text/css">
+     .nav-tabs.tabs-active-text-indigo > li.active a, .nav-tabs.tabs-active-text-indigo > li.active a:hover, .nav-tabs.tabs-active-text-indigo > li.active a:active, .nav-tabs.tabs-active-text-indigo > li.active a:focus {
+    		color: #3e50b4;
+   			background-color: rgba(223, 219, 219, 0.54);
+		}
+	</style>
+</head>
+<body style="overflow:hidden">
+<input type="hidden" value="<?php echo base_url() ?>" id="base_url">
+<input type="hidden"  id="search2">
+<input type="hidden"  id="campo">
+<input type="hidden"  id="filtrog" value='<?php echo $valg ?>'>
+<input type="hidden"  id="app_ID" value='<?php echo $app_ID ?>'>
+<input type="hidden" id="order" value="id_movil">
+<input type="hidden" id="corder" value="id_movil">   
+<input type="hidden" id="orderby" value="asc">
+	<div class="content" style="">
+	    	<div class="page-header full-content header-tabs sticky fixed bg-indigo" style="width: 100%;left: 40px">
+			<div class="row">
+				<div class="col-xs-10">
+					<h1 style="font-size: 25px;">Registro de Pagos<small></small></h1>
+				</div><!--.col-->
+				<div class="col-xs-2 menu" data-grupo="<?php echo $valg ?>" style="cursor:pointer">
+					<ol class="breadcrumb">
+						<li><a href="#"><i class="ion-android-menu"></i></a></li>
+						<li><a href="#">Men&uacute;</a></li>
+					</ol>
+				</div><!--.col-->
+			</div><!--.row-->
+		</div><!--.page-header-->
+
+		<div class="row"  style="margin-top: 110px;">
+		 <div class="col-md-12">
+			<div class="panel">
+				<div class="panel-heading">
+					<div class="panel-title"><h4>Gesti&oacute;n de diarios</h4></div>
+				</div><!--.panel-heading-->
+				<div class="panel-body" style="position:relative">
+				 <div class="row">
+				 	<div class="col-md-4">
+				 		<div class="form-group">
+				 		 <label for="clase" class="col-sm-3 " style="padding-top: 7px;">Movil</label>
+				 		  <div class="col-sm-9  input-group" >
+				 		   <div class="inputer inputer-indigo " style="margin-top:0px;">
+				 		     <div class="input-wrapper ">
+				 		     <input type="text"  style="width: 200px" name="buscamov" id="buscamov" class="form-control buscamov" data-campo="id_movil" value="" />
+				 		     <span class="ion-android-close resdiario hide form-control-feedback cursor">
+			                 </span>
+				 		    </div>
+				 		  </div>   
+				 		  </div>
+				 		</div> 
+				 		<div class="form-group">
+				 		 <label for="clase" class="col-sm-3 " style="padding-top: 7px;">Placa</label>
+				 		  <div class="col-sm-9  input-group" >
+				 		   <div class="inputer inputer-indigo " style="margin-top:0px;">
+				 		     <div class="input-wrapper">
+				 		     <input type="text"  style="width: 200px" name="placa" id="placa" class="form-control buscamov" data-campo="placa" value="" />
+				 		     <span class="ion-android-close resdiario hide form-control-feedback cursor">
+			                 </span>
+				 		    </div>
+				 		  </div>   
+				 		  </div>
+				 		</div> 
+				 	</div><!--.col-md-4-->
+				 	<div class="col-md-4">
+				 		<div class="col-md-12 col-xs-12 company">
+				 			<h5 style="margin:0px">Fecha <span style="color: #337ab7;font-style: italic;font-size: 14px;">
+				 				        <?php echo date('Y-m-d')?>
+				 				      </span>
+				 		    </h5>
+				 		   <!--  <button type="button" class="btn btn-success btn-ripple" style="margin-bottom: 5px;">Nuevo</button><br> -->
+				 		    <button type="button" class="btn btn-warning btn-ripple abre_mod_global limpiadia" style="margin-bottom: 5px;"
+				 		            data-toggle="modal" data-target="#modalreimprime" data-capa='global_diario'  
+				 		            data-vars="<?php echo base_url() ?>sart.php/sistemasart/reeimprimir?app_ID=<?php echo $app_ID ?>">
+				 		            Reimprimir
+				 		    </button>
+				 		</div><!--.col-md-6-->
+				 	</div><!--.col-md-4-->
+				 	<div class="col-md-4">
+				 	 <div class="col-md-6 col-xs-6 company">
+				 	 	<h5>Recibo # <span class="diariosn"><?php echo $fact?></span></h5>
+				 	 	<h5>Descuento # <span class="descun"><?php echo $factdesc?></span></h5>
+				 	 	<!-- <h5>Ord. Taller # <span class="tallern"><?php //echo $factdesc?></span></h5> -->
+				 	 </div><!--.col-md-6-->
+				 	</div><!--.col-md-4-->
+		         </div>	
+		          <div id="tabsrecibo">
+				  </div><!--#tabsrecibo-->
+				</div><!--.panel-body-->
+			</div><!--.panel-->
+		 </div><!--.col-md-12-->
+		</div><!--.row-->
+	</div><!--.content-->
+	<button class="btn btn-default toastr-notify hide grabaok" data-toastr-title="" data-toastr-type="success"
+			data-toastr-notification="Solicitud grabada con Exito!!!!!" data-toastr-close-others="true"></button>
+    <button class="btn btn-default toastr-notify grabaerror hide" data-toastr-close-others="true" data-toastr-type="error"
+    data-toastr-notification="" data-toastr-position="toast-top-right"></button>
+
+   <div class="modal fade full-height" id="modalreimprime" tabindex="-1" role="dialog" aria-hidden="true">
+	 <div class="modal-dialog">
+	   <div class="modal-content " id="global_diario">
+       </div>
+	 </div>
+	</div><!--.modal-->
+    <div class="modal scale fade" id="modalanula" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog" >
+        <div class="modal-content" id="anula_modal">
+        </div>
+	  </div>
+    </div><!--.modal-->
+
+	<div class="modal fade full-scream" id="modaltaxi" style="    overflow-y: hidden;" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+		  <div class="modal-content " id="taxi_modal" style="overflow=hidden">
+          </div>
+		</div>
+	</div><!--.modal-->
+		<!-- BEGIN GLOBAL AND THEME VENDORS -->
+	<script src="<?php echo base_url() ?>js/global-vendors.js"></script>
+	<!-- END GLOBAL AND THEME VENDORS -->
+
+	<!-- BEGIN PLUGINS AREA -->
+	<!-- END PLUGINS AREA -->
+
+	<!-- PLUGINS INITIALIZATION AND SETTINGS -->
+	<script src="<?php echo base_url() ?>scripts/user-pages.js"></script>
+	<!-- END PLUGINS INITIALIZATION AND SETTINGS -->
+
+	<!-- PLEASURE Initializer perfect-scrollbar.css -->
+	<script src="<?php echo base_url() ?>js/pleasure.js"></script>
+	<!-- ADMIN 1 Layout Functions -->
+	<script src="<?php echo base_url() ?>js/layout.js"></script>
+	<script src="<?php echo base_url() ?>scripts/forms-select.js"></script>
+	<script src="<?php echo base_url() ?>js/funciones.js"></script>
+	<script src="<?php echo base_url() ?>plugins/modernizr/modernizr.min.js"></script>
+	<script src="<?php echo base_url() ?>plugins/scroll/js/perfect-scrollbar.jquery.js"></script>
+	<script src="<?php echo base_url() ?>plugins/scroll/js/perfect-scrollbar.js"></script>
+	<script src="<?php echo base_url() ?>plugins/chosen/chosen.jquery.min.js"></script>
+	<script src="<?php echo base_url() ?>plugins/selectize/dist/js/standalone/selectize.min.js"></script>
+	<script src="<?php echo base_url() ?>plugins/multiselect/js/jquery.multi-select.js"></script>
+	<script src="<?php echo base_url() ?>plugins/quicksearch/dist/jquery.quicksearch.min.js"></script>
+	<script src="<?php echo base_url() ?>plugins/jquery.inputmask/dist/jquery.inputmask.bundle.js"></script>
+	<script src="<?php echo base_url() ?>plugins/datepicker/js/bootstrap-datepicker.js"></script>
+     <script>
+		$(document).ready(function () {
+			Pleasure.init();
+			Layout.init();
+	        var win_height = window.innerHeight;
+	        var resta =win_height-195;
+	        $('.panel-body').height(resta+'px');
+		    $('.panel-body').perfectScrollbar({
+	            wheelPropagation: false,
+	            minScrollbarLength: 100,
+	            useBothWheelAxes: false,
+	            useKeyboard: true,
+	            suppressScrollX: true
+	        }); 
+		  });  
+	     $(window).resize(function() {
+	      var win_height = window.innerHeight;
+          var resta =win_height-195;
+	      $('.panel-body').height(resta+'px');
+	      $('.panel-body').perfectScrollbar('update');
+	   });
+	</script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+.form-signin {
+    max-width: 300px;
+    padding: 19px 29px 29px;
+    margin: 0 auto 20px;
+    background-color: white;
+    border: 1px solid #E5E5E5;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+}
+.input-block-level {
+    display: block;
+    width: 100%;
+    min-height: 37px !important;
+    font-size: 16px !important;
+    margin-bottom: 15px !important;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+body {
+    background-color:  #99CEDA;
+    padding-top: 60px;
+} 
+/*.container{
+    -webkit-filter: blur(20px);
+    -moz-filter: blur(15px);
+    -o-filter: blur(15px);
+    -ms-filter: blur(15px);
+    filter: blur(15px);
+    opacity: 0.95;
+}*/
+.container{
+    margin-top: 0px; 
+}
+.gray{
+    color: #BFBFBF;
+}
+#myDiv {
+    width:280px;
+    height:200px;
+    background-image:url(http://www.cnetfrance.fr/i/edit/2013/06/39791275/620x465/ios-7.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+#effect{
+    display:none;
+    width:100%;
+    height:150px;
+    background-image:url(http://www.cnetfrance.fr/i/edit/2013/06/39791275/620x465/ios-7.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+#color{
+    display:none;
+    width:100%;
+    height:150px;
+    background-color:lightblue;
+}
+/*#myDiv:hover #effect {
+    display:block;
+    -webkit-filter: blur(20px);
+    -moz-filter: blur(15px);
+    -o-filter: blur(15px);
+    -ms-filter: blur(15px);
+    filter: blur(15px);
+    opacity: 0.95;
+}
+#myDiv:hover #color {
+    display:block;
+}         
+.modal-backdrop {background: none;}   */
+.fullscreen_bg {
+    /*position: fixed;*/
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-size: cover;
+    background-position: 50% 50%;
+    /*background-image: url('http://31.media.tumblr.com/ad65726441493f47e0c8f0473206f4e5/tumblr_mvwl4fCEb21rdpk23o1_1280.jpg');*/
+    background-color:  #3e3e3e;
+  }
+  .form-signin {
+    max-width: 400px;
+    /*max-width: 380px;*/
+    /*padding: 25px;*/
+    padding: 9px 25px 25px 25px;
+    margin: 0 auto;
+    border-radius: 20px;
+  }
+  .form-signin .form-signin-heading, .form-signin {
+    margin-bottom: 10px;
+  }
+  .form-signin .form-control {
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  .form-signin .form-control:focus {
+    z-index: 2;
+  }
+  .form-signin input[type="text"] {
+    border-color: #fff;
+    height: 60px;
+    background-image: linear-gradient(#fff 0%, #ffffff 15%) !important;
+    box-shadow: 0 0 0 rgba(0,0,0,0) !important;
+    border-bottom: 1px solid #ddd !important;
+  }
+  .form-signin input[type="password"] {
+    
+    border-color: #fff;
+    height: 60px;
+    background-image: linear-gradient(#fff 0%, #ffffff 15%) !important;
+    box-shadow: 0 0 0 rgba(0,0,0,0) !important;
+    border-bottom: 1px solid #ddd !important;
+  }
+  .form-signin-heading {
+    color: #fff;
+    text-align: center;
+    text-shadow: 0 2px 2px rgba(0,0,0,0.5);
+    margin-top: 5px;
+  }
+  .tittle_nav{
+    color: #fff;/*rgba(255,255,255,0.8);*/
+    -webkit-font-smoothing: antialiased;
+    padding: 15px 15px;
+    font-size: 33px;
+    line-height: 20px;
+  }
+  .felices_fiestas{
+    background-image: url('http://www.atpservices.ws/apps_dev/PM/manager/images/PM_happy_holidays.gif');
+    background-repeat: no-repeat;
+    width: 361px;
+    height: 100px;
+  }

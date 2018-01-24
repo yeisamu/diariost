@@ -1,0 +1,2087 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"str",
+				"strtotime"
+			],
+			[
+				"id_",
+				"id_mg"
+			],
+			[
+				"row",
+				"rowmoc"
+			],
+			[
+				"_REQ",
+				"_REQUEST"
+			],
+			[
+				"id",
+				"id_prop"
+			],
+			[
+				"id_p",
+				"id_prop"
+			],
+			[
+				"es",
+				"esact"
+			],
+			[
+				"lista",
+				"listar_tabla"
+			],
+			[
+				"para",
+				"paramfi"
+			],
+			[
+				"val",
+				"valg"
+			],
+			[
+				"sear",
+				"search2"
+			],
+			[
+				"user",
+				"user_ID"
+			],
+			[
+				"res",
+				"resper"
+			],
+			[
+				"item",
+				"id_item"
+			],
+			[
+				"paren",
+				"est_parent"
+			],
+			[
+				"filer",
+				"filterserie"
+			],
+			[
+				"filter",
+				"filterserie"
+			],
+			[
+				"per",
+				"perrango"
+			],
+			[
+				"value",
+				"valueall"
+			],
+			[
+				"dep",
+				"dep_ID"
+			],
+			[
+				"ser",
+				"serie"
+			],
+			[
+				"wi",
+				"window"
+			],
+			[
+				"tr",
+				"true"
+			],
+			[
+				"ms",
+				"msje"
+			],
+			[
+				"detalla",
+				"detallada_ID"
+			],
+			[
+				"star",
+				"Start"
+			],
+			[
+				"data",
+				"dataid"
+			],
+			[
+				"isnu",
+				"is_numeric"
+			],
+			[
+				"btn",
+				"btn-folder"
+			],
+			[
+				"hijo",
+				"hijos"
+			],
+			[
+				"cl",
+				"click"
+			],
+			[
+				"print",
+				"print_r"
+			],
+			[
+				"div",
+				"divfecha"
+			],
+			[
+				"order",
+				"orderby"
+			],
+			[
+				"i",
+				"i	Tag"
+			],
+			[
+				"m",
+				"msje"
+			],
+			[
+				"fini",
+				"finicio_edit"
+			],
+			[
+				"f_ini",
+				"f_inicio"
+			],
+			[
+				"condu",
+				"conduce"
+			],
+			[
+				"id_co",
+				"id_conductor"
+			],
+			[
+				"acti",
+				"activaes"
+			],
+			[
+				"modal",
+				"modal_body"
+			],
+			[
+				"msj",
+				"msjes"
+			],
+			[
+				"nc",
+				"ncontrato"
+			],
+			[
+				"tecn",
+				"tecnif"
+			],
+			[
+				"poli",
+				"polif"
+			],
+			[
+				"soat",
+				"soatf"
+			],
+			[
+				"json",
+				"json_encode"
+			],
+			[
+				"bran",
+				"brandID"
+			],
+			[
+				"adminF",
+				"adminFirstName"
+			],
+			[
+				"man",
+				"manager_property"
+			],
+			[
+				"in",
+				"input	Tag"
+			],
+			[
+				"contr",
+				"control_window"
+			],
+			[
+				"fu",
+				"function"
+			],
+			[
+				"help",
+				"help_ID"
+			],
+			[
+				"login",
+				"loginin"
+			],
+			[
+				"sta",
+				"status_login"
+			],
+			[
+				"strre",
+				"str_replace"
+			],
+			[
+				"remove",
+				"removeClass"
+			],
+			[
+				"border",
+				"border_0"
+			],
+			[
+				"remo",
+				"removeClass"
+			],
+			[
+				"re",
+				"removeClass"
+			],
+			[
+				"inl",
+				"inline"
+			],
+			[
+				"add",
+				"addClass"
+			],
+			[
+				"last",
+				"lastlogin"
+			],
+			[
+				"app",
+				"app_ID"
+			],
+			[
+				"admin",
+				"adminID"
+			],
+			[
+				"fil",
+				"filter_adv"
+			],
+			[
+				"prin",
+				"print_r"
+			],
+			[
+				"Y",
+				"Y-m-d"
+			],
+			[
+				"S",
+				"SMS"
+			],
+			[
+				"mob",
+				"mobile_number"
+			],
+			[
+				"com",
+				"companyAvatarphoto"
+			],
+			[
+				"reul",
+				"result_mst"
+			],
+			[
+				"ta",
+				"tag"
+			],
+			[
+				"class",
+				"classcol"
+			],
+			[
+				"link",
+				"linkcollap"
+			],
+			[
+				"coll",
+				"collap"
+			],
+			[
+				"mortg",
+				"mortgage_ID"
+			],
+			[
+				"h",
+				"h3	Tag"
+			],
+			[
+				"user_I",
+				"user_ID"
+			],
+			[
+				"resul",
+				"result_mst"
+			],
+			[
+				"prop",
+				"prope_ID"
+			],
+			[
+				"gr",
+				"group"
+			],
+			[
+				"inpu",
+				"inputlabel"
+			],
+			[
+				"inli",
+				"inline-block"
+			],
+			[
+				"for",
+				"foreach	foreach …"
+			],
+			[
+				"stru",
+				"strtoupper"
+			],
+			[
+				"ven",
+				"vendor_ID"
+			],
+			[
+				"propertyI",
+				"property_ID"
+			],
+			[
+				"echo",
+				"echo"
+			],
+			[
+				"job",
+				"job_status"
+			],
+			[
+				"op",
+				"openactive"
+			],
+			[
+				"cant",
+				"cant_docs"
+			],
+			[
+				"ec",
+				"echo"
+			],
+			[
+				"contractor",
+				"contractor_ID"
+			],
+			[
+				"utf",
+				"utf8_encode"
+			],
+			[
+				"prope",
+				"property_ID"
+			],
+			[
+				"contract",
+				"contractor_ID"
+			],
+			[
+				"contra",
+				"contractor_ID"
+			],
+			[
+				"unidad",
+				"unidad_funci"
+			],
+			[
+				"owne",
+				"ownerinfo"
+			],
+			[
+				"mysql_num",
+				"mysql_num_rows"
+			],
+			[
+				"owner",
+				"owner_ID"
+			],
+			[
+				"properties",
+				"properties_owner"
+			],
+			[
+				"mont",
+				"month"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "sart/controllers/Sistemasart.php",
+			"settings":
+			{
+				"buffer_size": 16270,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "sart/views/sart/movil/vis_add_edit_movil.php",
+			"settings":
+			{
+				"buffer_size": 41150,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "sart/models/Sart_model.php",
+			"settings":
+			{
+				"buffer_size": 26910,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/Applications/XAMPP/xamppfiles/htdocs/transporte/control/ctr_dashboard.php",
+			"settings":
+			{
+				"buffer_size": 47337,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "js/funciones.js",
+			"settings":
+			{
+				"buffer_size": 20260,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "sart/views/sart/pagos/tab_pago.php",
+			"settings":
+			{
+				"buffer_size": 11159,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "sart/views/sart/movil/vis_tabla_movil.php",
+			"settings":
+			{
+				"buffer_size": 8013,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "sart/views/sart/pagos/pagos_tabla.php",
+			"settings":
+			{
+				"buffer_size": 12793,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "	<!DOCTYPE html>\n<!--[if lt IE 7]>      <html class=\"no-js lt-ie9 lt-ie8 lt-ie7\"> <![endif]-->\n<!--[if IE 7]>         <html class=\"no-js lt-ie9 lt-ie8\"> <![endif]-->\n<!--[if IE 8]>         <html class=\"no-js lt-ie9\"> <![endif]-->\n<!--[if gt IE 8]><!--> <html class=\"no-js\"> <!--<![endif]-->\n<head>\n	<meta charset=\"utf-8\">\n	<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n\n	<title>PLEASURE - Tabs</title>\n\n	<meta name=\"description\" content=\"\">\n	<meta name=\"author\" content=\"\">\n\n	<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n	<meta name=\"apple-mobile-web-app-capable\" content=\"yes\">\n	<meta name=\"apple-mobile-web-app-status-bar-style\" content=\"black-translucent\">\n\n	<!-- BEGIN CORE CSS -->\n	<link rel=\"stylesheet\" href=\"../../assets/admin1/css/admin1.css\">\n	<link rel=\"stylesheet\" href=\"../../assets/globals/css/elements.css\">\n	<!-- END CORE CSS -->\n\n	<!-- BEGIN PLUGINS CSS -->\n\n	<link rel=\"stylesheet\" href=\"../../assets/globals/css/plugins.css\">\n	<!-- END PLUGINS CSS -->\n\n	<!-- BEGIN SHORTCUT AND TOUCH ICONS -->\n	<link rel=\"shortcut icon\" href=\"../../assets/globals/img/icons/favicon.ico\">\n	<link rel=\"apple-touch-icon\" href=\"../../assets/globals/img/icons/apple-touch-icon.png\">\n	<!-- END SHORTCUT AND TOUCH ICONS -->\n\n	<script src=\"../../assets/globals/plugins/modernizr/modernizr.min.js\"></script>\n</head>\n<body>\n\n	<div class=\"nav-bar-container\">\n\n		<!-- BEGIN ICONS -->\n		<div class=\"nav-menu\">\n			<div class=\"hamburger\">\n				<span class=\"patty\"></span>\n				<span class=\"patty\"></span>\n				<span class=\"patty\"></span>\n				<span class=\"patty\"></span>\n				<span class=\"patty\"></span>\n				<span class=\"patty\"></span>\n			</div><!--.hamburger-->\n		</div><!--.nav-menu-->\n\n		<div class=\"nav-search\">\n			<span class=\"search\"></span>\n		</div><!--.nav-search-->\n\n		<div class=\"nav-user\">\n			<div class=\"user\">\n				<img src=\"../../assets/globals/img/faces/tolga-ergin.jpg\" alt=\"\">\n				<span class=\"badge\">3</span>\n			</div><!--.user-->\n			<div class=\"cross\">\n				<span class=\"line\"></span>\n				<span class=\"line\"></span>\n			</div><!--.cross-->\n		</div><!--.nav-user-->\n		<!-- END OF ICONS -->\n\n		<div class=\"nav-bar-border\"></div><!--.nav-bar-border-->\n\n		<!-- BEGIN OVERLAY HELPERS -->\n		<div class=\"overlay\">\n			<div class=\"starting-point\">\n				<span></span>\n			</div><!--.starting-point-->\n			<div class=\"logo\">PLEASURE</div><!--.logo-->\n		</div><!--.overlay-->\n\n		<div class=\"overlay-secondary\"></div><!--.overlay-secondary-->\n		<!-- END OF OVERLAY HELPERS -->\n\n	</div><!--.nav-bar-container-->\n\n	<div class=\"content\">\n\n		<div class=\"page-header full-content bg-red\">\n			<div class=\"row\">\n				<div class=\"col-sm-6\">\n					<h1>Tabs <small>short description</small></h1>\n				</div><!--.col-->\n				<div class=\"col-sm-6\">\n					<ol class=\"breadcrumb\">\n						<li><a href=\"#\"><i class=\"ion-home\"></i></a></li>\n						<li><a href=\"#\">UI Elements</a></li>\n						<li><a href=\"#\" class=\"active\">Tabs</a></li>\n					</ol>\n				</div><!--.col-->\n			</div><!--.row-->\n		</div><!--.page-header-->\n\n		<div class=\"row\">\n			<div class=\"col-md-12\">\n				<div class=\"panel\">\n					<div class=\"panel-heading\">\n						<div class=\"panel-title\"><h4>TABS</h4></div>\n					</div><!--.panel-heading-->\n					<div class=\"panel-body\">\n\n						<div class=\"row example-row\">\n							<div class=\"col-md-3\">Default Tabs</div><!--.col-md-3-->\n							<div class=\"col-md-9\">\n\n								<ul class=\"nav nav-tabs\" role=\"tablist\">\n									<li class=\"active\"><a href=\"#tab1_1\" data-toggle=\"tab\">Home</a></li>\n									<li><a href=\"#tab1_2\" data-toggle=\"tab\">Profile</a></li>\n									<li class=\"dropdown\">\n										<a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Dropdown <i class=\"fa fa-chevron-down\"></i></a>\n										<ul class=\"dropdown-menu\" role=\"menu\">\n											<li><a href=\"#tab1_3\" tabindex=\"-1\" data-toggle=\"tab\">Option 1</a></li>\n											<li><a href=\"#tab1_4\" tabindex=\"-1\" data-toggle=\"tab\">Option 2</a></li>\n											<li><a href=\"#tab1_5\" tabindex=\"-1\" data-toggle=\"tab\">Option 3</a></li>\n											<li><a href=\"#tab1_6\" tabindex=\"-1\" data-toggle=\"tab\">Option 4</a></li>\n										</ul>\n									</li>\n								</ul>\n\n								<div class=\"tab-content\">\n									<div class=\"tab-pane active\" id=\"tab1_1\">\n										<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that.</p>\n									</div><!--.tab-pane-->\n									<div class=\"tab-pane\" id=\"tab1_2\">\n										<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>\n									</div><!--.tab-pane-->\n									<div class=\"tab-pane\" id=\"tab1_3\">\n										<p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>\n									</div><!--.tab-pane-->\n									<div class=\"tab-pane\" id=\"tab1_4\">\n										<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>\n									</div><!--.tab-pane-->\n									<div class=\"tab-pane\" id=\"tab1_5\">\n										<p>If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.</p>\n									</div><!--.tab-pane-->\n									<div class=\"tab-pane\" id=\"tab1_6\">\n										<p>It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>\n									</div><!--.tab-pane-->\n								</div><!--.tab-content-->\n\n							</div><!--.col-md-9-->\n						</div><!--.row-->\n\n						<div class=\"row example-row\">\n							<div class=\"col-md-3\">Right Aligned Tabs</div><!--.col-md-3-->\n							<div class=\"col-md-9\">\n\n								<ul class=\"nav nav-tabs tabs-right-aligned\" role=\"tablist\">\n									<li class=\"active\"><a href=\"#tab2_1\" data-toggle=\"tab\">Home</a></li>\n									<li><a href=\"#tab2_2\" data-toggle=\"tab\">Profile</a></li>\n									<li><a href=\"#tab2_3\" data-toggle=\"tab\">Messages</a></li>\n								</ul>\n\n								<div class=\"tab-content\">\n									<div class=\"tab-pane active\" id=\"tab2_1\">\n										<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that.</p>\n									</div><!--.tab-pane-->\n									<div class=\"tab-pane\" id=\"tab2_2\">\n										<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>\n									</div><!--.tab-pane-->\n									<div class=\"tab-pane\" id=\"tab2_3\">\n										<p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>\n									</div><!--.tab-pane-->\n								</div><!--.tab-content-->\n\n							</div><!--.col-md-9-->\n						</div><!--.row-->\n\n						<div class=\"row example-row\">\n							<div class=\"col-md-3\">Bottom Tabs</div><!--.col-md-3-->\n							<div class=\"col-md-9\">\n\n								<div class=\"tab-content\">\n									<div class=\"tab-pane active\" id=\"tab3_1\">\n										<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that.</p>\n									</div><!--.tab-pane-->\n									<div class=\"tab-pane\" id=\"tab3_2\">\n										<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>\n									</div><!--.tab-pane-->\n									<div class=\"tab-pane\" id=\"tab3_3\">\n										<p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>\n									</div><!--.tab-pane-->\n								</div><!--.tab-content-->\n								<ul class=\"nav nav-tabs tabs-bottom tabs-right-aligned\" role=\"tablist\">\n									<li class=\"active\"><a href=\"#tab3_1\" data-toggle=\"tab\">Home</a></li>\n									<li><a href=\"#tab3_2\" data-toggle=\"tab\">Profile</a></li>\n									<li><a href=\"#tab3_2\" data-toggle=\"tab\">Messages</a></li>\n								</ul>\n\n							</div><!--.col-md-9-->\n						</div><!--.row-->\n\n						<div class=\"row example-row\">\n							<div class=\"col-md-3\">Justified Tabs</div><!--.col-md-3-->\n							<div class=\"col-md-9\">\n\n								<ul class=\"nav nav-tabs nav-justified\" role=\"tablist\">\n									<li class=\"active\"><a href=\"#tab4_1\" data-toggle=\"tab\">Home</a></li>\n									<li><a href=\"#tab4_2\" data-toggle=\"tab\">Profile</a></li>\n									<li><a href=\"#tab4_3\" data-toggle=\"tab\">Messages</a></li>\n								</ul>\n								<div class=\"tab-content\">\n									<div class=\"tab-pane active\" id=\"tab4_1\">\n										It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that.\n									</div><!--.tab-pane-->\n									<div class=\"tab-pane\" id=\"tab4_2\">\n										Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.\n									</div><!--.tab-pane-->\n									<div class=\"tab-pane\" id=\"tab4_3\">\n										The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.\n									</div><!--.tab-pane-->\n								</div><!--.tab-content-->\n\n							</div><!--.col-md-9-->\n						</div><!--.row-->\n\n					</div><!--.panel-body-->\n				</div><!--.panel-->\n			</div><!--.col-md-12-->\n		</div><!--.row-->\n\n		<div class=\"row\">\n			<div class=\"col-md-12\">\n				<div class=\"panel\">\n					<div class=\"panel-heading\">\n						<div class=\"panel-title\"><h4>STYLED TABS</h4></div>\n					</div><!--.panel-heading-->\n					<div class=\"panel-body\">\n\n						<div class=\"row no-gutters\">\n\n							<div class=\"styled-tabs tab-primary\">\n								<div class=\"col-md-6\">\n									<div class=\"col-md-3\">\n										<ul class=\"nav nav-tabs tabs-left\">\n											<li class=\"active\"><a href=\"#tab9_1\" data-toggle=\"tab\">Home</a></li>\n											<li><a href=\"#tab9_2\" data-toggle=\"tab\">Profile</a></li>\n											<li><a href=\"#tab9_3\" data-toggle=\"tab\">Messages</a></li>\n										</ul>\n									</div>\n									<div class=\"col-md-9\">\n										<div class=\"tab-content\">\n											<div class=\"tab-pane active\" id=\"tab9_1\">\n												<h5>Home</h5>\n												<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</p>\n											</div>\n											<div class=\"tab-pane\" id=\"tab9_2\">\n												<h5>Profile</h5>\n												<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</p>\n											</div>\n											<div class=\"tab-pane\" id=\"tab9_3\">\n												<h5>Messages</h5>\n												<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</p>\n											</div>\n										</div>\n									</div>\n									<div class=\"clearfix\"></div>\n								</div><!--.col-md-6-->\n							</div><!--.styled-tabs-->\n\n							<div class=\"styled-tabs tab-danger\">\n								<div class=\"col-md-6\">\n									<div class=\"col-md-9\">\n										<div class=\"tab-content\">\n											<div class=\"tab-pane active\" id=\"tab10_1\">\n												<h5>Home</h5>\n												<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</p>\n											</div>\n											<div class=\"tab-pane\" id=\"tab10_2\">\n												<h5>Profile</h5>\n												<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</p>\n											</div>\n											<div class=\"tab-pane\" id=\"tab10_3\">\n												<h5>Messages</h5>\n												<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</p>\n											</div>\n										</div>\n									</div>\n\n									<div class=\"col-md-3\">\n										<ul class=\"nav nav-tabs tabs-right\">\n											<li class=\"active\"><a href=\"#tab10_1\" data-toggle=\"tab\">Home</a></li>\n											<li><a href=\"#tab10_2\" data-toggle=\"tab\">Profile</a></li>\n											<li><a href=\"#tab10_3\" data-toggle=\"tab\">Messages</a></li>\n										</ul>\n									</div>\n								</div><!--.col-md-6-->\n							</div><!--.styled-tabs-->\n\n						</div><!--.row-->\n\n					</div><!--.panel-body-->\n				</div><!--.panel-->\n			</div><!--.col-md-12-->\n		</div><!--.row-->\n\n		<div class=\"row\">\n\n			<div class=\"col-md-6\">\n				<div class=\"panel-group accordion\" id=\"accordion\">\n					<div class=\"panel\">\n						<div class=\"panel-heading active\">\n							<a class=\"panel-title\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapseOne\">ACCORDION PANEL 1</a>\n						</div>\n						<div id=\"collapseOne\" class=\"panel-collapse collapse in\">\n							<div class=\"panel-body\">\n								Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.\n							</div>\n						</div>\n					</div>\n\n					<div class=\"panel\">\n						<div class=\"panel-heading\">\n							<a class=\"panel-title\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapseTwo\">ACCORDION PANEL 2</a>\n						</div>\n						<div id=\"collapseTwo\" class=\"panel-collapse collapse\">\n							<div class=\"panel-body\">\n								Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.\n							</div>\n						</div>\n					</div>\n\n					<div class=\"panel\">\n						<div class=\"panel-heading\">\n							<a class=\"panel-title\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapseThree\">ACCORDION PANEL 3</a>\n						</div>\n						<div id=\"collapseThree\" class=\"panel-collapse collapse\">\n							<div class=\"panel-body\">\n								Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.\n							</div>\n						</div>\n					</div>\n				</div><!--.panel-group-->\n			</div><!--.col-md-6-->\n\n			<div class=\"col-md-6\">\n				<div class=\"panel-group toggle\" id=\"accordion2\">\n					<div class=\"panel\">\n						<div class=\"panel-heading active\">\n							<a class=\"panel-title\" data-toggle=\"collapse\" href=\"#collapse4\">TOGGLE PANEL 1</a>\n						</div>\n						<div id=\"collapse4\" class=\"panel-collapse collapse in\">\n							<div class=\"panel-body\">\n								Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.\n							</div>\n						</div>\n					</div>\n\n					<div class=\"panel\">\n						<div class=\"panel-heading\">\n							<a class=\"panel-title\" data-toggle=\"collapse\" href=\"#collapse5\">TOGGLE PANEL 2</a>\n						</div>\n						<div id=\"collapse5\" class=\"panel-collapse collapse\">\n							<div class=\"panel-body\">\n								Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.\n							</div>\n						</div>\n					</div>\n\n					<div class=\"panel\">\n						<div class=\"panel-heading\">\n							<a class=\"panel-title\" data-toggle=\"collapse\" href=\"#collapse6\">TOGGLE PANEL 3</a>\n						</div>\n						<div id=\"collapse6\" class=\"panel-collapse collapse\">\n							<div class=\"panel-body\">\n								Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.\n							</div>\n						</div>\n					</div>\n				</div><!--.panel-group-->\n			</div><!--.col-md-6-->\n\n		</div><!--.row-->\n\n		<div class=\"footer-links margin-top-40\">\n			<div class=\"row no-gutters\">\n				<div class=\"col-xs-6 bg-red\">\n					<a href=\"ui-elements-font-icons.html\">\n						<span class=\"state\">UI Elements</span>\n						<span>Font Icons</span>\n						<span class=\"icon\"><i class=\"ion-android-arrow-back\"></i></span>\n					</a>\n				</div><!--.col-->\n				<div class=\"col-xs-6 bg-red\">\n					<a href=\"ui-elements-typography.html\">\n						<span class=\"state\">UI Elements</span>\n						<span>Typography</span>\n						<span class=\"icon\"><i class=\"ion-android-arrow-forward\"></i></span>\n					</a>\n				</div><!--.col-->\n			</div><!--.row-->\n		</div><!--.footer-links-->\n\n	</div><!--.content-->\n\n	<div class=\"layer-container\">\n\n		<!-- BEGIN MENU LAYER -->\n		<div class=\"menu-layer\">\n			<ul>\n				<li>\n					<a href=\"index.html\">Dashboard</a>\n				</li>\n				<li>\n					<a href=\"javascript:;\">Cards</a>\n					<ul class=\"child-menu\">\n						<li><a href=\"cards-image.html\">Image Cards</a></li>\n						<li><a href=\"cards-audio.html\">Audio Cards</a></li>\n						<li><a href=\"cards-video.html\">Video Cards</a></li>\n					</ul>\n				</li>\n				<li>\n					<a href=\"javascript:;\">UI Elements</a>\n					<ul class=\"child-menu\">\n						<li><a href=\"ui-elements-general.html\">General</a></li>\n						<li><a href=\"ui-elements-buttons.html\">Buttons</a></li>\n						<li><a href=\"ui-elements-lists.html\">Lists</a></li>\n\n						<li><a href=\"ui-elements-dialogs.html\">Dialogs</a></li>\n						<li><a href=\"ui-elements-notifications.html\">Notifications</a></li>\n\n						<li><a href=\"ui-elements-social-buttons.html\">Social Buttons</a></li>\n						<li><a href=\"ui-elements-font-icons.html\">Font Icons</a></li>\n						<li data-open-after=\"true\"><a href=\"ui-elements-tabs.html\">Tabs &amp; Accordions</a></li>\n						<li><a href=\"ui-elements-typography.html\">Typography</a></li>\n					</ul>\n				</li>\n				<li>\n					<a href=\"javascript:;\">Panels</a>\n					<ul class=\"child-menu\">\n						<li><a href=\"panels.html\">Panel Types</a></li>\n						<li><a href=\"panels-draggable.html\">Draggable Panels</a></li>\n						<li><a href=\"panels-styling.html\">Styled Panels</a></li>\n						<li><a href=\"panels-ajax.html\">Ajax Panels</a></li>\n					</ul>\n				</li>\n				<li>\n					<a href=\"javascript:;\">Forms</a>\n					<ul class=\"child-menu\">\n						<li><a href=\"forms-general.html\">General</a></li>\n						<li><a href=\"forms-layouts.html\">Layouts</a></li>\n						<li><a href=\"forms-tools.html\">Tools</a></li>\n						<li><a href=\"forms-pickers.html\">Pickers</a></li>\n						<li><a href=\"forms-icheck.html\">iCheck</a></li>\n						<li><a href=\"forms-range-sliders.html\">Range Slider</a></li>\n						<li><a href=\"forms-selects.html\">Selectboxes</a></li>\n						<li><a href=\"forms-switchers.html\">Switchers</a></li>\n						<li><a href=\"forms-validation.html\">Form Validation</a></li>\n						<li><a href=\"forms-wizard.html\">Wizard</a></li>\n						<li><a href=\"forms-wysiwyg-editors.html\">Text Editors</a></li>\n						<li>\n							<a href=\"javascript:;\">Image Croppers</a>\n							<ul class=\"child-menu\">\n								<li><a href=\"forms-jcrop.html\">J Crop</a></li>\n								<li><a href=\"forms-image-cropper.html\">Image Cropper</a></li>\n							</ul>\n						</li>\n						<li>\n							<a href=\"javascript:;\">Uploaders</a>\n							<ul class=\"child-menu\">\n								<li><a href=\"forms-dropzone.html\">Dropzone</a></li>\n								<li><a href=\"forms-multiple-file-upload.html\">Multiple File Upload</a></li>\n								<li><a href=\"forms-custom-file-input.html\">Custom File Input</a></li>\n							</ul>\n						</li>\n					</ul>\n				</li>\n				<li>\n					<a href=\"javascript:;\">Tables</a>\n					<ul class=\"child-menu\">\n						<li><a href=\"table-elements.html\">Elements</a></li>\n						<li><a href=\"table-responsive.html\">Responsive Tables</a></li>\n						<li><a href=\"table-bootstrap-table.html\">BS Table</a></li>\n						<li><a href=\"table-datatables.html\">DataTables</a></li>\n						<li><a href=\"table-datatables-data-sources.html\">DataTable Data Sources</a></li>\n						<li><a href=\"table-datatables-editor.html\">DataTable Editor</a></li>\n						<li><a href=\"table-datatables-extensions.html\">DataTable Extensions</a></li>\n					</ul>\n				</li>\n				<li>\n					<a href=\"javascript:;\">Pages</a>\n					<ul class=\"child-menu\">\n						<li>\n							<a href=\"javascript:;\">User Pages <span class=\"badge badge-primary\">4</span></a>\n							<ul class=\"child-menu\">\n								<li><a href=\"user-profile.html\">Profile</a></li>\n								<li><a href=\"user-lock-screen.html\" target=\"_blank\">Lock Screen</a></li>\n								<li><a href=\"user-login.html\" target=\"_blank\">Login</a></li>\n								<li><a href=\"user-calendar.html\">Calendar</a></li>\n							</ul>\n						</li>\n						<li><a href=\"pages-blog.html\">Blog</a></li>\n						<li><a href=\"pages-about-us.html\">About Us</a></li>\n						<li><a href=\"pages-coming-soon.html\" target=\"_blank\">Coming Soon</a></li>\n						<li><a href=\"pages-contact-us.html\">Contact Us</a></li>\n						<li><a href=\"pages-404.html\" target=\"_blank\">404 Error Page</a></li>\n						<li><a href=\"pages-invoice.html\">Invoice</a></li>\n						<li><a href=\"pages-pricing.html\">Pricing Tables</a></li>\n						<li><a href=\"pages-search-results.html\">Search Results</a></li>\n						<li><a href=\"pages-timeline.html\">Timeline</a></li>\n						<li><a href=\"blank.html\">Blank</a></li>\n					</ul>\n				</li>\n				<li>\n					<a href=\"javascript:;\">Components</a>\n					<ul class=\"child-menu\">\n						<li><a href=\"components-offline-detector.html\">Offline Detector</a></li>\n						<li><a href=\"components-session-timeout.html\">Session Timeout</a></li>\n						<li><a href=\"components-sound-library.html\">Sound Library</a></li>\n						<li><a href=\"components-tree-view.html\">Tree View</a></li>\n					</ul>\n				</li>\n				<li>\n					<a href=\"javascript:;\">Grids</a>\n					<ul class=\"child-menu\">\n						<li><a href=\"grids-bootstrap.html\">Bootstrap Grids</a></li>\n						<li><a href=\"grids-bootstrap-extra.html\">Extra Grids</a></li>\n						<li><a href=\"grids-masonry.html\">Masonry Grids</a></li>\n					</ul>\n				</li>\n				<li>\n					<a href=\"javascript:;\">Charts</a>\n					<ul class=\"child-menu\">\n						<li><a href=\"charts-c3.html\">C3 Charts</a></li>\n						<li><a href=\"charts-chartjs.html\">Chart JS</a></li>\n						<li><a href=\"charts-flot.html\">Flot Charts</a></li>\n						<li><a href=\"charts-knob.html\">Knob Charts</a></li>\n					</ul>\n				</li>\n				<li>\n					<a href=\"javascript:;\">Maps</a>\n					<ul class=\"child-menu\">\n						<li><a href=\"maps-google.html\">Google Maps</a></li>\n						<li><a href=\"maps-leaflet.html\">Leaflet Maps</a></li>\n						<li><a href=\"maps-vector.html\">Vector Maps</a></li>\n					</ul>\n				</li>\n			</ul>\n		</div><!--.menu-layer-->\n		<!-- END OF MENU LAYER -->\n\n		<!-- BEGIN SEARCH LAYER -->\n		<div class=\"search-layer\">\n			<div class=\"search\">\n				<form action=\"pages-search-results.html\">\n					<div class=\"form-group\">\n						<input type=\"text\" id=\"input-search\" class=\"form-control\" placeholder=\"type something\">\n						<button type=\"submit\" class=\"btn btn-default disabled\"><i class=\"ion-search\"></i></button>\n					</div>\n				</form>\n			</div><!--.search-->\n\n			<div class=\"results\">\n				<div class=\"row\">\n					<div class=\"col-md-4\">\n						<div class=\"result result-users\">\n							<h4>USERS <small>(3)</small></h4>\n\n							<ul class=\"list-material\">\n								<li class=\"has-action-left\">\n									<a href=\"#\" class=\"hidden\"><i class=\"ion-android-delete\"></i></a>\n									<a href=\"#\" class=\"visible\">\n										<div class=\"list-action-left\">\n											<img src=\"../../assets/globals/img/faces/1.jpg\" class=\"face-radius\" alt=\"\">\n										</div>\n										<div class=\"list-content\">\n											<span class=\"title\">Pari Subramanium</span>\n											<span class=\"caption\">Legacy Response Assistant</span>\n										</div>\n									</a>\n								</li>\n								<li class=\"has-action-left\">\n									<a href=\"#\" class=\"hidden\"><i class=\"ion-android-delete\"></i></a>\n									<a href=\"#\" class=\"visible\">\n										<div class=\"list-action-left\">\n											<img src=\"../../assets/globals/img/faces/10.jpg\" class=\"face-radius\" alt=\"\">\n										</div>\n										<div class=\"list-content\">\n											<span class=\"title\">Andrew Fox</span>\n											<span class=\"caption\">National Branding Technician</span>\n										</div>\n									</a>\n								</li>\n								<li class=\"has-action-left\">\n									<a href=\"#\" class=\"hidden\"><i class=\"ion-android-delete\"></i></a>\n									<a href=\"#\" class=\"visible\">\n										<div class=\"list-action-left\">\n											<img src=\"../../assets/globals/img/faces/11.jpg\" class=\"face-radius\" alt=\"\">\n										</div>\n										<div class=\"list-content\">\n											<span class=\"title\">Lieke Vermeulen</span>\n											<span class=\"caption\">Global Tactics Consultant</span>\n										</div>\n									</a>\n								</li>\n							</ul>\n\n						</div><!--.results-user-->\n					</div><!--.col-->\n					<div class=\"col-md-4\">\n						<div class=\"result result-posts\">\n							<h4>POSTS <small>(5)</small></h4>\n\n							<ul class=\"list-material\">\n								<li class=\"has-action-left\">\n									<a href=\"#\" class=\"hidden\"><i class=\"ion-android-delete\"></i></a>\n									<a href=\"#\" class=\"visible\">\n										<div class=\"list-action-left\">\n											<img src=\"../../assets/globals/img/picjumbo/1.jpg\" class=\"img-radius\" alt=\"\">\n										</div>\n										<div class=\"list-content\">\n											<span class=\"title\">Mobile Trends for 2015</span>\n											<span class=\"caption\">Collaboratively administrate empowered markets via plug-and-play networks.</span>\n										</div>\n									</a>\n								</li>\n								<li class=\"has-action-left\">\n									<a href=\"#\" class=\"hidden\"><i class=\"ion-android-delete\"></i></a>\n									<a href=\"#\" class=\"visible\">\n										<div class=\"list-action-left\">\n											<img src=\"../../assets/globals/img/picjumbo/10.jpg\" class=\"img-radius\" alt=\"\">\n										</div>\n										<div class=\"list-content\">\n											<span class=\"title\">Interview with Phillip Riley</span>\n											<span class=\"caption\">Dynamically procrastinate B2C users after installed base benefits.</span>\n										</div>\n									</a>\n								</li>\n								<li class=\"has-action-left\">\n									<a href=\"#\" class=\"hidden\"><i class=\"ion-android-delete\"></i></a>\n									<a href=\"#\" class=\"visible\">\n										<div class=\"list-action-left\">\n											<img src=\"../../assets/globals/img/picjumbo/11.jpg\" class=\"img-radius\" alt=\"\">\n										</div>\n										<div class=\"list-content\">\n											<span class=\"title\">Workspaces</span>\n											<span class=\"caption\">Dramatically visualize customer directed convergence without revolutionary ROI.</span>\n										</div>\n									</a>\n								</li>\n								<li class=\"has-action-left\">\n									<a href=\"#\" class=\"hidden\"><i class=\"ion-android-delete\"></i></a>\n									<a href=\"#\" class=\"visible\">\n										<div class=\"list-action-left\">\n											<img src=\"../../assets/globals/img/picjumbo/5.jpg\" class=\"img-radius\" alt=\"\">\n										</div>\n										<div class=\"list-content\">\n											<span class=\"title\">Graphics &amp; Multimedia</span>\n											<span class=\"caption\">Efficiently unleash cross-media information without cross-media value.</span>\n										</div>\n									</a>\n								</li>\n								<li class=\"has-action-left\">\n									<a href=\"#\" class=\"hidden\"><i class=\"ion-android-delete\"></i></a>\n									<a href=\"#\" class=\"visible\">\n										<div class=\"list-action-left\">\n											<img src=\"../../assets/globals/img/picjumbo/6.jpg\" class=\"img-radius\" alt=\"\">\n										</div>\n										<div class=\"list-content\">\n											<span class=\"title\">Interactive Storytelling</span>\n											<span class=\"caption\">Quickly maximize timely deliverables for real-time schemas.</span>\n										</div>\n									</a>\n								</li>\n							</ul>\n\n						</div><!--.results-posts-->\n					</div><!--.col-->\n					<div class=\"col-md-4\">\n						<div class=\"result result-files\">\n							<h4>FILES <small>(0)</small></h4>\n							<p>No results were found</p>\n						</div><!--.results-files-->\n					</div><!--.col-->\n\n				</div><!--.row-->\n			</div><!--.results-->\n		</div><!--.search-layer-->\n		<!-- END OF SEARCH LAYER -->\n\n		<!-- BEGIN USER LAYER -->\n		<div class=\"user-layer\">\n			<ul class=\"nav nav-tabs nav-justified\" role=\"tablist\">\n				<li class=\"active\"><a href=\"#messages\" data-toggle=\"tab\">Messages</a></li>\n				<li><a href=\"#notifications\" data-toggle=\"tab\">Notifications <span class=\"badge\">3</span></a></li>\n				<li><a href=\"#settings\" data-toggle=\"tab\">Settings</a></li>\n			</ul>\n\n			<div class=\"row no-gutters tab-content\">\n\n				<div class=\"tab-pane fade in active\" id=\"messages\">\n					<div class=\"col-md-4\">\n						<div class=\"message-list-overlay\"></div>\n\n						<ul class=\"list-material message-list\">\n							<li class=\"has-action-left has-action-right\">\n								<a href=\"#\" class=\"visible\" data-message-id=\"1\">\n									<div class=\"list-action-left\">\n										<img src=\"../../assets/globals/img/faces/1.jpg\" class=\"face-radius\" alt=\"\">\n									</div>\n									<div class=\"list-content\">\n										<span class=\"title\">Pari Subramanium</span>\n										<span class=\"caption\">Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits.</span>\n									</div>\n									<div class=\"list-action-right\">\n										<span class=\"top\">15 min</span>\n										<i class=\"ion-android-done bottom\"></i>\n									</div>\n								</a>\n							</li>\n							<li class=\"has-action-left has-action-right\">\n								<a href=\"#\" class=\"visible\" data-message-id=\"2\">\n									<div class=\"list-action-left\">\n										<img src=\"../../assets/globals/img/faces/10.jpg\" class=\"face-radius\" alt=\"\">\n									</div>\n									<div class=\"list-content\">\n										<span class=\"title\">Andrew Fox</span>\n										<span class=\"caption\">Dramatically visualize customer directed convergence without revolutionary ROI. Efficiently unleash cross-media information without cross-media value.</span>\n									</div>\n									<div class=\"list-action-right\">\n										<span class=\"top\">2 hr</span>\n										<i class=\"ion-android-done bottom\"></i>\n									</div>\n								</a>\n							</li>\n							<li class=\"has-action-left has-action-right\">\n								<a href=\"#\" class=\"visible\" data-message-id=\"3\">\n									<div class=\"list-action-left\">\n										<img src=\"../../assets/globals/img/faces/11.jpg\" class=\"face-radius\" alt=\"\">\n									</div>\n									<div class=\"list-content\">\n										<span class=\"title\">Lieke Vermeulen</span>\n										<span class=\"caption\">Quickly maximize timely deliverables for real-time schemas. Dramatically maintain clicks-and-mortar solutions without functional solutions.</span>\n									</div>\n									<div class=\"list-action-right\">\n										<span class=\"top\">Yesterday</span>\n										<i class=\"ion-android-volume-off bottom\"></i>\n									</div>\n								</a>\n							</li>\n							<li class=\"has-action-left has-action-right\">\n								<a href=\"#\" class=\"visible\" data-message-id=\"4\">\n									<div class=\"list-action-left\">\n										<img src=\"../../assets/globals/img/faces/2.jpg\" class=\"face-radius\" alt=\"\">\n									</div>\n									<div class=\"list-content\">\n										<span class=\"title\">Benjamin Beck</span>\n										<span class=\"caption\">Completely synergize resource sucking relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas.</span>\n									</div>\n									<div class=\"list-action-right\">\n										<span class=\"top\">1 week ago</span>\n										<i class=\"ion-android-done bottom\"></i>\n									</div>\n								</a>\n							</li>\n							<li class=\"has-action-left has-action-right\">\n								<a href=\"#\" class=\"visible\" data-message-id=\"5\">\n									<div class=\"list-action-left\">\n										<img src=\"../../assets/globals/img/faces/12.jpg\" class=\"face-radius\" alt=\"\">\n									</div>\n									<div class=\"list-content\">\n										<span class=\"title\">Joshua Harris</span>\n										<span class=\"caption\">Dynamically innovate resource-leveling customer service for state of the art customer service. Objectively innovate empowered manufactured products whereas parallel platforms.</span>\n									</div>\n									<div class=\"list-action-right\">\n										<span class=\"top\">Jan 10, 2015</span>\n										<i class=\"ion-android-done bottom\"></i>\n									</div>\n								</a>\n							</li>\n							<li class=\"has-action-left has-action-right\">\n								<a href=\"#\" class=\"visible\" data-message-id=\"1\">\n									<div class=\"list-action-left\">\n										<img src=\"../../assets/globals/img/faces/13.jpg\" class=\"face-radius\" alt=\"\">\n									</div>\n									<div class=\"list-content\">\n										<span class=\"title\">Lisa Cooper</span>\n										<span class=\"caption\">Holisticly predominate extensible testing procedures for reliable supply chains. Dramatically engage top-line web services vis-a-vis cutting-edge deliverables.</span>\n									</div>\n									<div class=\"list-action-right\">\n										<span class=\"top\">Jan 5, 2015</span>\n										<i class=\"ion-android-done bottom\"></i>\n									</div>\n								</a>\n							</li>\n							<li class=\"has-action-left has-action-right\">\n								<a href=\"#\" class=\"visible\" data-message-id=\"2\">\n									<div class=\"list-action-left\">\n										<img src=\"../../assets/globals/img/faces/16.jpg\" class=\"face-radius\" alt=\"\">\n									</div>\n									<div class=\"list-content\">\n										<span class=\"title\">Matthew Harris</span>\n										<span class=\"caption\">Globally incubate standards compliant channels before scalable benefits. </span>\n									</div>\n									<div class=\"list-action-right\">\n										<span class=\"top\">Jan 4, 2015</span>\n										<i class=\"ion-android-done bottom\"></i>\n									</div>\n								</a>\n							</li>\n							<li class=\"has-action-left has-action-right\">\n								<a href=\"#\" class=\"visible\" data-message-id=\"3\">\n									<div class=\"list-action-left\">\n										<img src=\"../../assets/globals/img/faces/17.jpg\" class=\"face-radius\" alt=\"\">\n									</div>\n									<div class=\"list-content\">\n										<span class=\"title\">Diana Nguyen</span>\n										<span class=\"caption\">Happy new yeaar!!</span>\n									</div>\n									<div class=\"list-action-right\">\n										<span class=\"top\">Jan 1, 2015</span>\n										<i class=\"ion-android-done bottom\"></i>\n									</div>\n								</a>\n							</li>\n						</ul>\n					</div><!--.col-->\n					<div class=\"col-md-8\">\n						<div class=\"message-send-container\">\n\n							<div class=\"messages\">\n								<div class=\"message left\">\n									<div class=\"message-text\">Hello!</div>\n									<img src=\"../../assets/globals/img/faces/1.jpg\" class=\"user-picture\" alt=\"\">\n								</div>\n								<div class=\"message right\">\n									<div class=\"message-text\">Hi!</div>\n									<div class=\"message-text\">Credibly innovate granular internal or \"organic\" sources whereas high standards in web-readiness. Energistically scale future-proof core competencies vis-a-vis impactful experiences.</div>\n									<img src=\"../../assets/globals/img/faces/tolga-ergin.jpg\" class=\"user-picture\" alt=\"\">\n								</div>\n								<div class=\"message left\">\n									<div class=\"message-text\">Dramatically synthesize integrated schemas with optimal networks.</div>\n									<img src=\"../../assets/globals/img/faces/1.jpg\" class=\"user-picture\" alt=\"\">\n								</div>\n								<div class=\"message right\">\n									<div class=\"message-text\">Interactively procrastinate high-payoff content</div>\n									<img src=\"../../assets/globals/img/faces/tolga-ergin.jpg\" class=\"user-picture\" alt=\"\">\n								</div>\n								<div class=\"message left\">\n									<div class=\"message-text\">Globally incubate standards compliant channels before scalable benefits. Quickly disseminate superior deliverables whereas web-enabled applications. Quickly drive clicks-and-mortar catalysts for change before vertical architectures.</div>\n									<div class=\"message-text\">Credibly reintermediate backend ideas for cross-platform models. Continually reintermediate integrated processes through technically sound intellectual capital. Holistically foster superior methodologies without market-driven best practices.</div>\n									<img src=\"../../assets/globals/img/faces/1.jpg\" class=\"user-picture\" alt=\"\">\n								</div>\n								<div class=\"message right\">\n									<div class=\"message-text\">Distinctively exploit optimal alignments for intuitive bandwidth</div>\n									<img src=\"../../assets/globals/img/faces/tolga-ergin.jpg\" class=\"user-picture\" alt=\"\">\n								</div>\n								<div class=\"message left\">\n									<div class=\"message-text\">Quickly coordinate e-business applications through</div>\n									<img src=\"../../assets/globals/img/faces/1.jpg\" class=\"user-picture\" alt=\"\">\n								</div>\n							</div><!--.messages-->\n\n							<div class=\"send-message\">\n								<div class=\"input-group\">\n									<div class=\"inputer inputer-blue\">\n										<div class=\"input-wrapper\">\n											<textarea rows=\"1\" id=\"send-message-input\" class=\"form-control js-auto-size\" placeholder=\"Message\"></textarea>\n										</div>\n									</div><!--.inputer-->\n									<span class=\"input-group-btn\">\n										<button id=\"send-message-button\" class=\"btn btn-blue\" type=\"button\">Send</button>\n									</span>\n								</div>\n							</div><!--.send-message-->\n\n						</div><!--.message-send-container-->\n					</div><!--.col-->\n\n					<div class=\"mobile-back\">\n						<div class=\"mobile-back-button\"><i class=\"ion-android-arrow-back\"></i></div>\n					</div><!--.mobile-back-->\n				</div><!--.tab-pane #messages-->\n\n				<div class=\"tab-pane fade\" id=\"notifications\">\n\n					<div class=\"col-md-6 col-md-offset-3\">\n\n						<ul class=\"list-material has-hidden\">\n							<li class=\"has-action-left has-action-right has-long-story\">\n								<a href=\"#\" class=\"hidden\"><i class=\"ion-android-delete\"></i></a>\n								<a href=\"#\" class=\"visible\">\n									<div class=\"list-action-left\">\n										<i class=\"ion-bag icon text-indigo\"></i>\n									</div>\n									<div class=\"list-content\">\n										<span class=\"caption\">Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits.</span>\n									</div>\n									<div class=\"list-action-right\">\n										<span class=\"top\">2 hr</span>\n										<i class=\"ion-record text-green bottom\"></i>\n									</div>\n								</a>\n							</li>\n							<li class=\"has-action-left has-action-right has-long-story\">\n								<a href=\"#\" class=\"hidden\"><i class=\"ion-android-delete\"></i></a>\n								<a href=\"#\" class=\"visible\">\n									<div class=\"list-action-left\">\n										<i class=\"ion-image text-green icon\"></i>\n									</div>\n									<div class=\"list-content\">\n										<span class=\"caption\">Dramatically visualize customer directed convergence without revolutionary ROI. Efficiently unleash cross-media information without cross-media value.</span>\n									</div>\n									<div class=\"list-action-right\">\n										<span class=\"top\">16:55</span>\n										<i class=\"ion-record text-green bottom\"></i>\n									</div>\n								</a>\n							</li>\n							<li class=\"has-action-left has-action-right has-long-story\">\n								<a href=\"#\" class=\"hidden\"><i class=\"ion-android-delete\"></i></a>\n								<a href=\"#\" class=\"visible\">\n									<div class=\"list-action-left\">\n										<img src=\"../../assets/globals/img/faces/13.jpg\" class=\"face-radius\" alt=\"\">\n									</div>\n									<div class=\"list-content\">\n										<span class=\"caption\">Quickly maximize timely deliverables for real-time schemas. Dramatically maintain clicks-and-mortar solutions without functional solutions.</span>\n									</div>\n									<div class=\"list-action-right\">\n										<span class=\"top\">Yesterday</span>\n										<i class=\"ion-record text-green bottom\"></i>\n									</div>\n								</a>\n							</li>\n							<li class=\"has-action-left has-action-right has-long-story\">\n								<a href=\"#\" class=\"hidden\"><i class=\"ion-android-delete\"></i></a>\n								<a href=\"#\" class=\"visible\">\n									<div class=\"list-action-left\">\n										<img src=\"../../assets/globals/img/faces/14.jpg\" class=\"face-radius\" alt=\"\">\n									</div>\n									<div class=\"list-content\">\n										<span class=\"caption\">Completely synergize resource sucking relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas.</span>\n									</div>\n									<div class=\"list-action-right\">\n										<span class=\"top\">2 days ago</span>\n										<i class=\"ion-android-done bottom\"></i>\n									</div>\n								</a>\n							</li>\n							<li class=\"has-action-left has-action-right has-long-story\">\n								<a href=\"#\" class=\"hidden\"><i class=\"ion-android-delete\"></i></a>\n								<a href=\"#\" class=\"visible\">\n									<div class=\"list-action-left\">\n										<i class=\"ion-location text-light-blue icon\"></i>\n									</div>\n									<div class=\"list-content\">\n										<span class=\"caption\">Dynamically innovate resource-leveling customer service for state of the art customer service. Objectively innovate empowered manufactured products whereas parallel platforms.</span>\n									</div>\n									<div class=\"list-action-right\">\n										<span class=\"top\">1 week ago</span>\n										<i class=\"ion-android-done bottom\"></i>\n									</div>\n								</a>\n							</li>\n							<li class=\"has-action-left has-action-right has-long-story\">\n								<a href=\"#\" class=\"hidden\"><i class=\"ion-android-delete\"></i></a>\n								<a href=\"#\" class=\"visible\">\n									<div class=\"list-action-left\">\n										<i class=\"ion-bookmark text-deep-orange icon\"></i>\n									</div>\n									<div class=\"list-content\">\n										<span class=\"caption\">Holisticly predominate extensible testing procedures for reliable supply chains. Dramatically engage top-line web services vis-a-vis cutting-edge deliverables.</span>\n									</div>\n									<div class=\"list-action-right\">\n										<span class=\"top\">10 Jan</span>\n										<i class=\"ion-android-done bottom\"></i>\n									</div>\n								</a>\n							</li>\n							<li class=\"has-action-left has-action-right has-long-story\">\n								<a href=\"#\" class=\"hidden\"><i class=\"ion-android-delete\"></i></a>\n								<a href=\"#\" class=\"visible\">\n									<div class=\"list-action-left\">\n										<i class=\"ion-locked icon\"></i>\n									</div>\n									<div class=\"list-content\">\n										<span class=\"caption\">Phosfluorescently engage worldwide methodologies with web-enabled technology.</span>\n									</div>\n									<div class=\"list-action-right\">\n										<span class=\"top\">9 Jan</span>\n										<i class=\"ion-android-done bottom\"></i>\n									</div>\n								</a>\n							</li>\n							<li class=\"has-action-left has-action-right has-long-story\">\n								<a href=\"#\" class=\"hidden\"><i class=\"ion-android-delete\"></i></a>\n								<a href=\"#\" class=\"visible\">\n									<div class=\"list-action-left\">\n										<img src=\"../../assets/globals/img/faces/17.jpg\" class=\"face-radius\" alt=\"\">\n									</div>\n									<div class=\"list-content\">\n										<span class=\"caption\">Synergistically evolve 2.0 technologies rather than just in time initiatives. Quickly deploy strategic networks with compelling e-business. Credibly pontificate highly efficient manufactured products and enabled data.</span>\n									</div>\n									<div class=\"list-action-right\">\n										<span class=\"top\">7 Jan</span>\n										<i class=\"ion-android-done bottom\"></i>\n									</div>\n								</a>\n							</li>\n							<li class=\"has-action-left has-action-right has-long-story\">\n								<a href=\"#\" class=\"hidden\"><i class=\"ion-android-delete\"></i></a>\n								<a href=\"#\" class=\"visible\">\n									<div class=\"list-action-left\">\n										<i class=\"ion-navigate text-indigo icon\"></i>\n									</div>\n									<div class=\"list-content\">\n										<span class=\"caption\">Objectively pursue diverse catalysts for change for interoperable meta-services. Dramatically mesh low-risk high-yield alignments before transparent e-tailers.</span>\n									</div>\n									<div class=\"list-action-right\">\n										<span class=\"top\">7 Jan</span>\n										<i class=\"ion-android-done bottom\"></i>\n									</div>\n								</a>\n							</li>\n						</ul>\n\n					</div><!--.col-->\n				</div><!--.tab-pane #notifications-->\n\n				<div class=\"tab-pane fade\" id=\"settings\">\n					<div class=\"col-md-6 col-md-offset-3\">\n\n						<div class=\"settings-panel\">\n							<p class=\"text-grey\">Here's where you can check your settings of Pleasure Admin Panel. If you need an extra information from us, do not hesitate to contact.</p>\n\n							<div class=\"legend\">Privacy Controls</div>\n							<ul>\n								<li>\n									Show my profile on search results\n									<div class=\"switcher switcher-indigo pull-right\">\n										<input id=\"settings1\" type=\"checkbox\" hidden=\"hidden\" checked=\"checked\">\n										<label for=\"settings1\"></label>\n									</div><!--.switcher-->\n								</li>\n								<li>\n									Only God can judge me\n									<div class=\"switcher switcher-indigo pull-right\">\n										<input id=\"settings2\" type=\"checkbox\" hidden=\"hidden\" checked=\"checked\">\n										<label for=\"settings2\"></label>\n									</div><!--.switcher-->\n								</li>\n								<li>\n									Review tags people add to your own posts\n									<div class=\"switcher switcher-indigo pull-right\">\n										<input id=\"settings3\" type=\"checkbox\" hidden=\"hidden\">\n										<label for=\"settings3\"></label>\n									</div><!--.switcher-->\n								</li>\n							</ul>\n\n							<div class=\"legend\">Notifications</div>\n							<ul>\n								<li>\n									Activity that involves you\n									<div class=\"switcher switcher-indigo pull-right\">\n										<input id=\"settings4\" type=\"checkbox\" hidden=\"hidden\" checked=\"checked\">\n										<label for=\"settings4\"></label>\n									</div><!--.switcher-->\n								</li>\n								<li>\n									Birthdays\n									<div class=\"switcher switcher-indigo pull-right\">\n										<input id=\"settings5\" type=\"checkbox\" hidden=\"hidden\">\n										<label for=\"settings5\"></label>\n									</div><!--.switcher-->\n								</li>\n								<li>\n									Calendar events\n									<div class=\"switcher switcher-indigo pull-right\">\n										<input id=\"settings6\" type=\"checkbox\" hidden=\"hidden\">\n										<label for=\"settings6\"></label>\n									</div><!--.switcher-->\n								</li>\n							</ul>\n\n							<div class=\"legend\">Newsletter</div>\n							<ul>\n								<li>\n									Friend requests\n									<div class=\"checkboxer checkboxer-indigo pull-right\">\n										<input type=\"checkbox\" id=\"checkboxSettings1\" value=\"option1\" checked=\"checked\">\n										<label for=\"checkboxSettings1\"></label>\n									</div>\n								</li>\n								<li>\n									People you may know\n									<div class=\"checkboxer checkboxer-indigo pull-right\">\n										<input type=\"checkbox\" id=\"checkboxSettings2\" value=\"option1\">\n										<label for=\"checkboxSettings2\"></label>\n									</div>\n								</li>\n							</ul>\n\n						</div><!--.settings-panel-->\n\n					</div><!--.col-->\n				</div><!--.tab-pane #settings-->\n\n			</div><!--.row-->\n		</div><!--.user-layer-->\n		<!-- END OF USER LAYER -->\n\n	</div><!--.layer-container-->\n\n	<!-- BEGIN GLOBAL AND THEME VENDORS -->\n	<script src=\"../../assets/globals/js/global-vendors.js\"></script>\n	<!-- END GLOBAL AND THEME VENDORS -->\n\n	<!-- BEGIN PLUGINS AREA -->\n	<!-- END PLUGINS AREA -->\n\n	<!-- PLUGINS INITIALIZATION AND SETTINGS -->\n	<!-- END PLUGINS INITIALIZATION AND SETTINGS -->\n\n	<!-- PLEASURE -->\n	<script src=\"../../assets/globals/js/pleasure.js\"></script>\n	<!-- ADMIN 1 -->\n	<script src=\"../../assets/admin1/js/layout.js\"></script>\n\n	<!-- BEGIN INITIALIZATION-->\n	<script>\n	$(document).ready(function () {\n		Pleasure.init();\n		Layout.init();\n\n	});\n	</script>\n	<!-- END INITIALIZATION-->\n\n	<!-- BEGIN Google Analytics -->\n	<script>\n		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){\n		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),\n		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)\n		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');\n\n		ga('create', Pleasure.settings.ga.urchin, Pleasure.settings.ga.url);\n		ga('send', 'pageview');\n	</script>\n	<!-- END Google Analytics -->\n\n</body>\n</html>",
+			"file": "/Users/yeisonvelasquez/Dropbox/mvc/app/admin1/ui-elements-tabs.html",
+			"file_size": 50191,
+			"file_write_time": 1425038798000000,
+			"settings":
+			{
+				"buffer_size": 50192,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "css/plugins.css",
+			"settings":
+			{
+				"buffer_size": 34494,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "sart/views/sart/movil/lista_movil.php",
+			"settings":
+			{
+				"buffer_size": 3920,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "sgc/views/sgc/inicio.php",
+			"settings":
+			{
+				"buffer_size": 4364,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "sart/views/sart/principal.php",
+			"settings":
+			{
+				"buffer_size": 3814,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "sart/views/sart/login/vis_login.php",
+			"settings":
+			{
+				"buffer_size": 4416,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "sgc/controllers/sistemasgc.php",
+			"settings":
+			{
+				"buffer_size": 14029,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/Users/yeisonvelasquez/Dropbox/transporte/js/scripts_PM.js",
+			"settings":
+			{
+				"buffer_size": 41416,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/yeisonvelasquez/Dropbox/transporte/vista/moneda/vis_modal_movil.php",
+			"settings":
+			{
+				"buffer_size": 18308,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Applications/XAMPP/xamppfiles/htdocs/transporte/js/scripts_bs3.js",
+			"settings":
+			{
+				"buffer_size": 59726,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Applications/XAMPP/xamppfiles/htdocs/transporte/js/scripts_dashboard.js",
+			"settings":
+			{
+				"buffer_size": 4650,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/yeisonvelasquez/Dropbox/mvc/app/admin1/pages-invoice.html",
+			"settings":
+			{
+				"buffer_size": 39043,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/yeisonvelasquez/Dropbox/mvc/app/admin1/forms-layouts.html",
+			"settings":
+			{
+				"buffer_size": 64122,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+		],
+		"width": 575.0
+	},
+	"console":
+	{
+		"height": 0.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Applications/MAMP/htdocs/transporte/sar_2015-03-06.sql",
+		"/Users/yeisonvelasquez/Dropbox/transporte/control/ctr_dashboard.php",
+		"/Users/yeisonvelasquez/Dropbox/transporte/modelo/mod_login.php",
+		"/Users/yeisonvelasquez/Dropbox/sofia/sgc/views/sgc/aceptasol.php",
+		"/Users/yeisonvelasquez/Dropbox/mvc/app/admin1/forms-layouts.html",
+		"/Users/yeisonvelasquez/Dropbox/transporte/modelo/mod_global.php",
+		"/Users/yeisonvelasquez/Dropbox/sofia/css/elements.css",
+		"/Applications/XAMPP/xamppfiles/htdocs/transporte/modelo/mod_global.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/transporte/modelo/mod_login.php",
+		"/Users/yeisonvelasquez/Dropbox/mvc/app/admin1/ui-elements-notifications.html",
+		"/Users/yeisonvelasquez/Dropbox/mvc/app/admin1/forms-selects.html",
+		"/Applications/XAMPP/xamppfiles/htdocs/transporte/vista/moneda/vis_add_movil.php",
+		"/Users/yeisonvelasquez/Dropbox/mvc/app/admin1/forms-pickers.html",
+		"/Applications/XAMPP/xamppfiles/htdocs/transporte/js/scripts_reusable_category_transactions.js",
+		"/Users/yeisonvelasquez/Dropbox/sofia/sart/controllers/Sistemasart.php",
+		"/Users/yeisonvelasquez/Dropbox/mvc/app/admin1/ui-elements-buttons.html",
+		"/Users/yeisonvelasquez/Dropbox/mvc/app/admin1/forms-tools.html",
+		"/Users/yeisonvelasquez/Dropbox/gespiloto/configuracion/compromisos.php",
+		"/Users/yeisonvelasquez/Dropbox/gestion_documental/app/vista/registro/vis_registro_struc_table.php",
+		"/Users/yeisonvelasquez/Dropbox/gestion_documental/app/vista/vis_list_docs_table.php",
+		"/Users/yeisonvelasquez/Dropbox/gestion_documental/app/vista/vis_docs_detail.php",
+		"/Users/yeisonvelasquez/Dropbox/gestion_documental/app/vista/informes/vis_report_dependencia_all_detalle.php",
+		"/Users/yeisonvelasquez/Dropbox/gestion_documental/app/vista/informes/vis_report_dependencia_all_s.php",
+		"/Users/yeisonvelasquez/Dropbox/gestion_documental/app/vista/informes/vis_report_usuario_all.php",
+		"/Users/yeisonvelasquez/Dropbox/gestion_documental/app/vista/informes/vis_reporte_general.php",
+		"/Users/yeisonvelasquez/Dropbox/gestion_documental/app/modelo/mod_gesdoc.php",
+		"/Users/yeisonvelasquez/Dropbox/gestion_documental/app/control/ctr_informe.php",
+		"/Users/yeisonvelasquez/Dropbox/gestion_documental/app/vista/informes/vis_report_prestamo.php",
+		"/Users/yeisonvelasquez/Dropbox/gestion_documental/app/libs/conf_constantes.php",
+		"/Users/yeisonvelasquez/Dropbox/gestion_documental/app/vista/informes/vis_report_dependencia.php",
+		"/Users/yeisonvelasquez/Dropbox/ventanilla/vista/vis_salida_entrada_form.php",
+		"/Users/yeisonvelasquez/Dropbox/ventanilla/libs/conf_constantes.php",
+		"/Users/yeisonvelasquez/Dropbox/ventanilla/js/scripts_ventanilla.js",
+		"/Users/yeisonvelasquez/Dropbox/ventanilla/control/ctr_informe.php",
+		"/Users/yeisonvelasquez/Dropbox/ventanilla/control/ctr_salida.php",
+		"/Users/yeisonvelasquez/Dropbox/plantilla/theme/templates/admin/form_layouts.html",
+		"/Users/yeisonvelasquez/Dropbox/ventanilla/vista/version/vis_version_list.php",
+		"/Users/yeisonvelasquez/Dropbox/gestion_documental/app/css/style.css",
+		"/Users/yeisonvelasquez/Dropbox/plantilla/theme/templates/admin/form_controls.html",
+		"/Users/yeisonvelasquez/Dropbox/gestion_documental/app/libs/js_upload/jquery.fileupload-ui.js",
+		"/Users/yeisonvelasquez/Dropbox/gestion_documental/app/vista/registro/vista_modal_edit_file.php",
+		"/Users/yeisonvelasquez/Dropbox/gestion_documental/app/vista/vis_gesdoc_busca.php",
+		"/Users/yeisonvelasquez/Dropbox/gestion_documental/app/vista/vis_index.php",
+		"/Users/yeisonvelasquez/Dropbox/ventanilla/vista/vis_tipo_doc_list.php",
+		"/Users/yeisonvelasquez/Dropbox/ventanilla/vista/vis_tipo_doc_list_table.php",
+		"/Users/yeisonvelasquez/Dropbox/plantilla/theme/templates/admin/ui_tiles.html",
+		"/Users/yeisonvelasquez/Dropbox/plantilla/theme/templates/admin/ui_colors.html",
+		"/Users/yeisonvelasquez/Dropbox/gestion_documental/app/vista/version/vis_version_list_table.php",
+		"/Users/yeisonvelasquez/Dropbox/gestion_documental/app/control/ctr_version.php",
+		"/Users/yeisonvelasquez/Dropbox/gestion_documental/app/vista/vis_gesdoc.php",
+		"/Users/yeisonvelasquez/Dropbox/gestion_documental/app/vista/registro/vis_registro.php",
+		"/Users/yeisonvelasquez/Dropbox/gestion_documental/app/vista/registro/vis_detallada_table.php",
+		"/Users/yeisonvelasquez/Dropbox/gestion_documental/app/vista/registro/vista_modal_add_file.php",
+		"/Users/yeisonvelasquez/Dropbox/gestion_documental/app/control/ctr_trd.php",
+		"/Users/yeisonvelasquez/Dropbox/gestion_documental/app/control/ctr_upload.php",
+		"/Users/yeisonvelasquez/Dropbox/gestion_documental/app/vista/estructura/vis_estructura_list_table.php",
+		"/Users/yeisonvelasquez/Dropbox/themeforest-4021469-metronic-responsive-admin-dashboard-template-v3-1.6/theme_rtl/assets/global/plugins/jquery-file-upload/js/jquery.fileupload-ui.js",
+		"/Users/yeisonvelasquez/Dropbox/gestion_documental/app/libs/js_upload/jquery.fileupload-validate.js",
+		"/Users/yeisonvelasquez/Dropbox/gestion_documental/app/libs/js_upload/jquery.fileupload-process.js",
+		"/Users/yeisonvelasquez/Dropbox/gestion_documental/app/libs/js_upload/jquery.fileupload.js",
+		"/Users/yeisonvelasquez/Dropbox/themeforest-4021469-metronic-responsive-admin-dashboard-template-v3-1.6/theme/assets/global/plugins/jquery-file-upload/server/php/UploadHandler.php",
+		"/Users/yeisonvelasquez/Dropbox/gestion_documental/app/control/index.php",
+		"/Users/yeisonvelasquez/Dropbox/plantilla/theme/templates/admin/form_fileupload.html",
+		"/Users/yeisonvelasquez/Dropbox/plantilla/theme/assets/admin/pages/scripts/form-samples.js",
+		"/Users/yeisonvelasquez/Dropbox/gestion_documental/app/libs/js_upload/jquery.fileupload-image.js",
+		"/Users/yeisonvelasquez/Dropbox/gestion_documental/app/libs/select2/select2.min.js",
+		"/Users/yeisonvelasquez/Dropbox/mini-upload-form/assets/css/style.css",
+		"/Users/yeisonvelasquez/Downloads/max-favilli-tagmanager-3d07d92/docs/docs.html",
+		"/Users/yeisonvelasquez/Downloads/max-favilli-tagmanager-3d07d92/tagmanager.js",
+		"/Users/yeisonvelasquez/Downloads/max-favilli-tagmanager-3d07d92/README.md",
+		"/Users/yeisonvelasquez/Dropbox/mini-upload-form/index.html",
+		"/Users/yeisonvelasquez/Dropbox/gestion_documental/app/vista/registro/vis_registro_table.php",
+		"/Users/yeisonvelasquez/Dropbox/plantilla/theme/assets/admin/pages/scripts/form-fileupload.js",
+		"/Users/yeisonvelasquez/Dropbox/plantilla/theme/assets/global/plugins/jquery-file-upload/server/php/UploadHandler.php",
+		"/Users/yeisonvelasquez/Dropbox/mini-upload-form/upload.php",
+		"/Users/yeisonvelasquez/Dropbox/mini-upload-form/assets/js/script.js",
+		"/Users/yeisonvelasquez/Dropbox/fileup/index.html",
+		"/Users/yeisonvelasquez/Documents/Ondis/ONDIS/atpservices.ws/apps_dev/PM/manager/app/control/ctr_vendors.php",
+		"/Users/yeisonvelasquez/Documents/Ondis/ONDIS/atpservices.ws/apps_dev/PM/manager/app/control/ctr_owner.php",
+		"/Users/yeisonvelasquez/Documents/Ondis/ONDIS/atpservices.ws/apps_dev/PM/manager/app/control/ctr_global.php",
+		"/Users/yeisonvelasquez/Dropbox/ventanilla/vista/roles_permisos/vis_add_edit_rol.php",
+		"/Users/yeisonvelasquez/Dropbox/gestion_documental/app/vista/estructura/vis_estructura_list_level.php",
+		"/Users/yeisonvelasquez/Dropbox/ventanilla/control/ctr_personal.php",
+		"/Users/yeisonvelasquez/Dropbox/ventanilla/vista/personal/vis_personal_form_ciudadano.php",
+		"/Users/yeisonvelasquez/Dropbox/gestion_documental/app/control/ctr_gesdoc.php",
+		"/Users/yeisonvelasquez/Documents/Ondis/ONDIS/atpservices.ws/apps_dev/PM/manager/js/scripts_PM.js",
+		"/Applications/MAMP/htdocs/transporte/js/scripts_bs3.js",
+		"/Users/yeisonvelasquez/Dropbox/gestion_documental/app/control/ctr_estructura.php",
+		"/Users/yeisonvelasquez/Dropbox/ventanilla/vista/roles_permisos/vis_roles_permisos_form.php",
+		"/Users/yeisonvelasquez/Dropbox/gestion_documental/app/excel.php",
+		"/Users/yeisonvelasquez/Dropbox/ventanilla/vista/informes/vis_form_informe_entradas_salidas.php",
+		"/Users/yeisonvelasquez/Downloads/jQuery-File-Upload-7.4.1-jquery.ui/test/index.html",
+		"/Users/yeisonvelasquez/Dropbox/gestion_documental/app/vista/estructura/vis_estructura.php",
+		"/Users/yeisonvelasquez/Dropbox/gestion_documental/app/vista/registro/vis_registro_tablel.php",
+		"/Users/yeisonvelasquez/Dropbox/gestion_documental/app/control/ctr_organizacion.php",
+		"/Users/yeisonvelasquez/Dropbox/ventanilla/vista/vis_permiso_denegado.php",
+		"/Applications/MAMP/htdocs/ventanilla/vista/personal/vis_personal_add_edit_ciudadano.php",
+		"/Users/yeisonvelasquez/Dropbox/gestion_documental/app/vista/estructura/vista_modal_add_estructura.php",
+		"/Users/yeisonvelasquez/Downloads/tree/index.php",
+		"/Users/yeisonvelasquez/Downloads/tree/tree.php",
+		"/Applications/MAMP/htdocs/transporte/vista/moneda/vis_tabla_tercero.php",
+		"/Applications/MAMP/htdocs/transporte/vista/moneda/vis_modal_tercero.php",
+		"/Applications/MAMP/htdocs/gestion_documental/app/control/ctr_estructura.php",
+		"/Applications/MAMP/htdocs/gestion_documental/app/control/ctr_organizacion.php",
+		"/Applications/MAMP/htdocs/gestion_documental/app/vista/estructura/vis_estructura.php",
+		"/Applications/MAMP/htdocs/gestion_documental/app/vista/estructura/vis_estructura_list_table.php",
+		"/Applications/MAMP/htdocs/gestion_documental/app/js/scripts_gesdoc.js",
+		"/Applications/MAMP/htdocs/gestion_documental/app/js/scripts_gesdoc_alternativo.js",
+		"/Applications/MAMP/htdocs/gestion_documental/app/vista/vis_index.php",
+		"/Applications/MAMP/htdocs/gestion_documental/app/vista/estructura/vista_modal_add_estructura.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/gestion_documental/app/control/ctr_estructura",
+		"/Applications/MAMP/htdocs/transporte/modelo/mod_login.php",
+		"/Applications/MAMP/htdocs/transporte/control/ctr_login.php",
+		"/Users/yeisonvelasquez/Documents/Ondis/ONDIS/atpservices.ws/apps_dev/PM/manager/app/vista/mortgage/vis_modal_mortgage_detail_items.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/transporte/libs/bootstrap-datepicker_perfect/js/locales/bootstrap-datepicker.es.js",
+		"/Applications/XAMPP/xamppfiles/htdocs/transporte/libs/datepicker/js/bootstrap-datepicker.js",
+		"/Applications/XAMPP/xamppfiles/htdocs/transporte/libs/bootstrap-datepicker_perfect/js/bootstrap-datepicker.js",
+		"/Applications/XAMPP/xamppfiles/htdocs/transporte/js/scripts_bs3.js",
+		"/Applications/XAMPP/xamppfiles/htdocs/transporte/control/ctr_global.php",
+		"/Users/yeisonvelasquez/Documents/Ondis/ONDIS/atpservices.ws/apps_dev/PM/manager/app/vista/mortgage/vis_mortgage_items_list_table.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/transporte/vista/moneda/vis_moneda_add.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/transporte/vista/moneda/vis_moneda_edit.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/transporte/vista/moneda/vis_moneda.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/transporte/vista/moneda/vis_modo_p.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/transporte/vista/moneda/vis_tabla_tercero.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/tarjetas/vista/principal/vis_modal_config.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/tarjetas/control/ctr_login.php",
+		"/Applications/XAMPP/xamppfiles/htdocs/tarjetas/modelo/mod_global.php"
+	],
+	"find":
+	{
+		"height": 37.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"fcontrato",
+			"dataprop",
+			"nombre",
+			"propietario",
+			"nombre",
+			"-",
+			"datamov",
+			"div",
+			"querymov",
+			"resetea",
+			"'id_movil'",
+			"fechaing",
+			"filtrog",
+			"6",
+			"h6",
+			"5",
+			"				 		   <span class=\"input-group-addon\"><i class=\"ion-android-calendar\"></i></span>",
+			"bootstrap-daterangepicker-basicx",
+			"readonly",
+			"<?php echo $valfecha?>",
+			"two",
+			"BORRDERED ROWS",
+			"4",
+			"panel-body",
+			"valg",
+			"principal",
+			"true",
+			"hidden-md",
+			"fa-sort",
+			"v",
+			"user_ID",
+			"log_out",
+			"validarCampos",
+			".inputer",
+			".inputer label",
+			"novedad_servicio",
+			"contienedata",
+			"floating-label",
+			"managerid",
+			"validarCampos",
+			"marca",
+			"id_marca",
+			"DATEDIFF",
+			"as",
+			"dat",
+			"date",
+			"date_",
+			"date_d",
+			"date_di",
+			"date_dif",
+			"date_diff",
+			"diff",
+			"grupov",
+			"modelo",
+			"radiono",
+			"esinac",
+			"estado",
+			"contrato",
+			"fcontrato",
+			"\"\";",
+			"']",
+			"rowdosv",
+			"id",
+			"email",
+			"ciudad",
+			"telefono",
+			"direccion",
+			"id",
+			"apellidos",
+			"nombre",
+			"dataprop",
+			"tipo",
+			"validarCampos",
+			"0",
+			"mm-",
+			"<?php echo $i;?>",
+			"/",
+			"[]",
+			"divfecha",
+			"fexp",
+			"validarCampos",
+			"validasearch",
+			"'.selobligatorio'",
+			"validasearch",
+			"[$i]",
+			"0",
+			"[]",
+			"<?php echo $i;?>",
+			"<?php //echo $i;?>",
+			"validasearch",
+			"_GET[\"como\"]",
+			"vehiculo",
+			"fexp",
+			"fven",
+			"idoc",
+			"vehiculo",
+			"MOVIL",
+			"find",
+			"validasearch",
+			"data",
+			"validasearch",
+			"parent",
+			"selinput",
+			"toasts",
+			"grabaerror",
+			"inputmobile_cborder",
+			"guardamovil",
+			"grabaerror",
+			"spinner",
+			"url",
+			"localhost",
+			"spinner",
+			"selectize",
+			"select",
+			"search",
+			"like",
+			"orlike",
+			"like",
+			"remote2",
+			"nregistro",
+			"fechaing",
+			"vehiculo",
+			"guardaedit",
+			"pago_hasta",
+			"id_propietario",
+			"nombreprop",
+			"placa",
+			"scroll_rigth_block"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			"datepickerx",
+			"user_auth_global_edit",
+			"pledged_financed_add",
+			"pledged_financed",
+			"fd6444",
+			"../../",
+			"../libs/",
+			"libs/",
+			"libs",
+			"scale(1)",
+			"properties_owner"
+		],
+		"reverse": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": true,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 5,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "sart/controllers/Sistemasart.php",
+					"settings":
+					{
+						"buffer_size": 16270,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5045,
+								5045
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 1.0,
+						"translation.y": 2840.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "sart/views/sart/movil/vis_add_edit_movil.php",
+					"settings":
+					{
+						"buffer_size": 41150,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								765,
+								734
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "sart/models/Sart_model.php",
+					"settings":
+					{
+						"buffer_size": 26910,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6976,
+								6984
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 1.0,
+						"translation.y": 5763.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/Applications/XAMPP/xamppfiles/htdocs/transporte/control/ctr_dashboard.php",
+					"settings":
+					{
+						"buffer_size": 47337,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								25791,
+								25801
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 1.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "js/funciones.js",
+					"settings":
+					{
+						"buffer_size": 20260,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								20072,
+								20049
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 15624.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "sart/views/sart/pagos/tab_pago.php",
+					"settings":
+					{
+						"buffer_size": 11159,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1623,
+								1623
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1136.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "sart/views/sart/movil/vis_tabla_movil.php",
+					"settings":
+					{
+						"buffer_size": 8013,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1702,
+								1702
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 65.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "sart/views/sart/pagos/pagos_tabla.php",
+					"settings":
+					{
+						"buffer_size": 12793,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4291,
+								4299
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 335.0,
+						"translation.y": 2047.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "/Users/yeisonvelasquez/Dropbox/mvc/app/admin1/ui-elements-tabs.html",
+					"settings":
+					{
+						"buffer_size": 50192,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								9137,
+								9137
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1589.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "css/plugins.css",
+					"settings":
+					{
+						"buffer_size": 34494,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5951,
+								5958
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 5204.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "sart/views/sart/movil/lista_movil.php",
+					"settings":
+					{
+						"buffer_size": 3920,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								584,
+								592
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 150.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "sgc/views/sgc/inicio.php",
+					"settings":
+					{
+						"buffer_size": 4364,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1886,
+								2374
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 99.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "sart/views/sart/principal.php",
+					"settings":
+					{
+						"buffer_size": 3814,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2550,
+								2550
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 336.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 13,
+					"file": "sart/views/sart/login/vis_login.php",
+					"settings":
+					{
+						"buffer_size": 4416,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3817,
+								3831
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 18.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 14,
+					"file": "sgc/controllers/sistemasgc.php",
+					"settings":
+					{
+						"buffer_size": 14029,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 15,
+					"file": "/Users/yeisonvelasquez/Dropbox/transporte/js/scripts_PM.js",
+					"settings":
+					{
+						"buffer_size": 41416,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 16,
+					"file": "/Users/yeisonvelasquez/Dropbox/transporte/vista/moneda/vis_modal_movil.php",
+					"settings":
+					{
+						"buffer_size": 18308,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8020,
+								8010
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 17,
+					"file": "/Applications/XAMPP/xamppfiles/htdocs/transporte/js/scripts_bs3.js",
+					"settings":
+					{
+						"buffer_size": 59726,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								49144,
+								49148
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 4.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 18,
+					"file": "/Applications/XAMPP/xamppfiles/htdocs/transporte/js/scripts_dashboard.js",
+					"settings":
+					{
+						"buffer_size": 4650,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								369,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 19,
+					"file": "/Users/yeisonvelasquez/Dropbox/mvc/app/admin1/pages-invoice.html",
+					"settings":
+					{
+						"buffer_size": 39043,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4207,
+								3896
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2627.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 20,
+					"file": "/Users/yeisonvelasquez/Dropbox/mvc/app/admin1/forms-layouts.html",
+					"settings":
+					{
+						"buffer_size": 64122,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6512,
+								6556
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 4631.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 35.0
+	},
+	"input":
+	{
+		"height": 38.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"form-pi",
+				"mvc/app/admin1/forms-pickers.html"
+			],
+			[
+				"registro/vis_registro_struc_table.php",
+				"gestion_documental/app/vista/registro/vis_registro_struc_table.php"
+			],
+			[
+				"vis_list_docs_table",
+				"gestion_documental/app/vista/vis_list_docs_table.php"
+			],
+			[
+				"a/theme/templates/admin/form_controls.html",
+				"plantilla/theme/templates/admin/form_controls.html"
+			],
+			[
+				"/theme/templates/admin/form_layouts.html",
+				"plantilla/theme/templates/admin/form_layouts.html"
+			],
+			[
+				"libs/js_upload/jquery.fileupload-ui.js",
+				"gestion_documental/app/libs/js_upload/jquery.fileupload-ui.js"
+			],
+			[
+				"/templates/admin/ui_colors.html",
+				"plantilla/theme/templates/admin/ui_colors.html"
+			],
+			[
+				"admin/ui_tiles.html",
+				"plantilla/theme/templates/admin/ui_tiles.html"
+			],
+			[
+				"libs/js_upload/jquery.fileupload-validate.js",
+				"gestion_documental/app/libs/js_upload/jquery.fileupload-validate.js"
+			],
+			[
+				"libs/js_upload/jquery.fileupload-process.js",
+				"gestion_documental/app/libs/js_upload/jquery.fileupload-process.js"
+			],
+			[
+				"libs/js_upload/jquery.fileupload.js",
+				"gestion_documental/app/libs/js_upload/jquery.fileupload.js"
+			],
+			[
+				"libs/js_upload/jquery.fileupload-image.js",
+				"gestion_documental/app/libs/js_upload/jquery.fileupload-image.js"
+			],
+			[
+				"jquery.fileupload-process.js",
+				"gestion_documental/app/libs/js_upload/jquery.fileupload-process.js"
+			],
+			[
+				"libs/select2/select2.min.js",
+				"gestion_documental/app/libs/select2/select2.min.js"
+			],
+			[
+				"assets/admin/pages/scripts/form-samples.js",
+				"plantilla/theme/assets/admin/pages/scripts/form-samples.js"
+			],
+			[
+				"/libs/js_upload/jquery.fileupload-ui.js",
+				"gestion_documental/app/libs/js_upload/jquery.fileupload-ui.js"
+			],
+			[
+				"uploadhander",
+				"themeforest-4021469-metronic-responsive-admin-dashboard-template-v3-1.6/theme/assets/global/plugins/jquery-file-upload/server/php/UploadHandler.php"
+			],
+			[
+				"validate",
+				"gestion_documental/app/libs/js_upload/jquery.fileupload-validate.js"
+			],
+			[
+				"assets/admin/pages/scripts/form-fileupload.js",
+				"plantilla/theme/assets/admin/pages/scripts/form-fileupload.js"
+			],
+			[
+				"scr_bs",
+				"transporte/js/scripts_bs3.js"
+			],
+			[
+				"libs/datepicker/js/bootstrap-datepicker.js",
+				"transporte/libs/datepicker/js/bootstrap-datepicker.js"
+			],
+			[
+				"libs/bootstrap-datepicker_perfect/js/locales/bootstrap-datepicker.es.js",
+				"transporte/libs/bootstrap-datepicker_perfect/js/locales/bootstrap-datepicker.es.js"
+			],
+			[
+				"scr_morta",
+				"apps_dev/PM/manager/js/mvc/scripts_mortgage_mvc.js"
+			],
+			[
+				"scr_pm",
+				"tarjetas/js/scripts_PM.js"
+			],
+			[
+				"scr_mort",
+				"apps_dev/PM/manager/js/mvc/scripts_mortgage_mvc.js"
+			],
+			[
+				"scr_properties",
+				"apps_dev/PM/manager/js/scripts_properties20.js"
+			],
+			[
+				"libs/bootstrap-3.0.0/dist/css/bootstrap.css",
+				"tarjetas/libs/bootstrap-3.0.0/dist/css/bootstrap.css"
+			],
+			[
+				"scr_bs3",
+				"tarjetas/js/scripts_bs3.js"
+			],
+			[
+				"libs/class_frontcontrol.php",
+				"libs/class_frontcontrol.php"
+			],
+			[
+				"script/tcpdf/config/lang/en",
+				"script/tcpdf/config/lang/eng.php"
+			],
+			[
+				"script/tcpdf/tcpdf.php",
+				"script/tcpdf/tcpdf.php"
+			],
+			[
+				"script/datepicker/js/bootstrap-datepicker.js",
+				"script/datepicker/js/bootstrap-datepicker.js"
+			],
+			[
+				"components/movil_data.php",
+				"components/movil_data.php"
+			],
+			[
+				"script/typeahead.min.js",
+				"script/typeahead.min.js"
+			],
+			[
+				"script/ui-bootstrap-tpls-0.12.0.min.js",
+				"script/ui-bootstrap-tpls-0.12.0.min.js"
+			],
+			[
+				"vis_info",
+				"PM/manager/app/vista/property/vis_property_rental_info.php"
+			],
+			[
+				"vis",
+				"PM/manager/app/vista/selectors/vis_modal_selector_vendors.php"
+			],
+			[
+				"manager/apps/reusable_app/global_files/global_modal_property_info.php",
+				"PM/manager/apps/reusable_app/global_files/global_modal_property_info.php"
+			],
+			[
+				"properties_lis",
+				"PM/manager/apps/properties2_20/properties_list.php"
+			],
+			[
+				"scr_reusa_notes",
+				"PM/manager/js/reusable_js/scripts_reusable_add_note.js"
+			],
+			[
+				"properties_list",
+				"PM/manager/apps/properties2_20/properties_list.php"
+			],
+			[
+				"ctr_global",
+				"PM/manager/app/control/ctr_global.php"
+			],
+			[
+				"owners2_20/global_search_list_owners.php",
+				"PM/manager/apps/owners2_20/global_search_list_owners.php"
+			],
+			[
+				"scr_owner2",
+				"PM/manager/js/scripts_owner20.js"
+			],
+			[
+				"owners2_20/manage_groups/owners2_managegroups.php",
+				"PM/manager/apps/owners2_20/manage_groups/owners2_managegroups.php"
+			],
+			[
+				"scri_reusa_owne",
+				"PM/manager/js/reusable_js/scripts_reusable_owner_detail.js"
+			],
+			[
+				"owners2_20/manage_groups/owners2_insertnew_managegroup.php",
+				"PM/manager/apps/owners2_20/manage_groups/owners2_insertnew_managegroup.php"
+			],
+			[
+				"xajax_owner",
+				"PM/manager/apps/owners2_20/xajax_processor_owners2.php"
+			],
+			[
+				"glob_notes",
+				"PM/manager/apps/reusable_app/global_files/notes/global_procces_notes.php"
+			],
+			[
+				"list_properties_cvs.php",
+				"PM/manager/apps/properties2_20/list_properties_cvs.php"
+			],
+			[
+				"scr_owner",
+				"PM/manager/js/scripts_owner20.js"
+			],
+			[
+				"mod_mort",
+				"PM/manager/app/modelo/mod_mortgage.php"
+			],
+			[
+				"scr_reu_prop",
+				"PM/manager/js/reusable_js/scripts_reusable_info_property.js"
+			],
+			[
+				"scr_propert",
+				"PM/manager/js/scripts_properties20.js"
+			],
+			[
+				"glo_lis",
+				"PM/manager/apps/reusable_app/global_files/global_listjs_selectores.php"
+			],
+			[
+				"reusable_app/global_files/global_modal_property_info.php",
+				"PM/manager/apps/reusable_app/global_files/global_modal_property_info.php"
+			],
+			[
+				"properties_list_tags.php",
+				"PM/manager/apps/properties2_20/properties_list_tags.php"
+			],
+			[
+				"ctr_admins2",
+				"PM/manager/REQUEST/control/ctr_admins2.php"
+			],
+			[
+				"modelo/mod_admins2.php",
+				"PM/owner/modelo/mod_admins2.php"
+			],
+			[
+				"ctr_admin",
+				"PM/manager/app/control/ctr_admins2.php"
+			],
+			[
+				"reusable_app/admins2_detail/admins2_detail_action_settings.php",
+				"PM/manager/apps/reusable_app/admins2_detail/admins2_detail_action_settings.php"
+			],
+			[
+				"reusable_app/admins2_detail/admins2_detail_action.php",
+				"PM/manager/apps/reusable_app/admins2_detail/admins2_detail_action.php"
+			],
+			[
+				"xaja_contract",
+				"PM/manager/apps/reusable_app/contractors_detail/xajax_processor_contractor_detail.php"
+			],
+			[
+				"ctr_servi",
+				"PM/manager/app/control/ctr_service_center.php"
+			],
+			[
+				"scr_proper",
+				"PM/manager/js/scripts_properties20.js"
+			],
+			[
+				"glo_sel",
+				"PM/manager/apps/reusable_app/global_files/global_listjs_selectores.php"
+			],
+			[
+				"glo_sele",
+				"PM/manager/apps/reusable_app/global_files/global_listjs_selectores.php"
+			],
+			[
+				"glob_proc_notes",
+				"PM/manager/apps/reusable_app/global_files/notes/global_procces_notes_add.php"
+			],
+			[
+				"scr_reusa_contra",
+				"PM/manager/js/reusable_js/scripts_reusable_account_contractor_info.js"
+			],
+			[
+				"contractors_ks_open",
+				"PM/manager/apps/contractors3/contractors_ks_open.php"
+			],
+			[
+				"scr_contr_deta",
+				"PM/manager/js/reusable_js/scripts_contractors_detail.js"
+			],
+			[
+				"xaja_contra",
+				"PM/manager/apps/contractors3/xajax_processor_contractors.php"
+			],
+			[
+				"xaja_contr_detail",
+				"PM/manager/apps/reusable_app/contractors_detail/xajax_processor_contractor_detail.php"
+			],
+			[
+				"contractors_edit_ks_open",
+				"PM/manager/apps/reusable_app/contractors_detail/contractors_edit_ks_open.php"
+			],
+			[
+				"contractors_detail_action_account_info_add_vendor.php",
+				"PM/manager/apps/reusable_app/contractors_detail/contractors_detail_action_account_info_add_vendor.php"
+			],
+			[
+				"contractors_detail_action_account_info_add_inhouse.php",
+				"PM/manager/apps/reusable_app/contractors_detail/contractors_detail_action_account_info_add_inhouse.php"
+			],
+			[
+				"contractor_detail_action_add",
+				"PM/manager/apps/reusable_app/contractors_detail/contractor_detail_action_add.php"
+			],
+			[
+				"scr_contr_det",
+				"PM/manager/js/reusable_js/scripts_contractors_detail.js"
+			],
+			[
+				"scr_contrac",
+				"PM/manager/js/scripts_contractorsbs3.js"
+			],
+			[
+				"contra_lis",
+				"PM/manager/apps/contractors3/contractors_list2.php"
+			],
+			[
+				"core_property_add_notification_email.php",
+				"admin/email/core_property_add_notification_email.php"
+			],
+			[
+				"sty_ven_mv",
+				"PM/manager/styles/styles_vendor_mvc.css"
+			],
+			[
+				"scr_vendo",
+				"PM/manager/js/mvc/scripts_vendors_mvc.js"
+			],
+			[
+				"mod_selector",
+				"PM/manager/app/modelo/mod_selectors.php"
+			],
+			[
+				"scr_utili",
+				"PM/manager/js/mvc/scripts_utilities_mvc.js"
+			],
+			[
+				"scr_reus_aut",
+				"PM/manager/js/reusable_js/scripts_reusable_owners_authorized.js"
+			],
+			[
+				"ctr_owner",
+				"PM/manager/app/control/ctr_owner.php"
+			],
+			[
+				"mod_proper",
+				"PM/manager/app/modelo/mod_properties.php"
+			],
+			[
+				"scr_comp_mvc",
+				"PM/manager/js/mvc/scripts_company_mvc.js"
+			],
+			[
+				"scr_compan",
+				"PM/manager/js/mvc/scripts_company_mvc.js"
+			],
+			[
+				"global_listjs_selectores",
+				"PM/manager/apps/reusable_app/global_files/global_listjs_selectores.php"
+			],
+			[
+				"glo_list_selec",
+				"PM/manager/apps/reusable_app/global_files/global_listjs_selectores.php"
+			],
+			[
+				"scr_serv_center",
+				"PM/manager/js/scripts_service_center.js"
+			],
+			[
+				"mod_selec",
+				"PM/manager/app/modelo/mod_selectors.php"
+			],
+			[
+				"scr_com_mv",
+				"PM/manager/js/mvc/scripts_company_mvc.js"
+			],
+			[
+				"scripts_login.js",
+				"PM/manager/js/scripts_login.js"
+			],
+			[
+				"xajax_processor_login.php",
+				"PM/manager/xajax_processor_login.php"
+			],
+			[
+				"scrip_login",
+				"PM/contractor20/js/script_login.js"
+			],
+			[
+				"scr_mortg",
+				"PM/manager/js/mvc/scripts_mortgage_mvc.js"
+			],
+			[
+				"scr_vendor",
+				"PM/manager/js/mvc/scripts_vendors_mvc.js"
+			],
+			[
+				"ctr_mortg",
+				"PM/manager/app/control/ctr_mortgage.php"
+			],
+			[
+				"sty_mortg",
+				"PM/manager/styles/styles_mortgage_mvc.css"
+			],
+			[
+				"glo_selec",
+				"PM/manager/apps/reusable_app/global_files/global_listjs_selectores.php"
+			],
+			[
+				"sty_compa",
+				"PM/manager/styles/styles_company_mvc.css"
+			],
+			[
+				"help_look_info.php",
+				"PM/manager/apps/help2/help_look_info.php"
+			],
+			[
+				"help_list_table_helps.php",
+				"PM/manager/apps/help2/help_list_table_helps.php"
+			],
+			[
+				"glo_pro_note_ed",
+				"PM/manager/apps/reusable_app/global_files/notes/global_procces_notes_edit.php"
+			],
+			[
+				"glo_note_add",
+				"PM/manager/apps/reusable_app/global_files/notes/global_procces_notes_add.php"
+			],
+			[
+				"scr_p",
+				"PM/manager/js/scripts_PM.js"
+			],
+			[
+				"xaja_proper",
+				"PM/manager/apps/properties2_20/xajax_processor_properties.php"
+			],
+			[
+				"sty_bs",
+				"PM/manager/styles/style_bs3.css"
+			],
+			[
+				"inve/glo_pro",
+				"PM/manager/apps/reusable_app/global_files/inventory/inventoryIN/global_proccess.php"
+			],
+			[
+				"list_assets.php",
+				"PM/manager/apps/reusable_app/global_files/list_assets.php"
+			],
+			[
+				"scr_reusa_ase",
+				"PM/manager/js/reusable_js/scripts_reusable_list_property_assets.js"
+			],
+			[
+				"ctr_propert",
+				"PM/manager/app/control/ctr_property.php"
+			],
+			[
+				"core_mortgage_notification_email.php",
+				"admin/email/core_mortgage_notification_email.php"
+			],
+			[
+				"rippl",
+				"PM/manager/lib/bootstrap-material-design-master/css-compiled/ripples.css"
+			],
+			[
+				"scr_properti",
+				"PM/manager/js/scripts_properties20.js"
+			],
+			[
+				"ctr_proper",
+				"PM/manager/app/control/ctr_property.php"
+			],
+			[
+				"scr_mont",
+				"PM/manager/js/reusable_js/scripts_reusable_monthly_statement_nivel3.js"
+			],
+			[
+				"scr_mon_ni",
+				"PM/owner/js/scripts_reusable_monthly_statement_nivel3.js"
+			],
+			[
+				"style_bs3",
+				"PM/manager/styles/style_bs3.css"
+			],
+			[
+				"xaja_contra_detail",
+				"PM/manager/apps/reusable_app/contractors_detail/xajax_processor_contractor_detail.php"
+			],
+			[
+				"/contractors_detail/contractors_detail_action_send_sms.php",
+				"PM/manager/apps/reusable_app/contractors_detail/contractors_detail_action_send_SMS.php"
+			],
+			[
+				"style_mort",
+				"PM/manager/styles/styles_mortgage_mvc.css"
+			],
+			[
+				"contrac_list2",
+				"PM/manager/apps/contractors3/contractors_list2.php"
+			],
+			[
+				"thecompany_admins_list_table.php",
+				"PM/manager/apps/thecompany2/thecompany_admins_list_table.php"
+			],
+			[
+				"company",
+				"PM/manager/apps/thecompany2/thecompany_list.php"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 173.0,
+	"status_bar_visible": true
+}
