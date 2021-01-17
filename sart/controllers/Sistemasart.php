@@ -322,9 +322,11 @@ class Sistemasart extends CI_Controller {
 	       }
 
 	       $data['docv'] = $this->Sart_model->datosvehi($filter,$filter_adv,''); 
-
+		  // echo $this->db->last_query();
+		   print_r($data['docv']."hola");
 	       }else{
 	       	 $data['docv'] = $this->Sart_model->selectall('id_docv','documentos_v'); 
+			 echo $this->db->last_query();
 	       }
 	       $data['marca']= $this->Sart_model->selectall('marca','marca');
 	       $data['grupo']= $this->Sart_model->getcampo('grupo','empresa');
