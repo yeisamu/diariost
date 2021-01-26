@@ -322,11 +322,10 @@ class Sistemasart extends CI_Controller {
 	       }
 
 	       $data['docv'] = $this->Sart_model->datosvehi($filter,$filter_adv,''); 
-		  // echo $this->db->last_query();
-		   print_r($data['docv']."hola");
+		   //echo $this->db->last_query();
 	       }else{
 	       	 $data['docv'] = $this->Sart_model->selectall('id_docv','documentos_v'); 
-			 echo $this->db->last_query();
+			 //echo $this->db->last_query();
 	       }
 	       $data['marca']= $this->Sart_model->selectall('marca','marca');
 	       $data['grupo']= $this->Sart_model->getcampo('grupo','empresa');
@@ -1341,5 +1340,39 @@ public	function genera_informe(){ //Se toman los datos de la ciudad de la bases 
 			$name="tarjeta.pdf";
 			$this->sma->generate_pdf($html, $name,'I');
         }//fin funcion	
+/*********************NUEVAS FUNCIONALIDADES JAVELASQUEZ************/
+	public function tarjetacontrol()
+	  {
+		/*$filter='';
+		$filter2 =array('adv1'=>'operador <> ""');
+		$tabla="pc_operador";
+		$join = array('pc_configuracion' => " pc_configuracion.id_configuracion=pc_operador.id_rol");
+		$orderby='nom_operador asc';
+		$result=$this->Operacion_model->selfilter('',$filter,$filter2,$join,$tabla,$orderby,'');	
+		$data['result'] = $result;*/
+		$data='';
+		$this->load->view('sart/tarjetactrl/tarjetactrol',$data);
+	  }
+	public function  datatramita(){
+     	//$tipo=$_GET['tipo'];
+		$conf=array();
+		$conf['aColumns2']=array('id_conductor', 'codigo', 'concat_ws(" ",nombre1,nombre2,apellido1,apellido2) as conductor', 'telefono');
+		$conf['aColumns']=array('id_conductor', 'codigo', 'concat_ws(" ",nombre1,nombre2,apellido1,apellido2)', 'telefono');
+		$conf['aColumns1']=array('id_conductor', 'codigo', 'conductor', 'telefono');
+		$conf['aColumnsunion']=array('id_prop','concat_ws(" ",nombre,apellidos)','telefono');
+		$conf['rows']=array('id_conductor', 'codigo','conductor','telefono');
+		$conf['opt']=array('<button type="button" class="btn btn-indigo abredocs">Actualiza</button>','<button type="button" class="btn btn-warning abredocs">Registrar</button>','<button type="button" class="btn btn-success abredocs">Admin</button>');
+		$conf['union']=" UNION SELECT id_prop,id_prop,concat_ws(' ',nombre,apellidos) as conductor,telefono FROM propietario where escondu='si'";
+     	/*$filter = array('detalle' => $tipo);
+        $dataoper = $this->Operacion_model->getdatosfilter($filter,'pc_configuracion','')->row();
+        $filter1 = array('detalle' => 'Terminado','tipo'=>'estado');
+        $datastatus = $this->Operacion_model->getdatosfilter($filter1,'pc_configuracion','')->row();*/
 
+     	$filter2 ='';// array('id_operacion' => $dataoper->id_configuracion,'ispadre'=>'si');
+	  	$filteradv='';//array('cond1'=>'id_estado <> '.$datastatus->id_configuracion);
+	  	$tabla="conductor";
+	  	$join ='';// array('pc_configuracion' => " pc_configuracion.id_configuracion=pc_programacion.id_estado");
+     	$output=$this->Sart_model->GetData($filter2,$filteradv,$join,$tabla,$conf);
+     	echo json_encode($output);
      }
+}//FINCONTROL

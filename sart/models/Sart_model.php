@@ -353,7 +353,7 @@ class Sart_model extends CI_Model {
       $this->db->select(array("*,documentos_v.`id_documento`,datediff(fecha_ven,now()) as diff"));
     }
     
-    $this->db->join('veh_doc', 'veh_doc.id_documento = documentos_v.id_documento', 'left');
+    $this->db->join('documentos_v ', 'documentos_v.id_documento=veh_doc.id_documento', 'left');
     $where="1";
         if (is_array($filter)) {
             if(count($filter) > 0){
@@ -370,10 +370,9 @@ class Sart_model extends CI_Model {
             }
         }
     $this->db->where($where);
-    $query = $this->db->get('documentos_v');
-
+	
+    $query = $this->db->get('veh_doc');
         if($query->num_rows() > 0){
-             
           return $query;
        }else{
 
@@ -1858,4 +1857,146 @@ function busqueda()
        }
     }
 
-}
+	public function GetData($filter,$filter_adv,$join,$tabla,$conf) {
+      foreach ($_REQUEST as $var => $val){
+          $$var = $this->db->escape_str($val);
+      } 
+      try {
+	        $aColumns = $conf['aColumns'];
+	        $aColumns2 = $conf['aColumns2'];
+			$aColumns1 = $conf['aColumns1'];
+			$aColumnsunion = $conf['aColumnsunion'];
+            $sWhere = "";
+			$sWhereunion="";
+           // print_r($filter);
+	        if (is_array($filter)) {
+	        	 $sWhere="  1 ";
+              if(count($filter) > 0){
+                  foreach ($filter as $key => $value) {
+                      $sWhere .= " and $key = '$value'";
+                  }
+              }
+	        }
+	        if (is_array($filter_adv)) {
+              if(count($filter_adv) > 0){
+                  foreach ($filter_adv as $key => $value) {
+                      $sWhere .= " AND $value ";
+                  }
+              }
+	        }
+           
+          /*
+           * Paging
+          */
+          	$sLimit = "";
+          	if ( isset( $_GET['iDisplayStart'] ) && $_GET['iDisplayLength'] != '-1' ){
+              $sLimit = " LIMIT ".intval( $_GET['iDisplayStart'] ).", ".
+                        intval( $_GET['iDisplayLength'] );
+          	}
+          	$sOrder = "";
+	        if ( isset( $_GET['iSortCol_0'] ) ){
+              $sOrder = " ORDER BY  ";
+              //  $sOrder.=" enm_reasignada DESC, ";
+              for ( $i=0 ; $i<intval( $_GET['iSortingCols'] ) ; $i++ ){
+                  if ( $_GET[ 'bSortable_'.intval($_GET['iSortCol_'.$i]) ] == "true" ){
+                      $sOrder .= "".$aColumns1[ intval( $_GET['iSortCol_'.$i] ) ]." ".
+                          ($_GET['sSortDir_'.$i]==='asc' ? 'ASC' : 'DESC') .", ";
+                  }
+              }
+           
+              $sOrder = substr_replace( $sOrder, "", -2 );
+              if ( $sOrder == " ORDER BY" ) {
+                  $sOrder = "";
+              }
+	        }
+	        
+	        if ( isset($sSearch) && $sSearch != "" ) {
+          	 
+              //$sWhere .= "AND (";
+			  if ( $sWhere == "" ) {
+                      $sWhere .= "WHERE 1 and(";
+                  } else {
+                      $sWhere .= " AND (";
+                  }
+              for ( $i=0 ; $i<count($aColumns) ; $i++ ) {
+                  $sWhere .= " ".$aColumns[$i]." LIKE '%".( $sSearch )."%' OR ";
+              }
+              $sWhere = substr_replace( $sWhere, "", -3 );
+              $sWhere .= ')';
+			  
+
+              $sWhereunion .= " AND (";
+              for ( $i=0 ; $i<count($aColumnsunion) ; $i++ ) {
+                  $sWhereunion .= " ".$aColumnsunion[$i]." LIKE '%".( $sSearch )."%' OR ";
+              }
+              $sWhereunion = substr_replace( $sWhereunion, "", -3 );
+              $sWhereunion .= ')';
+			  
+	        }
+           
+	          /* Individual column filtering */
+	        for ( $i=0 ; $i<count($aColumns) ; $i++ ) {
+              if ( isset($_GET['bSearchable_'.$i]) && $_GET['bSearchable_'.$i] == "true" && $_GET['sSearch_'.$i] != '' ) {
+                  if ( $sWhere == "" ) {
+                      $sWhere .= " 1";
+                  } else {
+                      $sWhere .= " AND ";
+                  }
+                  $sWhere .= "`".$aColumns[$i]."` LIKE '%". $this->db->escape_str($_GET['sSearch_'.$i])."%' ";
+              }
+	        }
+	        $joinstring='';
+          	if (is_array($join)|| $join!='') {
+		 		if(count($join) > 0){			
+		 			foreach ($join as $key => $value) {
+		 				$joinstring.=' LEFT JOIN '.$key.' ON '.$value;
+		 			}
+		 		}
+            }
+			$sql="SELECT ";
+			foreach($aColumns2 as $key => $value){ $updateArray[$key] = $value; };
+		    $sql .= implode(',',$updateArray);
+	  		$query = $this->db->query($sql." FROM ".$tabla.$joinstring."  ".$sWhere.$conf['union'].$sWhereunion.$sOrder.$sLimit);
+          	if (is_array($join)|| $join!='') {
+		 		if(count($join) > 0){			
+		 			foreach ($join as $key => $value) {
+		 				$this->db->join($key,$value,'left');
+		 			}
+		 		}
+            }
+			$query2 = $this->db->query($sql." FROM ".$tabla.$joinstring."  ".$sWhere.$conf['union'].$sWhereunion);
+			
+			//echo $this->db->last_query();
+  			$rResult2=$this->db->query("SELECT FOUND_ROWS() as reg")->row();
+			//echo $this->db->last_query();
+  			 $iFilteredTotal =$rResult2->reg;
+  			$output = array(
+		        "sEcho" => intval($_GET['sEcho']),
+		        "iTotalRecords" => $iFilteredTotal,
+		        "iTotalDisplayRecords" => $iFilteredTotal,
+		        "aaData" => array()
+			);
+
+			
+			
+  		  	if($query->num_rows() > 0){      
+  				foreach($query->result() as $aRow) {
+          		  $row = array();
+				  foreach($conf['rows'] as $key =>$valueRow){
+					  $row[] =$aRow->$valueRow;
+				  }
+				  foreach($conf['opt'] as $key =>$valueOpt){
+					  $row[] =$valueOpt;
+				  }
+				  $class_row = 'cursor muestrahijo rowpadre';
+	              $row["DT_RowClass"] = $class_row;
+	              $output['aaData'][] = $row;
+		        }
+  		  	}        
+        } catch (PDOException $e) {
+           echo "Error en la Consulta de llamado ajax() GetData, error: " . $e->getMessage();
+        }
+           
+       return $output;   
+ }//fin funcion
+}//fin modelo
