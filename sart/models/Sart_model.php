@@ -481,15 +481,16 @@ class Sart_model extends CI_Model {
       $this->db->select(array($campos));
     }
      $where="1";
-        if (is_array($filter)|| $filter!='') {
-            if(count($filter) > 0){
-                foreach ($filter as $key => $value) {
-                    $where .= " and $key = '$value'";
-                }
+    if (is_array($filter)|| $filter!='') {
+        if(count($filter) > 0){
+            foreach ($filter as $key => $value) {
+                $where .= " and $key = '$value'";
             }
         }
-
-    $this->db->where($where);
+    }
+    if($where!="1"){
+      $this->db->where($where);
+    }
     $query = $this->db->get($tabla);
       if($query->num_rows() > 0){      
           return $query;
@@ -1977,8 +1978,6 @@ function busqueda()
 		        "aaData" => array()
 			);
 
-			
-			
   		  	if($query->num_rows() > 0){      
   				foreach($query->result() as $aRow) {
           		  $row = array();
@@ -1988,7 +1987,7 @@ function busqueda()
 				  foreach($conf['opt'] as $key =>$valueOpt){
 					  $row[] =$valueOpt;
 				  }
-				  $class_row = 'cursor muestrahijo rowpadre';
+				  $class_row = 'cursor abre_mod_global';
 	              $row["DT_RowClass"] = $class_row;
 	              $output['aaData'][] = $row;
 		        }
@@ -1999,4 +1998,192 @@ function busqueda()
            
        return $output;   
  }//fin funcion
+  function inserta_condu()
+  {
+        date_default_timezone_set('America/Bogota');
+      
+        foreach ($_REQUEST as $var => $val){$$var = $this->db->escape_str($val);}
+        //$estudios         = filter_var($_REQUEST['estudios'], FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES | FILTER_FLAG_ENCODE_AMP);
+        $expe         = filter_var($_REQUEST['expe'], FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES | FILTER_FLAG_ENCODE_AMP);
+        $obs         = filter_var($_REQUEST['obs'], FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES | FILTER_FLAG_ENCODE_AMP);
+        $hoy=date('Y-m-d');
+        $yaexiste=false;
+        $this->db->trans_begin();
+        $fnace=date('Y-m-d',strtotime($fechanace));
+        if($tipo=='nuevo'){
+          $this->db->where('codigo',$idp); 
+            $query = $this->db->get('conductor');
+            if($query->num_rows() > 0){
+              $datam = $query->row();
+            $codigom=$datam->codigo;
+              if($idp==trim($codigom)){
+                $yaexiste=true;
+              }
+            }
+            
+          
+        }
+        
+        //echo $yaexiste; 
+      if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'){ 
+          $file = $_FILES['archivo']['name'];
+          $ext = end((explode(".",$file)));
+      if(!$yaexiste){  
+        switch ($tipo) {
+          case 'nuevo': 
+              if(!is_dir("fotos/"))
+                mkdir("fotos/", 0777);
+              if ($file && move_uploaded_file($_FILES['archivo']['tmp_name'],"fotos/".$idp.'.'.$ext)){   
+                      $data2 =array(
+                            'codigo'              => $idp,
+                            'nombres'             => $nombreprop,
+                            'apellidos'           => $apellprop,
+                            'telefono'            => $telprop,
+                            'tipo_rh'             => $rh,
+                            'direccion'           => $dirprop,
+                            'acudiente'           => $acudiente,
+                            'fecha_nace'          => $fnace,
+                            'lugarNace'           => $lugarnace,
+                            'telefonoa'           => $telacu,
+                            'emailc'              => $emailc,
+                            'observacion'         => $obs,
+                            'experiencia_laboral' => $expe,
+                            'ispensionado'        => $pensionado,
+                            'foto'                => $idp.'.'.$ext
+                    ); 
+              }else{
+                      $data2 =array(
+                          'codigo'              => $idp,
+                          'nombres'             => $nombreprop,
+                          'apellidos'           => $apellprop,
+                          'telefono'            => $telprop,
+                          'tipo_rh'             => $rh,
+                          'direccion'           => $dirprop,
+                          'acudiente'           => $acudiente,
+                          'fecha_nace'          => $fnace,
+                          'lugarNace'           => $lugarnace,
+                          'telefonoa'           => $telacu,
+                          'emailc'              => $emailc,
+                          'observacion'         => $obs,
+                          'experiencia_laboral' => $expe,
+                          'ispensionado'        => $pensionado
+                    ); 
+              }
+
+
+              $queries=$this->db->insert('conductor',$data2);
+              $id_cond=$this->db->insert_id();
+              if ( !empty($idoc) && is_array($idoc) ) { 
+                    for ( $i=0;$i<count($idoc);$i++) { 
+                   $fexp='0000-00-00';
+                   $fven='0000-00-00';
+                   if(!empty($_REQUEST['fexp'.$i])){
+                    $fexp=date('Y-m-d',strtotime($_REQUEST['fexp'.$i]));
+                  }
+                  if(!empty($_REQUEST['fven'.$i])){
+                    $fven=date('Y-m-d',strtotime($_REQUEST['fven'.$i]));
+                  }
+                 $valuedocs = array('id_doc'     => $idoc[$i],
+                                  'id_conductor' => $id_cond,
+                                  'fecha_ant'    => $fexp,
+                                  'fecha_vence'  => $fven,
+                                  'categoria'    =>$info[$i],
+                                  'numero'       => $numerodoc[$i]);
+                 $this->db->insert('con_doc',$valuedocs);
+                }
+             }
+        break;
+          case 'edit':
+              if ($file){
+                if (file_exists($file)) {
+                   unlink("fotos/".$idp.'.'.$ext);
+                }   
+              }
+
+              if ($file && move_uploaded_file($_FILES['archivo']['tmp_name'],"fotos/".$idp.'.'.$ext)){ 
+                  $data2 =array(
+                            'codigo'              => $idp,
+                            'nombres'             => $nombreprop,
+                            'apellidos'           => $apellprop,
+                            'telefono'            => $telprop,
+                            'tipo_rh'             => $rh,
+                            'direccion'           => $dirprop,
+                            'acudiente'           => $acudiente,
+                            'fecha_nace'          => $fnace,
+                            'lugarNace'           => $lugarnace,
+                            'telefonoa'           => $telacu,
+                            'emailc'              => $emailc,
+                            'observacion'         => $obs,
+                            'experiencia_laboral' => $expe,
+                            'ispensionado'        => $pensionado,
+                            'foto'                => $idp.'.'.$ext
+                  ); 
+              }else{
+                      $data2 =array(
+                            'codigo'              => $idp,
+                            'nombres'             => $nombreprop,
+                            'apellidos'           => $apellprop,
+                            'telefono'            => $telprop,
+                            'tipo_rh'             => $rh,
+                            'direccion'           => $dirprop,
+                            'acudiente'           => $acudiente,
+                            'fecha_nace'          => $fnace,
+                            'lugarNace'           => $lugarnace,
+                            'telefonoa'           => $telacu,
+                            'emailc'              => $emailc,
+                            'ispensionado'        => $pensionado,
+                            'observacion'         => $obs,
+                            'experiencia_laboral' => $expe
+                    ); 
+              }
+
+          $this->db->where('codigo', $idp);  //localiza la maestro a actualizar
+          $queries=$this->db->update('conductor',$data2);
+          if ( !empty($idoc) && is_array($idoc) ) { 
+            for ( $i=0;$i<count($idoc);$i++) { 
+               $fexp='0000-00-00';
+               $fven='0000-00-00';
+               if(!empty($_REQUEST['fexp'.$i])){
+                $fexp=date('Y-m-d',strtotime($_REQUEST['fexp'.$i]));
+              }
+              if(!empty($_REQUEST['fven'.$i])){
+                $fven=date('Y-m-d',strtotime($_REQUEST['fven'.$i]));
+              }
+             $valuedocs = array('id_doc'    => $idoc[$i],
+                              'fecha_ant'       => $fexp,
+                              'fecha_vence'       => $fven,
+                              'categoria'       =>$info[$i],
+                              'numero'          => $numerodoc[$i]);
+             $whereup='id_conductor="'.$id_condu.'" and id_doc="'.$idoc[$i].'"';
+             $this->db->where($whereup);
+             $this->db->update('con_doc',$valuedocs);
+            }
+         }
+
+          break;
+    }
+    
+    if ($this->db->trans_status() === FALSE)
+    {
+        $this->db->trans_rollback();
+        return $resp=array('guarda'=>'error','motivo'=>'Error al guardar');
+    }
+    else
+    {
+        $this->db->trans_commit();
+        return $resp=array('guarda'=>'ok');
+    }
+
+      /*if($queries){
+        return $resp=array('guarda'=>'ok');
+      }else{
+        return $resp=array('guarda'=>'error','motivo'=>'Error al guardar');
+      }*/
+      
+    }else{
+      return $resp=array('guarda'=>'error','motivo'=>'found','idprop'=>$idp);
+    } 
+
+  }
+  }//fin funcion
 }//fin modelo

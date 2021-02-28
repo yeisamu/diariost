@@ -177,6 +177,8 @@ class Sistemasart extends CI_Controller {
 		{
 			$app_ID=$_REQUEST['app_ID'];
 			$where='';
+			$search2='';
+			$campo='';
 				// if(isset($_REQUEST['grupo'])){
 				// 	$valfg=$_REQUEST['grupo'];
 				// 	if($valfg!=''){
@@ -247,6 +249,8 @@ class Sistemasart extends CI_Controller {
 	{
 		$app_ID=$_REQUEST['app_ID'];
 		$where='';
+		$campo='';
+		$search2='';
 			if(isset($_REQUEST['grupo'])){
 				$valfg=$_REQUEST['grupo'];
 				if($valfg!=''){
@@ -1356,8 +1360,8 @@ public	function genera_informe(){ //Se toman los datos de la ciudad de la bases 
 	public function  datatramita(){
      	//$tipo=$_GET['tipo'];
 		$conf=array();
-		$conf['aColumns2']=array('id_conductor', 'codigo', 'concat_ws(" ",nombre1,nombre2,apellido1,apellido2) as conductor', 'telefono');
-		$conf['aColumns']=array('id_conductor', 'codigo', 'concat_ws(" ",nombre1,nombre2,apellido1,apellido2)', 'telefono');
+		$conf['aColumns2']=array('id_conductor', 'codigo', 'concat_ws(" ",nombres,apellidos) as conductor', 'telefono');
+		$conf['aColumns']=array('id_conductor', 'codigo', 'concat_ws(" ",nombres,apellidos)', 'telefono');
 		$conf['aColumns1']=array('id_conductor', 'codigo', 'conductor', 'telefono');
 		$conf['aColumnsunion']=array('id_prop','concat_ws(" ",nombre,apellidos)','telefono');
 		$conf['rows']=array('id_conductor', 'codigo','conductor','telefono');
@@ -1375,4 +1379,45 @@ public	function genera_informe(){ //Se toman los datos de la ciudad de la bases 
      	$output=$this->Sart_model->GetData($filter2,$filteradv,$join,$tabla,$conf);
      	echo json_encode($output);
      }
+	 
+	function editarcondu(){ //Se toman los datos de la ciudad de la bases de datos
+	   $tipo=$_REQUEST['tipo'];
+
+	  
+	   $data['entidades']= $this->Sart_model->selectall('eps','entidad_salud');
+	   if($tipo=='edit'){
+		   $id=$_REQUEST['id_condu'];
+		   $filter = array('id_conductor' => $id);
+		   $filter_adv = '';
+		   $data['prop'] = $this->Sart_model->getdatos($filter,'conductor',''); 
+		   $orderby='';
+	   	   $camposmov='*,datediff(fecha_vence,now()) as diff';
+	   	   $join='documento.id_doc=con_doc.id_doc';
+	  	   $data['docs'] = $this->Sart_model->getdatosjoinfull($filter,$filter_adv,'documento','con_doc',$join,'left',$camposmov,$orderby); 
+		   //echo $this->db->last_query();
+	   }else{
+		   $data['prop'] = false;
+		   $filter = '';
+		   $filter_adv = '';
+		   $data['docs'] = $this->Sart_model->getdatos($filter,'documento',''); 
+	   }
+	   $data['tipo']=$tipo;
+	   $this->load->view('sart/movil/editacondu',$data);
+	}//fin funcion
+	function grabarcondu(){
+		$resp=$this->Sart_model->inserta_condu(); // Envio de los datos a la base de datos 
+		 if($resp['guarda']== 'ok'){
+			  $respu['validacion'] = 'ok';
+			$respu['msn'] = ' Guardado con Exito!!';
+		  }else{
+			 $respu['validacion'] = 'fail';
+			 $respu['msn'] = $resp['motivo'];
+			 if($resp['motivo']=='found'){
+				 $respu['idprop'] = $resp['idprop'];
+			 }
+		 }
+		//======================================
+	   echo json_encode($respu);
+   }//fin funcion
+
 }//FINCONTROL

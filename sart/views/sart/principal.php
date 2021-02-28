@@ -30,6 +30,7 @@ if(isset($grupo)){
 	<!-- END CORE CSS -->
 
 	<!-- BEGIN PLUGINS CSS -->
+	<link rel="stylesheet" href="<?php echo base_url() ?>plugins/jasny-bootstrap/dist/css/jasny-bootstrap.min.css">
 	<link rel="stylesheet" href="<?php echo base_url() ?>css/plugins.css">
 	<!-- END PLUGINS CSS -->
 

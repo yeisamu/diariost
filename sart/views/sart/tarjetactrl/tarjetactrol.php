@@ -36,10 +36,10 @@
 	
 	 <link rel="stylesheet" href="<?php echo base_url(); ?>plugins/datatables/media/css/jquery.dataTables.min.css">
 	 <link rel="stylesheet" href="<?php echo base_url(); ?>plugins/datatables/themes/bootstrap/dataTables.bootstrap.css">
-	 
+	 <link rel="stylesheet" href="<?php echo base_url() ?>plugins/jasny-bootstrap/dist/css/jasny-bootstrap.min.css">
 
 	<!-- BEGIN SHORTCUT AND TOUCH ICONS -->
-	<link rel="shortcut icon" href="<?php echo base_url() ?>img/icons/favicon.ico">
+	
 	<link rel="apple-touch-icon" href="<?php echo base_url() ?>img/icons/apple-touch-icon.png">
 	<!-- END SHORTCUT AND TOUCH ICONS -->
 </head>
@@ -85,6 +85,13 @@
                 </tbody>
               </table>
             </div>
+			<div style="position:fixed;bottom:30px;right:30px;z-index:100;">
+			<a class="btn btn-floating btn-red show-on-hover abre_mod_global " data-capa='taxi_modal'
+			   data-toggle="modal"  data-target="#modaltaxi" 
+			   data-vars="<?php echo base_url() ?>sart.php/sistemasart/editarcondu?tipo=nuevo">
+				<i class="ion-android-person-add "></i>
+			</a>
+			</div>
           </div><!--.panel-body-->
         </div><!--.panel-->
       </div><!--.col-md-12-->
@@ -93,7 +100,15 @@
       </div><!--.col-md-12-->
     </div><!--.row-->
   </div><!--.content-->
-
+  <button class="btn btn-default toastr-notify hide grabaok" data-toastr-title="" data-toastr-type="success"
+			data-toastr-notification="Solicitud grabada con Exito!!!!!" data-toastr-close-others="true"></button>
+    <button class="btn btn-default toastr-notify grabaerror" data-toastr-close-others="true" data-toastr-type="error"
+    data-toastr-notification="" data-toastr-position="toast-top-right"></button>
+  <div class="modal fade full-scream" id="modaltaxi" style="overflow-y: hidden;" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+		  <div class="modal-content " id="taxi_modal" style="overflow:hidden"></div>
+		</div>
+  </div><!--.modal-->
 		<!-- BEGIN GLOBAL AND THEME VENDORS -->
 	<script src="<?php echo base_url() ?>js/global-vendors.js"></script>
 	<!-- END GLOBAL AND THEME VENDORS -->
@@ -122,6 +137,7 @@
 	<script src="<?php echo base_url() ?>plugins/datepicker/js/bootstrap-datepicker.js"></script>
 	<script src="<?php echo base_url() ?>plugins/datatables/media/js/jquery.dataTables.min.js"></script>
 	<script src="<?php echo base_url() ?>plugins/datatables/themes/bootstrap/dataTables.bootstrap.js"></script>
+	<script src="<?php echo base_url() ?>plugins/jasny-bootstrap/dist/js/jasny-bootstrap.min.js"></script>
 
 
      <script>
@@ -129,7 +145,7 @@
 		Pleasure.init();
 		Layout.init();
 		$(document).ready(function () {
-		 $('#planpadre').DataTable({
+		 sart.tablacondu=$('#planpadre').DataTable({
 			"bProcessing": true,
 			"bServerSide": true,
 			"sAjaxSource": '<?php echo base_url() ?>sart.php/sistemasart/datatramita',
@@ -145,10 +161,10 @@
 			"order": [[2, 'asc']],
 			"createdRow": function ( row, data, index ) {
 				row.setAttribute( 'data-iditem',data[0] );
-				row.setAttribute( 'data-div','capahijos');
-				row.setAttribute( 'data-status',data[6]);
-				row.setAttribute( 'data-vars','' );
-				row.setAttribute( 'data-ini','' );
+				row.setAttribute( 'data-capa','taxi_modal');
+				row.setAttribute( 'data-toggle','modal');
+				row.setAttribute( 'data-target','#modaltaxi' );
+				row.setAttribute( 'data-vars','<?php echo base_url() ?>sart.php/sistemasart/editarcondu?tipo=edit&id_condu='+data[0] );
 			},
 			"aLengthMenu": [
 					[5,10,15,25,50,100,-1], 
@@ -174,7 +190,7 @@
 				 },
 			  }
 			});
-		 $('#planpadre').on('click', '.muestrahijo', function(e) {
+		 $('#planpadre').on('click', '.editaC', function(e) {
 		   var div=$(this).data('div');
 		   var iditem=$(this).data('iditem');
 		   var status=$(this).data('data-status');

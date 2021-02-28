@@ -1,7 +1,7 @@
-var sgcapp = new Object();
-sgcapp.page  = '';
-sgcapp.pages = '';
-
+var sart = new Object();
+sart.page  = '';
+sart.pages = '';
+sart.tablacondu = '';
 function queue_load_all(div,params,control){
   var url=$('#base_url').val();	
   $.ajax({
@@ -1419,3 +1419,77 @@ $(document).on('click', '.graba_valores', function(e){
         }); 
 });
 
+$(document).on('click', '.guardaeditcondu', function(e){
+  //var details  = $('#editdoc').serialize();
+  var formData = new FormData( $('#editdoc')[0] );
+  $(this).addClass('hide');
+  var menu=$(this).data('menu');
+  $('.grabando').removeClass('hide');
+  if(validarCampos('#editdoc')){
+   var url=$('#base_url').val();
+        $.ajax({
+            url: `${url}sart.php/sistemasart/grabarcondu`,
+            type: 'POST',
+            data: formData,
+            dataType: 'json',
+            xhr: function() {  
+                // custom xhr
+                myXhr = $.ajaxSettings.xhr();
+                if(myXhr.upload){ // check if upload property exists
+                    //myXhr.upload.addEventListener('progress',progress_insert_transactions, false); // for handling the progress of the upload
+                }
+                return myXhr;
+            },
+            //success: obtener_json_insert_transactions,
+            
+            cache: false,
+            contentType: false,
+            processData: false
+        }).done(function(data){
+            if(data.validacion == 'ok'){
+                $('.cancelaformedit').click();
+                sart.tablacondu.ajax.url(`${url}sart.php/sistemasart/datatramita`).load();
+                /*     var order = $('#order').val();
+                       var orderby = $('#orderby').val();
+                    var idapp=$('#idapp').val();
+                    var vg=$('#filtrog').val();
+                    if(vg!=''){
+                      var parini='?grupo='+vg+'&order='+order+'&by='+orderby+'&app_ID='+idapp;
+                    }else{
+                      var parini='?order='+order+'&by='+orderby+'&app_ID='+idapp;
+                    }
+                        
+                if(menu=='prop'){
+                  var par='?order='+order+'&by='+orderby+'&app_ID='+idapp;
+                  queue_load_all('#busqueda_list',par,'listar_tabla_prop');
+                }else{
+                queue_load_all('#busqueda_list',parini,'listar_tabla');
+                  
+                }    */   
+                $('.grabaok' ).data('toastr-notification',data.msn);
+                $('.grabaok').click();
+                
+              // queue_load_all('#busqueda_list','','listar_tabla');
+               
+            }else{
+              if (data.msn=='found') {
+                 $('.grabaerror' ).data('toastr-notification','Conductor ya existe');
+                 $('.grabaerror').click();
+                 $('.guardaedit').removeClass('hide');
+              }else{
+                $('.grabaerror' ).data('toastr-notification',data.msn);
+                $('.grabaerror').click();
+                $('.grabando').addClass('hide');
+                $('.guardaedit').removeClass('hide');
+              }
+               
+            }
+        }); 
+  }else{
+    $(this).removeClass('hide');
+    $('.grabando').addClass('hide');
+    $('.grabaerror' ).data('toastr-notification','Faltan campos por llenar');
+    $('.grabaerror').click();
+  }  
+
+});
