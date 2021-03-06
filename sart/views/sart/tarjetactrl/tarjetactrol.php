@@ -76,9 +76,9 @@
                     <th>Documento</th>
                     <th>Nombre</th>
                     <th>Tel&eacute;fono</th>
-                    <th>Documentos</th>
                     <th>Simit</th>
                     <th>Tarjeta</th>
+					<th>Documentos</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -108,6 +108,12 @@
 		<div class="modal-dialog">
 		  <div class="modal-content " id="taxi_modal" style="overflow:hidden"></div>
 		</div>
+  </div><!--.modal-->
+  <div class="modal scale fade" id="modal_medio" tabindex="-1" role="dialog" aria-hidden="true">
+       	<div class="modal-dialog">
+       		<div class="modal-content global_medio">
+       		</div><!--.modal-content-->
+       	</div><!--.modal-dialog-->
   </div><!--.modal-->
 		<!-- BEGIN GLOBAL AND THEME VENDORS -->
 	<script src="<?php echo base_url() ?>js/global-vendors.js"></script>
@@ -142,6 +148,9 @@
 
      <script>
 	$(document).ready(function () {
+		setInterval(function(){
+			consultanotif();
+		}, 300000);
 		Pleasure.init();
 		Layout.init();
 		$(document).ready(function () {
@@ -202,8 +211,9 @@
 		 }).on('click', '.abredocs', function(e){
 			e.preventDefault();
 			var control=$(this).parent().parent().data('iditem');
-			console.log(control);
-			//queue_load_all('capahijos','',control);
+			//console.log(control);
+			$('#modal_medio').modal('show');
+			queue_load_all('.global_medio','?id='+control,'gestionformato');
 			return false;
 		 }).on('click', '.finalizapadre', function(e){
 			e.preventDefault();
@@ -233,6 +243,5 @@
 	  });
 	});
 	</script>
-
 </body>
 </html>

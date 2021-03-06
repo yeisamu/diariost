@@ -295,7 +295,6 @@ if($prop){
                       <?php
 
                       if($docs){
-                       // if($tipo=='edit'){
                         $i=0;
                         foreach ($docs -> result() as $rowdosv) {
                         if($rowdosv->obligatorio=='si'){
@@ -336,11 +335,13 @@ if($prop){
                       <tr class=" ">
                          <td width="30%"  class="  border_t_0">
                             <span style="color: #999;"><?php echo $rowdosv->documento;?></span>
-                            <input type="hidden" name="idoc[]" value="<?php echo  $rowdosv->id_doc;?>"> 
+                            <input type="hidden" name="idoc[]" value="<?php echo  $rowdosv->id_doc;?>"/> 
+                            <input type="hidden" name="notif[]" value="<?php echo  $rowdosv->isnotif;?>"/> 
+                            <input type="hidden" name="conduc[]" value="<?php echo  $nombre.' '.$apellidos;?>"/> 
                           </td>
                           <td  width="16%"  class="  border_t_0">
                             <div class="input-group divfecha">
-                              <input type="text" readonly class="form-control datepicker" style="cursor:pointer;font-size: 12px;" name="fexp<?php echo $i;?>" id="fexp<?php echo $i;?>" value="<?php echo $fini;?>">                                            
+                              <input type="text" readonly class="form-control datepicker" style="cursor:pointer;font-size: 12px;" name="fexp<?php echo $i;?>" id="fexp<?php echo $i;?>" value="<?php echo $ffin;?>">                                            
                             </div>
 
                           </td>

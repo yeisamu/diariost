@@ -2,6 +2,7 @@ var sart = new Object();
 sart.page  = '';
 sart.pages = '';
 sart.tablacondu = '';
+sart.tablanoti = '';
 function queue_load_all(div,params,control){
   var url=$('#base_url').val();	
   $.ajax({
@@ -1493,3 +1494,47 @@ $(document).on('click', '.guardaeditcondu', function(e){
   }  
 
 });
+
+function consultanotif(){
+  var url=$('#base_url').val();
+  $.ajax({
+    url: url+'sart.php/sistemasart/notif',
+    type: 'POST',
+    dataType: 'json',
+    data: { }
+  }).done(function(data){
+      if(data.validacion == 'ok'){
+        notifyMe(data.msn)
+      }
+  }); 
+}
+
+function notifyMe(text,conteclick) {
+  if (Notification.permission !== "granted")
+      Notification.requestPermission();
+  else {
+      var notification = new Notification('Atención', {               
+          body: text,
+          icon: '../../img/taxi.jpg', // optional
+          requireInteraction: true     
+      });
+      notification.onclick = function (event) {
+        event.preventDefault(); 
+        $('#modal_medio').modal('show'); 
+          var url=$('#base_url').val();
+          $.ajax({
+            url: url+'sart.php/sistemasart/gesnotif',
+            type: 'POST',
+            dataType: 'html',
+            data: { }
+          }).done(function(data){
+            $('.global_medio').html(data);
+          }); 
+      } 
+      notification.onclose = function (event) {
+         // alert("onClose!");
+          event.preventDefault(); 
+          console.log('Notification clicked.');
+      } 
+  }      
+}

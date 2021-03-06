@@ -617,9 +617,9 @@ class Sart_model extends CI_Model {
 
 	}
 
-	function deletemaestro($id)
+	function deletenotif($id)
 	{
-      $this->db->delete('maestro',array('maestro_id'=>$id)); //comando para borrar el registro con el id correspondiente
+      $this->db->delete('novedad_diario',array('id_nov'=>$id)); //comando para borrar el registro con el id correspondiente
       $nr = $this->db->affected_rows();
       if ($nr > 0){  //Para saber si el borrado fue exitoso.
            return true;
@@ -2001,7 +2001,6 @@ function busqueda()
   function inserta_condu()
   {
         date_default_timezone_set('America/Bogota');
-      
         foreach ($_REQUEST as $var => $val){$$var = $this->db->escape_str($val);}
         //$estudios         = filter_var($_REQUEST['estudios'], FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES | FILTER_FLAG_ENCODE_AMP);
         $expe         = filter_var($_REQUEST['expe'], FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES | FILTER_FLAG_ENCODE_AMP);
@@ -2019,12 +2018,8 @@ function busqueda()
               if($idp==trim($codigom)){
                 $yaexiste=true;
               }
-            }
-            
-          
+            }   
         }
-        
-        //echo $yaexiste; 
       if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'){ 
           $file = $_FILES['archivo']['name'];
           $ext = end((explode(".",$file)));
@@ -2116,7 +2111,8 @@ function busqueda()
                             'observacion'         => $obs,
                             'experiencia_laboral' => $expe,
                             'ispensionado'        => $pensionado,
-                            'foto'                => $idp.'.'.$ext
+                            'foto'                => $idp.'.'.$ext,
+                            'fecha_crea'          =>date('Y-m-d')
                   ); 
               }else{
                       $data2 =array(
@@ -2133,7 +2129,8 @@ function busqueda()
                             'emailc'              => $emailc,
                             'ispensionado'        => $pensionado,
                             'observacion'         => $obs,
-                            'experiencia_laboral' => $expe
+                            'experiencia_laboral' => $expe,
+                            'fecha_crea'          =>date('Y-m-d')
                     ); 
               }
 
@@ -2157,6 +2154,17 @@ function busqueda()
              $whereup='id_conductor="'.$id_condu.'" and id_doc="'.$idoc[$i].'"';
              $this->db->where($whereup);
              $this->db->update('con_doc',$valuedocs);
+
+             if($notif[$i]=='si'){
+               $valnotif=array(
+                'id_movil' => $id_condu, 
+                'fecha' => date('Y-m-d h:i:s'),
+                'pago_hasta_n' => $fven,
+                'novedad' =>'Pago de Aplicativo GHOST - '.$conduc[0],
+                'control' =>1 
+               );
+               $this->db->insert('novedad_diario',$valnotif);
+             }
             }
          }
 
@@ -2173,13 +2181,6 @@ function busqueda()
         $this->db->trans_commit();
         return $resp=array('guarda'=>'ok');
     }
-
-      /*if($queries){
-        return $resp=array('guarda'=>'ok');
-      }else{
-        return $resp=array('guarda'=>'error','motivo'=>'Error al guardar');
-      }*/
-      
     }else{
       return $resp=array('guarda'=>'error','motivo'=>'found','idprop'=>$idp);
     } 

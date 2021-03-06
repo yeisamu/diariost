@@ -208,25 +208,27 @@ if($empresa){
     				<tr>
     					<td colspan="2" align="center" style="height:25px"><span style="text-align:center;font-size:17px"><strong>DATOS DEL VEHICULO</strong></span></td>
     				</tr>
-                    <?php 
-                    foreach ($veh_doc[$datatarjeta->id_movil]->result() as $docs) {
-                         if($docs->id_documento=='01'){
-                            $soat=$docs->numero;
-                            $fsoat=$docs->fecha_ven;
-                         }
-                         if($docs->id_documento=='02'){
-                            $top=$docs->numero;
-                            $ftop=$docs->fecha_ven;
-                         }
-                         if($docs->id_documento=='03'){
-                            $contra=$docs->numero;
-                            $fcontra=$docs->fecha_ven;
-                         }
-                         if($docs->id_documento=='04'){
-                            $certimov=$docs->numero;
-                            $fcertimov=$docs->fecha_ven;
-                         }
-                      }
+					<?php 
+					if($veh_doc[$datatarjeta->id_movil]){
+						foreach ($veh_doc[$datatarjeta->id_movil]->result() as $docs) {
+							if($docs->id_documento=='01'){
+								$soat=$docs->numero;
+								$fsoat=$docs->fecha_ven;
+							}
+							if($docs->id_documento=='02'){
+								$top=$docs->numero;
+								$ftop=$docs->fecha_ven;
+							}
+							if($docs->id_documento=='03'){
+								$contra=$docs->numero;
+								$fcontra=$docs->fecha_ven;
+							}
+							if($docs->id_documento=='04'){
+								$certimov=$docs->numero;
+								$fcertimov=$docs->fecha_ven;
+							}
+						}
+					}
                     ?>
     				<tr>
 					 <td colspan="2" style="height:25px">

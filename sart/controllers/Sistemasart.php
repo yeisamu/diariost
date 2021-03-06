@@ -1365,22 +1365,17 @@ public	function genera_informe(){ //Se toman los datos de la ciudad de la bases 
 		$conf['aColumns1']=array('id_conductor', 'codigo', 'conductor', 'telefono');
 		$conf['aColumnsunion']=array('id_prop','concat_ws(" ",nombre,apellidos)','telefono');
 		$conf['rows']=array('id_conductor', 'codigo','conductor','telefono');
-		$conf['opt']=array('<button type="button" class="btn btn-indigo abredocs">Actualiza</button>','<button type="button" class="btn btn-warning abredocs">Registrar</button>','<button type="button" class="btn btn-success abredocs">Admin</button>');
+		$conf['opt']=array('<button type="button" class="btn btn-warning abredocs">Registrar</button>','<button type="button" class="btn btn-success abredocs">Admin</button>','<button type="button" class="btn btn-indigo abredocs">Actualiza</button>');
 		$conf['union']=" UNION SELECT id_prop,id_prop,concat_ws(' ',nombre,apellidos) as conductor,telefono FROM propietario where escondu='si'";
-     	/*$filter = array('detalle' => $tipo);
-        $dataoper = $this->Operacion_model->getdatosfilter($filter,'pc_configuracion','')->row();
-        $filter1 = array('detalle' => 'Terminado','tipo'=>'estado');
-        $datastatus = $this->Operacion_model->getdatosfilter($filter1,'pc_configuracion','')->row();*/
-
-     	$filter2 ='';// array('id_operacion' => $dataoper->id_configuracion,'ispadre'=>'si');
-	  	$filteradv='';//array('cond1'=>'id_estado <> '.$datastatus->id_configuracion);
+     	$filter2 ='';
+	  	$filteradv='';
 	  	$tabla="conductor";
-	  	$join ='';// array('pc_configuracion' => " pc_configuracion.id_configuracion=pc_programacion.id_estado");
+	  	$join ='';
      	$output=$this->Sart_model->GetData($filter2,$filteradv,$join,$tabla,$conf);
      	echo json_encode($output);
      }
 	 
-	function editarcondu(){ //Se toman los datos de la ciudad de la bases de datos
+	 public function editarcondu(){ //Se toman los datos de la ciudad de la bases de datos
 	   $tipo=$_REQUEST['tipo'];
 
 	  
@@ -1404,7 +1399,7 @@ public	function genera_informe(){ //Se toman los datos de la ciudad de la bases 
 	   $data['tipo']=$tipo;
 	   $this->load->view('sart/movil/editacondu',$data);
 	}//fin funcion
-	function grabarcondu(){
+	public function grabarcondu(){
 		$resp=$this->Sart_model->inserta_condu(); // Envio de los datos a la base de datos 
 		 if($resp['guarda']== 'ok'){
 			  $respu['validacion'] = 'ok';
@@ -1419,5 +1414,85 @@ public	function genera_informe(){ //Se toman los datos de la ciudad de la bases 
 		//======================================
 	   echo json_encode($respu);
    }//fin funcion
+   public function notif(){
+		$this->db->where('control=1');
+		$query = $this->db->get('novedad_diario');
+		if($query->num_rows() > 0){
+			$objnot=$query->row();
+			$respu['validacion'] = 'ok';
+			$respu['msn'] = $objnot->novedad;
+		}else{
+			$respu['validacion'] = 'fail';
+		}
+		echo json_encode($respu);
+	}//fin funcion
+	public function gesnotif(){
+		$filter = '';
+		$filter_adv = '';
+		$data['noti'] = $this->Sart_model->selectall('control','novedad_diario'); 
+		$this->load->view('sart/tarjetactrl/gesnoti',$data);
+	}//fin funcion
+	public function  datanoti(){
+	   $conf=array();
+	   $conf['aColumns2']=array('id_nov', 'novedad', 'pago_hasta_n');
+	   $conf['aColumns']=array('id_nov', 'novedad', 'pago_hasta_n');
+	   $conf['aColumns1']=array('id_nov', 'novedad', 'pago_hasta_n');
+	   $conf['aColumnsunion']='';
+	   $conf['rows']=array('id_nov', 'novedad','pago_hasta_n');
+	   $conf['opt']=array('<button type="button" class="btn btn-indigo abredocs">Registrar</button>');
+	   $conf['union']="";
 
+	   $filter2 ='';// array('id_operacion' => $dataoper->id_configuracion,'ispadre'=>'si');
+	   $filteradv='';//array('cond1'=>'id_estado <> '.$datastatus->id_configuracion);
+	   $tabla="novedad_diario";
+       $join ='';
+	   $output=$this->Sart_model->GetData($filter2,$filteradv,$join,$tabla,$conf);
+	   echo json_encode($output);
+	}
+	public function tramitanoti(){
+		$id=$_REQUEST['id'];
+		$resp=$this->Sart_model->deletenotif($id);
+		if($resp){
+			$output['validacion'] = 'ok';
+			$output['msn'] = 'Registrado con exito';
+		}else{
+			$output['validacion'] = 'fail';
+			$output['msn'] = 'Error al registrarN';
+		}
+		echo json_encode($output);
+	}//fin funcion
+	public function gestionformato()
+	  {
+		$id=$_REQUEST['id'];
+		$data['id']=$id;
+		$this->load->view('sart/tarjetactrl/gesformatos',$data);
+	  }//fin funcion
+	function generanopension(){
+		 $id=$_REQUEST['id'];
+		 $formaid=$_REQUEST['formaid'];
+		 $filter = array('id_conductor' => $id);
+		 $data['condu'] = $this->Sart_model->getdatos($filter,'conductor','');
+		 $filter = array('formato' => $formaid);
+		 $data['form'] = $this->Sart_model->getdatos($filter,'formatos',''); 
+		 $html = $this->load->view('sart/tarjetactrl/nopension.php',$data,TRUE);
+		 $name=$formaid.".pdf";
+		 $this->sma->generate_pdf($html, $name,'I');
+	 }//fin funcion
+	 function generaestadisticac(){
+		$id=$_REQUEST['id'];
+		$formaid=$_REQUEST['formaid'];
+		$filter = array('id_conductor' => $id);
+		$data['condu'] = $this->Sart_model->getdatos($filter,'conductor','');
+		$filter = array('formato' => $formaid);
+		$data['form'] = $this->Sart_model->getdatos($filter,'formatos',''); 
+		$orderby='';
+		$filter = array('id_conductor' => $id,'documento'=>'LICENCIA DE CONDUCCION');
+		$filter_adv='';
+		$camposmov='*';
+		$join='documento.id_doc=con_doc.id_doc';
+	    $data['docs'] = $this->Sart_model->getdatosjoinfull($filter,$filter_adv,'documento','con_doc',$join,'left',$camposmov,$orderby); 
+		$html = $this->load->view('sart/tarjetactrl/estadisticac.php',$data,TRUE);
+		$name=$formaid.".pdf";
+		$this->sma->generate_pdf($html, $name,'I');
+	}//fin funcion
 }//FINCONTROL
