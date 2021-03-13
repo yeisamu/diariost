@@ -1871,7 +1871,7 @@ function busqueda()
 			$sWhereunion="";
            // print_r($filter);
 	        if (is_array($filter)) {
-	        	 $sWhere="  1 ";
+	        	 $sWhere="where  1 ";
               if(count($filter) > 0){
                   foreach ($filter as $key => $value) {
                       $sWhere .= " and $key = '$value'";

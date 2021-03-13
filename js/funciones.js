@@ -1476,12 +1476,13 @@ $(document).on('click', '.guardaeditcondu', function(e){
               if (data.msn=='found') {
                  $('.grabaerror' ).data('toastr-notification','Conductor ya existe');
                  $('.grabaerror').click();
-                 $('.guardaedit').removeClass('hide');
+                 $('.grabando').addClass('hide');
+                 $('.guardaeditcondu').removeClass('hide');
               }else{
                 $('.grabaerror' ).data('toastr-notification',data.msn);
                 $('.grabaerror').click();
                 $('.grabando').addClass('hide');
-                $('.guardaedit').removeClass('hide');
+                $('.guardaeditcondu').removeClass('hide');
               }
                
             }

@@ -1368,7 +1368,7 @@ public	function genera_informe(){ //Se toman los datos de la ciudad de la bases 
 		$conf['aColumns1']=array('id_conductor', 'codigo', 'conductor', 'telefono');
 		$conf['aColumnsunion']=array('id_prop','concat_ws(" ",nombre,apellidos)','telefono');
 		$conf['rows']=array('id_conductor', 'codigo','conductor','telefono');
-		$conf['opt']=array('<button type="button" class="btn btn-warning abredocs">Registrar</button>','<button type="button" class="btn btn-success abredocs">Admin</button>','<button type="button" class="btn btn-indigo abredocs">Actualiza</button>');
+		$conf['opt']=array('<button type="button" class="btn btn-warning abresimit">Registrar</button>','<button type="button" class="btn btn-success abredocs">Admin</button>','<button type="button" class="btn btn-indigo abredocs">Actualiza</button>');
 		$conf['union']=" UNION SELECT id_prop,id_prop,concat_ws(' ',nombre,apellidos) as conductor,telefono FROM propietario where escondu='si'";
      	$filter2 ='';
 	  	$filteradv='';
@@ -1498,6 +1498,36 @@ public	function genera_informe(){ //Se toman los datos de la ciudad de la bases 
 		$name=$formaid.".pdf";
 		$this->sma->generate_pdf($html, $name,'I');
 	}//fin funcion
+	public function ges_simit()
+	  {
+		$id=$_REQUEST['id'];
+		$data['id']=$id;
+		$this->load->view('sart/tarjetactrl/gessimit',$data);
+	  }//fin funcion
+	  public function  datasimit(){
+		$id=$_REQUEST['id'];
+		$conf=array();
+		$conf['aColumns2']=array('id_simit', 'n_parte', 'cod_infraccion','valor','fecha_parte','fecha_pago','convenio','observacion','estado');
+		$conf['aColumns']=array('id_simit', 'n_parte', 'cod_infraccion','valor','fecha_parte','fecha_pago','convenio','observacion','estado');
+		$conf['aColumns1']=array('id_simit', 'n_parte', 'cod_infraccion','valor','fecha_parte','fecha_pago','convenio','observacion','estado');
+		$conf['aColumnsunion']='';
+		$conf['rows']=array('id_simit', 'n_parte', 'cod_infraccion','valor','fecha_parte','fecha_pago','convenio','observacion','estado');
+		$conf['opt']=array('<button type="button" class="btn btn-indigo abredocs">Actualizar</button>','<button type="button" class="btn btn-indigo abredocs">Cerrar</button>');
+		$conf['union']="";
+ 
+		$filter2 = array('id_conductor' => $id);
+		$filteradv='';//array('cond1'=>'id_estado <> '.$datastatus->id_configuracion);
+		$tabla="simit";
+		$join ='';
+		$output=$this->Sart_model->GetData($filter2,$filteradv,$join,$tabla,$conf);
+		echo json_encode($output);
+	 }//fin funcion
+	 public function add_simit()
+	  {
+		$id=$_REQUEST['id'];
+		$data['id']=$id;
+		$this->load->view('sart/tarjetactrl/registrasimit',$data);
+	  }//fin funcion
 /************* Nuevas Funcionalidades jcano *******************/
 public function users(){
 

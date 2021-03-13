@@ -111,7 +111,7 @@
   </div><!--.modal-->
   <div class="modal scale fade" id="modal_medio" tabindex="-1" role="dialog" aria-hidden="true">
        	<div class="modal-dialog">
-       		<div class="modal-content global_medio">
+       		<div class="modal-content global_medio" id="global_medio">
        		</div><!--.modal-content-->
        	</div><!--.modal-dialog-->
   </div><!--.modal-->
@@ -215,29 +215,12 @@
 			$('#modal_medio').modal('show');
 			queue_load_all('.global_medio','?id='+control,'gestionformato');
 			return false;
-		 }).on('click', '.finalizapadre', function(e){
+		 }).on('click', '.abresimit', function(e){
 			e.preventDefault();
-			var id=$(this).data('id');
-			var tipo=$(this).data('tipo');
-			var mod=$(this).data('mod');
-			var url=$('#base_url').val();
-			$(this).html('<i class="fa fa-check-square"></i>');
-			$.ajax({
-			   url: url+'operacion/grabarfinpadre',
-			   type: 'POST',
-			   data: {},
-			   dataType: 'json',
-			   cache: false,
-			   contentType: false,
-			   processData: false
-			}).done(function(data){
-				if(data.validacion == 'ok'){ 
-				  swal("Exito!!", data.msn, "success");
-				  queue_load_all('principal','','tramitaplan'); 
-				}else{
-					swal("Atencion!!", data.msn, "error");
-				}
-			});
+			var control=$(this).parent().parent().data('iditem');
+			//console.log(control);
+			$('#modaltaxi').modal('show');
+			queue_load_all('#taxi_modal','?id='+control,'ges_simit');
 			return false;
 		 });
 	  });
