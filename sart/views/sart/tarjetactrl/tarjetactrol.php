@@ -53,7 +53,7 @@
 				<div class="col-xs-10">
 					<h1 style="font-size: 25px;">Gesti&oacute;n Tarjetas de Control<small></small></h1>
 				</div><!--.col-->
-				<div class="col-xs-2 menu" data-grupo="<?php echo $valg ?>" style="cursor:pointer">
+				<div class="col-xs-2 menu" data-grupo="<?php// echo $valg ?>" style="cursor:pointer">
 					<ol class="breadcrumb">
 						<li><a href="#"><i class="ion-android-menu"></i></a></li>
 						<li><a href="#">Men&uacute;</a></li>
