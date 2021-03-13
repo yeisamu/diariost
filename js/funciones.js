@@ -1536,5 +1536,289 @@ function notifyMe(text,conteclick) {
           event.preventDefault(); 
           console.log('Notification clicked.');
       } 
-  }      
+  }  
 }
+/* Cambios jcano */
+$(document).on('click', '.saveaddedituser', function(e){
+  
+  var details  = $('#addedituser').serialize();
+
+  $(this).addClass('hide');
+
+  var menu = $(this).data('menu');
+
+  $('.grabando').removeClass('hide');
+
+  if(validarCampos('#addedituser')){
+        
+    var url=$('#base_url').val();
+    
+    $.ajax({
+
+      url: url+'sart.php/sistemasart/saveuser?'+details,
+      type: 'GET',
+      dataType: 'json',
+      data: { }
+
+    }).done(function(data){
+        
+      if(data.validacion == 'ok'){
+        
+        $('.cancelaformedit').click();
+        
+        var order = $('#order').val();
+        var orderby = $('#orderby').val();
+        var idapp = $('#idapp').val();
+        var vg = $('#filtrog').val();
+
+        if(vg!=''){
+          var parini='?grupo='+vg+'&order='+order+'&by='+orderby+'&app_ID='+idapp;
+        }else{
+          var parini='?order='+order+'&by='+orderby+'&app_ID='+idapp;
+        }
+                  
+        if(menu=='prop'){
+          var par='?order='+order+'&by='+orderby+'&app_ID='+idapp;
+          queue_load_all('#busqueda_list',par,'listar_tabla_prop');
+        }else{
+          //queue_load_all('#busqueda_list',parini,'listar_tabla');            
+          location.reload();
+        } 
+
+        $('.grabaok' ).data('toastr-notification',data.msn);
+        $('.grabaok').click();
+          
+        // queue_load_all('#busqueda_list','','listar_tabla');
+         
+      }else{
+        
+        if (data.msn=='found') {
+           $('.grabaerror' ).data('toastr-notification','Propietario ya existe, desea modificar datos?');
+           $('.grabaerror').click();
+           var paredi='?id_prop='+data.idprop+'&tipo=edit'
+           queue_load_all('#edit_modal',paredi,'editarprop');
+        }else{
+          $('.grabaerror' ).data('toastr-notification',data.msn);
+          $('.grabaerror').click();
+          $('.grabando').addClass('hide');
+          $('.guardaedit').removeClass('hide');
+        }
+         
+      }
+
+    }); 
+
+  }else{
+    $(this).removeClass('hide');
+    $('.grabando').addClass('hide');   
+  }  
+
+});
+
+$(document).on('click', '.change_status', function(e){
+    
+    var details = $(this).data('vars');
+    var idusr   = $(this).data('idusr');
+    var appid   = $(this).data('appid');
+    var url     = $('#base_url').val();
+
+    $.ajax({
+        url: details,
+        type: 'GET',
+        dataType: 'json',
+    }).done(function(data){
+
+        if(data.validacion == 'ok'){
+
+          $('.grabaok' ).data('toastr-notification',data.msn);
+          $('.grabaok').click();
+
+          /*var paredi='?id_usr='+idusr+'&tipo=edit'
+          queue_load_all('#modaluser',paredi,'usermodal');*/
+
+          var details = url+"sart.php/sistemasart/usermodal?tipo=edit&id_usr="+idusr+"&app_ID="+appid;
+          console.log(details)
+          //var details = $(this).data('vars');
+          //var capa = $(this).data('capa');
+          $.ajax({
+              url: details,
+              type: 'GET',
+              dataType: 'html',
+          }).done(function(data){
+
+              $('#user_modal').html(data);
+          });
+          return false;
+
+        }else{
+          $('.grabaerror' ).data('toastr-notification',data.msn);
+          $('.grabaerror').click();
+          $('.grabando').addClass('hide');
+          $('.guardaedit').removeClass('hide');
+        }
+
+    });
+    return false;
+});
+
+$(document).on('click', '.delete', function(e){
+  
+  var details = $(this).data('vars');
+
+  swal({
+    title: "¿Est\xE1 seguro?",
+    text: "No se podr\xE1 recuperar el registro eliminado!",
+    type: "warning",
+    showCancelButton: true,
+    confirmButtonClass: "btn-danger",
+    confirmButtonText: "Si, Borrar!",
+    cancelButtonText: "No, cancelar!",
+    closeOnConfirm: false,
+    closeOnCancel: false
+  },
+  function(isConfirm) {
+    if(isConfirm){
+      //swal("Deleted!", "Your imaginary file has been deleted.", "success");
+      $.ajax({
+        url: details,
+        type: 'GET',
+        dataType: 'html',
+      }).done(function(data){
+
+        swal("Eliminado!", "El usuario ha sido borrado.", "success");
+
+        setTimeout(function(){
+          location.reload();                    
+        }, 2000); 
+        
+
+      });
+      return false;
+
+    }else{
+      swal("Cancelar", "La operaci\xF3n ha sido cancelada", "error");
+    }
+  });
+
+});
+
+$(document).on('click', '.loadsign', function(e){
+
+  console.log("Firma")
+  var formData = new FormData($("form#addeditsign")[0]);
+  var url=$('#base_url').val();
+  $(this).addClass('hide');
+  var menu = $(this).data('menu');
+  $('.grabando').removeClass('hide');
+
+  var signUser = $("#signUser");
+
+  var archivos = signUser[0].files;
+  
+  console.log(archivos)
+
+  if (archivos.length > 0) {
+    
+    var firma = archivos[0]; //Sólo queremos la primera imagen, ya que el usuario pudo seleccionar más
+    var lector = new FileReader();
+
+    //En este caso 'firma' será el nombre con el que se recibirá el archivo en el servidor
+    formData.append('firma', firma);
+    $.ajax({
+      url:  url+"sart.php/sistemasart/addeditsign",
+      data: formData,
+      dataType: 'json',
+      type: 'POST',
+      contentType: false,
+      processData: false,
+      success: function(data) {
+
+        console.log("Petición terminada. data", data);
+
+        $('.cancelaformedit').click();
+
+        if(data.validacion == 'ok'){
+          
+          $('.grabaok').data('toastr-notification',data.msn);
+          $('.grabaok').click();
+          $('.grabando').addClass('hide');
+          $('.graba_valores').removeClass('hide'); 
+
+        }else{
+          
+            $('.grabaerror' ).data('toastr-notification',data.msn);
+            $('.grabaerror').click();
+            $('.grabando').addClass('hide');
+            $('.graba_valores').removeClass('hide'); 
+        }
+
+      }
+
+    });
+
+  }else{
+    $(this).removeClass('hide');
+    $('.grabando').addClass('hide');  
+    swal("Error", "Debe seleccionar una imagen de firma", "error");
+  }
+
+  
+});
+
+$(document).on('click', '.delSign', function(e){
+  
+  var url       = $('#base_url').val();
+  var id_usr    = $('#id_usr').val();
+  var file      = $('#archivo').val();
+  var details   = url+"sart.php/sistemasart/delete_file?id_usr="+id_usr+"&file="+file;
+
+  console.log(details)
+
+  swal({
+    title: "¿Est\xE1 seguro?",
+    text: "No se podr\xE1 recuperar la firma eliminada!",
+    type: "warning",
+    showCancelButton: true,
+    confirmButtonClass: "btn-danger",
+    confirmButtonText: "Si, Borrar!",
+    cancelButtonText: "No, cancelar!",
+    closeOnConfirm: true,
+    closeOnCancel: false
+  },
+  function(isConfirm) {
+
+    if(isConfirm){
+      //swal("Deleted!", "Your imaginary file has been deleted.", "success");
+      $.ajax({
+        url: details,
+        type: 'GET',
+        dataType: 'json',
+        data: { }
+      }).done(function(data){
+
+        $('.cancelaformedit').click();
+
+        if(data.validacion == 'ok'){
+          
+          $('.grabaok').data('toastr-notification',data.msn);
+          $('.grabaok').click();
+          $('.grabando').addClass('hide');
+          $('.graba_valores').removeClass('hide'); 
+
+        }else{
+          
+            $('.grabaerror' ).data('toastr-notification',data.msn);
+            $('.grabaerror').click();
+            $('.grabando').addClass('hide');
+            $('.graba_valores').removeClass('hide'); 
+        }
+
+      });
+      return false;
+
+    }else{
+      swal("Cancelar", "La operaci\xF3n ha sido cancelada", "error");
+    }
+  });
+
+});

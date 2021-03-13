@@ -2187,4 +2187,273 @@ function busqueda()
 
   }
   }//fin funcion
+  /* Cambios jcano */ 
+  function save_edit_user(){
+
+    //echo $id_usr;
+
+    date_default_timezone_set('America/Bogota');
+     
+    foreach ($_REQUEST as $var => $val){$$var = $this->db->escape_str($val);}
+
+    $hoy=date('Y-m-d');
+    $yaexiste=false;
+    
+    if($tipo=='nuevo'){
+        
+        $this->db->where('documento',$docuser); 
+        $query = $this->db->get('acc_usuario');
+        
+        if($query->num_rows() > 0){
+          
+          $datauser = $query->row();
+          $codigouser = $datauser->documento;
+          
+          if($docuser == trim($codigouser)){
+            $yaexiste=true;
+          }
+
+        }
+    }   
+    
+    //echo $yaexiste; 
+    if(!$yaexiste){  
+      
+      switch ($tipo) {
+        
+        case 'nuevo':
+
+          $this->db->trans_begin();
+
+          $data2 =array(
+                //'id_usr'        => '',
+                'nombre'        => $nomuser,
+                'email'         => $emailuser,
+                'phone'         => $teluser,             
+                'tipo_doc'      => $seltipodoc,
+                'documento'     => $docuser,                            
+                'login'         => $aliasuser,
+                'clave'         => md5($passuser),
+                'admin'         => $esadmin,
+                'estado'        => $estado_user
+          ); 
+
+        $queries=$this->db->insert('acc_usuario',$data2);
+
+        $idU = $this->db->insert_id();
+
+        $this->db->where('tipo', 'mvc'); 
+        $qOption = $this->db->get('acc_opcion');
+
+        foreach($qOption->result() as $row) {
+
+          $dataOption =array(
+                //'id_usr'        => '',
+                'id_usr'        => $idU,
+                'id_opcion'     => $row->id_opcion,
+                'permiso'       => 0,             
+                'leer'          => 'no',
+                'borrar'        => 'no',                            
+                'crear'         => 'no',
+                'editar'        => 'no'
+          );
+
+          $queryOption = $this->db->insert('acc_permiso',$dataOption);
+
+        }
+
+        if ($this->db->trans_status() === FALSE || !$queries || !$queryOption)
+         {     $this->db->trans_rollback();
+           return $resp=array('guarda'=>'error','motivo'=>'Error al guardar');
+         }
+         else
+         {
+           $this->db->trans_commit();
+           return $resp=array('guarda'=>'ok');
+         }
+
+        break;
+
+        case 'edit':
+
+          $data2 =array(
+            //'id_usr'        => '',
+            'nombre'        => $nomuser,
+            'email'         => $emailuser,
+            'phone'         => $teluser,             
+            'tipo_doc'      => $seltipodoc,
+            'documento'     => $docuser,                            
+            'login'         => $aliasuser,
+            'clave'         => md5($passuser),
+            'admin'         => $esadmin,
+            'estado'        => $estado_user
+          ); 
+
+        $this->db->where('id_usr', $idp);  //localiza la maestro a actualizar
+        $queries=$this->db->update('acc_usuario',$data2);
+
+        break;
+      }
+     
+//$this->db->affected_rows()>0
+
+      if($queries){
+        return $resp=array('guarda'=>'ok');
+      }else{
+        return $resp=array('guarda'=>'error','motivo'=>'Error al guardar');
+      }
+     
+    }else{
+      return $resp=array('guarda'=>'error','motivo'=>'found','idprop'=>$idp);
+    }  
+
+  }
+
+  function save_change_status(){
+
+    date_default_timezone_set('America/Bogota');
+     
+    foreach ($_REQUEST as $var => $val){$$var = $this->db->escape_str($val);}
+
+    if($permiso==1){
+
+      $dtedit =array(
+            'permiso' => 0 
+      ); 
+
+    }else{
+      $dtedit =array(
+            'permiso' => 1 
+      ); 
+    }
+
+    $this->db->where('id_usr', $id_usr);  //localiza la maestro a actualizar
+    $this->db->where('id_opcion', $id_opcion); 
+    $queries=$this->db->update('acc_permiso',$dtedit);
+
+    if($queries){
+      return $resp=array('guarda'=>'ok');
+    }else{
+      return $resp=array('guarda'=>'error','motivo'=>'Error al cambiar permiso');
+    }
+      
+  }
+
+  function save_change_priv(){
+
+    date_default_timezone_set('America/Bogota');
+     
+    foreach ($_REQUEST as $var => $val){$$var = $this->db->escape_str($val);}
+
+    if($valor=='si'){
+
+      $dtedit =array(
+            $campo => 'no' 
+      ); 
+
+    }else{
+      $dtedit =array(
+            $campo => 'si' 
+      ); 
+    }
+
+    $this->db->where('id_usr', $id_usr);  //localiza la maestro a actualizar
+    $this->db->where('id_opcion', $id_opcion); 
+    $this->db->where('id_permiso', $permiso); 
+    $queries=$this->db->update('acc_permiso',$dtedit);
+
+    if($queries){
+      return $resp=array('guarda'=>'ok');
+    }else{
+      return $resp=array('guarda'=>'error','motivo'=>'Error al cambiar permiso');
+    }
+      
+  }
+
+  public  function borrar_usr()
+  {
+    foreach ($_REQUEST as $var => $val){$$var = $this->db->escape_str($val);}
+
+    $this->db->trans_begin();    
+
+    $this->db->where('id_usr', $id_usr); 
+    $qOption = $this->db->get('acc_permiso');
+
+    foreach($qOption->result() as $row) {
+
+      $queryOption = $this->db->delete('acc_permiso',array('id_usr'=>$id_usr));
+
+    }
+
+    $queries = $this->db->delete('acc_usuario',array('id_usr'=>$id_usr));
+
+    if($this->db->trans_status() === FALSE || !$queries || !$queryOption){     
+        
+        $this->db->trans_rollback();
+        return $resp=array('guarda'=>'error','motivo'=>'Error al eliminar el usuario');
+
+    }else{
+      $this->db->trans_commit();
+      return $resp=array('guarda'=>'ok');
+    }
+
+  }
+
+  function save_sign(){
+
+    date_default_timezone_set('America/Bogota');
+     
+    foreach ($_REQUEST as $var => $val){$$var = $this->db->escape_str($val);}
+    
+    //$pathinfo   = pathinfo($_FILES["firma"]["name"]);
+    $nombrefile = $_FILES['firma']['name'];
+    //$filename   = $_FILES["firma"]["tmp_name"];
+
+    /*echo "ruta".$pathinfo;
+    echo "nombre".$nombrefile;
+     echo "file".$filename;*/
+
+    $dtsign =array(
+      'firma' => $nombrefile
+    );
+
+    $this->db->where('id_usr', $id_usr);  //localiza la maestro a actualizar
+    $queries=$this->db->update('acc_usuario',$dtsign);
+
+    if($queries){
+      return $resp=array('guarda'=>'ok');
+    }else{
+      return $resp=array('guarda'=>'error','motivo'=>'Error al registrar la firma');
+    }
+
+  }
+
+  public  function borrar_file()
+  {
+    foreach ($_REQUEST as $var => $val){$$var = $this->db->escape_str($val);}
+
+    $path = FCPATH . "uploads/firmas/".$file;
+    //FCPATH . "uploads/firmas/";
+    //echo "ruta".$path;
+
+    $dtsign =array(
+      'firma' => ""
+    );
+
+    $this->db->where('id_usr', $id_usr); 
+    $queries=$this->db->update('acc_usuario',$dtsign);
+
+    if(unlink($path)){
+      
+      if($queries){  
+        return $resp=array('elimina'=>'ok');
+      }else{
+        return $resp=array('elimina'=>'error','motivo'=>'Error al eliminar la firma');
+      }
+
+    }else{
+      return $resp=array('elimina'=>'error','motivo'=>'Error al eliminar la firma');
+    }
+
+  }//fin funcion
 }//fin modelo

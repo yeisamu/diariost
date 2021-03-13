@@ -8,7 +8,9 @@ class Sistemasart extends CI_Controller {
 		    $this->load->helper('form'); //Carga del ayudante de formularios
 			$this->load->helper('url'); //Carga del ayudante de formularios
 			$this->load->helper('cookie');//ayudante de cookies
-			$this->load->library('pdf'); // Load library
+			$this->load->library('excel'); 
+			//$this->load->library('pdf'); // Load library
+			$this->load->library('ciqrcode');
 		}
 	/**
 	 * Index Page for this controller.
@@ -108,7 +110,8 @@ class Sistemasart extends CI_Controller {
 				$data['grupo'] = $grupo;
 			}
 			$id_user=$_COOKIE['user_ID'];//$_REQUEST['v'];
-			$filter = array('acc_permiso.id_usr' => $id_user,'tipo' => 'mvc');
+			//$filter = array('acc_permiso.id_usr' => $id_user,'tipo' => 'mvc');
+			$filter = array('acc_permiso.id_usr' => $id_user,'tipo' => 'mvc', 'acc_permiso.permiso' => '1');
 		    $filter_adv = '';
 		    $join='acc_permiso.id_opcion=acc_opcion.id_opcion';
 		    $data['panel'] = $this->Sart_model->getdatosjoin($filter,'acc_permiso','acc_opcion',$join,'left'); 
@@ -1495,4 +1498,280 @@ public	function genera_informe(){ //Se toman los datos de la ciudad de la bases 
 		$name=$formaid.".pdf";
 		$this->sma->generate_pdf($html, $name,'I');
 	}//fin funcion
+/************* Nuevas Funcionalidades jcano *******************/
+public function users(){
+
+	if(isset($_COOKIE['user_ID'])){
+		 
+		 if(isset($_REQUEST['g'])){
+			 $grupo=$_REQUEST['g'];
+			 $data['grupov'] = $grupo;
+		 }else{
+			 $data['grupov'] = '';
+		 }
+
+		 $id_user = $_COOKIE['user_ID'];//$_REQUEST['v'];
+		 //$filter = array('acc_usuario.id_usr' => $id_user,'tipo' => 'mvc');
+		 $filter = '';
+		 $filter_adv = '';
+		 $join = '';
+		 //$data['panel'] = $this->Sart_model->getdatosjoin($filter,'acc_usuario','acc_permiso',$join,''); 
+		 $data['app_ID'] = $_REQUEST['app_ID'];
+		 $data['grupo']= $this->Sart_model->getcampo('grupo','empresa');
+		 //SELECT * FROM `acc_permiso` JOIN `acc_opcion` ON `acc_permiso`.`id_opcion`=`acc_opcion`.`id_opcion` WHERE 1 and `acc_permiso`.`id_usr` = '1' and `tipo` = 'mvc'
+		 //SELECT * FROM `acc_usuario` U JOIN acc_permiso P ON U.id_usr = P.id_usr JOIN acc_opcion O ON P.id_opcion = O.id_opcion JOIN acc_grupo G ON O.id_grupo = G.id_grupo GROUP BY P.id_usr
+		 $this->db->order_by("acc_usuario.id_usr", "ASC"); 
+		$data['usuario'] = $this->db->get('acc_usuario');
+
+		   $appID=$_REQUEST['app_ID'];
+		$filter = array('acc_permiso.id_usr' => $id_user,'tipo' => 'mvc','acc_permiso.id_opcion' => $appID);
+		   $filter_adv = '';
+		   $join='acc_permiso.id_opcion=acc_opcion.id_opcion';
+		   $data['permisos'] = $this->Sart_model->getdatosjoin($filter,'acc_permiso','acc_opcion',$join,'left');
+
+
+		 $this->load->view('sart/usuario/usuario',$data);
+	 }else{
+		 $this->index();
+	 }  	    	
+}
+
+function add_edit_usr(){ //Se toman los datos de la ciudad de la bases de datos
+
+   $tipo=$_REQUEST['tipo'];
+   $menu=$_REQUEST['menu'];
+   $data['menu'] = $menu;
+
+   if($tipo=='edit'){
+	   $id = $_REQUEST['id_usr'];
+	   $filter = array('id_usr' => $id);
+	   $filter_adv = '';
+	   $data['user'] = $this->Sart_model->getdatos($filter,'acc_usuario',''); 	       
+   }else{
+	   $data['user'] = false;
+   }
+
+   $data['tipodoc']= $this->Sart_model->selectall('tipo_doc','tipo_doc');
+
+   $data['tipo'] = $tipo;
+
+   $this->load->view('sart/usuario/add_edit_usr',$data);
+}
+
+function saveuser(){
+	 
+	$resp=$this->Sart_model->save_edit_user(); // Envio de los datos a la base de datos 
+	
+	if($resp['guarda']== 'ok'){
+		
+		$respu['validacion'] = 'ok';
+		 $respu['msn'] = ' Guardado con Exito!!';
+
+	}else{
+		  
+		  $respu['validacion'] = 'fail';
+		  $respu['msn'] = $resp['motivo'];
+		  
+		  if($resp['motivo']=='found'){
+			  $respu['idprop'] = $resp['idprop'];
+		  }
+
+	}
+				  //======================================
+		echo json_encode($respu);
+}
+
+function usermodal(){ 
+
+	foreach ($_REQUEST as $var => $val){$$var = $this->db->escape_str($val);}
+	//$tipo=$_REQUEST['tipo'];
+
+	   //SELECT * FROM `acc_usuario` U JOIN acc_permiso P ON U.id_usr = P.id_usr JOIN acc_opcion O ON P.id_opcion = O.id_opcion JOIN acc_grupo G ON O.id_grupo = G.id_grupo WHERE O.tipo = 'mvc'
+
+	   //SELECT * FROM `acc_usuario` U JOIN acc_permiso P ON U.id_usr = P.id_usr 
+	   //JOIN acc_opcion O ON P.id_opcion = O.id_opcion 
+	   //JOIN acc_grupo G ON O.id_grupo = G.id_grupo 
+	   //WHERE O.tipo = 'mvc' and U.id_usr = 1
+
+	   $this->db->where('O.tipo="mvc"');
+	   $this->db->where('U.id_usr='.$id_usr);
+	$this->db->join('acc_permiso as P','U.id_usr = P.id_usr','JOIN');
+	$this->db->join('acc_opcion as O','P.id_opcion = O.id_opcion','JOIN');
+	$this->db->join('acc_grupo as G','O.id_grupo = G.id_grupo','JOIN');
+	$this->db->order_by("O.opcion", "ASC"); 
+	$dataPriv= $this->db->get('acc_usuario as U');
+
+	$data['app_ID'] = $app_ID;
+	$data['permisos']=$dataPriv;
+
+	//echo $this->db->last_query();
+
+	   $this->load->view('sart/usuario/vis_add_edit_privileges',$data);
+}
+
+function changestatus(){
+	 
+	$resp=$this->Sart_model->save_change_status(); // Envio de los datos a la base de datos 
+	
+	if($resp['guarda'] == 'ok'){
+		
+		$respu['validacion'] = 'ok';
+		 $respu['msn'] = ' Permiso cambiado !!';
+
+	}else{
+		  
+		  $respu['validacion'] = 'fail';
+		  $respu['msn'] = $resp['motivo'];
+		  
+		  if($resp['motivo']=='found'){
+			  $respu['idprop'] = $resp['idprop'];
+		  }
+
+	}
+				  //======================================
+	//echo $resp['guarda']." - ".$respu['validacion']." - ".$respu['msn'];
+	echo json_encode($respu);
+}
+
+function changepriv(){
+	 
+	$resp=$this->Sart_model->save_change_priv(); // Envio de los datos a la base de datos 
+	
+	if($resp['guarda'] == 'ok'){
+		
+		$respu['validacion'] = 'ok';
+		 $respu['msn'] = ' Permiso cambiado !!';
+
+	}else{
+		  
+		  $respu['validacion'] = 'fail';
+		  $respu['msn'] = $resp['motivo'];
+		  
+		  if($resp['motivo']=='found'){
+			  $respu['idprop'] = $resp['idprop'];
+		  }
+
+	}
+				  //======================================
+	//echo $resp['guarda']." - ".$respu['validacion']." - ".$respu['msn'];
+	echo json_encode($respu);
+}
+
+public function grabardelusr(){
+	  
+	  $resp=$this->Sart_model->borrar_usr(); // Envio de los datos a la base de datos 
+
+	   if($resp['guarda']== 'ok'){
+			$respu['validacion'] = 'ok';
+		  $respu['msn'] = 'Eliminado con Exito!!';
+	}else{
+	   $respu['validacion'] = 'fail';
+	   $respu['msn'] = $resp['motivo'];
+	   }
+
+  //======================================
+	 echo json_encode($respu);
+}
+
+function add_edit_firma(){ //Se toman los datos de la ciudad de la bases de datos
+
+   $tipo=$_REQUEST['tipo'];
+   $menu=$_REQUEST['menu'];
+   $data['menu'] = $menu;
+
+   if($tipo=='edit'){
+	   $id = $_REQUEST['id_usr'];
+	   $filter = array('id_usr' => $id);
+	   $filter_adv = '';
+	   $data['user'] = $this->Sart_model->getdatos($filter,'acc_usuario',''); 	       
+   }else{
+	   $data['user'] = false;
+   }
+
+   $data['tipodoc']= $this->Sart_model->selectall('tipo_doc','tipo_doc');
+
+   $data['tipo'] = $tipo;
+
+   $this->load->view('sart/usuario/add_edit_firma',$data);
+}
+
+public function addeditsign()
+{	
+	foreach ($_REQUEST as $var => $val){$$var = $this->db->escape_str($val);}
+
+	$config['upload_path'] 		= FCPATH . "uploads/firmas/";
+	$config['allowed_types'] 	= 'gif|jpg|png|jpeg';
+	$config['max_size'] 		= 2048;
+
+	$this->load->library('upload', $config);
+
+	if (!$this->upload->do_upload('firma')) { #Aquí hace referencia a "firma", del FormData
+		
+		$respu['validacion'] = 'fail';
+		$respu['msn'] = $this->upload->display_errors();
+
+	}else{
+
+		//echo "id"+$id_usr;
+		$resp=$this->Sart_model->save_sign(); // Envio de los datos a la base de datos 
+	
+		if($resp['guarda']== 'ok'){
+			
+			$respu['validacion'] = 'ok';
+			 $respu['msn'] = ' Firma registrada!!';
+
+		}else{
+			  
+			  $respu['validacion'] = 'fail';
+			  $respu['msn'] = $resp['motivo'];
+
+		}
+
+	}
+
+	echo json_encode($respu);
+}
+
+public function delete_file(){
+
+	foreach ($_REQUEST as $var => $val){$$var = $this->db->escape_str($val);}
+	  
+	  $resp=$this->Sart_model->borrar_file(); // Envio de los datos a la base de datos 
+
+	   if($resp['elimina']== 'ok'){
+			$respu['validacion'] = 'ok';
+		  $respu['msn'] = 'Firma eliminada!!';
+	}else{
+	   $respu['validacion'] = 'fail';
+	   $respu['msn'] = $resp['motivo'];
+	   }
+
+  //======================================
+	 echo json_encode($respu);
+}
+
+function generar_qr() {
+
+	//https://www.desarrollolibre.net/blog/codeigniter/generando-codigos-qr-con-codeigniter#.YCnUq2hKiUk
+	foreach ($_REQUEST as $var => $val){$$var = $this->db->escape_str($val);}
+	//hacemos configuraciones
+
+	//$params['data'] = "Kode : ".$kode."\nBarang : ".$barang."\nUnit : ".$nama_unit."\nKondisi : ".$kon_barang."\nKeterangan : ".$keterangan."\nDetail : 'http://www.yoursite.com'";
+	//$params['data'] = $id_usr;
+	//$params['data'] = "Usuario : ".$id_usr."\nMovil : 123 \nConductor : Yeison \nPropietario : Velasquez \nCooperativa Coomocart \nURL : https://coomocart.com/";
+	$params['data'] = "https://coomocart.com/";
+	$params['level'] = 'H';
+	$params['size'] = 2;
+
+	//decimos el directorio a guardar el codigo qr, en este 
+	//caso una carpeta en la raíz llamada qr_code
+	$params['savename'] = FCPATH . "uploads/qr_code/qr_$id_usr.png";
+	//generamos el código qr
+	$this->ciqrcode->generate($params);
+
+	$data['img'] = "qr_$id_usr.png";
+
+	$this->load->view('sart/usuario/view_qr_code', $data);
+}
+
 }//FINCONTROL
