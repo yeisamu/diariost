@@ -54,7 +54,7 @@ header("Content-Type: text/html;charset=utf-8");
     ?>
 
   <script type="text/javascript">
-     sgcapp.page  = '<?php echo $page; ?>';
-     sgcapp.pages = '<?php echo $pages; ?>';
+     sart.page  = '<?php echo $page; ?>';
+     sart.pages = '<?php echo $pages; ?>';
      $('#cant_doc').html('(<?php echo $iTotal; ?>) Documentos');
   </script> 

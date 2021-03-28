@@ -167,7 +167,7 @@ if(isset($gfijo)){
 			               </th>
 			               <th  width="8%" style="padding-left: 5px;border: 1px solid #ddd;">Email</th>
 			               <th  width="8%" style="padding-left: 5px;border: 1px solid #ddd;">Contrato</th>
-			               <th  width="8%" style="padding-left: 5px;border: 1px solid #ddd;">
+			               <!--th  width="8%" style="padding-left: 5px;border: 1px solid #ddd;">
 			               	<div class="col-md-12 orderby " data-div="#busqueda_list" 
                                  data-vars="?order=pago_hasta&tipo=list&app_ID=<?php echo $app_ID; ?>" data-control="listar_tabla"  data-value="pago_hasta" style="display: inline-table;cursor:pointer;">
 								<span class="hidden-md hidden-sm" ><i class="fa fa-sort hidden-md hidden-sm"></i> Pago Hasta</span>
@@ -175,13 +175,13 @@ if(isset($gfijo)){
 
 							</div>
 			               </th>
-			               <!--th  width="8%" style="padding-left: 5px;border: 1px solid #ddd;">Aprob&oacute;</th-->
+			               <th  width="8%" style="padding-left: 5px;border: 1px solid #ddd;">Aprob&oacute;</th>
 			               <th  width="5%" style="padding-left: 5px;border-bottom: 1px solid #ddd;">
 			               	<div class="col-md-12 orderby" data-div="#busqueda_list" 
                                  data-vars="?order=pago_hasta&tipo=list&app_ID=<?php echo $app_ID; ?>" data-control="listar_tabla"  data-value="pago_hasta" style="display: inline-table;cursor:pointer;">
 								<span class="" ><i class="fa fa-sort hidden-md hidden-sm"></i> Mora</span>
 							</div>
-			               </th>
+			               </th-->
 			               <!-- <th  width="1%" style="border-right: 1px solid #ddd;border-bottom: 1px solid #ddd;"></th> -->
 			            </tr>
 			    </table>
@@ -194,8 +194,8 @@ if(isset($gfijo)){
 			                    <i class="fa fa-angle-right gray"></i> Placa
 			                    <i class="fa fa-angle-right gray"></i> Grupo 
 			                    <i class="fa fa-angle-right gray"></i> Nombre
-			                    <i class="fa fa-angle-right gray"></i> P. Hasta
-			                    <i class="fa fa-angle-right gray"></i> Mora
+			                    <!--i class="fa fa-angle-right gray"></i> P. Hasta
+			                    <i class="fa fa-angle-right gray"></i> Mora-->
 			                </td>
 			            </tr>
 			        </thead>
@@ -390,7 +390,7 @@ if(isset($gfijo)){
 
 	<div class="modal fade full-scream" id="modaltaxi" style="    overflow-y: hidden;" tabindex="-1" role="dialog" aria-hidden="true">
 		<div class="modal-dialog">
-		  <div class="modal-content " id="taxi_modal" style="overflow=hidden">
+		  <div class="modal-content " id="taxi_modal" style="overflow:hidden">
       </div>
 		</div>
 	</div><!--.modal-->
@@ -480,7 +480,7 @@ if(isset($gfijo)){
 	       if($('.scroll_inicio_busca').is(':visible')){
 	           
 	           if($(this)[0].scrollHeight - $(this).scrollTop() == $(this).outerHeight()) {
-	               if (parseFloat(sgcapp.page) >= parseFloat(sgcapp.pages)) {
+	               if (parseFloat(sart.page) >= parseFloat(sart.pages)) {
 	                   //========================+'&search='+$('#search_general').val()
 	               }else{
 	               	  if($('#search2').val()!=''){
@@ -501,8 +501,8 @@ if(isset($gfijo)){
 	               	  }
 	               	  var order = $('#order').val();
                       var orderby = $('#orderby').val();
-	                   sgcapp.page = parseFloat(sgcapp.page) + 1;
-	                   var params = '<?php echo base_url() ?>sart.php/sistemasart/listar_tabla?page='+sgcapp.page+paramfi+parini+'&order='+order+'&by='+orderby+paramfound+'&tipo=list'+'&app_ID=<?php echo $app_ID; ?>';
+	                   sart.page = parseFloat(sart.page) + 1;
+	                   var params = '<?php echo base_url() ?>sart.php/sistemasart/listar_tabla?page='+sart.page+paramfi+parini+'&order='+order+'&by='+orderby+paramfound+'&tipo=list'+'&app_ID=<?php echo $app_ID; ?>';
 	                   $.ajax({
 	                       url: params,
 	                       type: "POST",

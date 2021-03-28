@@ -899,6 +899,20 @@ public	function genera_informe(){ //Se toman los datos de la ciudad de la bases 
 		     	 }
 		     }
 	     	 switch ($informe) {
+				case 'simit':
+					if(isset($fini)){
+					   $fini=date('Y-m-d',strtotime($fini));
+					   $ffin=date('Y-m-d',strtotime($ffin));
+					   $filter_adv = array('adv1' => " fecha_parte >= '$fini' and fecha_parte <='$ffin' ");
+					   $data['fini']=$fini;
+					   $data['ffin']=$ffin;
+					}
+					$orderby='';
+					$filter='';
+					$camposmov='concat_ws(" ",codigo,nombres,apellidos) as conductor,n_parte,valor,cod_infraccion,fecha_parte';
+					$join='simit.id_conductor=conductor.id_conductor';
+					$data['mov'] = $this->Sart_model->getdatosjoinfull($filter,$filter_adv,'simit','conductor',$join,'left',$camposmov,$orderby); 
+				   break;
 	     	 	case 'cuadre_caja':
 	     	 	     if(isset($fini)){
 	     	 	     	$fini=date('Y-m-d',strtotime($fini));
@@ -1357,7 +1371,12 @@ public	function genera_informe(){ //Se toman los datos de la ciudad de la bases 
 		$orderby='nom_operador asc';
 		$result=$this->Operacion_model->selfilter('',$filter,$filter2,$join,$tabla,$orderby,'');	
 		$data['result'] = $result;*/
-		$data='';
+		if(isset($_REQUEST['g'])){
+			$grupo=$_REQUEST['g'];
+			$data['valg'] = $grupo;
+		}else{
+			$data['valg'] = '';
+		}
 		$this->load->view('sart/tarjetactrl/tarjetactrol',$data);
 	  }
 	public function  datatramita(){
@@ -1366,10 +1385,10 @@ public	function genera_informe(){ //Se toman los datos de la ciudad de la bases 
 		$conf['aColumns2']=array('id_conductor', 'codigo', 'concat_ws(" ",nombres,apellidos) as conductor', 'telefono');
 		$conf['aColumns']=array('id_conductor', 'codigo', 'concat_ws(" ",nombres,apellidos)', 'telefono');
 		$conf['aColumns1']=array('id_conductor', 'codigo', 'conductor', 'telefono');
-		$conf['aColumnsunion']=array('id_prop','concat_ws(" ",nombre,apellidos)','telefono');
+		$conf['aColumnsunion']='';//array('id_prop','concat_ws(" ",nombre,apellidos)','telefono');
 		$conf['rows']=array('id_conductor', 'codigo','conductor','telefono');
-		$conf['opt']=array('<button type="button" class="btn btn-warning abresimit">Registrar</button>','<button type="button" class="btn btn-success abredocs">Admin</button>','<button type="button" class="btn btn-indigo abredocs">Actualiza</button>');
-		$conf['union']=" UNION SELECT id_prop,id_prop,concat_ws(' ',nombre,apellidos) as conductor,telefono FROM propietario where escondu='si'";
+		$conf['opt']=array('<button type="button" class="btn btn-warning abresimit">Registrar</button>','<button type="button" class="btn btn-success abredocs">Admin</button>','<button type="button" class="btn btn-indigo abredocs">Formatos</button>');
+		$conf['union']='';//" UNION SELECT id_prop,id_prop,concat_ws(' ',nombre,apellidos) as conductor,telefono FROM propietario where escondu='si'";
      	$filter2 ='';
 	  	$filteradv='';
 	  	$tabla="conductor";
@@ -1507,12 +1526,12 @@ public	function genera_informe(){ //Se toman los datos de la ciudad de la bases 
 	  public function  datasimit(){
 		$id=$_REQUEST['id'];
 		$conf=array();
-		$conf['aColumns2']=array('id_simit', 'n_parte', 'cod_infraccion','valor','fecha_parte','fecha_pago','convenio','observacion','estado');
-		$conf['aColumns']=array('id_simit', 'n_parte', 'cod_infraccion','valor','fecha_parte','fecha_pago','convenio','observacion','estado');
-		$conf['aColumns1']=array('id_simit', 'n_parte', 'cod_infraccion','valor','fecha_parte','fecha_pago','convenio','observacion','estado');
+		$conf['aColumns2']=array('id_simit', 'n_parte', 'cod_infraccion','valor','fecha_parte','fecha_pago','convenio','estado');
+		$conf['aColumns']=array('id_simit', 'n_parte', 'cod_infraccion','valor','fecha_parte','fecha_pago','convenio','estado');
+		$conf['aColumns1']=array('id_simit', 'n_parte', 'cod_infraccion','valor','fecha_parte','fecha_pago','convenio','estado');
 		$conf['aColumnsunion']='';
-		$conf['rows']=array('id_simit', 'n_parte', 'cod_infraccion','valor','fecha_parte','fecha_pago','convenio','observacion','estado');
-		$conf['opt']=array('<button type="button" class="btn btn-indigo abredocs">Actualizar</button>','<button type="button" class="btn btn-indigo abredocs">Cerrar</button>');
+		$conf['rows']=array('id_simit', 'n_parte', 'cod_infraccion','valor','fecha_parte','fecha_pago','convenio','estado');
+		$conf['opt']=array('<button type="button" class="btn btn-indigo actSimit">Actualizar</button>');
 		$conf['union']="";
  
 		$filter2 = array('id_conductor' => $id);
@@ -1525,9 +1544,31 @@ public	function genera_informe(){ //Se toman los datos de la ciudad de la bases 
 	 public function add_simit()
 	  {
 		$id=$_REQUEST['id'];
+		$tipo=$_REQUEST['tipo'];
 		$data['id']=$id;
+		if($tipo=='edit'){
+			$filter = array('id_simit' => $id);
+			$data['simit'] = $this->Sart_model->getdatos($filter,'simit',''); 	       
+		}else{
+			$data['simit'] = false;
+		}
+
+		$data['tipo']=$tipo;
 		$this->load->view('sart/tarjetactrl/registrasimit',$data);
 	  }//fin funcion
+	  public function grabarsimit(){
+		$resp=$this->Sart_model->addModSimit(); // Envio de los datos a la base de datos 
+		 if($resp['guarda']== 'ok'){
+			 $respu['validacion'] = 'ok';
+			 $respu['id'] = $resp['id'];
+			 $respu['msn'] = ' Guardado con Exito!!';
+		  }else{
+			 $respu['validacion'] = 'fail';
+			 $respu['msn'] = $resp['motivo'];
+		 }
+		//======================================
+	   echo json_encode($respu);
+   }//fin funcion
 /************* Nuevas Funcionalidades jcano *******************/
 public function users(){
 

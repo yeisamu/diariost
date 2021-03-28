@@ -21,7 +21,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             </div>
                                             <div class="list-content">
                                             <span class="title">Estadisticas Conductores</span>
-                                                <span class="caption">Formato de estadistica para el conductor xxxxx</span>
+                                                <span class="caption">Formato de estadistica</span>
                                             </div>
                                         </a>
                                     </li>

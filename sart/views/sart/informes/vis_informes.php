@@ -184,7 +184,7 @@ if(isset($grupov)){
 				 			<?php }else{ ?>
 				 				<input type="hidden" name="grupo" id="grupo"  value="<?php echo $grupov?>">
 				 			<?php } ?>
-				 			<div class="radioer radioer-indigo">
+				 			<!--div class="radioer radioer-indigo">
 				 				<input type="radio" name="informe" class="tiporeport" id="cuadre" value="cuadre_caja">
 				 				<label for="cuadre">Cuadre de caja</label>
 				 			</div>
@@ -203,15 +203,19 @@ if(isset($grupov)){
 				 			<div class="radioer radioer-indigo">
 				 				<input type="radio" name="informe" class="tiporeport" id="diarios_movil" value="diarios_movil">
 				 				<label for="diarios_movil">Diarios x movil</label>
-				 			</div>
+				 			</div-->
 				 			<div class="radioer radioer-indigo">
 				 				<input type="radio" name="informe" class="tiporeport" id="docs_vencidos" value="docs_vencidos">
 				 				<label for="docs_vencidos">Documentos Vencidos</label>
 				 			</div>
 							<div class="radioer radioer-indigo">
+				 				<input type="radio" name="informe" class="tiporeport" id="simit" value="simit">
+				 				<label for="simit">Reporte SIMIT</label>
+				 			</div>
+							<!--div class="radioer radioer-indigo">
 				 				<input type="radio" name="informe" class="tiporeport" id="descuento" value="descuento">
 				 				<label for="descuento">Descuentos</label>
-				 			</div>
+				 			</div-->
 							<div class="radioer radioer-indigo">
 				 				<input type="radio" name="informe" class="tiporeport" id="desvinculados" value="desvinculados">
 				 				<label for="desvinculados">Moviles Desvinculados</label>

@@ -811,6 +811,7 @@ function busqueda()
         $fexp=date('Y-m-d',strtotime($fexpdoc));
         $fnace=date('Y-m-d',strtotime($fechaing));
         $yaexiste=false;
+        $this->db->trans_begin();
         if($tipo=='nuevo'){
         	$this->db->where('id_prop',$idp); 
             $query = $this->db->get('propietario');
@@ -824,8 +825,6 @@ function busqueda()
            
         	
         }
-        
-       //echo $yaexiste; 
       if(!$yaexiste){  
 	      switch ($tipo) {
 	         case 'nuevo':
@@ -842,7 +841,6 @@ function busqueda()
                             'estado_prop'   => $estado_prop,
                             'fecha_nac'     => $fnace,
                             'escondu'       => $escondu,
-
                             'fecha_exp'     => $fexp
                    ); 
 
@@ -851,8 +849,8 @@ function busqueda()
            if($escondu=='si'){
               $data =array(
                             'codigo'       => $idp,
-                            'nombre1'        => $nombreprop,
-                            'apellido1'     => $apellprop,
+                            'nombres'        => $nombreprop,
+                            'apellidos'     => $apellprop,
                             'telefono'      => $telprop,
                             'direccion'     => $dirprop,
                             'fecha_nace'     => $fnace,
@@ -860,16 +858,23 @@ function busqueda()
                             'tipo_rh'     => ''
                    ); 
 
-           $queries=$this->db->insert('conductor',$data);
-           $dicon=$this->db->insert_id();
-              $data3 =array(
-                            'id_conductor'       => $dicon,
-                            'id_doc'        => '20',
-                            'id_eps'     => 15,
-                            'fecha_vence' =>$hoy
-                   ); 
+            $queries=$this->db->insert('conductor',$data);
+            $dicon=$this->db->insert_id();
 
-           $queriesprop=$this->db->insert('con_doc',$data3);
+            $sqlondoc=$this->db->get('documento');
+            if($sqlondoc->num_rows() > 0){  
+              foreach($sqlondoc->result() as $valdocs){
+                $fexp='0000-00-00';
+                $fven=$hoy;
+                $valuedocs = array('id_doc'     => $valdocs->id_doc,
+                                    'id_conductor' => $dicon,
+                                    'fecha_ant'    => $fexp,
+                                    'fecha_vence'  => $fven,
+                                    'categoria'    =>'',
+                                    'numero'       => '');
+                  $this->db->insert('con_doc',$valuedocs);
+              }
+            }
            }
 			  break;
 	     	  case 'edit':
@@ -893,14 +898,10 @@ function busqueda()
 			     $queries=$this->db->update('propietario',$data2);
 
            if($escondu=='si'){
-            //  $this->db->where('codigo',$idp);
-            // $datacon=$this->db->get('conductor')->row();
-            // $this->db->delete('conductor',array('id_conductor'=>$datacon->id_conductor)); 
-            // $this->db->delete('con_doc',array('id_conductor'=>$datacon->id_conductor)); 
               $data =array(
                             'codigo'       => $idp,
-                            'nombre1'        => $nombreprop,
-                            'apellido1'     => $apellprop,
+                            'nombres'        => $nombreprop,
+                            'apellidos'     => $apellprop,
                             'telefono'      => $telprop,
                             'direccion'     => $dirprop,
                             'fecha_nace'     => $fnace,
@@ -908,17 +909,22 @@ function busqueda()
                             'tipo_rh'     => ''
                    ); 
 
-           $queries=$this->db->insert('conductor',$data);
-           $dicon=$this->db->insert_id();
-              $data3 =array(
-                            'id_conductor'       => $dicon,
-                            'id_doc'        => '20',
-                            'id_eps'     => 15,
-                            'fecha_vence' =>$hoy
-                   ); 
-
-           $queriesprop=$this->db->insert('con_doc',$data3);
-
+              $queries=$this->db->insert('conductor',$data);
+              $dicon=$this->db->insert_id();
+              $sqlondoc=$this->db->get('documento');
+              if($sqlondoc->num_rows() > 0){  
+                foreach($sqlondoc->result() as $valdocs){
+                  $fexp='0000-00-00';
+                  $fven=$hoy;
+                  $valuedocs = array('id_doc'     => $valdocs->id_doc,
+                                      'id_conductor' => $dicon,
+                                      'fecha_ant'    => $fexp,
+                                      'fecha_vence'  => $fven,
+                                      'categoria'    =>'',
+                                      'numero'       => '');
+                    $this->db->insert('con_doc',$valuedocs);
+                }
+              }
            }else{
             $this->db->where('codigo',$idp);
             $datacon=$this->db->get('conductor')->row();
@@ -930,11 +936,22 @@ function busqueda()
 	   
 //$this->db->affected_rows()>0
 
-     if($queries){
+      if ($this->db->trans_status() === FALSE)
+      {
+          $this->db->trans_rollback();
+          return $resp=array('guarda'=>'error','motivo'=>'Error al guardar');
+      }
+      else
+      {
+          $this->db->trans_commit();
+          return $resp=array('guarda'=>'ok');
+      }
+
+     /*if($queries){
      	return $resp=array('guarda'=>'ok');
      }else{
      	return $resp=array('guarda'=>'error','motivo'=>'Error al guardar');
-     }
+     }*/
      
    }else{
    	 return $resp=array('guarda'=>'error','motivo'=>'found','idprop'=>$idp);
@@ -988,7 +1005,7 @@ function busqueda()
                           'color'         => '',                                   
                                    'poliza'         => 0,
                                    'dtaller'         => 0,
-                          'radio'         => $radio,
+                          'radio'         => '',
                           'id_prop'       => $id_propietario,
                           'estado'        => $estadomovil,
                           'managerid'     => $id_adm,
@@ -1080,7 +1097,7 @@ function busqueda()
                                    'poliza'         => 0,
                                    'dtaller'         => 0,
                                   'pago_hasta'    => $fechaing,
-                                  'radio'         => $radio,
+                                  'radio'         => '',
                                   'id_prop'       => $id_propietario,
                                   'estado'        => $estadomovil,
                                   'managerid'     => $id_adm,
@@ -1214,223 +1231,6 @@ function busqueda()
 
     }
 
-     /* function inserta_mov()
-    {
-         date_default_timezone_set('America/Bogota');
-       
-          foreach ($_REQUEST as $var => $val){$$var = $this->db->escape_str($val);}
-
-          $hoy=date('Y-m-d');
-          $yaexiste=false;
-          if($tipo=='nuevo'){
-            $this->db->where('id_movil',$idmovil); 
-              $query = $this->db->get('vehiculo');
-              if($query->num_rows() > 0){
-                 $datam = $query->row();
-                 $codigom=$datam->id_movil;
-                if($idmovil==trim($codigom)){
-                  $yaexiste=true;
-                }
-              }
-             
-            
-          }
-        $fechaing=date('Y-m-d',strtotime($fechaing));
-        $fcontrato=date('Y-m-d',strtotime($fechacont));
-        if(!$yaexiste){  
-          switch ($tipo) {
-
-             case 'nuevo':
-             $this->db->trans_begin();
-                  $data2 =array(
-                          'id_movil'      => $idmovil,
-                          'placa'         => $placa,
-                          'modelo'        => $modelo,
-                          'grupo'         => $grupo,
-                          'id_marca'      => $impmarca,
-                          'clase'         => $clase,
-                          'referencia'    => $linea,
-                          'tipo'          => $tipoc,
-                          'combustible'   => $gas,
-                          'motor'         => $motor,
-                          'serie'         => $chasis,
-                          'pago_hasta'    => $fechaing,
-                          'dtaller'       => $taller,
-                          'radio'         => $radio,
-                          'id_prop'       => $id_propietario,
-                          'estado'        => $estadomovil,
-                          'managerid'     => $id_adm,
-                          'fcontrato'     => $fcontrato); 
-
-            $queries=$this->db->insert('vehiculo',$data2);
-                  if ( !empty($idoc) && is_array($idoc) ) { 
-                     for ( $i=0;$i<5;$i++) { 
-                        $fexp='0000-00-00';
-                        $fven='0000-00-00';
-                      switch ($i) {
-                        case 0:
-                         if(!empty($fexp0)){
-                           $fexp=date('Y-m-d',strtotime($fexp0));
-                         }
-                         if(!empty($fven0)){
-                           
-                           $fven=date('Y-m-d',strtotime($fven0));
-                         }
-                          break;
-                        case 1:
-                         if(!empty($fexp1)){
-                           $fexp=date('Y-m-d',strtotime($fexp1));
-                         }
-                          if(!empty($fven1)){
-                           $fven=date('Y-m-d',strtotime($fven1));
-                         }
-                          break;
-                        case 2:
-                         if(!empty($fexp2)){
-                           $fexp=date('Y-m-d',strtotime($fexp2));
-                         }
-                          if(!empty($fven2)){
-                           $fven=date('Y-m-d',strtotime($fven2));
-                         }
-                          break;
-                        case 3:
-                         if(!empty($fexp3)){
-                           $fven=date('Y-m-d',strtotime($fven3));
-                         }
-                          if(!empty($fven3)){
-                           $fven=date('Y-m-d',strtotime($fven3));
-                         }
-                          break;
-                        case 4:
-                         if(!empty($fexp4)){
-                           $fexp=date('Y-m-d',strtotime($fexp4));
-                         }
-                         if(!empty($fven4)){
-                           $fven=date('Y-m-d',strtotime($fven4));
-                         }
-                          break;
-
-                      }
-
-                      
-                      $valuedocs = array('id_movil'      => $idmovil,
-                                       'id_documento'    => $idoc[$i],
-                                       'fecha_exp'       => $fexp,
-                                       'fecha_ven'       => $fven,
-                                       'numero'          => $numerodoc[$i]);
-                      $this->db->insert('veh_doc',$valuedocs);
-                     }
-                  }
-                  if ($this->db->trans_status() === FALSE)
-                  {
-                      $this->db->trans_rollback();
-                  }
-                  else
-                  {
-                      $this->db->trans_commit();
-                  }
-          break;
-            case 'edit':
-
-                          $data2 =array(
-                                  'placa'         => $placa,
-                                  'modelo'        => $modelo,
-                                  'grupo'         => $grupo,
-                                  'id_marca'      => $impmarca,
-                                  'clase'         => $clase,
-                                  'referencia'    => $linea,
-                                  'tipo'          => $tipoc,
-                                  'combustible'   => $gas,
-                                  'motor'         => $motor,
-                                  'serie'         => $chasis,
-                                  'pago_hasta'    => $fechaing,
-                                  'dtaller'       => $taller,
-                                  'radio'         => $radio,
-                                  'id_prop'       => $id_propietario,
-                                  'estado'        => $estadomovil,
-                                  'managerid'     => $id_adm,
-                                  'fcontrato'     => $fcontrato); 
-                    $this->db->where('id_movil', $idmovil);  //localiza la maestro a actualizar
-                    $queries=$this->db->update('vehiculo',$data2);
-                          if ( !empty($idoc) && is_array($idoc) ) { 
-                             for ( $i=0;$i<5;$i++) { 
-                                $fexp='0000-00-00';
-                                $fven='0000-00-00';
-                              switch ($i) {
-                                case 0:
-                                 if(!empty($fexp0)){
-                                   $fexp=date('Y-m-d',strtotime($fexp0));
-                                 }
-                                 if(!empty($fven0)){
-                                   
-                                   $fven=date('Y-m-d',strtotime($fven0));
-                                 }
-                                  break;
-                                case 1:
-                                 if(!empty($fexp1)){
-                                   $fexp=date('Y-m-d',strtotime($fexp1));
-                                 }
-                                  if(!empty($fven1)){
-                                   $fven=date('Y-m-d',strtotime($fven1));
-                                 }
-                                  break;
-                                case 2:
-                                 if(!empty($fexp2)){
-                                   $fexp=date('Y-m-d',strtotime($fexp2));
-                                 }
-                                  if(!empty($fven2)){
-                                   $fven=date('Y-m-d',strtotime($fven2));
-                                 }
-                                  break;
-                                case 3:
-                                 if(!empty($fexp3)){
-                                   $fven=date('Y-m-d',strtotime($fven3));
-                                 }
-                                  if(!empty($fven3)){
-                                   $fven=date('Y-m-d',strtotime($fven3));
-                                 }
-                                  break;
-                                case 4:
-                                 if(!empty($fexp4)){
-                                   $fexp=date('Y-m-d',strtotime($fexp4));
-                                 }
-                                 if(!empty($fven4)){
-                                   $fven=date('Y-m-d',strtotime($fven4));
-                                 }
-                                  break;
-
-                              }
-
-                              
-                              $valuedocs = array('id_movil'      => $idmovil,
-                                               'id_documento'    => $idoc[$i],
-                                               'fecha_exp'       => $fexp,
-                                               'fecha_ven'       => $fven,
-                                               'numero'          => $numerodoc[$i]);
-                              $whereup='id_movil="'.$idmovil.'" and id_documento="'.$idoc[$i].'"';
-                              $this->db->where($whereup);
-                              $this->db->update('veh_doc',$valuedocs);
-                             // $this->db->insert('veh_doc',$valuedocs);
-                             }
-                          }
-
-          
-            break;
-       }
-       
-  //$this->db->affected_rows()>0
-
-       if($queries){
-        return $resp=array('guarda'=>'ok');
-       }else{
-        return $resp=array('guarda'=>'error','motivo'=>'Error al guardar');
-       }
-       
-     }else{
-       return $resp=array('guarda'=>'error','motivo'=>'found','idmovil'=>$idmovil);
-     }  
-
-    }*/
       function inserta_diario()
     {
         date_default_timezone_set('America/Bogota');
@@ -1559,11 +1359,6 @@ function busqueda()
              return $resp=array('guarda'=>'ok','nrecibo'=>$iddiario,'tipor'=>$tipof);
          }
 
-       //  if($queries && $queries1){
-       //  return $resp=array('guarda'=>'ok','nrecibo'=>$iddiario,'tipor'=>$tipof);
-       // }else{
-       //  return $resp=array('guarda'=>'error','motivo'=>'Error al guardar');
-       // }
     }
       function ndiarios($campo,$tabla)
     {
@@ -1865,10 +1660,10 @@ function busqueda()
       try {
 	        $aColumns = $conf['aColumns'];
 	        $aColumns2 = $conf['aColumns2'];
-			$aColumns1 = $conf['aColumns1'];
-			$aColumnsunion = $conf['aColumnsunion'];
-            $sWhere = "";
-			$sWhereunion="";
+			    $aColumns1 = $conf['aColumns1'];
+			    $aColumnsunion = $conf['aColumnsunion'];
+          $sWhere = "";
+			    $sWhereunion="";
            // print_r($filter);
 	        if (is_array($filter)) {
 	        	 $sWhere="where  1 ";
@@ -1925,13 +1720,14 @@ function busqueda()
               $sWhere = substr_replace( $sWhere, "", -3 );
               $sWhere .= ')';
 			  
-
-              $sWhereunion .= " AND (";
-              for ( $i=0 ; $i<count($aColumnsunion) ; $i++ ) {
-                  $sWhereunion .= " ".$aColumnsunion[$i]." LIKE '%".( $sSearch )."%' OR ";
+              if($conf['union'] != ''){
+                $sWhereunion .= " AND (";
+                for ( $i=0 ; $i<count($aColumnsunion) ; $i++ ) {
+                    $sWhereunion .= " ".$aColumnsunion[$i]." LIKE '%".( $sSearch )."%' OR ";
+                }
+                $sWhereunion = substr_replace( $sWhereunion, "", -3 );
+                $sWhereunion .= ')';
               }
-              $sWhereunion = substr_replace( $sWhereunion, "", -3 );
-              $sWhereunion .= ')';
 			  
 	        }
            
@@ -2186,6 +1982,68 @@ function busqueda()
     } 
 
   }
+  }//fin funcion
+  function addModSimit()
+  {
+        date_default_timezone_set('America/Bogota');
+        foreach ($_REQUEST as $var => $val){$$var = $this->db->escape_str($val);}
+        $fechacomp=date('Y-m-d',strtotime($fcomparendo));
+        if($fpago != ''){
+          $estado='Pago';
+          $fechapago=date('Y-m-d',strtotime($fpago));
+        }else{
+          $estado='Activa';
+          $fechapago=null;
+        }
+        $this->db->trans_begin();
+        switch ($tipo) {
+          case 'nuevo': 
+            $idlista=$idcondu;
+                  $data2 =array(
+                        'id_conductor'        => $idcondu,
+                        'n_parte'             => $comparendo,
+                        'cod_infraccion'      => $infraccion,
+                        'id_eps'              => null,
+                        'valor'               => $valcompa,
+                        'fecha_parte'         => $fechacomp,
+                        'fecha_pago'          => null,
+                        'convenio'            => $convenio,
+                        'observacion'         => null,
+                        'estado'              => 'Activa'
+                ); 
+
+              $queries=$this->db->insert('simit',$data2);
+          break;
+          case 'edit':
+            $idlista=$idconduL;
+            $data2 =array(
+              'n_parte'             => $comparendo,
+              'cod_infraccion'      => $infraccion,
+              'id_eps'              => null,
+              'valor'               => $valcompa,
+              'fecha_parte'         => $fechacomp,
+              'fecha_pago'          => $fechapago,
+              'convenio'            => $convenio,
+              'observacion'         => null,
+              'estado'              => $estado
+            );    
+            $this->db->where('id_simit', $idcondu);  //localiza la maestro a actualizar
+            $queries=$this->db->update('simit',$data2);
+
+          break;
+        }
+    
+    if ($this->db->trans_status() === FALSE)
+    {
+        $this->db->trans_rollback();
+        return $resp=array('guarda'=>'error','motivo'=>'Error al guardar');
+    }
+    else
+    {
+        $this->db->trans_commit();
+        return $resp=array('guarda'=>'ok','id'=>$idlista);
+    }
+
   }//fin funcion
   /* Cambios jcano */ 
   function save_edit_user(){

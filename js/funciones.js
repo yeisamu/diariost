@@ -1539,6 +1539,50 @@ function notifyMe(text,conteclick) {
       } 
   }  
 }
+$(document).on('click', '.guardasimit', function(e){
+  var formData = new FormData( $('#regsimit')[0] );
+  $(this).addClass('hide');
+  var idcondu=$('#idcondu').val();
+  $('.grabando').removeClass('hide');
+  if(validarCampos('#regsimit')){
+   var url=$('#base_url').val();
+        $.ajax({
+            url: `${url}sart.php/sistemasart/grabarsimit`,
+            type: 'POST',
+            data: formData,
+            dataType: 'json',
+            xhr: function() {  
+                // custom xhr
+                myXhr = $.ajaxSettings.xhr();
+                if(myXhr.upload){ // check if upload property exists
+                    //myXhr.upload.addEventListener('progress',progress_insert_transactions, false); // for handling the progress of the upload
+                }
+                return myXhr;
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        }).done(function(data){
+            if(data.validacion == 'ok'){
+                $('.cancelaformedit').click();
+                sart.tablasimit.ajax.url(`${url}sart.php/sistemasart/datasimit?id=${data.id}`).load();
+                $('.grabaok' ).data('toastr-notification',data.msn);
+                $('.grabaok').click();
+            }else{
+                $('.grabaerror' ).data('toastr-notification',data.msn);
+                $('.grabaerror').click();
+                $('.grabando').addClass('hide');
+                $('.guardasimit').removeClass('hide');
+            }
+        }); 
+  }else{
+    $(this).removeClass('hide');
+    $('.grabando').addClass('hide');
+    $('.grabaerror' ).data('toastr-notification','Faltan campos por llenar');
+    $('.grabaerror').click();
+  }  
+
+});
 /* Cambios jcano */
 $(document).on('click', '.saveaddedituser', function(e){
   

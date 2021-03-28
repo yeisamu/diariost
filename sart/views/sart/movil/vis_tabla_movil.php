@@ -58,22 +58,22 @@ date_default_timezone_set('America/Bogota');
                             style="word-break: break-all;border: 1px solid #ddd;border-top:none;">
                            <span style="margin: 0px; color:#1F1F21;"><?php echo date('d-m-Y',strtotime($array->fcontrato)); ?></span>
                         </td>
-                        <td width="8%" class=""
+                        <!--td width="8%" class=""
                             style="padding-right:14px;word-break: break-all;border: 1px solid #ddd;border-top:none;">
-                          <span style="margin: 0px; color:#1F1F21;"><?php echo date('d-m-Y',strtotime($array->pago_hasta)); ?></span>
+                          <span style="margin: 0px; color:#1F1F21;"><?php //echo date('d-m-Y',strtotime($array->pago_hasta)); ?></span>
                         </td>
                         <td width="5%" class="center"
                             style="padding-right:14px;word-break: break-all;border-bottom: 1px solid #ddd;border-top:none;">
                          
                            <?php 
-                           if($array->mora<=0){
+                         /*  if($array->mora<=0){
                              $color="#1F1F21";
                            }else{
                              $color="#CC0000";
-                           }
+                           }*/
                           ?>
-                         <span style="margin: 0px; color:<?php echo $color?>;"><?php echo $array->mora; ?></span>
-                        </td>
+                         <span style="margin: 0px; color:<?php //echo $color?>;"><?php //echo $array->mora; ?></span>
+                        </td-->
                        </tr>
                     <?php
                         }
@@ -107,8 +107,8 @@ date_default_timezone_set('America/Bogota');
                    }
               ?>
 <script type="text/javascript">
-  sgcapp.page  = '<?php echo $page; ?>';
-  sgcapp.pages = '<?php echo $pages; ?>';
+  sart.page  = '<?php echo $page; ?>';
+  sart.pages = '<?php echo $pages; ?>';
   $('#cant_doc').html('(<?php echo $iTotal; ?>) Vehiculos');
    ///pagination_vars2('page_vehiculo', 'pages_movil', <?php echo $page; ?>, <?php echo $pages; ?>, <?php echo $iTotal; ?>, '#total_movil', 'Vehiculo(s)');
 </script>

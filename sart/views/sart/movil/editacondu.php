@@ -475,7 +475,7 @@ if($prop){
       autoclose: true
   }).on('changeDate', function(ev) {
       $(this).datepicker('hide');
-    }).data('datepicker');
+  }).data('datepicker');
 
   var dataf= $('.divfechafin input').datepicker({
               format: "dd-mm-yyyy",

@@ -78,15 +78,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $empresa='';
 //echo $grup;
  if(isset($grup)){ 
-									if($grup=='TA'){
-									$empresa='TRANSPORTES ARGELIA Y CAIRO S.A.S';
-									}
-									if($grup=='TC'){
-									$empresa='TRANSPORTADORA CARTAGO S.A.S';
-									}
-									if($grup=='TM'){
-									$empresa='TRANSPORTES MARISCAL ROBLEDO S.A.';
-									}
+									
+	$empresa='COOMOCART LTDA';
+									
 ?>	
 <center>
 	<div class="bold"><?php echo $empresa?></div>
@@ -200,7 +194,97 @@ $empresa='';
 								</div>
 							</div><!--.invoice-body-->
 						 <?php
-						   		break;
+								   break;
+								   case 'simit':
+									?>
+										   <div class="invoice-heading">
+											<div class="row margin_0">
+												<div class="col-md-12XX" style="padding-bottom:16px;">
+												 <center>
+													<h3 class="no_bold" style="margin-top: 0px;">REGISTRO SIMIT</h3>		
+									<?php
+			   $empresa='';
+			   //echo $grup;
+				if(isset($grup)){ 
+												   
+				   $empresa='COOMOCART LTDA';
+												   
+			   ?>	
+			   <center>
+				   <div class="bold"><?php echo $empresa?></div>
+			   </center>								     	<?php } ?>									
+			   
+												 <?php if(isset($fini) && $fini!='' ){ ?>	
+													<center>
+													 <div class="bold">Para la fecha <?php echo $fini.' hasta '.$ffin ?></div>
+													</center>	
+												<?php } ?>	 
+												 </center>
+												</div>
+											</div>
+										   </div>
+										   <div class="invoice-body">
+											   <div class="row">
+										   <?php if($mov){ ?>
+												 <div class="col-md-12 col-xs-12">
+												   <table class="table table-bordered border_l_0  head-shadowxx margin_0 bck_table table-hover" style="font-size: 13px;" >
+														<tr class=" ">
+															<th width="40%"  class=" border_l_0 border_t_0" style="padding: 3px 0 3px 10px;">
+															  <span style="padding-left:5px;padding-right:5px">CONDUCTOR</span>
+															</th>
+															<th  width="15%"  class=" border_l_0 border_t_0" style="padding: 3px 0 3px 10px;">
+															  <span style="padding-left:5px;padding-right:5px">COMPARENDO</span>
+															</th>
+															 <th  width="15%"  class=" border_l_0 border_t_0" style="padding: 3px 0 3px 10px;">
+															  <span style="padding-left:5px;padding-right:5px">INFRACCION</span>
+															</th>
+															<th width="15%"  class=" border_l_0 border_t_0" style="padding: 3px 0 3px 10px;">
+															  <span style="padding-left:5px;padding-right:5px">VALOR</span>
+															</th>
+															<th  width="15%"  class=" border_l_0 border_t_0" style="padding: 3px 0 3px 10px;">
+															  <span style="padding-left:5px;padding-right:5px">FECHA COMPARENDO</span>
+															</th>
+															
+														</tr>
+													  <tbody id="global_table_list_items_properties_items_detail">
+													   <?php
+													     $totvalor=0;
+														 foreach ($mov->result() as $detalle) {
+													   ?>
+														<tr class="fconcepto">
+														  <td  width="40%" style="word-break: break-all;border-bottom: 1px solid #f0f0f0;padding:0px 0px 0px 6px">
+														  	<?php echo $detalle->conductor ?> 
+														  </td>
+														  <td  width="15%" style="word-break: break-all;border-bottom: 1px solid #f0f0f0;padding:0px 0px 0px 6px">
+														  	<?php echo $detalle->n_parte ?> 
+														  </td>
+														  <td  width="15%" style="word-break: break-all;border-bottom: 1px solid #f0f0f0;padding:0px 0px 0px 6px">
+														  	<?php echo $detalle->cod_infraccion ?> 
+														  </td>
+														  <td  width="15%" style="word-break: break-all;border-bottom: 1px solid #f0f0f0;padding:0px 0px 0px 6px">
+														  	$ <?php echo number_format($detalle->valor,0,'.',',') ?> 
+														  </td>
+														  <td  width="15%" style="word-break: break-all;border-bottom: 1px solid #f0f0f0;padding:0px 0px 0px 6px">
+														  	<?php echo date('Y-m-d',strtotime($detalle->fecha_parte)); ?> 
+														  </td>
+														 </tr>
+														<?php
+							
+														  }
+														 ?>
+													   </tbody> 	
+													 </table>
+													 <?php }else{?>
+													   <div>No hay resultados </div>
+													  <?php }?>
+													 <div class="col-md-12 pull-right">
+													  Fecha de generación Reporte: <?php echo date('Y-m-d H:i:s');?>				
+													 </div>
+												   </div>
+											   </div>
+										   </div><!--.invoice-body-->
+										<?php
+							break;
 						   	case 'estado_cuenta':
 						 ?>  	
 						   	  <div class="invoice-heading">
@@ -213,15 +297,7 @@ $empresa='';
 $empresa='';
 //echo $grup;
  if(isset($grup)){ 
-									if($grup=='TA'){
-									$empresa='TRANSPORTES ARGELIA Y CAIRO S.A.S';
-									}
-									if($grup=='TC'){
-									$empresa='TRANSPORTADORA CARTAGO S.A.S';
-									}
-									if($grup=='TM'){
-									$empresa='TRANSPORTES MARISCAL ROBLEDO S.A.';
-									}
+	$empresa='COOMOCART LTDA';
 ?>	
 <center>
 	<div class="bold"><?php echo $empresa?></div>
@@ -347,15 +423,7 @@ echo number_format($detalle->mora*$vradio,0,'.',',') ?> </td>
 $empresa='';
 //echo $grup;
  if(isset($grup)){ 
-									if($grup=='TA'){
-									$empresa='TRANSPORTES ARGELIA Y CAIRO S.A.S';
-									}
-									if($grup=='TC'){
-									$empresa='TRANSPORTADORA CARTAGO S.A.S';
-									}
-									if($grup=='TM'){
-									$empresa='TRANSPORTES MARISCAL ROBLEDO S.A.';
-									}
+	$empresa='COOMOCART LTDA';
 ?>	
 <center>
 	<div class="bold"><?php echo $empresa?></div>
@@ -480,15 +548,7 @@ echo number_format(($detalle->mora+$sumpago[$detalle->id_movil]->diarios)*$vradi
 $empresa='';
 //echo $grup;
  if(isset($grup)){ 
-									if($grup=='TA'){
-									$empresa='TRANSPORTES ARGELIA Y CAIRO S.A.S';
-									}
-									if($grup=='TC'){
-									$empresa='TRANSPORTADORA CARTAGO S.A.S';
-									}
-									if($grup=='TM'){
-									$empresa='TRANSPORTES MARISCAL ROBLEDO S.A.';
-									}
+	$empresa='COOMOCART LTDA';
 ?>	
 <center>
 	<div class="bold"><?php echo $empresa?></div>
@@ -600,15 +660,7 @@ case 'descuento':
 $empresa='';
 //echo $grup;
  if(isset($grup)){ 
-									if($grup=='TA'){
-									$empresa='TRANSPORTES ARGELIA Y CAIRO S.A.S';
-									}
-									if($grup=='TC'){
-									$empresa='TRANSPORTADORA CARTAGO S.A.S';
-									}
-									if($grup=='TM'){
-									$empresa='TRANSPORTES MARISCAL ROBLEDO S.A.';
-									}
+	$empresa='COOMOCART LTDA';
 ?>	
 <center>
 	<div class="bold"><?php echo $empresa?></div>
@@ -717,15 +769,7 @@ $empresa='';
 $empresa='';
 //echo $grup;
  if(isset($grup)){ 
-									if($grup=='TA'){
-									$empresa='TRANSPORTES ARGELIA Y CAIRO S.A.S';
-									}
-									if($grup=='TC'){
-									$empresa='TRANSPORTADORA CARTAGO S.A.S';
-										}
-									if($grup=='TM'){
-									$empresa='TRANSPORTES MARISCAL ROBLEDO S.A.';
-									}
+	$empresa='COOMOCART LTDA';
 ?>	
 <center>
 	<div class="bold"><?php echo $empresa?></div>
@@ -910,15 +954,7 @@ $empresa='';
 $empresa='';
 //echo $grup;
  if(isset($grup)){ 
-									if($grup=='TA'){
-									$empresa='TRANSPORTES ARGELIA Y CAIRO S.A.S';
-									}
-									if($grup=='TC'){
-									$empresa='TRANSPORTADORA CARTAGO S.A.S';
-									}
-									if($grup=='TM'){
-									$empresa='TRANSPORTES MARISCAL ROBLEDO S.A.';
-									}
+	$empresa='COOMOCART LTDA';
 ?>	
 <center>
 	<div class="bold"><?php echo $empresa?></div>
@@ -1044,15 +1080,7 @@ $empresa='';
 $empresa='';
 //echo $grup;
  if(isset($grup)){ 
-									if($grup=='TA'){
-									$empresa='TRANSPORTES ARGELIA Y CAIRO S.A.S';
-									}
-									if($grup=='TC'){
-									$empresa='TRANSPORTADORA CARTAGO S.A.S';
-									}
-									if($grup=='TM'){
-									$empresa='TRANSPORTES MARISCAL ROBLEDO S.A.';
-									}
+	$empresa='COOMOCART LTDA';
 ?>	
 <center>
 	<div class="bold"><?php echo $empresa?></div>

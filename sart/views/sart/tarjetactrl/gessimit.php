@@ -22,7 +22,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <th>Fecha</th>
                                         <th>Fecha pago</th>
                                         <th>Convenio</th>
-                                        <th>Observacion</th>
                                         <th>Estado</th>
                                         <th>Acciones</th>
                                     </tr>
@@ -37,7 +36,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div><!--.panel-->
     </div><!--.col-md-12-->
     </div><!--.row--> 
-    <div style="position:fixed;bottom:30px;right:30px;z-index:100;">
+    <div style="position:fixed;bottom:60px;right:30px;z-index:100;">
 			<a class="btn btn-floating btn-red show-on-hover abre_mod_global " data-capa='global_medio'
 			   data-toggle="modal"  data-target="#modal_medio" 
 			   data-vars="<?php echo base_url() ?>sart.php/sistemasart/add_simit?tipo=nuevo&id=<?php echo $id; ?>">
@@ -58,15 +57,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			"sAjaxSource": '<?php echo base_url() ?>sart.php/sistemasart/datasimit?id=<?php echo $id; ?>',
 			"columnDefs": [
 				{  targets: [0],visible: false},
-				{  targets: [9], orderable:false}
+				{  targets: [8],visible: false}
 			], 
-			"order": [[4, 'asc']],
+			"order": [[7, 'asc']],
 			"createdRow": function ( row, data, index ) {
 				row.setAttribute( 'data-iditem',data[0] );
-				row.setAttribute( 'data-capa','taxi_modal');
+				row.setAttribute( 'data-capa','global_medio');
 				row.setAttribute( 'data-toggle','modal');
-				row.setAttribute( 'data-target','#modaltaxi' );
-				row.setAttribute( 'data-vars','<?php echo base_url() ?>sart.php/sistemasart/editarcondu?tipo=edit&id_condu='+data[0] );
+				row.setAttribute( 'data-target','#modal_medio' );
+				row.setAttribute( 'data-vars','<?php echo base_url() ?>sart.php/sistemasart/add_simit?tipo=edit&id='+data[0] );
 			},
 			"aLengthMenu": [
 					[5,10,15,25,50,100,-1], 
@@ -92,7 +91,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				 },
 			  }
 			});
-		 $('#notitable').on('click', '.editaC', function(e) {
+		 $('#notitable').on('click', '.actSimit', function(e) {
 		   var div=$(this).data('div');
 		   var iditem=$(this).data('iditem');
 		   var status=$(this).data('data-status');
