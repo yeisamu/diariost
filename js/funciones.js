@@ -1583,6 +1583,12 @@ $(document).on('click', '.guardasimit', function(e){
   }  
 
 });
+$(document).on('change', '.muestramovil', function(e){
+  var search = $(this).val();
+  var parame='?search='+search
+  queue_load_all('#datamovil',parame,'docsmovil');
+
+});
 /* Cambios jcano */
 $(document).on('click', '.saveaddedituser', function(e){
   

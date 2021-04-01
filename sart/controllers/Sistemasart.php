@@ -1387,7 +1387,7 @@ public	function genera_informe(){ //Se toman los datos de la ciudad de la bases 
 		$conf['aColumns1']=array('id_conductor', 'codigo', 'conductor', 'telefono');
 		$conf['aColumnsunion']='';//array('id_prop','concat_ws(" ",nombre,apellidos)','telefono');
 		$conf['rows']=array('id_conductor', 'codigo','conductor','telefono');
-		$conf['opt']=array('<button type="button" class="btn btn-warning abresimit">Registrar</button>','<button type="button" class="btn btn-success abredocs">Admin</button>','<button type="button" class="btn btn-indigo abredocs">Formatos</button>');
+		$conf['opt']=array('<button type="button" class="btn btn-warning abresimit">Registrar</button>','<button type="button" class="btn btn-success abreGesTc">Admin</button>','<button type="button" class="btn btn-indigo abredocs">Formatos</button>');
 		$conf['union']='';//" UNION SELECT id_prop,id_prop,concat_ws(' ',nombre,apellidos) as conductor,telefono FROM propietario where escondu='si'";
      	$filter2 ='';
 	  	$filteradv='';
@@ -1569,6 +1569,68 @@ public	function genera_informe(){ //Se toman los datos de la ciudad de la bases 
 		//======================================
 	   echo json_encode($respu);
    }//fin funcion
+   public function gesTarjeta()
+   {
+	 $id=$_REQUEST['id'];
+	 $data['id']=$id;
+	 $this->load->view('sart/tarjetactrl/gesTarjeta',$data);
+   }//fin funcion
+   public function  datatarjeta(){
+	 $id=$_REQUEST['id'];
+	 $conf=array();
+	 $conf['aColumns2']=array('id_tarjeta', 'tarjeta','concat_ws(" ",nombres,apellidos) as conductor', 'id_movil','fecha_plazo_a','case estado when 1 then "Abierta" else "Cerrada" end as estado','if(`fecha_plazo_a`<DATE_FORMAT(now(),"%Y/%m/%d"),"Vencido","Vigente") as est_vig');
+	 $conf['aColumns']=array('id_tarjeta', 'tarjeta', 'concat_ws(" ",nombres,apellidos) as conductor','id_movil','fecha_plazo_a','case estado when 1 then "Abierta" else "Cerrada" end as estado','if(`fecha_plazo_a`<DATE_FORMAT(now(),"%Y/%m/%d"),"Vencido","Vigente") as est_vig');
+	 $conf['aColumns1']=array('id_tarjeta', 'tarjeta','concat_ws(" ",nombres,apellidos) as conductor', 'id_movil','fecha_plazo_a','case estado when 1 then "Abierta" else "Cerrada" end as estado','if(`fecha_plazo_a`<DATE_FORMAT(now(),"%Y/%m/%d"),"Vencido","Vigente") as est_vig');
+	 $conf['aColumnsunion']='';
+	 $conf['rows']=array('id_tarjeta', 'tarjeta','conductor', 'id_movil','fecha_plazo_a','est_vig','estado');
+	 $conf['opt']=array('<button type="button" class="btn btn-indigo actSimit">Actualizar</button>');
+	 $conf['union']="";
+
+	 $filter2 = array('tarjeta_control.id_conductor' => $id);
+	 $filteradv='';//array('cond1'=>'id_estado <> '.$datastatus->id_configuracion);
+	 $tabla="tarjeta_control";
+	 $join =array('conductor'=>'tarjeta_control.id_conductor=conductor.id_conductor');
+	 $output=$this->Sart_model->GetData($filter2,$filteradv,$join,$tabla,$conf);
+	 echo json_encode($output);
+  }//fin funcion
+   public function gesTc(){ 
+	$tipo=$_REQUEST['tipo'];
+	if($tipo=='edit'){
+		$id=$_REQUEST['id_condu'];
+		$filter = array('id_conductor' => $id);
+		$filter_adv = '';
+		$data['prop'] = $this->Sart_model->getdatos($filter,'conductor',''); 
+		$orderby='';
+		   $camposmov='*,datediff(fecha_vence,now()) as diff';
+		   $join='documento.id_doc=con_doc.id_doc';
+		  $data['docs'] = $this->Sart_model->getdatosjoinfull($filter,$filter_adv,'documento','con_doc',$join,'left',$camposmov,$orderby); 
+		//echo $this->db->last_query();
+	}else{
+		$id=$_REQUEST['id'];
+		$filter = array('id_conductor' => $id);
+		$filter_adv = '';
+		$data['prop'] = $this->Sart_model->getdatos($filter,'conductor',''); 
+		$orderby='';
+		$camposmov='*,datediff(fecha_vence,now()) as diff';
+		$join='documento.id_doc=con_doc.id_doc';
+		$data['docs'] = $this->Sart_model->getdatosjoinfull($filter,$filter_adv,'documento','con_doc',$join,'left',$camposmov,$orderby);  
+		 // echo $this->db->last_query();
+		  //print_r($data['docs']);
+	}
+	$data['tipo']=$tipo;
+	$this->load->view('sart/tarjetactrl/tarjeta',$data);
+ }//fin funcion
+ public function docsmovil(){
+		$id=$_REQUEST['search'];
+		$filter = array('id_movil' => $id);
+		$data['movil'] = $this->Sart_model->getdatos($filter,'vehiculo',''); 	 
+		$filter = array('id_movil' => $id);
+		$orderby='';
+		$camposmov='*,datediff(fecha_ven,now()) as diff';
+		$join='documentos_v.id_docv=veh_doc.id_documento';
+		$data['docsv'] = $this->Sart_model->getdatosjoinfull($filter,'','documentos_v','veh_doc',$join,'left',$camposmov,$orderby);   	       
+		$this->load->view('sart/tarjetactrl/docsmovil',$data);
+ }//fin funcion
 /************* Nuevas Funcionalidades jcano *******************/
 public function users(){
 

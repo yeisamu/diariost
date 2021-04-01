@@ -1775,18 +1775,18 @@ function busqueda()
 			);
 
   		  	if($query->num_rows() > 0){      
-  				foreach($query->result() as $aRow) {
-          		  $row = array();
-				  foreach($conf['rows'] as $key =>$valueRow){
-					  $row[] =$aRow->$valueRow;
-				  }
-				  foreach($conf['opt'] as $key =>$valueOpt){
-					  $row[] =$valueOpt;
-				  }
-				  $class_row = 'cursor abre_mod_global';
-	              $row["DT_RowClass"] = $class_row;
-	              $output['aaData'][] = $row;
-		        }
+            foreach($query->result() as $aRow) {
+                  $row = array();
+                foreach($conf['rows'] as $key =>$valueRow){
+                  $row[] =$aRow->$valueRow;
+                }
+                foreach($conf['opt'] as $key =>$valueOpt){
+                  $row[] =$valueOpt;
+                }
+                $class_row = 'cursor abre_mod_global';
+                      $row["DT_RowClass"] = $class_row;
+                      $output['aaData'][] = $row;
+            }
   		  	}        
         } catch (PDOException $e) {
            echo "Error en la Consulta de llamado ajax() GetData, error: " . $e->getMessage();

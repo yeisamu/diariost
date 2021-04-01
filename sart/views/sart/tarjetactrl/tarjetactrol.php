@@ -222,6 +222,13 @@
 			$('#modaltaxi').modal('show');
 			queue_load_all('#taxi_modal','?id='+control,'ges_simit');
 			return false;
+		 }).on('click', '.abreGesTc', function(e){
+			e.preventDefault();
+			var control=$(this).parent().parent().data('iditem');
+			//console.log(control);
+			$('#modaltaxi').modal('show');
+			queue_load_all('#taxi_modal','?id='+control,'gesTarjeta');
+			return false;
 		 });
 	  });
 	});
