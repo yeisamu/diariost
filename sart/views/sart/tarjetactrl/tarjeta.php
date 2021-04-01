@@ -147,7 +147,7 @@ if($prop){
                                         if($rowdosv->fecha_vence==NULL || $rowdosv->fecha_vence=='0000-00-00'){
                                             $ffin="";
                                         }else{
-                                            $ffin=date('d-m-Y',strtotime($rowdosv->fecha_vence));
+                                            $ffin=date('Y-m-d',strtotime($rowdosv->fecha_vence));
                                         }
                                         if($rowdosv->diff>15){
                                             $datedif="VIGENTE";

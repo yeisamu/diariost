@@ -40,12 +40,12 @@
                         if($rowdosv->fecha_exp==NULL || $rowdosv->fecha_exp=='0000-00-00'){
                             $fini="";
                         }else{
-                            $fini=date('d-m-Y',strtotime($rowdosv->fecha_exp));
+                            $fini=date('Y-m-d',strtotime($rowdosv->fecha_exp));
                         }
                         if($rowdosv->fecha_ven==NULL || $rowdosv->fecha_ven=='0000-00-00'){
                             $ffin="";
                         }else{
-                            $ffin=date('d-m-Y',strtotime($rowdosv->fecha_ven));
+                            $ffin=date('Y-m-d',strtotime($rowdosv->fecha_ven));
                         }
                         if($rowdosv->diff>15){
                             $datedif="VIGENTE";
@@ -115,21 +115,19 @@ $(document).ready(function () {
 
   });
   console.log(fecharef);
-/*  var mayorDate= new Date(fecharef[0]);
-var menorDate= new Date(fecharef[0]);
+  var mayorDate= new Date(fecharef[0].fecha);
+var menorDate= new Date(fecharef[0].fecha);
 for(var clave in fecharef) {
 
-    console.log(clave+": " +fecharef[clave]);
-}*/
-/*for (var i = 0; i<fecharef.length; i++){
-	var arrDate= new Date(fecharef[i]);
+    console.log(clave+": " +fecharef[clave].fecha);
+    var arrDate= new Date(fecharef[clave].fecha);
 	if(arrDate > mayorDate){
-  	mayorDate=arrDate
-  }
-  if(arrDate < menorDate){
-  	menorDate=arrDate
-  }
-}*/
+        mayorDate=arrDate
+    }
+    if(arrDate < menorDate){
+        menorDate=arrDate
+    }
+}/**/
 
 console.log("Fecha mayor: "+mayorDate.toUTCString());
 console.log("Fecha menor: "+menorDate.toUTCString());
