@@ -1624,6 +1624,7 @@ public	function genera_informe(){ //Se toman los datos de la ciudad de la bases 
 	$this->load->view('sart/tarjetactrl/tarjeta',$data);
  }//fin funcion
  public function grabarTc(){
+	foreach ($_REQUEST as $var => $val){$$var = $this->db->escape_str($val);}
 	$resp=$this->Sart_model->addModTc(); // Envio de los datos a la base de datos 
 	 if($resp['guarda']== 'ok'){
 		 $respu['validacion'] = 'ok';
@@ -1631,6 +1632,33 @@ public	function genera_informe(){ //Se toman los datos de la ciudad de la bases 
 		 $respu['tipo'] = $resp['tipo'];
 		 $respu['ntc'] = $resp['idTc'];
 		 $respu['msn'] = ' Guardado con Exito!!';
+		 $filter = array('id_movil' => $idmovil);
+		 //$result= $this->Sart_model->getdatos($filter,'propietario','');
+		 $orderby='';
+		 $camposmov='';
+		 $join='vehiculo.id_prop=propietario.id_prop';
+		 $result=  $this->Sart_model->getdatosjoinfull($filter,'','vehiculo','propietario',$join,'left',$camposmov,$orderby); 
+		 if($result){
+			$rowd 		= $result->row();
+			$emailProp 	= $rowd->email;
+			$nombre		= $rowd->nombre." ".$rowd->apellidos;
+		 }else{
+			$emailProp 	= "";
+		 }
+
+		 switch ($tipo) {
+			case 'nuevo': 
+				$objeto='Creación de tarjeta de Control Coomocart';
+				$fplazoa=date('d-m-Y H:i:s',strtotime('+32 hour',strtotime($fechavig)));
+				$fvigencia=date('Y-m-d',strtotime($fechavig));
+				$message="Estimado ".$nombre.", la cooperativa Coomocart le informa que se cre&oacute; la tarjeta de control <strong>#".$tarjeta."</strong> para el movil <strong>".$idmovil."</strong>, la cual tiene una vigencia hasta el d&iacute;a <strong>".$fplazoa."</strong> y est&aacute; condicionada por el documento <strong>".$nomdocRef."</strong> que vence en la fecha <strong>".$fvigencia."</strong><div>Si tiene alguna inquietud con gusto ser&aacute; atendida.</div>";
+				if($emailProp != ""){
+					$enviarCorreo = $this->sendMail($emailProp,$nombre,$message,$objeto);
+				}
+		  break;
+        }
+
+		
 	  }else{
 		 $respu['validacion'] = 'fail';
 		 $respu['msn'] = $resp['motivo'];
@@ -1976,7 +2004,7 @@ public function delete_file(){
     public function addplan()
     {	    	
     	foreach ($_REQUEST as $var => $val){$$var = $this->db->escape_str($val);}
-
+        $subject = "Resumen de saldos Coomocart";
     	if(isset($_FILES["planilla"]["name"])){
 
     		$tabla = "cartera";
@@ -2249,7 +2277,7 @@ public function delete_file(){
 
 				    	//echo "Email: ".$emailProp;
 				    	if($emailProp != ""){
-				    		$enviarCorreo = $this->sendMail($emailProp,$nombre,$message);
+				    		$enviarCorreo = $this->sendMail($emailProp,$nombre,$message,$subject);
 				    	}
 				    	
 					}					
@@ -2279,20 +2307,20 @@ public function delete_file(){
 		
     }
 
-    function sendMail($mail,$nombre,$mensaje) {
+    function sendMail($mail,$nombre,$mensaje,$subject='') {
         
         $this->load->config('email');
         //$this->load->library('email');
         
         $from = $this->config->item('smtp_user');
         $to = $mail;
-        $subject = "Resumen de saldos Coomocart";
+        
         $message = $mensaje;
 
         $this->email->set_mailtype("html");
         $this->email->set_newline("\r\n");
         $this->email->from($from);
-        $this->email->to($to);
+        $this->email->to($to,$nombre);
         $this->email->subject($subject);
         $this->email->message($message);
 

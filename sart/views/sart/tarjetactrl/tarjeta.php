@@ -89,6 +89,7 @@ if($prop){
                                     <input type="text"  name="tarjeta" value="<?php //echo trim($nombre)?>" id="tarjeta" class="form-control obligatorio">
                                     <input type="hidden"  name="pensionado" value="<?php echo trim($ispensionado)?>" id="pensionado" class="">
                                     <input type="hidden"  name="docref" value="<?php //echo trim($isdocref)?>" id="docref" class="">
+                                    <input type="hidden"  name="nomdocRef" value="<?php //echo trim($isdocref)?>" id="nomdocRef" class="">
                                     <input type="hidden"  name="fechavig" value="<?php //echo trim($isfechavig)?>" id="fechavig" class="">
                                     <input type="hidden"  name="idconductor" value="<?php echo $idcondu?>" id="idconductor" class="">
                                     <input type="hidden"  name="tipo" value="<?php echo $tipo?>" id="tipo" class="">

@@ -176,6 +176,7 @@ for(var clave in fecharef) {
 }
 $('#docref').val(fecharef[indiceD].iDdoc);
 $('#fechavig').val(fecharef[indiceD].fecha);
+$('#nomdocRef').val(fecharef[indiceD].doc);
 $('.newfechav').html(fecharef[indiceD].fecha);
 $('.newdocv').html(fecharef[indiceD].doc);
 if(i===0){
