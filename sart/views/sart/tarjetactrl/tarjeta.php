@@ -19,7 +19,7 @@ if($prop){
   $lnace=$dataprop->lugarNace;
   $fnace=date('d-m-Y',strtotime($dataprop->fecha_nace));
 
-  $titulo="Modificar Conductor";
+  $titulo="Tarjeta de control";
   if($ispensionado=='si'){
     $esact='checked="checked"';
     $esinac='';
@@ -77,7 +77,7 @@ if($prop){
 
           <div class="panel">
             <div class="panel-body">
-              <form action="#" class="form-horizontal" id="editdoc" enctype="multipart/form-data">
+              <form action="#" class="form-horizontal" id="frmTarjeta" enctype="multipart/form-data">
                 <div class="form-content">
                 <div class="row">
                     <div class="col-md-6">
@@ -86,7 +86,12 @@ if($prop){
                             <div class="col-md-6">
                                 <div class="inputer inputer-indigo">
                                 <div class="input-wrapper">
-                                    <input type="text"  name="nombreprop" value="<?php echo trim($nombre)?>" id="nombreprop" class="form-control obligatorio">
+                                    <input type="text"  name="tarjeta" value="<?php //echo trim($nombre)?>" id="tarjeta" class="form-control obligatorio">
+                                    <input type="hidden"  name="pensionado" value="<?php echo trim($ispensionado)?>" id="pensionado" class="">
+                                    <input type="hidden"  name="docref" value="<?php //echo trim($isdocref)?>" id="docref" class="">
+                                    <input type="hidden"  name="fechavig" value="<?php //echo trim($isfechavig)?>" id="fechavig" class="">
+                                    <input type="hidden"  name="idconductor" value="<?php echo $idcondu?>" id="idconductor" class="">
+                                    <input type="hidden"  name="tipo" value="<?php echo $tipo?>" id="tipo" class="">
                                 </div>
                                 </div>
                             </div>
@@ -98,7 +103,7 @@ if($prop){
                             <div class="col-md-6">
                                 <div class="inputer inputer-indigo">
                                 <div class="input-wrapper">
-                                    <input type="text"  name="nombreprop" value="<?php //echo trim($nombre)?>" id="nombreprop" class="form-control obligatorio muestramovil">
+                                    <input type="text"  name="idmovil" value="<?php //echo trim($nombre)?>" id="idmovil" class="form-control obligatorio muestramovil">
                                 </div>
                                 </div>
                             </div>
@@ -139,6 +144,7 @@ if($prop){
                                 if($docs){
                                     $i=0;
                                     foreach ($docs -> result() as $rowdosv) {
+                                        $isvencido='no';
                                         if($rowdosv->fecha_ant==NULL || $rowdosv->fecha_ant=='0000-00-00'){
                                             $fini="";
                                         }else{
@@ -152,12 +158,14 @@ if($prop){
                                         if($rowdosv->diff>15){
                                             $datedif="VIGENTE";
                                             $clasestatus="label label-success";
+                                            
                                         }elseif($rowdosv->diff>=0 && $rowdosv->diff<=15){
                                             $datedif="PROX VEN";
                                             $clasestatus="label label-warning";
                                         }elseif($rowdosv->diff<0){
                                             $clasestatus="label label-danger";
                                             $datedif="VENCIDO";
+                                            $isvencido='si';
                                         }
 
                                     $numerodv=$rowdosv->numero;
@@ -165,12 +173,12 @@ if($prop){
 
                                 ?>                      
                                 <tr class=" ">
-                                    <td width="30%"  class="  border_t_0" style="padding: 5px;font-size:12px">
+                                    <td width="30%" data-docid="<?php echo $rowdosv->id_doc;?>"  data-include="<?php echo $rowdosv->obligatorio;?>" data-vencido="<?php echo $isvencido;?>" class="  border_t_0" style="padding: 5px;font-size:12px">
                                         <span style="color: #999;"><?php echo $rowdosv->documento;?></span>
                                     </td>
                                     <td  width="16%" style="padding: 5px;font-size:12px" class="  border_t_0">
                                         <div class="">
-                                            <?php echo $ffin;?>                                          
+                                            <?php echo $fini;?>                                          
                                         </div>
 
                                     </td>
@@ -221,7 +229,7 @@ if($prop){
     <div class="modal-footer">
       <button type="button" class="btn btn-flat btn-red btn-ripple cancelaformedit" data-dismiss="modal">Cancelar</button>
       <button type="button" class="btn btn-flat btn-info btn-ripple hide grabando" ><i class="fa fa-refresh fa-spin"></i> Grabando...</button>
-      <button type="button" class="btn btn-flat btn-indigo btn-ripple guardaeditcondu" >Grabar</button>
+      <button type="button" class="btn btn-flat btn-indigo btn-ripple guardaTC disabled" id="grabatc" >Grabar</button>
     </div>
 <script>
 	  	$(document).ready(function () {

@@ -12,7 +12,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="row">
                     <div class="col-md-12 col-sm-12 ">
                         <div class="table-responsive">
-                            <table class="display" id="notitable">
+                            <table class="display" id="tcTable">
                                 <thead>
                                     <tr>
                                         <th>id_tarjeta</th>
@@ -36,8 +36,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </div><!--.col-md-12-->
     </div><!--.row--> 
     <div style="position:fixed;bottom:60px;right:30px;z-index:100;">
-			<a class="btn btn-floating btn-red show-on-hover abre_mod_global " data-capa='global_medio'
-			   data-toggle="modal"  data-target="#modal_medio" 
+			<a class="btn btn-floating btn-red show-on-hover abre_mod_global " data-capa='global_lg'
+			   data-toggle="modal"  data-target="#modal_lg" 
 			   data-vars="<?php echo base_url() ?>sart.php/sistemasart/gesTc?tipo=nuevo&id=<?php echo $id; ?>">
 				<i class="ion-document-text "></i>
 			</a>
@@ -50,21 +50,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	$(document).ready(function () {
 		Pleasure.init();
 		Layout.init();
-		sart.tablasimit=$('#notitable').DataTable({
+		sart.tablaTc=$('#tcTable').DataTable({
 			"bProcessing": true,
 			"bServerSide": true,
 			"sAjaxSource": '<?php echo base_url() ?>sart.php/sistemasart/datatarjeta?id=<?php echo $id; ?>',
 			"columnDefs": [
 				{  targets: [0],visible: false},
+				{  targets: [5],orderable:false},
+				{  targets: [6],orderable:false},
+				{  targets: [7],orderable:false},
                 {  "width": "10%",targets: [1]},
 				{  "width": "25%",targets: [2]},
 			], 
-			"order": [[1, 'desc']],
+			"order": [[0, 'desc']],
 			"createdRow": function ( row, data, index ) {
 				row.setAttribute( 'data-iditem',data[0] );
-				row.setAttribute( 'data-capa','global_medio');
-				row.setAttribute( 'data-toggle','modal');
-				row.setAttribute( 'data-target','#modal_medio' );
+				row.setAttribute( 'data-capa','global_mediox');
+				row.setAttribute( 'data-toggle','modalx');
+				row.setAttribute( 'data-target','#modal_mediox' );
 				row.setAttribute( 'data-vars','<?php echo base_url() ?>sart.php/sistemasart/add_simit?tipo=edit&id='+data[0] );
 			},
 			"aLengthMenu": [
@@ -91,7 +94,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				 },
 			  }
 			});
-		 $('#notitable').on('click', '.actSimit', function(e) {
+		 $('#tcTable').on('click', '.actSimit', function(e) {
 		   var div=$(this).data('div');
 		   var iditem=$(this).data('iditem');
 		   var status=$(this).data('data-status');
@@ -100,28 +103,35 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		   $(this).addClass('table-success').siblings().removeClass('table-success');
 		   $('#modal_medio').modal('show');
 		   queue_load_all('global_medio',ini,'abreinicio');
-		 }).on('click', '.abredocs', function(e){
+		 }).on('click', '.cerrarTc', function(e){
 			e.preventDefault();
-			var control=$(this).parent().parent().data('iditem');
+			var idTc=$(this).parent().parent().data('iditem');
 			var url=$('#base_url').val();
-			$.ajax({
-			   url: url+'sart.php/sistemasart/tramitanoti?id='+control,
-			   type: 'POST',
-			   data: {},
-			   dataType: 'json',
-			   cache: false,
-			   contentType: false,
-			   processData: false
-			}).done(function(data){
-				if(data.validacion == 'ok'){ 
-                    $('.grabaok' ).data('toastr-notification', data.msn);
-                    $('.grabaok').click();
-                    sart.tablanoti.ajax.url(`${url}sart.php/sistemasart/datanoti`).load();
-                }else{
-                    $('.grabaerror' ).data('toastr-notification',data.msn);
-                    $('.grabaerror').click();
-                }
-			});
+			$('#modal_sm').modal('show');
+			$('#global_sm').html('<div class="modal-header">\n\
+										<h4 class="modal-title">Confirmaci&oacute;n</h4>\n\
+									</div>\n\
+									<div class="modal-body">\n\
+										<div class="row">\n\
+										<div class="col-md-12">\n\
+											<div class="panel">\n\
+												<div class="panel-body">\n\
+												<form action="#" class="form-horizontal" id="frmTarjeta" enctype="multipart/form-data">\n\
+													<h5>Desea cerrar esta Tarjeta de control?</h5>\n\
+													<input type="hidden"  name="tarjeta" value="'+idTc+'" id="tarjeta" class="form-control">\n\
+													<input type="hidden"  name="idconductor" value="<?php echo $id; ?>" id="idconductor" class="">\n\
+													<input type="hidden"  name="tipo" value="cerrar" id="tipo" class="">\n\
+												</div>\n\
+												</form>\n\
+											</div><!--.panel-->\n\
+										</div><!--.col-md-12-->\n\
+										</div><!--.row--> \n\
+									</div><!--.body modal--> \n\
+									<div class="modal-footer">\n\
+										<button type="button" class="btn btn-flat btn-success btn-ripple cancelaformedit" data-dismiss="modal">Cancelar</button>\n\
+										<button type="button" class="btn btn-flat btn-info btn-ripple hide grabando" ><i class="fa fa-refresh fa-spin"></i> Grabando...</button>\n\
+    									<button type="button" class="btn btn-flat btn-indigo btn-ripple guardaTC "  >Grabar</button>\n\
+									</div>');
 			return false;
 		 })
 

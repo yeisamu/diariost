@@ -110,11 +110,23 @@
 		</div>
   </div><!--.modal-->
   <div class="modal scale fade" id="modal_medio" tabindex="-1" role="dialog" aria-hidden="true">
-       	<div class="modal-dialog">
+       	<div class="modal-dialog modal-lg">
        		<div class="modal-content global_medio" id="global_medio">
        		</div><!--.modal-content-->
        	</div><!--.modal-dialog-->
-  </div><!--.modal-->
+  </div><!--.modal medio-->
+  <div class="modal scale fade" id="modal_lg" tabindex="-1" role="dialog" aria-hidden="true">
+       	<div class="modal-dialog modal-lg">
+       		<div class="modal-content global_lg" id="global_lg">
+       		</div><!--.modal-content-->
+       	</div><!--.modal-dialog-->
+  </div><!--.modal large-->
+  <div class="modal scale fade" id="modal_sm" tabindex="-1" role="dialog" aria-hidden="true">
+       	<div class="modal-dialog modal-sm">
+       		<div class="modal-content global_lg" id="global_sm">
+       		</div><!--.modal-content-->
+       	</div><!--.modal-dialog-->
+  </div><!--.modal large-->
 		<!-- BEGIN GLOBAL AND THEME VENDORS -->
 	<script src="<?php echo base_url() ?>js/global-vendors.js"></script>
 	<!-- END GLOBAL AND THEME VENDORS -->

@@ -9,7 +9,7 @@ class Sistemasart extends CI_Controller {
 			$this->load->helper('url'); //Carga del ayudante de formularios
 			$this->load->helper('cookie');//ayudante de cookies
 			$this->load->library('excel'); 
-			//$this->load->library('pdf'); // Load library
+			$this->load->library('pdf'); // Load library
 			$this->load->library('ciqrcode');
 		}
 	/**
@@ -1583,7 +1583,7 @@ public	function genera_informe(){ //Se toman los datos de la ciudad de la bases 
 	 $conf['aColumns1']=array('id_tarjeta', 'tarjeta','concat_ws(" ",nombres,apellidos) as conductor', 'id_movil','fecha_plazo_a','case estado when 1 then "Abierta" else "Cerrada" end as estado','if(`fecha_plazo_a`<DATE_FORMAT(now(),"%Y/%m/%d"),"Vencido","Vigente") as est_vig');
 	 $conf['aColumnsunion']='';
 	 $conf['rows']=array('id_tarjeta', 'tarjeta','conductor', 'id_movil','fecha_plazo_a','est_vig','estado');
-	 $conf['opt']=array('<button type="button" class="btn btn-indigo actSimit">Actualizar</button>');
+	 $conf['opt']=array('<button type="button" class="btn btn-indigo actSimit">Actualizar</button>&nbsp;<button type="button" class="btn btn-danger  cerrarTc">Cerrar</button>');
 	 $conf['union']="";
 
 	 $filter2 = array('tarjeta_control.id_conductor' => $id);
@@ -1618,7 +1618,23 @@ public	function genera_informe(){ //Se toman los datos de la ciudad de la bases 
 		  //print_r($data['docs']);
 	}
 	$data['tipo']=$tipo;
+	$data['idcondu']=$id;
 	$this->load->view('sart/tarjetactrl/tarjeta',$data);
+ }//fin funcion
+ public function grabarTc(){
+	$resp=$this->Sart_model->addModTc(); // Envio de los datos a la base de datos 
+	 if($resp['guarda']== 'ok'){
+		 $respu['validacion'] = 'ok';
+		 $respu['id'] = $resp['id'];
+		 $respu['tipo'] = $resp['tipo'];
+		 $respu['ntc'] = $resp['idTc'];
+		 $respu['msn'] = ' Guardado con Exito!!';
+	  }else{
+		 $respu['validacion'] = 'fail';
+		 $respu['msn'] = $resp['motivo'];
+	 }
+	//======================================
+   echo json_encode($respu);
  }//fin funcion
  public function docsmovil(){
 		$id=$_REQUEST['search'];
@@ -1630,6 +1646,31 @@ public	function genera_informe(){ //Se toman los datos de la ciudad de la bases 
 		$join='documentos_v.id_docv=veh_doc.id_documento';
 		$data['docsv'] = $this->Sart_model->getdatosjoinfull($filter,'','documentos_v','veh_doc',$join,'left',$camposmov,$orderby);   	       
 		$this->load->view('sart/tarjetactrl/docsmovil',$data);
+ }//fin funcion
+ public function autoriza()
+ {
+   $data='';
+   $this->load->view('sart/tarjetactrl/autoriza',$data);
+ }//fin funcion
+ public function validaFe(){
+	$username = filter_var($_REQUEST['user'], FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES | FILTER_FLAG_ENCODE_AMP);
+	    $password = filter_var($_REQUEST['contra'], FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES | FILTER_FLAG_ENCODE_AMP);
+	$password=md5($password);
+	################CONSULTA LOGIN########
+    $fplazoa=date('Y-m-d H:i:s',strtotime($_REQUEST['fauto']));
+	$filter = array('login' => $username, 'clave' => $password,'admin'=>1);
+
+	$result = $this->Sart_model->getdatos($filter,'acc_usuario','');
+	if($result){
+		 $respu['validacion'] = 'ok';
+		 $respu['fecha'] = $fplazoa;
+		 $respu['msn'] = ' Guardado con Exito!!';
+	  }else{
+		 $respu['validacion'] = 'fail';
+		 $respu['msn'] = 'Usuario no autorizado o datos incorrectos';
+	 }
+	//======================================
+   echo json_encode($respu);
  }//fin funcion
 /************* Nuevas Funcionalidades jcano *******************/
 public function users(){

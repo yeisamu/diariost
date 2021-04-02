@@ -3,6 +3,9 @@ sart.page  = '';
 sart.pages = '';
 sart.tablacondu = '';
 sart.tablanoti = '';
+sart.tablaTc = '';
+sart.tablasimit = '';
+
 function queue_load_all(div,params,control){
   var url=$('#base_url').val();	
   $.ajax({
@@ -1587,6 +1590,76 @@ $(document).on('change', '.muestramovil', function(e){
   var search = $(this).val();
   var parame='?search='+search
   queue_load_all('#datamovil',parame,'docsmovil');
+
+});
+
+$(document).on('click', '.guardaTC', function(e){
+  var details  = $('#frmTarjeta').serialize();
+  $(this).addClass('hide');
+  $('.grabando').removeClass('hide');
+  if(validarCampos('#frmTarjeta')){
+   var url=$('#base_url').val();
+        $.ajax({
+            url: url+'sart.php/sistemasart/grabarTc?'+details,
+            type: 'GET',
+            dataType: 'json',
+            data: { }
+        }).done(function(data){
+            if(data.validacion == 'ok'){
+                $('.cancelaformedit').click();
+                sart.tablaTc.ajax.url(`${url}sart.php/sistemasart/datatarjeta?id=${data.id}`).load();
+                if(data.tipo=='nuevo'){
+                  urltc = url+'sart.php/sistemasart/pdf?ntarjeta='+data.ntc;
+                  window.open(urltc,'','scrollbars=yes,width='+$(document).width()+',height='+$(document).height()+'');
+                }
+                $('.grabaok' ).data('toastr-notification',data.msn);
+                $('.grabaok').click();
+            }else{
+                $('.grabaerror' ).data('toastr-notification',data.msn);
+                $('.grabaerror').click();
+                $('.grabando').addClass('hide');
+                $('.guardaTC').removeClass('hide');
+            }
+        }); 
+  }else{
+    $('.guardaTC').removeClass('hide');
+    $('.grabando').addClass('hide');
+    $('.grabaerror').data('toastr-notification','Faltan campos Por llenar');
+    $('.grabaerror').click();
+  }  
+
+});
+$(document).on('click', '.guardaFe', function(e){
+  var details  = $('#frmAutFe').serialize();
+  $(this).addClass('hide');
+  $('.grabandoFe').removeClass('hide');
+  if(validarCampos('#frmAutFe')){
+   var url=$('#base_url').val();
+        $.ajax({
+            url: url+'sart.php/sistemasart/validaFe?'+details,
+            type: 'GET',
+            dataType: 'json',
+            data: { }
+        }).done(function(data){
+            if(data.validacion == 'ok'){
+                $('.cancelaFe').click();
+                $('#grabatc').removeClass('disabled');
+                $('#fechavig').val(data.fecha);
+                $('.grabaok' ).data('toastr-notification','Autorizado con exito!!');
+                $('.grabaok').click();
+            }else{
+                $('.grabaerror' ).data('toastr-notification',data.msn);
+                $('.grabaerror').click();
+                $('.grabandoFe').addClass('hide');
+                $('.guardaFe').removeClass('hide');
+            }
+        }); 
+  }else{
+    $('.guardaFe').removeClass('hide');
+    $('.grabandoFe').addClass('hide');
+    $('.grabaerror').data('toastr-notification','Faltan campos Por llenar');
+    $('.grabaerror').click();
+  }  
 
 });
 /* Cambios jcano */

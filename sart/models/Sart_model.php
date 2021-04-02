@@ -2045,6 +2045,69 @@ function busqueda()
     }
 
   }//fin funcion
+  function addModTc()
+  {
+        date_default_timezone_set('America/Bogota');
+        foreach ($_REQUEST as $var => $val){$$var = $this->db->escape_str($val);}
+        $hoy=date('Y-m-d');
+        switch ($tipo) {
+          case 'nuevo': 
+            $this->db->trans_begin();
+            $fplazoa=date('Y-m-d H:i:s',strtotime('+32 hour',strtotime($fechavig)));
+            $fvigencia=date('Y-m-d H:i:s',strtotime($fechavig));
+            $data2 =array(
+                    'tarjeta'             =>$tarjeta,
+                    'id_conductor'        => $idconductor,
+                    'id_movil'            => $idmovil,
+                    'id_empresa'          => 1,
+                    'fecha_vigencia'      => $fvigencia,
+                    'fecha_plazo_a'       => $fplazoa,
+                    'fecha_elab'          => $hoy,
+                    'id_doc_ref'          => $docref,
+                    'estado'              => 1,
+                    'planilla'            => 1
+            ); 
+            $queries=$this->db->insert('tarjeta_control',$data2);
+            $idtc = $this->db->insert_id();
+          break;
+          case 'edit':
+            $this->db->trans_begin();
+            $data2 =array(
+              'n_parte'             => $comparendo,
+              'cod_infraccion'      => $infraccion,
+              'id_eps'              => null,
+              'valor'               => $valcompa,
+              'fecha_parte'         => $fechacomp,
+              'fecha_pago'          => $fechapago,
+              'convenio'            => $convenio,
+              'observacion'         => null,
+              'estado'              => $estado
+            );    
+            $this->db->where('id_simit', $idcondu);  //localiza la maestro a actualizar
+            $queries=$this->db->update('simit',$data2);
+            
+          break;
+          case 'cerrar':
+            $this->db->trans_begin();
+            $data2 =array('estado'=> 2);    
+            $this->db->where('id_tarjeta', $tarjeta);  //localiza la maestro a actualizar
+            $queries=$this->db->update('tarjeta_control',$data2);
+            $idtc = '';
+          break;
+        }
+    
+    if ($this->db->trans_status() === FALSE)
+    {
+        $this->db->trans_rollback();
+        return $resp=array('guarda'=>'error','motivo'=>'Error al guardar');
+    }
+    else
+    {
+        $this->db->trans_commit();
+        return $resp=array('guarda'=>'ok','id'=>$idconductor,'tipo'=>$tipo,'idTc'=>$idtc);
+    }
+
+  }//fin funcion
   /* Cambios jcano */ 
   function save_edit_user(){
 
