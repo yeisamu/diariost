@@ -1946,3 +1946,68 @@ $(document).on('click', '.delSign', function(e){
   });
 
 });
+
+$(document).on('click', '.loadplan', function(e){
+
+    console.log("planilla")
+
+    var formData = new FormData($("form#addeditplan")[0]);
+    var url=$('#base_url').val();
+    $(this).addClass('hide');
+    var menu = $(this).data('menu');
+    $('.grabando').removeClass('hide');
+
+    var iptPlan = $("#iptPlan");
+
+    var archivos = iptPlan[0].files; 
+
+    if (archivos.length > 0) {
+      
+      var planilla = archivos[0]; //Sólo queremos la primera imagen, ya que el usuario pudo seleccionar más
+      var lector = new FileReader();
+
+      //En este caso 'planilla' será el nombre con el que se recibirá el archivo en el servidor
+      formData.append('planilla', planilla);
+      $.ajax({
+        url:  url+"sart.php/sistemasart/addplan",
+        data: formData,
+        dataType: 'json',
+        type: 'POST',
+        contentType: false,
+        processData: false,
+        success: function(data) {
+
+          console.log("Petición terminada. data", data);
+
+          $('.cancelaformedit').click();
+
+          if(data.validacion == 'ok'){
+            
+            $('.grabaok').data('toastr-notification',data.msn);
+            $('.grabaok').click();
+            $('.grabando').addClass('hide');
+            $('.graba_valores').removeClass('hide'); 
+
+            setTimeout(function(){
+              location.reload();                    
+            }, 2000); 
+
+          }else{
+            
+              $('.grabaerror' ).data('toastr-notification',data.msn);
+              $('.grabaerror').click();
+              $('.grabando').addClass('hide');
+              $('.graba_valores').removeClass('hide'); 
+          }
+
+        }
+
+      });
+
+    }else{
+      $(this).removeClass('hide');
+      $('.grabando').addClass('hide');  
+      swal("Error", "Debe seleccionar una planilla", "error");
+    }
+    
+});

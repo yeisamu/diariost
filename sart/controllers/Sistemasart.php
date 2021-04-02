@@ -9,8 +9,10 @@ class Sistemasart extends CI_Controller {
 			$this->load->helper('url'); //Carga del ayudante de formularios
 			$this->load->helper('cookie');//ayudante de cookies
 			$this->load->library('excel'); 
-			$this->load->library('pdf'); // Load library
+			$this->load->helper('number'); // Helper formato moneda
+			//$this->load->library('pdf'); // Load library
 			$this->load->library('ciqrcode');
+			$this->load->library('email');
 		}
 	/**
 	 * Index Page for this controller.
@@ -1923,6 +1925,386 @@ public function delete_file(){
   //======================================
 	 echo json_encode($respu);
 }
+
+	public function planilla(){
+
+    	if(isset($_COOKIE['user_ID'])){
+     		
+     		if(isset($_REQUEST['g'])){
+     			$grupo=$_REQUEST['g'];
+     			$data['grupov'] = $grupo;
+     		}else{
+     			$data['grupov'] = '';
+     		}
+
+     		$id_user = $_COOKIE['user_ID'];
+     		//$filter = array('acc_usuario.id_usr' => $id_user,'tipo' => 'mvc');
+     		$filter = '';
+     	    $filter_adv = '';
+     	    $join = '';
+     		$data['app_ID'] = $_REQUEST['app_ID'];
+     		$data['grupo']= $this->Sart_model->getcampo('grupo','empresa');
+
+     		$this->db->order_by("cartera.id", "ASC"); 
+     		$this->db->order_by("cartera.cartera", "ASC"); 
+     		$this->db->order_by("cartera.documento", "ASC"); 
+     		$this->db->order_by("cartera.movil", "ASC"); 
+	    	$data['planilla'] = $this->db->get('cartera');
+
+	       	$appID=$_REQUEST['app_ID'];
+	        $filter = array('acc_permiso.id_usr' => $id_user,'tipo' => 'mvc','acc_permiso.id_opcion' => $appID);
+	       	$filter_adv = '';
+	       	$join='acc_permiso.id_opcion=acc_opcion.id_opcion';
+	       	$data['permisos'] = $this->Sart_model->getdatosjoin($filter,'acc_permiso','acc_opcion',$join,'left');
+
+
+     		$this->load->view('sart/planilla/planilla',$data);
+     	}else{
+     		$this->index();
+     	}  	    	
+    }
+
+    function add_edit_planilla(){ //Se toman los datos de la ciudad de la bases de datos
+
+       $tipo=$_REQUEST['tipo'];
+       $menu=$_REQUEST['menu'];
+       $data['menu'] = $menu;
+
+       $this->load->view('sart/planilla/add_edit_planilla',$data);
+    }
+
+    public function addplan()
+    {	    	
+    	foreach ($_REQUEST as $var => $val){$$var = $this->db->escape_str($val);}
+
+    	if(isset($_FILES["planilla"]["name"])){
+
+    		$tabla = "cartera";
+    		$resp = $this->Sart_model->vaciar_tabla($tabla);
+			//echo "resp: ".$resp['guarda'];		
+			
+			// Valida que la información de la tabla haya sido borrada
+			if($resp['truncate']== 'ok'){				
+
+				$path = $_FILES["planilla"]["tmp_name"];
+				$object = PHPExcel_IOFactory::load($path);
+				
+				//echo $_FILES["planilla"]["name"];
+
+				foreach($object->getWorksheetIterator() as $worksheet){
+					
+					$highestRow = $worksheet->getHighestRow();
+					$highestColumn = $worksheet->getHighestColumn();
+
+					$hoja = $worksheet->getTitle();
+
+					$inidate = '';
+					$findate = '';
+					//echo strtolower($hoja)."<br/>";
+
+					for($row=2; $row<=$highestRow; $row++){					
+
+						//echo strtolower($hoja)."<br/>";
+
+						if(strtolower($hoja)=="mercancia"){
+
+							$tipo 			= $worksheet->getCellByColumnAndRow(0, $row)->getValue();
+							$numero 		= $worksheet->getCellByColumnAndRow(1, $row)->getValue();
+							$fecha 			= $worksheet->getCellByColumnAndRow(2, $row)->getValue();
+							$plazo 			= $worksheet->getCellByColumnAndRow(3, $row)->getValue();
+							$vencimiento 	= $worksheet->getCellByColumnAndRow(4, $row)->getValue();
+
+							$documento 		= $worksheet->getCellByColumnAndRow(5, $row)->getValue();
+							$nombre 		= $worksheet->getCellByColumnAndRow(6, $row)->getValue();
+							$movil 			= $worksheet->getCellByColumnAndRow(7, $row)->getValue();
+							$mora 			= $worksheet->getCellByColumnAndRow(8, $row)->getValue();
+							$valor 			= $worksheet->getCellByColumnAndRow(9, $row)->getValue();
+
+							$abono 			= $worksheet->getCellByColumnAndRow(10, $row)->getValue();
+							$saldo 			= $worksheet->getCellByColumnAndRow(11, $row)->getValue();
+
+							$cartera 		= $hoja;
+
+							$inidate = \PHPExcel_Style_NumberFormat::toFormattedString($fecha, 'DD/MM/YYYY');
+							$findate = \PHPExcel_Style_NumberFormat::toFormattedString($vencimiento, 'DD/MM/YYYY');
+
+							$date1 = date("d-m-Y",strtotime($inidate));
+							$date2 = date("d-m-Y",strtotime($findate));
+							$diff = abs(strtotime($date2) - strtotime($date1));
+
+							//$mora 	= 	floor($diff / (60 * 60 * 24));
+							
+							if($saldo == "" || !isset($saldo)){
+								$saldo = 0;
+							}
+
+							if($valor == "" || !isset($valor)){
+								$valor = 0;
+							}
+
+							if($abono == "" || !isset($abono)){
+								$abono = 0;
+							}
+
+							$message = "Apreciado Asociado(a) <b>".$nombre."</b>
+					        			<br/><br/>
+					        			A continuación, le estamos enviando el resumen de saldos de las cuentas que tiene con la entidad a la fecha.
+					        			<br/>        			
+					        			Factura No: ".$numero." por concepto de ".strtoupper($cartera)." y valor de $".number_format($valor)." del móvil ".$movil." con fecha del ".$inidate." y vencimiento ".$findate.". La cual presenta ".abs($mora)." d&iacute;a(s) de mora. A la fecha ha realizado abonos por $".number_format($abono)." pesos MCTE, con un saldo total de ".number_format($saldo)."
+					        			<br/><br/>
+					        			Gracias por contar con nosotros.
+					        			<br/><br/>
+					        			Correo generado autom&aacute;ticamente, por favor no responder.
+					        			";
+
+							/*$filter = array('id_prop' => $id_prop);
+							$result = $this->Sart_model->getdatos($filter,'propietario','');
+
+					        if($result){
+					            
+					            $row = $result->row(); 
+					            
+					            if($row->email != ""){
+					            	$emailProp = $row->email;	
+					            }else{
+					            	$emailProp = "";	
+					            }
+						        
+					        }else{
+					        	$emailProp = "";
+					        }*/					        
+
+						}else if(strtolower($hoja)=="soat"){
+
+							$tipo 			= $worksheet->getCellByColumnAndRow(0, $row)->getValue();
+							$numero 		= $worksheet->getCellByColumnAndRow(1, $row)->getValue();
+							$documento 		= $worksheet->getCellByColumnAndRow(2, $row)->getValue();
+							$nombre 		= $worksheet->getCellByColumnAndRow(3, $row)->getValue();
+							$movil 			= $worksheet->getCellByColumnAndRow(4, $row)->getValue();
+							$fecha 			= $worksheet->getCellByColumnAndRow(5, $row)->getValue();
+							$plazo 			= $worksheet->getCellByColumnAndRow(6, $row)->getValue();
+							$vencimiento 	= $worksheet->getCellByColumnAndRow(7, $row)->getValue();
+							$mora 			= $worksheet->getCellByColumnAndRow(8, $row)->getValue();
+							$valor 			= $worksheet->getCellByColumnAndRow(9, $row)->getValue();
+							$abono 			= $worksheet->getCellByColumnAndRow(10, $row)->getValue();
+							$saldo 			= $worksheet->getCellByColumnAndRow(11, $row)->getValue();
+							$cartera 		= $hoja;
+
+							$inidate = \PHPExcel_Style_NumberFormat::toFormattedString($fecha, 'DD/MM/YYYY');
+							$findate = \PHPExcel_Style_NumberFormat::toFormattedString($vencimiento, 'DD/MM/YYYY');
+
+							$date1 = date("d-m-Y",strtotime($inidate));
+							$date2 = date("d-m-Y",strtotime($findate));
+							$diff = abs(strtotime($date2) - strtotime($date1));							
+
+							//$mora 	= 	floor($diff / (60 * 60 * 24));
+							
+							if($saldo == "" || !isset($saldo)){
+								$saldo = 0;
+							}
+
+							if($valor == "" || !isset($valor)){
+								$valor = 0;
+							}
+
+							if($abono == "" || !isset($abono)){
+								$abono = 0;
+							}
+
+							$message = "Apreciado Asociado(a) <b>".$nombre."</b>
+					        			<br/><br/>
+					        			A continuación, le estamos enviando el resumen de saldos de las cuentas que tiene con la entidad a la fecha.
+					        			<br/>        			
+					        			Factura No: ".$numero." por concepto de ".strtoupper($cartera)." y valor de $".number_format($valor)." del móvil ".$movil." con fecha del ".$inidate." y vencimiento ".$findate.". La cual presenta ".abs($mora)." d&iacute;a(s) de mora. A la fecha ha realizado abonos por $".number_format($abono)." pesos MCTE, con un saldo total de $".number_format($saldo)."
+					        			<br/>
+					        			Gracias por contar con nosotros.
+					        			<br/><br/>
+					        			Correo generado autom&aacute;ticamente, por favor no responder.
+					        			";
+
+						}else if(strtolower($hoja)=="diarios"){
+
+							$tipo 			= '';
+							$numero 		= '';
+							$fecha 			= $worksheet->getCellByColumnAndRow(3, $row)->getValue();
+							$plazo 			= '';
+							$vencimiento 	= $worksheet->getCellByColumnAndRow(4, $row)->getValue();
+							$documento 		= $worksheet->getCellByColumnAndRow(1, $row)->getValue();
+							$nombre 		= $worksheet->getCellByColumnAndRow(2, $row)->getValue();
+							$movil 			= $worksheet->getCellByColumnAndRow(0, $row)->getValue();
+							//$mora 			= $worksheet->getCellByColumnAndRow(5, $row)->getValue();
+							$valor 			= '';
+							$abono 			= '';
+							$saldo 			= $worksheet->getCellByColumnAndRow(6, $row)->getValue();						
+							$cartera 		= $hoja;
+
+							$inidate = \PHPExcel_Style_NumberFormat::toFormattedString($fecha, 'DD-MM-YYYY');
+							$findate = \PHPExcel_Style_NumberFormat::toFormattedString($vencimiento, 'DD-MM-YYYY');	
+
+							$date1 = date("d-m-Y",strtotime($inidate));
+							$date2 = date("d-m-Y",strtotime($findate));
+							$diff = abs(strtotime($date2) - strtotime($date1));
+
+							$mora 	= 	floor($diff / (60 * 60 * 24));							
+
+							
+							if($saldo == "" || !isset($saldo)){
+								$saldo = 0;
+							}
+
+							if($valor == "" || !isset($valor)){
+								$valor = 0;
+							}
+
+							if($abono == "" || !isset($abono)){
+								$abono = 0;
+							}	
+
+							$descr = "pagos diarios";
+							$message = "Apreciado Asociado(a) <b>".$nombre."</b>
+					        			<br/><br/>
+					        			A continuación, le estamos enviando el resumen de saldos de las cuentas que tiene con la entidad a la fecha.
+					        			<br/>        			
+					        			Concepto: ".strtoupper($descr)." y valor de $".$saldo." del móvil ".$movil." con fecha del ".$inidate." y vencimiento ".$findate.". La cual presenta ".abs($mora)." d&iacute;a(s) de mora.
+					        			<br/>
+					        			Gracias por contar con nosotros.
+					        			<br/><br/>
+					        			Correo generado autom&aacute;ticamente, por favor no responder.
+					        			";
+
+						}else if(strtolower($hoja)=="respcivil"){
+
+							$tipo 			= '';
+							$numero 		= '';
+							$fecha 			= '';
+							$plazo 			= '';
+							$vencimiento 	= '';
+							$documento 		= $worksheet->getCellByColumnAndRow(1, $row)->getValue();
+							$nombre 		= $worksheet->getCellByColumnAndRow(2, $row)->getValue();
+							$movil 			= $worksheet->getCellByColumnAndRow(0, $row)->getValue();
+							$mora 			= '';
+							$valor 			= $worksheet->getCellByColumnAndRow(3, $row)->getValue();
+							//$abono 			= $worksheet->getCellByColumnAndRow(4, $row)->getCalculatedValue();
+							$saldo 			= $worksheet->getCellByColumnAndRow(5, $row)->getValue();
+							$abono 			= (floatval($valor)-floatval($saldo));
+							$cartera 		= $hoja;
+
+							$inidate = '';
+							$findate = '';	
+
+							if($saldo == "" || !isset($saldo)){
+								$saldo = 0;
+							}
+
+							if($valor == "" || !isset($valor)){
+								$valor = 0;
+							}
+
+							if($abono == "" || !isset($abono)){
+								$abono = 0;
+							}
+
+							$descr = "responsabilidad civil";
+
+			    			$message = "Apreciado Asociado(a) <b>".$nombre."</b>
+					        			<br/><br/>
+					        			A continuación, le estamos enviando el resumen de saldos de las cuentas que tiene con la entidad a la fecha.
+					        			<br/>        			
+					        			Concepto: ".strtoupper($descr)." y valor de la poliza de $".$valor." del móvil ".$movil.". A la fecha ha realizado abonos por $".$abono." pesos MCTE, con un saldo total de $".$saldo."
+					        			<br/>
+					        			Gracias por contar con nosotros.
+					        			<br/><br/>
+					        			Correo generado autom&aacute;ticamente, por favor no responder.
+					        			";								
+
+						}
+
+							//echo "Email: ".$emailProp;
+
+							$data[] = array(
+								'tipo'  		=> $tipo,
+								'numero'   		=> $numero,
+								'fecha'    		=> $inidate,
+								'plazo'  		=> $plazo,
+								'vencimiento'   => $findate,
+								'documento'  	=> $documento,
+								'nombre'   		=> $nombre,
+								'movil'    		=> $movil,
+								'mora'  		=> abs($mora),
+								'valor'   		=> $valor,
+								'abono'   		=> $abono,
+								'saldo'  		=> $saldo,
+								'cartera'		=> $cartera,
+								//'email'  		=> $emailProp
+							);
+						
+						$filter = array('id_prop' => $documento);
+				        $result= $this->Sart_model->getdatos($filter,'propietario','');
+				        if($result){
+				    		$rowd 		= $result->row();
+				    		$emailProp 	= $rowd->email;
+				    	}else{
+				    		$emailProp 	= "";
+				    	}
+
+				    	//echo "Email: ".$emailProp;
+				    	if($emailProp != ""){
+				    		$enviarCorreo = $this->sendMail($emailProp,$nombre,$message);
+				    	}
+				    	
+					}					
+
+				} // End foreach
+
+				
+
+				$resp = $this->Sart_model->insert_plan($data);
+				
+				if($resp['guarda']== 'ok'){				
+					$respu['validacion'] = 'ok';
+				 	$respu['msn'] = 'Cartera registrada!!';
+				}else{					  	
+				  	$respu['validacion'] = 'fail';
+				  	$respu['msn'] = $resp['motivo'];
+				}
+
+			}else{	// Si se presenta error al vaciar la tabla				  	
+			  	$respu['validacion'] = 'fail';
+			  	$respu['msn'] = $resp['motivo'];
+			}		
+
+		}
+
+		echo json_encode($respu);
+		
+    }
+
+    function sendMail($mail,$nombre,$mensaje) {
+        
+        $this->load->config('email');
+        //$this->load->library('email');
+        
+        $from = $this->config->item('smtp_user');
+        $to = $mail;
+        $subject = "Resumen de saldos Coomocart";
+        $message = $mensaje;
+
+        $this->email->set_mailtype("html");
+        $this->email->set_newline("\r\n");
+        $this->email->from($from);
+        $this->email->to($to);
+        $this->email->subject($subject);
+        $this->email->message($message);
+
+
+        if ($this->email->send()) {
+            //echo 'Your Email has successfully been sent.';
+            return true;
+        } else {
+            show_error($this->email->print_debugger());
+        }
+    }
+
 
 function generar_qr() {
 

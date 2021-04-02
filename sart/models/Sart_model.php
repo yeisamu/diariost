@@ -2377,4 +2377,50 @@ function busqueda()
     }
 
   }//fin funcion
+
+  function insert_plan($data){
+    
+    //print_r($data);
+
+    $queries=$this->db->insert_batch('cartera', $data);
+
+    if ($this->db->affected_rows() > 0) {
+      return $resp=array('guarda'=>'ok');
+    }else{
+      return $resp=array('guarda'=>'error','motivo'=>'Error al registrar la cartera');
+    }
+
+  }
+
+  function vaciar_tabla($tabla){
+    
+    //print_r($data);
+
+    $queries = $this->db->truncate($tabla);
+
+    if($queries){  
+      return $resp=array('truncate'=>'ok');
+    }else{
+      return $resp=array('truncate'=>'error','motivo'=>'Error al vaciar la tabla');
+    }
+
+
+  }
+
+  /*function getmail($campo,$tabla,$documento)
+  {
+    //echo $campo."-".$tabla."-".$documento;
+    //$this->db->distinct();
+    $this->db->select($campo);
+    //$this->db->order_by($campo, "asc"); 
+    $this->db->where('id_prop', $documento); 
+    $query = $this->db->get($tabla);
+ 
+      if($query->num_rows() > 0){  
+          return $query;
+       }else{
+          return false;
+       } 
+  }*/
+  
 }//fin modelo
