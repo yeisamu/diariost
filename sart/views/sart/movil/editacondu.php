@@ -17,6 +17,7 @@ if($prop){
   $obs=$dataprop->observacion;
   $foto=$dataprop->foto;
   $lnace=$dataprop->lugarNace;
+  $anotaciones=$dataprop->anotaciones;
   $fnace=date('d-m-Y',strtotime($dataprop->fecha_nace));
 
   $titulo="Modificar Conductor";
@@ -48,6 +49,7 @@ if($prop){
   $entidasalud='';
   $vencesalud='';
   $lnace='';
+  $anotaciones='';
   $emailc='';
   $experiencia='';
   $obs='El vehículo MOVIL *** lo he recibido en calidad de arrendamiento, según contrato verbal que tengo con el (a) señor (a) ***********, a quien cancelo la suma diaria de $*******.oo, la cual es entregada en la ********* de la ciudad de ********.';
@@ -155,18 +157,6 @@ if($prop){
                   </div>
                 </div>
                 <div class="row">
-                 <div class="col-md-6">
-                    <div class="form-group">
-                      <label class="control-label col-md-4">Lugar de nacimiento</label>
-                      <div class="col-md-6">
-                        <div class="inputer inputer-indigo">
-                          <div class="input-wrapper">
-                            <input type="text"  name="lugarnace" value="<?php echo trim($lnace)?>" id="lugarnace" class="form-control obligatorio">
-                          </div>
-                        </div>
-                      </div>
-                    </div><!--.form-group-->
-                  </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label class="control-label col-md-4">Fecha de nacimiento</label>
@@ -182,8 +172,6 @@ if($prop){
                       </div>
                     </div><!--.form-group-->
                   </div>
-                </div>
-                <div class="row">
                  <div class="col-md-6">
                    <div class="form-group">
                      <label class="control-label col-md-4">Direcci&oacute;n</label>
@@ -196,6 +184,8 @@ if($prop){
                      </div>
                    </div><!--.form-group-->
                  </div>
+                </div>
+                <div class="row">
                  <div class="col-md-6"> 
                     <div class="form-group">
                       <label class="control-label col-md-4">Tel&eacute;fono</label>
@@ -208,34 +198,6 @@ if($prop){
                       </div>
                     </div><!--.form-group-->
                   </div>
-                 </div>
-                 <div class="row">
-                   <div class="col-md-6">
-                    <div class="form-group">
-                      <label class="control-label col-md-4">Acudiente</label>
-                      <div class="col-md-6">
-                        <div class="inputer inputer-indigo">
-                          <div class="input-wrapper">
-                            <input type="text"  name="acudiente" value="<?php echo trim($acudiente)?>" id="acudiente" class="form-control">
-                          </div>
-                        </div>
-                      </div>
-                    </div><!--.form-group-->
-                   </div>
-                   <div class="col-md-6">
-                    <div class="form-group">
-                      <label class="control-label col-md-4">Tel&eacute;fono acudiente</label>
-                      <div class="col-md-6">
-                        <div class="inputer inputer-indigo">
-                          <div class="input-wrapper">
-                            <input type="text"  name="telacu" value="<?php echo trim($telefonoa)?>" id="telacu" class="form-control">
-                          </div>
-                        </div>
-                      </div>
-                    </div><!--.form-group-->
-                   </div>
-                 </div>
-                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
                       <label class="control-label col-md-4">Email</label>
@@ -248,6 +210,34 @@ if($prop){
                       </div>
                     </div><!--.form-group-->
                   </div>
+                  </div>
+                  <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="control-label col-md-4">Contacto de emergencia</label>
+                      <div class="col-md-6">
+                        <div class="inputer inputer-indigo">
+                          <div class="input-wrapper">
+                            <input type="text"  name="acudiente" value="<?php echo trim($acudiente)?>" id="acudiente" class="form-control">
+                          </div>
+                        </div>
+                      </div>
+                    </div><!--.form-group-->
+                   </div>
+                   <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="control-label col-md-4">Tel&eacute;fono contacto emergencia</label>
+                      <div class="col-md-6">
+                        <div class="inputer inputer-indigo">
+                          <div class="input-wrapper">
+                            <input type="text"  name="telacu" value="<?php echo trim($telefonoa)?>" id="telacu" class="form-control">
+                          </div>
+                        </div>
+                      </div>
+                    </div><!--.form-group-->
+                   </div>
+                </div>
+                 <div class="row">
                    <div class="col-md-6">
                     <div class="form-group">
                       <label class="control-label col-md-4">Pensionado</label>
@@ -260,6 +250,18 @@ if($prop){
                           <div class="radioer radioer-indigo form-inline">
                             <input type="radio" name="pensionado" id="estado_inac" value="no" <?php echo $esinac?>>
                             <label for="estado_inac">No</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div><!--.form-group-->
+                   </div>
+                   <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="control-label col-md-4">Conductor desde el año</label>
+                      <div class="col-md-6">
+                        <div class="inputer inputer-indigo">
+                          <div class="input-wrapper">
+                            <input type="text"  name="expe" value="<?php echo trim($experiencia)?>" id="expe" class="form-control">
                           </div>
                         </div>
                       </div>
@@ -388,19 +390,7 @@ if($prop){
                  <div class="row">
                    <div class="col-md-12">
                     <div class="form-group">
-                      <label class="control-label ">Experiencia laboral</label>
-                        <div class="inputer inputer-indigo">
-                          <div class="input-wrapper">
-                            <textarea name="expe" id="expe" class="form-control js-auto-sizex obligatorio"><?php echo trim($experiencia)?></textarea>
-                          </div>
-                      </div>
-                    </div><!--.form-group-->
-                   </div>
-                 </div>
-                 <div class="row">
-                   <div class="col-md-12">
-                    <div class="form-group">
-                      <label class="control-label ">Observaciones</label>
+                      <label class="control-label ">Informaci&oacute;n estadistica conductor</label>
                         <div class="inputer inputer-indigo">
                           <div class="input-wrapper">
                             <textarea name="obs" id="obs" class="form-control js-auto-sizex obligatorio"><?php echo $obs?></textarea>
@@ -409,6 +399,19 @@ if($prop){
                     </div><!--.form-group-->
                    </div>
                  </div>
+                 <div class="row">
+                   <div class="col-md-12">
+                    <div class="form-group">
+                      <label class="control-label ">Anotaciones</label>
+                        <div class="inputer inputer-indigo">
+                          <div class="input-wrapper">
+                            <textarea name="anotaciones" id="anotaciones" class="form-control js-auto-sizex obligatorio"><?php echo trim($anotaciones)?></textarea>
+                          </div>
+                      </div>
+                    </div><!--.form-group-->
+                   </div>
+                 </div>
+                 
                 </div><!--.form-content-->
               </form>
             </div><!--.panel-body-->

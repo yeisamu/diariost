@@ -86,7 +86,7 @@ if($prop){
                       <?php echo $campoid?>
                     </div>
                   </div><!--.form-group-->
-                  <div class="form-group">
+                  <!--div class="form-group">
                    <label for="clase" class="col-sm-4 control-label " style="">Fecha exp</label>
                     <div class="col-sm-6 divfecha input-group" >
                      <span class="input-group-addon"><i class="ion-android-calendar"></i></span>
@@ -96,7 +96,7 @@ if($prop){
                       </div>
                     </div>   
                     </div>
-                  </div> 
+                  </div--> 
                   <div class="form-group">
                     <label class="control-label col-md-4">Nombre</label>
                     <div class="col-md-6">
@@ -164,7 +164,7 @@ if($prop){
                     <div class="col-md-6">
                       <div class="inputer inputer-indigo">
                         <div class="input-wrapper">
-                          <input type="text"  name="emailprop" value="<?php echo trim($email)?>" id="emailprop" class="form-control inputmask inputmask-email">
+                          <input type="text"  name="emailprop" value="<?php echo trim($email)?>" id="emailprop" class="form-control inputmask inputmask-email obligatorio">
                         </div>
                       </div>
                     </div>

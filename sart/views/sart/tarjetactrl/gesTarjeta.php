@@ -15,7 +15,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <table class="display" id="tcTable">
                                 <thead>
                                     <tr>
-                                        <th>id_tarjeta</th>
                                         <th># Tarjeta Control</th>
                                         <th>Conductor</th>
                                         <th>Movil</th>
@@ -55,20 +54,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			"bServerSide": true,
 			"sAjaxSource": '<?php echo base_url() ?>sart.php/sistemasart/datatarjeta?id=<?php echo $id; ?>',
 			"columnDefs": [
-				{  targets: [0],visible: false},
+				{  targets: [4],orderable:false},
 				{  targets: [5],orderable:false},
 				{  targets: [6],orderable:false},
-				{  targets: [7],orderable:false},
-                {  "width": "10%",targets: [1]},
-				{  "width": "25%",targets: [2]},
+                {  "width": "10%",targets: [0]},
+				{  "width": "25%",targets: [1]},
 			], 
 			"order": [[0, 'desc']],
 			"createdRow": function ( row, data, index ) {
 				row.setAttribute( 'data-iditem',data[0] );
-				row.setAttribute( 'data-capa','global_mediox');
-				row.setAttribute( 'data-toggle','modalx');
-				row.setAttribute( 'data-target','#modal_mediox' );
-				row.setAttribute( 'data-vars','<?php echo base_url() ?>sart.php/sistemasart/add_simit?tipo=edit&id='+data[0] );
+				row.setAttribute( 'data-capa','global_lg');
+				row.setAttribute( 'data-toggle','modal');
+				row.setAttribute( 'data-target','#modal_lg' );
+				row.setAttribute( 'data-vars','<?php echo base_url() ?>sart.php/sistemasart/gesTc?tipo=edit&&id=<?php echo $id; ?>&idTc='+data[0]);
 			},
 			"aLengthMenu": [
 					[5,10,15,25,50,100,-1], 
@@ -94,15 +92,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				 },
 			  }
 			});
-		 $('#tcTable').on('click', '.actSimit', function(e) {
-		   var div=$(this).data('div');
-		   var iditem=$(this).data('iditem');
-		   var status=$(this).data('data-status');
-		   var control=$(this).data('vars');
-		   var ini=$(this).data('ini');
-		   $(this).addClass('table-success').siblings().removeClass('table-success');
-		   $('#modal_medio').modal('show');
-		   queue_load_all('global_medio',ini,'abreinicio');
+		 $('#tcTable').on('click', '.printarjeta', function(e) {
+		   var url=$('#base_url').val();
+		   var iditem=$(this).parent().parent().data('iditem');
+		   urltc = url+'sart.php/sistemasart/pdf?ntarjeta='+iditem;
+           window.open(urltc,'','scrollbars=yes,width='+$(document).width()+',height='+$(document).height()+'');  
 		 }).on('click', '.cerrarTc', function(e){
 			e.preventDefault();
 			var idTc=$(this).parent().parent().data('iditem');

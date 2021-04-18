@@ -162,7 +162,7 @@
 	$(document).ready(function () {
 		setInterval(function(){
 			consultanotif();
-		}, 300000);
+		}, 30000);
 		Pleasure.init();
 		Layout.init();
 		$(document).ready(function () {

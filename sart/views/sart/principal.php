@@ -32,6 +32,11 @@ if(isset($grupo)){
 	<!-- BEGIN PLUGINS CSS -->
 	<link rel="stylesheet" href="<?php echo base_url() ?>plugins/jasny-bootstrap/dist/css/jasny-bootstrap.min.css">
 	<link rel="stylesheet" href="<?php echo base_url() ?>css/plugins.css">
+		
+	<link rel="stylesheet" href="<?php echo base_url(); ?>plugins/datatables/media/css/jquery.dataTables.min.css">
+	 <link rel="stylesheet" href="<?php echo base_url(); ?>plugins/datatables/themes/bootstrap/dataTables.bootstrap.css">
+	 <link rel="stylesheet" href="<?php echo base_url() ?>plugins/jasny-bootstrap/dist/css/jasny-bootstrap.min.css">
+
 	<!-- END PLUGINS CSS -->
 
 	<!-- BEGIN SHORTCUT AND TOUCH ICONS -->
@@ -49,10 +54,11 @@ if(isset($grupo)){
 				<div class="col-xs-10">
 					<h1 style="font-size: 25px;">Sistema De Gesti&oacute;n <small></small></h1>
 				</div><!--.col-->
-				<div class="col-xs-2 sign_out" style="cursor:pointer">
+				<div class="col-xs-2 " style="cursor:pointer">
 					<ol class="breadcrumb">
-						<li><a href="#"><i class="glyphicon glyphicon-off"></i></a></li>
-						<li><a href="#">Salir</a></li>
+					    <li><a href="#" class="abre_mod_global " data-capa='global_lg'  data-toggle="modal"  data-target="#modal_lg"   data-vars="<?php echo base_url() ?>sart.php/sistemasart/docsvencidos"><i class="glyphicon glyphicon-bell"></i></a></li>
+						<li><a href="#" class='sign_out'><i class="glyphicon glyphicon-off"></i></a></li>
+						<li><a href="#" class='sign_out'>Salir</a></li>
 					</ol>
 				</div><!--.col-->
 			</div><!--.row-->
@@ -95,6 +101,12 @@ if(isset($grupo)){
 		</div><!--.row-->
 
 	</div><!--.content-->
+	<div class="modal scale fade" id="modal_lg" tabindex="-1" role="dialog" aria-hidden="true">
+       	<div class="modal-dialog modal-lg">
+       		<div class="modal-content global_lg" id="global_lg">
+       		</div><!--.modal-content-->
+       	</div><!--.modal-dialog-->
+  </div><!--.modal large-->
 		<!-- BEGIN GLOBAL AND THEME VENDORS -->
 	<script src="<?php echo base_url() ?>js/global-vendors.js"></script>
 	<!-- END GLOBAL AND THEME VENDORS -->
@@ -111,5 +123,9 @@ if(isset($grupo)){
 	<!-- ADMIN 1 Layout Functions -->
 	<script src="<?php echo base_url() ?>js/layout.js"></script>
 	<script src="<?php echo base_url() ?>js/funciones.js"></script>
+	<script src="<?php echo base_url() ?>plugins/quicksearch/dist/jquery.quicksearch.min.js"></script>
+	<script src="<?php echo base_url() ?>plugins/datatables/media/js/jquery.dataTables.min.js"></script>
+	<script src="<?php echo base_url() ?>plugins/datatables/themes/bootstrap/dataTables.bootstrap.js"></script>
+	<script src="<?php echo base_url() ?>plugins/jasny-bootstrap/dist/js/jasny-bootstrap.min.js"></script>
 </body>
 </html>

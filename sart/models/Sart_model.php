@@ -564,7 +564,20 @@ class Sart_model extends CI_Model {
        $wheres='1';
       $this->db->where($wheres.$where);
      }
-    $this->db->join($tabla2,$join,$dir);
+     if (is_array($join)) {
+      if(count($join) > 0){			
+        foreach ($join as $key => $value) {
+          $this->db->join($key,$value,'left');
+          //$joinstring.=' LEFT JOIN '.$key.' ON '.$value;
+        }
+      }
+     }else{
+       if($join!=''){
+          $this->db->join($tabla2,$join,$dir);
+       }
+     }
+     
+    
     $query = $this->db->get($tabla);
       if($query->num_rows() > 0){      
           return $query;
@@ -808,7 +821,7 @@ function busqueda()
         foreach ($_REQUEST as $var => $val){$$var = $this->db->escape_str($val);}
 
         $hoy=date('Y-m-d');
-        $fexp=date('Y-m-d',strtotime($fexpdoc));
+    //    $fexp=date('Y-m-d',strtotime($fexpdoc));
         $fnace=date('Y-m-d',strtotime($fechaing));
         $yaexiste=false;
         $this->db->trans_begin();
@@ -840,8 +853,8 @@ function busqueda()
                             'ciudad'         => $cityprop,
                             'estado_prop'   => $estado_prop,
                             'fecha_nac'     => $fnace,
-                            'escondu'       => $escondu,
-                            'fecha_exp'     => $fexp
+                            'escondu'       => $escondu
+                            //'fecha_exp'     => $fexp
                    ); 
 
            $queries=$this->db->insert('propietario',$data2);
@@ -854,7 +867,7 @@ function busqueda()
                             'telefono'      => $telprop,
                             'direccion'     => $dirprop,
                             'fecha_nace'     => $fnace,
-                            'est_civil'       => '',
+                            //'est_civil'       => '',
                             'tipo_rh'     => ''
                    ); 
 
@@ -890,8 +903,8 @@ function busqueda()
                             'ciudad'         => $cityprop,
 
                             'fecha_nac'     => $fnace,
-                            'escondu'       => $escondu,
-                            'fecha_exp'     => $fexp
+                            'escondu'       => $escondu
+                           // 'fecha_exp'     => $fexp
 			        	   ); 
 
 			     $this->db->where('id_prop', $idp);  //localiza la maestro a actualizar
@@ -905,7 +918,7 @@ function busqueda()
                             'telefono'      => $telprop,
                             'direccion'     => $dirprop,
                             'fecha_nace'     => $fnace,
-                            'est_civil'       => '',
+                            //'est_civil'       => '',
                             'tipo_rh'     => ''
                    ); 
 
@@ -1003,8 +1016,8 @@ function busqueda()
                           'pago_hasta'    => $fechaing,
                           'dtaller'       => 0,
                           'color'         => '',                                   
-                                   'poliza'         => 0,
-                                   'dtaller'         => 0,
+                          'poliza'         => 0,
+                          'dtaller'         => 0,
                           'radio'         => '',
                           'id_prop'       => $id_propietario,
                           'estado'        => $estadomovil,
@@ -1081,30 +1094,54 @@ function busqueda()
                   }
           break;
             case 'edit':
-
-                          $data2 =array(
-                                  'placa'         => $placa,
-                                  'modelo'        => $modelo,
-                                  'grupo'         => $grupo,
-                                  'id_marca'      => $impmarca,
-                                  'clase'         => $clase,
-                                  'referencia'    => $linea,
-                                  'tipo'          => $tipoc,
-                                  'combustible'   => $gas,
-                                  'motor'         => $motor,
-                                  'serie'         => $chasis,                                 
-                                   'color'         => '',                                   
-                                   'poliza'         => 0,
-                                   'dtaller'         => 0,
-                                  'pago_hasta'    => $fechaing,
-                                  'radio'         => '',
-                                  'id_prop'       => $id_propietario,
-                                  'estado'        => $estadomovil,
-                                  'managerid'     => $id_adm,
-                                  'cilindraje'     => $cilindra,
-                                  'fcontrato'     => $fcontrato); 
+                $data2 =array(
+                        'placa'         => $placa,
+                        'modelo'        => $modelo,
+                        'grupo'         => $grupo,
+                        'id_marca'      => $impmarca,
+                        'clase'         => $clase,
+                        'referencia'    => $linea,
+                        'tipo'          => $tipoc,
+                        'combustible'   => $gas,
+                        'motor'         => $motor,
+                        'serie'         => $chasis,                                 
+                        'color'         => '',                                   
+                        'poliza'         => 0,
+                        'dtaller'         => 0,
+                        'pago_hasta'    => $fechaing,
+                        'radio'         => '',
+                        'id_prop'       => $id_propietario,
+                        'estado'        => $estadomovil,
+                        'managerid'     => $id_adm,
+                        'cilindraje'     => $cilindra,
+                        'fcontrato'     => $fcontrato); 
                     $this->db->where('id_movil', $idmovil);  //localiza la maestro a actualizar
                     $queries=$this->db->update('vehiculo',$data2);
+                    if($this->db->affected_rows() == '1'){
+                      $valuedes=array(
+                        'id_movil'      => $idmovil,
+                        'placa'         => $placa,
+                        'modelo'        => $modelo,
+                        'grupo'         => $grupo,
+                        'id_marca'      => $impmarca,
+                        'clase'         => $clase,
+                        'referencia'    => $linea,
+                        'tipo'          => $tipoc,
+                        'combustible'   => $gas,
+                        'motor'         => $motor,
+                        'serie'         => $chasis,                                 
+                        'color'         => '',                                   
+                        'poliza'         => 0,
+                        'dtaller'         => 0,
+                        'pago_hasta'    => $fechaing,
+                        'radio'         => '',
+                        'id_prop'       => $id_propietario,
+                        'estado'        => $estadomovil,
+                        'managerid'     => $id_adm,
+                        'cilindraje'     => $cilindra,
+                        'fcontrato'     => $fcontrato); 
+                         $this->db->insert('historial_movil',$valuedes);
+                    }
                           if ( !empty($idoc) && is_array($idoc) ) { 
                              for ( $i=0;$i<4;$i++) { 
                                 $fexp='0000-00-00';
@@ -1834,7 +1871,7 @@ function busqueda()
                             'direccion'           => $dirprop,
                             'acudiente'           => $acudiente,
                             'fecha_nace'          => $fnace,
-                            'lugarNace'           => $lugarnace,
+                            'anotaciones'         => $anotaciones,
                             'telefonoa'           => $telacu,
                             'emailc'              => $emailc,
                             'observacion'         => $obs,
@@ -1852,7 +1889,7 @@ function busqueda()
                           'direccion'           => $dirprop,
                           'acudiente'           => $acudiente,
                           'fecha_nace'          => $fnace,
-                          'lugarNace'           => $lugarnace,
+                          'anotaciones'         => $anotaciones,
                           'telefonoa'           => $telacu,
                           'emailc'              => $emailc,
                           'observacion'         => $obs,
@@ -1901,7 +1938,7 @@ function busqueda()
                             'direccion'           => $dirprop,
                             'acudiente'           => $acudiente,
                             'fecha_nace'          => $fnace,
-                            'lugarNace'           => $lugarnace,
+                            'anotaciones'         => $anotaciones,
                             'telefonoa'           => $telacu,
                             'emailc'              => $emailc,
                             'observacion'         => $obs,
@@ -1920,7 +1957,7 @@ function busqueda()
                             'direccion'           => $dirprop,
                             'acudiente'           => $acudiente,
                             'fecha_nace'          => $fnace,
-                            'lugarNace'           => $lugarnace,
+                            'anotaciones'         => $anotaciones,
                             'telefonoa'           => $telacu,
                             'emailc'              => $emailc,
                             'ispensionado'        => $pensionado,
@@ -1938,29 +1975,30 @@ function busqueda()
                $fven='0000-00-00';
                if(!empty($_REQUEST['fexp'.$i])){
                 $fexp=date('Y-m-d',strtotime($_REQUEST['fexp'.$i]));
+                }
+                if(!empty($_REQUEST['fven'.$i])){
+                  $fven=date('Y-m-d',strtotime($_REQUEST['fven'.$i]));
+                }
+              $valuedocs = array('id_doc'    => $idoc[$i],
+                                'fecha_ant'       => $fexp,
+                                'fecha_vence'       => $fven,
+                                'categoria'       =>$info[$i],
+                                'numero'          => $numerodoc[$i]);
+              $whereup='id_conductor="'.$id_condu.'" and id_doc="'.$idoc[$i].'"';
+              $this->db->where($whereup);
+              $actudocscondu=$this->db->update('con_doc',$valuedocs);
+              if($this->db->affected_rows() == '1' && $notif[$i]=='si'){
+                  if($notif[$i]=='si'){
+                    $valnotif=array(
+                      'id_movil' => $id_condu, 
+                      'fecha' => date('Y-m-d h:i:s'),
+                      'pago_hasta_n' => $fven,
+                      'novedad' =>'Pago de Aplicativo GHOST - '.$conduc[0],
+                      'control' =>1 
+                    );
+                    $this->db->insert('novedad_diario',$valnotif);
+                  }
               }
-              if(!empty($_REQUEST['fven'.$i])){
-                $fven=date('Y-m-d',strtotime($_REQUEST['fven'.$i]));
-              }
-             $valuedocs = array('id_doc'    => $idoc[$i],
-                              'fecha_ant'       => $fexp,
-                              'fecha_vence'       => $fven,
-                              'categoria'       =>$info[$i],
-                              'numero'          => $numerodoc[$i]);
-             $whereup='id_conductor="'.$id_condu.'" and id_doc="'.$idoc[$i].'"';
-             $this->db->where($whereup);
-             $this->db->update('con_doc',$valuedocs);
-
-             if($notif[$i]=='si'){
-               $valnotif=array(
-                'id_movil' => $id_condu, 
-                'fecha' => date('Y-m-d h:i:s'),
-                'pago_hasta_n' => $fven,
-                'novedad' =>'Pago de Aplicativo GHOST - '.$conduc[0],
-                'control' =>1 
-               );
-               $this->db->insert('novedad_diario',$valnotif);
-             }
             }
          }
 
@@ -2056,7 +2094,7 @@ function busqueda()
             $fplazoa=date('Y-m-d H:i:s',strtotime('+32 hour',strtotime($fechavig)));
             $fvigencia=date('Y-m-d H:i:s',strtotime($fechavig));
             $data2 =array(
-                    'tarjeta'             =>$tarjeta,
+                    //'tarjeta'             =>$tarjeta,
                     'id_conductor'        => $idconductor,
                     'id_movil'            => $idmovil,
                     'id_empresa'          => 1,
@@ -2072,20 +2110,18 @@ function busqueda()
           break;
           case 'edit':
             $this->db->trans_begin();
+            $fplazoa=date('Y-m-d H:i:s',strtotime('+32 hour',strtotime($fechavig)));
+            $fvigencia=date('Y-m-d H:i:s',strtotime($fechavig));
+            $filatc=$filact+1;
             $data2 =array(
-              'n_parte'             => $comparendo,
-              'cod_infraccion'      => $infraccion,
-              'id_eps'              => null,
-              'valor'               => $valcompa,
-              'fecha_parte'         => $fechacomp,
-              'fecha_pago'          => $fechapago,
-              'convenio'            => $convenio,
-              'observacion'         => null,
-              'estado'              => $estado
-            );    
-            $this->db->where('id_simit', $idcondu);  //localiza la maestro a actualizar
-            $queries=$this->db->update('simit',$data2);
-            
+                    'fecha_vigencia'      => $fvigencia,
+                    'fecha_plazo_a'       => $fplazoa,
+                    'id_doc_ref'          => $docref,
+                    'planilla'            => $filatc
+                    );  
+            $this->db->where('id_tarjeta', $tarjeta);  //localiza la maestro a actualizar
+            $queries=$this->db->update('tarjeta_control',$data2);
+            $idtc =$tarjeta;
           break;
           case 'cerrar':
             $this->db->trans_begin();

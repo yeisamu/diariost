@@ -115,7 +115,7 @@ if($condu){
             </div><!--.col-md-12-->
             <div class="col-md-12" style="margin-top:20px;font-size: 16px">
                 <span>TIEMPO QUE SE HA DESEMPEÑADO CONDUCIENDO VEHICULOS DE SERVICIO PÚBLICO:</span>
-                <div><?php echo strtoupper($experiencia) ?></div>
+                <div><?php echo strtoupper($expe) ?></div>
             </div>
             <div class="col-md-12" style="margin-top:20px;font-size: 16px">
                 <p style="text-align: justify;"><?php echo $formato->texto; ?></p>

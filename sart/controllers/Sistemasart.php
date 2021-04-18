@@ -1347,8 +1347,10 @@ public	function genera_informe(){ //Se toman los datos de la ciudad de la bases 
 	    	$this->db->join('conductor as b','a.id_conductor=b.id_conductor','left');
 	    	$this->db->join('vehiculo as c','a.id_movil=c.id_movil','left');
 	    	$this->db->join('con_doc as d','b.id_conductor=d.id_conductor','left');
-	    	$this->db->join('marca as e','c.id_marca=e.id_marca','left');
+	    	$this->db->join('documento as e','e.id_doc=e.id_doc','left');
+	    	$this->db->join('marca as f','c.id_marca=f.id_marca','left');
 	    	$datatarj= $this->db->get('tarjeta_control as a');
+			//echo $this->db->last_query();
 	    	$data['tarjeta']=$datatarj;
 
 	    	foreach ($datatarj->result() as  $value) {
@@ -1358,6 +1360,10 @@ public	function genera_informe(){ //Se toman los datos de la ciudad de la bases 
 	    	  $data['veh_doc'][$value->id_movil]=$veh_doc;
 	    	//  print_r($veh_doc);
 	    	}
+			 $id_user = $_COOKIE['user_ID'];//$_REQUEST['v'];
+			$filter = array('id_usr' => $id_user);
+			$data['user'] = $this->Sart_model->getdatos($filter,'acc_usuario',''); 
+			//echo $this->db->last_query();
 			//$html = $this->load->view('sart/pagos/tarjeta_control',$data);
 			$html = $this->load->view('sart/pagos/tarjeta_control',$data,TRUE);
 			$name="tarjeta.pdf";
@@ -1504,9 +1510,12 @@ public	function genera_informe(){ //Se toman los datos de la ciudad de la bases 
 	 }//fin funcion
 	 function generaestadisticac(){
 		$id=$_REQUEST['id'];
+		$totexp='';
+		$yearact=date('Y');
 		$formaid=$_REQUEST['formaid'];
 		$filter = array('id_conductor' => $id);
-		$data['condu'] = $this->Sart_model->getdatos($filter,'conductor','');
+		$condu=$this->Sart_model->getdatos($filter,'conductor','');
+		$data['condu'] = $condu;
 		$filter = array('formato' => $formaid);
 		$data['form'] = $this->Sart_model->getdatos($filter,'formatos',''); 
 		$orderby='';
@@ -1515,6 +1524,15 @@ public	function genera_informe(){ //Se toman los datos de la ciudad de la bases 
 		$camposmov='*';
 		$join='documento.id_doc=con_doc.id_doc';
 	    $data['docs'] = $this->Sart_model->getdatosjoinfull($filter,$filter_adv,'documento','con_doc',$join,'left',$camposmov,$orderby); 
+		if($condu){
+			$dataprop = $condu->row();
+			$experiencia=$dataprop->experiencia_laboral;
+			$difexp=$yearact-$experiencia;
+			$totexp=$this->numtoletras($difexp);
+        
+		}
+
+        $data['expe']=$totexp;
 		$html = $this->load->view('sart/tarjetactrl/estadisticac.php',$data,TRUE);
 		$name=$formaid.".pdf";
 		$this->sma->generate_pdf($html, $name,'I');
@@ -1580,12 +1598,12 @@ public	function genera_informe(){ //Se toman los datos de la ciudad de la bases 
    public function  datatarjeta(){
 	 $id=$_REQUEST['id'];
 	 $conf=array();
-	 $conf['aColumns2']=array('id_tarjeta', 'tarjeta','concat_ws(" ",nombres,apellidos) as conductor', 'id_movil','fecha_plazo_a','case estado when 1 then "Abierta" else "Cerrada" end as estado','if(`fecha_plazo_a`<DATE_FORMAT(now(),"%Y/%m/%d"),"Vencido","Vigente") as est_vig');
-	 $conf['aColumns']=array('id_tarjeta', 'tarjeta', 'concat_ws(" ",nombres,apellidos) as conductor','id_movil','fecha_plazo_a','case estado when 1 then "Abierta" else "Cerrada" end as estado','if(`fecha_plazo_a`<DATE_FORMAT(now(),"%Y/%m/%d"),"Vencido","Vigente") as est_vig');
-	 $conf['aColumns1']=array('id_tarjeta', 'tarjeta','concat_ws(" ",nombres,apellidos) as conductor', 'id_movil','fecha_plazo_a','case estado when 1 then "Abierta" else "Cerrada" end as estado','if(`fecha_plazo_a`<DATE_FORMAT(now(),"%Y/%m/%d"),"Vencido","Vigente") as est_vig');
+	 $conf['aColumns2']=array('id_tarjeta','concat_ws(" ",nombres,apellidos) as conductor', 'id_movil','fecha_plazo_a','case estado when 1 then "Abierta" else "Cerrada" end as estado','if(`fecha_plazo_a`<DATE_FORMAT(now(),"%Y/%m/%d"),"Vencido","Vigente") as est_vig');
+	 $conf['aColumns']=array('id_tarjeta', 'concat_ws(" ",nombres,apellidos) as conductor','id_movil','fecha_plazo_a','case estado when 1 then "Abierta" else "Cerrada" end as estado','if(`fecha_plazo_a`<DATE_FORMAT(now(),"%Y/%m/%d"),"Vencido","Vigente") as est_vig');
+	 $conf['aColumns1']=array('id_tarjeta','concat_ws(" ",nombres,apellidos) as conductor', 'id_movil','fecha_plazo_a','case estado when 1 then "Abierta" else "Cerrada" end as estado','if(`fecha_plazo_a`<DATE_FORMAT(now(),"%Y/%m/%d"),"Vencido","Vigente") as est_vig');
 	 $conf['aColumnsunion']='';
-	 $conf['rows']=array('id_tarjeta', 'tarjeta','conductor', 'id_movil','fecha_plazo_a','est_vig','estado');
-	 $conf['opt']=array('<button type="button" class="btn btn-indigo actSimit">Actualizar</button>&nbsp;<button type="button" class="btn btn-danger  cerrarTc">Cerrar</button>');
+	 $conf['rows']=array('id_tarjeta','conductor', 'id_movil','fecha_plazo_a','est_vig','estado');
+	 $conf['opt']=array('<button type="button" class="btn btn-indigo ion-android-print printarjeta"></button>&nbsp;<button type="button" class="btn btn-danger  cerrarTc">Cerrar</button>');
 	 $conf['union']="";
 
 	 $filter2 = array('tarjeta_control.id_conductor' => $id);
@@ -1598,15 +1616,29 @@ public	function genera_informe(){ //Se toman los datos de la ciudad de la bases 
    public function gesTc(){ 
 	$tipo=$_REQUEST['tipo'];
 	if($tipo=='edit'){
-		$id=$_REQUEST['id_condu'];
-		$filter = array('id_conductor' => $id);
+		$id=$_REQUEST['id'];
+		$idTc=$_REQUEST['idTc'];
+		$filter = array('id_tarjeta' => $idTc);
+		$filter_adv = '';
+		$dataTc=$this->Sart_model->getdatos($filter,'tarjeta_control','')->row(); 
+
+		$filter = array('id_conductor' => $dataTc->id_conductor);
 		$filter_adv = '';
 		$data['prop'] = $this->Sart_model->getdatos($filter,'conductor',''); 
 		$orderby='';
-		   $camposmov='*,datediff(fecha_vence,now()) as diff';
-		   $join='documento.id_doc=con_doc.id_doc';
-		  $data['docs'] = $this->Sart_model->getdatosjoinfull($filter,$filter_adv,'documento','con_doc',$join,'left',$camposmov,$orderby); 
-		//echo $this->db->last_query();
+		$camposmov='*,datediff(fecha_vence,now()) as diff';
+		$join='documento.id_doc=con_doc.id_doc';
+		$data['docs'] = $this->Sart_model->getdatosjoinfull($filter,$filter_adv,'documento','con_doc',$join,'left',$camposmov,$orderby);  
+
+		$filter = array('id_movil' => $dataTc->id_movil);
+		$data['movil'] = $this->Sart_model->getdatos($filter,'vehiculo',''); 	 
+		$filter = array('id_movil' => $dataTc->id_movil);
+		$orderby='';
+		$camposmov='*,datediff(fecha_ven,now()) as diff';
+		$join='documentos_v.id_docv=veh_doc.id_documento';
+		$data['docsv'] = $this->Sart_model->getdatosjoinfull($filter,'','documentos_v','veh_doc',$join,'left',$camposmov,$orderby);   
+		$data['tc']=$dataTc;	       
+
 	}else{
 		$id=$_REQUEST['id'];
 		$filter = array('id_conductor' => $id);
@@ -1616,6 +1648,7 @@ public	function genera_informe(){ //Se toman los datos de la ciudad de la bases 
 		$camposmov='*,datediff(fecha_vence,now()) as diff';
 		$join='documento.id_doc=con_doc.id_doc';
 		$data['docs'] = $this->Sart_model->getdatosjoinfull($filter,$filter_adv,'documento','con_doc',$join,'left',$camposmov,$orderby);  
+		$data['docsv'] ='';
 		 // echo $this->db->last_query();
 		  //print_r($data['docs']);
 	}
@@ -1626,18 +1659,20 @@ public	function genera_informe(){ //Se toman los datos de la ciudad de la bases 
  public function grabarTc(){
 	foreach ($_REQUEST as $var => $val){$$var = $this->db->escape_str($val);}
 	$resp=$this->Sart_model->addModTc(); // Envio de los datos a la base de datos 
+	$meses = array(1=>'ENERO',2=> 'FEBRERO',3=> 'MARZO',4=> 'ABRIL',5=> 'MAYO',6=> 'JUNIO',7=> 'JULIO',8=> 'AGOSTO', 9=>'SEPTIEMBRE',10=> 'OCTUBRE',"11"=> 'NOVIEMBRE',12=> 'DICIEMBRE'); 
 	 if($resp['guarda']== 'ok'){
 		 $respu['validacion'] = 'ok';
 		 $respu['id'] = $resp['id'];
 		 $respu['tipo'] = $resp['tipo'];
 		 $respu['ntc'] = $resp['idTc'];
-		 $respu['msn'] = ' Guardado con Exito!!';
+		 
 		 $filter = array('id_movil' => $idmovil);
-		 //$result= $this->Sart_model->getdatos($filter,'propietario','');
 		 $orderby='';
 		 $camposmov='';
 		 $join='vehiculo.id_prop=propietario.id_prop';
 		 $result=  $this->Sart_model->getdatosjoinfull($filter,'','vehiculo','propietario',$join,'left',$camposmov,$orderby); 
+		// echo $this->db->last_query();
+
 		 if($result){
 			$rowd 		= $result->row();
 			$emailProp 	= $rowd->email;
@@ -1645,20 +1680,77 @@ public	function genera_informe(){ //Se toman los datos de la ciudad de la bases 
 		 }else{
 			$emailProp 	= "";
 		 }
-
+        // print_r($rowd);
+		 $join='vehiculo.managerid=propietario.id_prop';
+		 $resultmger=  $this->Sart_model->getdatosjoinfull($filter,'','vehiculo','propietario',$join,'left',$camposmov,$orderby); 
+		//echo $this->db->last_query();
+		 if($resultmger){
+			$rowmger 		= $resultmger->row();
+			$emailmgr 	= $rowmger->email;
+			$nombremger		= $rowmger->nombre." ".$rowmger->apellidos;
+		 }else{
+			$emailmgr 	= "";
+		 }
+        // print_r($rowmger);
 		 switch ($tipo) {
 			case 'nuevo': 
 				$objeto='Creación de tarjeta de Control Coomocart';
 				$fplazoa=date('d-m-Y H:i:s',strtotime('+32 hour',strtotime($fechavig)));
 				$fvigencia=date('Y-m-d',strtotime($fechavig));
-				$message="Estimado ".$nombre.", la cooperativa Coomocart le informa que se cre&oacute; la tarjeta de control <strong>#".$tarjeta."</strong> para el movil <strong>".$idmovil."</strong>, la cual tiene una vigencia hasta el d&iacute;a <strong>".$fplazoa."</strong> y est&aacute; condicionada por el documento <strong>".$nomdocRef."</strong> que vence en la fecha <strong>".$fvigencia."</strong><div>Si tiene alguna inquietud con gusto ser&aacute; atendida.</div>";
+
+				$diaplazo=date('d',strtotime($fplazoa));
+				$diavigm=date('d',strtotime($fvigencia));
+				$mesvigm=$meses[date('n',strtotime($fechavig))];
+				$anioplazo=date('Y H:i:s',strtotime($fplazoa));
+				$aniovigm=date('Y',strtotime($fvigencia));
+
+				$fmuestraplazo=$diaplazo." de ".$mesvigm." del ".$anioplazo;
+				$fmuestravi=$diavigm." de ".$mesvigm." del ".$aniovigm;
+
+
+				$message="Estimado ".$nombre.", la cooperativa Coomocart le informa que se cre&oacute; la tarjeta de control <strong>#".$tarjeta."</strong> para el movil <strong>".$idmovil."</strong>, la cual tiene una vigencia hasta el d&iacute;a <strong>".$fmuestraplazo."</strong> y est&aacute; condicionada por el documento <strong>".$nomdocRef."</strong> que vence en la fecha <strong>".$fmuestravi."</strong><div>Si tiene alguna inquietud con gusto ser&aacute; atendida.</div>";
 				if($emailProp != ""){
 					$enviarCorreo = $this->sendMail($emailProp,$nombre,$message,$objeto);
+				}
+				if($emailmgr != ""){
+					$enviarCorreo = $this->sendMail($emailmgr,$nombremger,$message,$objeto);
+				}
+				if($enviarCorreo){
+					$msjemail='correo enviado';
+				}else{
+					$msjemail='correo NO enviado';
+				}
+		  break;
+		  case 'edit':
+				$objeto='Actualización de tarjeta de Control Coomocart';
+				$fplazoa=date('d-m-Y H:i:s',strtotime('+32 hour',strtotime($fechavig)));
+				$fvigencia=date('Y-m-d',strtotime($fechavig));
+
+				$diaplazo=date('d',strtotime($fplazoa));
+				$diavigm=date('d',strtotime($fvigencia));
+				$mesvigm=$meses[date('n',strtotime($fechavig))];
+				$anioplazo=date('Y H:i:s',strtotime($fplazoa));
+				$aniovigm=date('Y',strtotime($fvigencia));
+
+				$fmuestraplazo=$diaplazo." de ".$mesvigm." del ".$anioplazo;
+				$fmuestravi=$diavigm." de ".$mesvigm." del ".$aniovigm;
+
+				$message="Estimado ".$nombre.", la cooperativa Coomocart le informa que se actualiz&oacute; la tarjeta de control <strong>#".$tarjeta."</strong> para el movil <strong>".$idmovil."</strong>, la cual tiene una vigencia hasta el d&iacute;a <strong>".$fmuestraplazo."</strong> y est&aacute; condicionada por el documento <strong>".$nomdocRef."</strong> que vence en la fecha <strong>".$fmuestravi."</strong><div>Si tiene alguna inquietud con gusto ser&aacute; atendida.</div>";
+				if($emailProp != ""){
+					$enviarCorreo = $this->sendMail($emailProp,$nombre,$message,$objeto);
+				}
+				if($emailmgr != ""){
+					$enviarCorreomger = $this->sendMail($emailmgr,$nombremger,$message,$objeto);
+				}
+				if($enviarCorreo){
+					$msjemail='correo enviado';
+				}else{
+					$msjemail='correo NO enviado';
 				}
 		  break;
         }
 
-		
+		$respu['msn'] = ' Guardado con Exito!!, '.$msjemail;
 	  }else{
 		 $respu['validacion'] = 'fail';
 		 $respu['msn'] = $resp['motivo'];
@@ -1702,6 +1794,279 @@ public	function genera_informe(){ //Se toman los datos de la ciudad de la bases 
 	//======================================
    echo json_encode($respu);
  }//fin funcion
+
+ public function numtoletras($xcifra)
+{ 
+	$xarray = array(0 => "Cero",
+	1 => "UN", "DOS", "TRES", "CUATRO", "CINCO", "SEIS", "SIETE", "OCHO", "NUEVE", 
+	"DIEZ", "ONCE", "DOCE", "TRECE", "CATORCE", "QUINCE", "DIECISEIS", "DIECISIETE", "DIECIOCHO", "DIECINUEVE", 
+	"VEINTI", 30 => "TREINTA", 40 => "CUARENTA", 50 => "CINCUENTA", 60 => "SESENTA", 70 => "SETENTA", 80 => "OCHENTA", 90 => "NOVENTA", 
+	100 => "CIENTO", 200 => "DOSCIENTOS", 300 => "TRESCIENTOS", 400 => "CUATROCIENTOS", 500 => "QUINIENTOS", 600 => "SEISCIENTOS", 700 => "SETECIENTOS", 800 => "OCHOCIENTOS", 900 => "NOVECIENTOS"
+	);
+	//
+	$xcifra = trim($xcifra);
+	$xlength = strlen($xcifra);
+	$xpos_punto = strpos($xcifra, ".");
+	$xaux_int = $xcifra;
+	$xdecimales = "00";
+	if ($xpos_punto > 0)
+	{
+		$xaux_int = substr($xcifra, 0, $xpos_punto); // obtengo el entero de la cifra a covertir
+		$xdecimales = substr($xcifra."00", $xpos_punto + 1, 2); // obtengo los valores decimales
+	}
+
+	$XAUX = str_pad($xaux_int, 18, " ", STR_PAD_LEFT); // ajusto la longitud de la cifra, para que sea divisible por centenas de miles (grupos de 6)
+	$xcadena = "";
+	for($xz = 0; $xz < 3; $xz++)
+	{
+		$xaux = substr($XAUX, $xz * 6, 6);
+		$xi = 0; $xlimite = 6; // inicializo el contador de centenas xi y establezco el límite a 6 dígitos en la parte entera
+		$xexit = true; // bandera para controlar el ciclo del While
+		while ($xexit)
+		{
+			if ($xi == $xlimite) // si ya llegó al límite m&aacute;ximo de enteros
+			{
+				break; // termina el ciclo
+			}
+
+			$x3digitos = ($xlimite - $xi) * -1; // comienzo con los tres primeros digitos de la cifra, comenzando por la izquierda
+			$xaux = substr($xaux, $x3digitos, abs($x3digitos)); // obtengo la centena (los tres dígitos)
+			for ($xy = 1; $xy < 4; $xy++) // ciclo para revisar centenas, decenas y unidades, en ese orden
+			{
+				switch ($xy) 
+				{
+					case 1: // checa las centenas
+						if (substr($xaux, 0, 3) < 100) // si el grupo de tres dígitos es menor a una centena ( < 99) no hace nada y pasa a revisar las decenas
+						{
+						}
+						else
+						{
+							$xseek = $xarray[substr($xaux, 0, 3)]; // busco si la centena es número redondo (100, 200, 300, 400, etc..)
+							if ($xseek)
+							{
+								$xsub = $this->subfijo($xaux); // devuelve el subfijo correspondiente (Millón, Millones, Mil o nada)
+								if (substr($xaux, 0, 3) == 100) 
+									$xcadena = " ".$xcadena." CIEN ".$xsub;
+								else
+									$xcadena = " ".$xcadena." ".$xseek." ".$xsub;
+									$xy = 3; // la centena fue redonda, entonces termino el ciclo del for y ya no reviso decenas ni unidades
+							}
+							else // entra aquí si la centena no fue numero redondo (101, 253, 120, 980, etc.)
+							{
+								$xseek = $xarray[substr($xaux, 0, 1) * 100]; // toma el primer caracter de la centena y lo multiplica por cien y lo busca en el arreglo (para que busque 100,200,300, etc)
+								$xcadena = " ".$xcadena." ".$xseek;
+							} // ENDIF ($xseek)
+						} // ENDIF (substr($xaux, 0, 3) < 100)
+					break;
+					case 2: // checa las decenas (con la misma lógica que las centenas)
+						if (substr($xaux, 1, 2) < 10)
+						{
+						}
+						else
+						{
+							$xseek = $xarray[substr($xaux, 1, 2)];
+							if ($xseek)
+							{
+								$xsub = $this->subfijo($xaux);
+								if (substr($xaux, 1, 2) == 20)
+									$xcadena = " ".$xcadena." VEINTE ".$xsub;
+								else
+									$xcadena = " ".$xcadena." ".$xseek." ".$xsub;
+									$xy = 3;
+							}
+							else
+							{
+								$xseek = $xarray[substr($xaux, 1, 1) * 10];
+								if (substr($xaux, 1, 1) * 10 == 20)
+									$xcadena = " ".$xcadena." ".$xseek;
+								else
+									$xcadena = " ".$xcadena." ".$xseek." Y ";
+							} // ENDIF ($xseek)
+						} // ENDIF (substr($xaux, 1, 2) < 10)
+					break;
+					case 3: // checa las unidades
+						if (substr($xaux, 2, 1) < 1) // si la unidad es cero, ya no hace nada
+						{
+						}
+						else
+						{
+							$xseek = $xarray[substr($xaux, 2, 1)]; // obtengo directamente el valor de la unidad (del uno al nueve)
+							$xsub = $this->subfijo($xaux);
+							$xcadena = " ".$xcadena." ".$xseek." ".$xsub;
+						} // ENDIF (substr($xaux, 2, 1) < 1)
+					break;
+				} // END SWITCH
+			} // END FOR
+			$xi = $xi + 3;
+		} // ENDDO
+
+		if (substr($xcadena, -6, 6) == "MILLON") // si la cadena obtenida termina en MILLON, entonces le agrega al fina la palabra DE
+		$xcadena.= " DE";
+
+		if (substr($xcadena, -8, 8) == "MILLONES") // si la cadena obtenida en MILLONES, entoncea le agrega al fina la palabra DE
+		$xcadena.= " DE";
+
+		// ----------- esta línea la puedes cambiar de acuerdo a tus necesidades o a tu país -------
+		if (trim($xaux) != "")
+		{
+			switch ($xz)
+			{
+			case 0:
+				if (trim(substr($XAUX, $xz * 6, 6)) == "1")
+					$xcadena.= "UN BILLON ";
+				else
+					$xcadena.= " BILLONES ";
+			break;
+			case 1:
+				if (trim(substr($XAUX, $xz * 6, 6)) == "1")
+					$xcadena.= "UN MILLON ";
+				else
+					$xcadena.= " MILLONES ";
+			break;
+			case 2:
+				if ($xcifra < 1 )
+				{
+					$xcadena = "CERO PESOS ";
+				}
+				if ($xcifra >= 1 && $xcifra < 2)
+				{
+					$xcadena = "UN PESO  ";
+				}
+				if ($xcifra >= 2)
+				{
+					$xcadena.= " AÑOS "; // 
+				}
+			break;
+			} // endswitch ($xz)
+		} // ENDIF (trim($xaux) != "")
+		// ------------------      en este caso, para México se usa esta leyenda     ----------------
+
+		$xcadena = str_replace("VEINTI ", "VEINTI", $xcadena); // quito el espacio para el VEINTI, para que quede: VEINTICUATRO, VEINTIUN, VEINTIDOS, etc
+		$xcadena = str_replace("  ", " ", $xcadena); // quito espacios dobles 
+		$xcadena = str_replace("UN UN", "UN", $xcadena); // quito la duplicidad
+		$xcadena = str_replace("  ", " ", $xcadena); // quito espacios dobles 
+		$xcadena = str_replace("BILLON MILLONES", "BILLON", $xcadena); // corrigo la leyenda
+		$xcadena = str_replace("BILLONES MILLONES", "BILLONES", $xcadena); // corrigo la leyenda
+
+
+	} // ENDFOR ($xz)
+	return trim($xcadena);
+} // END FUNCTION
+
+
+public function subfijo($xx)
+{ // esta función regresa un subfijo para la cifra
+	$xx = trim($xx);
+	$xstrlen = strlen($xx);
+	if ($xstrlen == 1 || $xstrlen == 2 || $xstrlen == 3)
+		$xsub = "";
+	//
+	if ($xstrlen == 4 || $xstrlen == 5 || $xstrlen == 6)
+		$xsub = "MIL";
+	//
+	return $xsub;
+} // END FUNCTION
+public function docsvencidos(){
+	foreach ($_REQUEST as $var => $val){$$var = $this->db->escape_str($val);}	 
+	$hoy=date('Y-m-d');
+	$data['docsv']=array();
+	$filter ='';// array('id_movil' => $id);
+	$filter_adv=array('adv1'=>" fecha_ven <= '$hoy' ");
+	$orderby='id_movil asc';
+	$camposmov='veh_doc.id_movil,descripcion,fecha_ven';
+	$join='documentos_v.id_docv=veh_doc.id_documento';
+	$data['docsvehi']= $this->Sart_model->getdatosjoinfull($filter,$filter_adv,'documentos_v','veh_doc',$join,'left',$camposmov,$orderby); 
+	/*if($vencivehi){
+		array_push($data['docsvehi'],$vencivehi->result());
+	} */ 
+	
+	$filter =array('ispensionado'=>'no','obligatorio'=>'si');
+	$filter_adv=array('adv1'=>" fecha_vence <= '$hoy' ");
+	$orderby='con_doc.id_conductor asc';
+	$camposmov='concat_ws(" ",nombres,apellidos) as id_movil,documento,fecha_vence';
+	$join=array('con_doc'=>'con_doc.id_conductor=conductor.id_conductor','documento'=>'documento.id_doc=con_doc.id_doc');
+	$data['docsv'] = $this->Sart_model->getdatosjoinfull($filter,$filter_adv,'conductor','con_doc',$join,'left',$camposmov,$orderby);
+	/*if($vencidoscond){
+		array_push($data['docsv'],$vencidoscond);
+	}*/
+
+	$filter =array('ispensionado'=>'si','documento'=>'LICENCIA DE CONDUCCION');
+	$filter_adv=array('adv1'=>" fecha_vence <= '$hoy' ");
+	$orderby='con_doc.id_conductor asc';
+	$camposmov='concat_ws(" ",nombres,apellidos) as id_movil,documento,fecha_vence';
+	$join=array('con_doc'=>'con_doc.id_conductor=conductor.id_conductor','documento'=>'documento.id_doc=con_doc.id_doc');
+	$data['doccondu'] = $this->Sart_model->getdatosjoinfull($filter,$filter_adv,'conductor','con_doc',$join,'left',$camposmov,$orderby); 
+   // if($datapensi){
+		//array_push($data['docsv'],$datapensi);
+	//}
+	$this->load->view('sart/tarjetactrl/docsvencidos',$data);
+
+}
+public function notifVencidos(){
+	foreach ($_REQUEST as $var => $val){$$var = $this->db->escape_str($val);}	 
+	$hoy=date('Y-m-d');
+	$data['docsv']=array();
+	$filter ='';// array('id_movil' => $id);
+	$filter_adv=array('adv1'=>" fecha_ven <= '$hoy' ");
+	
+	$orderby='id_movil asc';
+	$camposmov='distinct veh_doc.id_movil,concat_ws("" ,nombre,apellidos)as propi,email';
+	$join=array('vehiculo'=>'vehiculo.id_movil=veh_doc.id_movil','propietario'=>'propietario.id_prop=vehiculo.id_prop');
+	$vencivehi= $this->Sart_model->getdatosjoinfull($filter,$filter_adv,'veh_doc','',$join,'',$camposmov,$orderby); 
+	if($vencivehi){
+		
+		foreach($vencivehi->result() as $docvehi){
+			$mensajeven='Estimado xxxxx a continuaci&oacute se relacionan los documentos vencidos del movil '.$docvehi->id_movil.'<ul>';
+			$documentovenVh='';
+			$filter =array('id_movil' => $docvehi->id_movil);
+			$filter_adv=array('adv1'=>" fecha_ven <= '$hoy' ");
+			$orderby='veh_doc.id_movil asc';
+			$camposmov='veh_doc.id_movil,descripcion,fecha_ven';
+			$join='documentos_v.id_docv=veh_doc.id_documento';
+			$docuvehi=$this->Sart_model->getdatosjoinfull($filter,$filter_adv,'documentos_v','veh_doc',$join,'left',$camposmov,$orderby); 
+			if($docuvehi){
+				foreach($docuvehi->result() as $valudoc){
+					$documentovenVh.='<li>'.$valudoc->descripcion.$docvehi->id_movil.'</li>';
+				}
+			}
+			//$documentovenVh='<li>'.$docvehi->descripcion.'</li>';
+			/*if($idmovil==$docvehi->id_movil){
+				echo	$documentovenVh.='<li>'.$docvehi->descripcion.$idmovil.'</li>';
+			}else{
+				echo $documentovenVh;
+			}*/
+			$mensajeven.=$documentovenVh."</ul> Por favor actualizarlos lo antes posible y reporte la actualizacion a la empresa Coomocart";
+
+			if($docvehi->email != ""){
+				$enviarCorreo = $this->sendMail($docvehi->email,$docvehi->propi,$mensajeven,"¡ Documentos Próximos a Vencer !!");
+				echo "envio";
+			}
+			echo $documentovenVh;
+		}
+	}
+	
+/*	$filter =array('ispensionado'=>'no','obligatorio'=>'si');
+	$filter_adv=array('adv1'=>" fecha_vence <= '$hoy' ");
+	$orderby='con_doc.id_conductor asc';
+	$camposmov='concat_ws(" ",nombres,apellidos) as id_movil,documento,fecha_vence';
+	$join=array('con_doc'=>'con_doc.id_conductor=conductor.id_conductor','documento'=>'documento.id_doc=con_doc.id_doc');
+	$data['docsv'] = $this->Sart_model->getdatosjoinfull($filter,$filter_adv,'conductor','con_doc',$join,'left',$camposmov,$orderby);
+	if($vencidoscond){
+		array_push($data['docsv'],$vencidoscond);
+	}
+
+	$filter =array('ispensionado'=>'si','documento'=>'LICENCIA DE CONDUCCION');
+	$filter_adv=array('adv1'=>" fecha_vence <= '$hoy' ");
+	$orderby='con_doc.id_conductor asc';
+	$camposmov='concat_ws(" ",nombres,apellidos) as id_movil,documento,fecha_vence';
+	$join=array('con_doc'=>'con_doc.id_conductor=conductor.id_conductor','documento'=>'documento.id_doc=con_doc.id_doc');
+	$data['doccondu'] = $this->Sart_model->getdatosjoinfull($filter,$filter_adv,'conductor','con_doc',$join,'left',$camposmov,$orderby); */
+   // if($datapensi){
+		//array_push($data['docsv'],$datapensi);
+	//}
+	//$this->load->view('sart/tarjetactrl/docsvencidos',$data);
+
+}
 /************* Nuevas Funcionalidades jcano *******************/
 public function users(){
 
