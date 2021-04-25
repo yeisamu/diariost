@@ -5,6 +5,7 @@ if(isset($grupo)){
 }else{
   $filtrog='*';
 }
+
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -56,7 +57,7 @@ if(isset($grupo)){
 				</div><!--.col-->
 				<div class="col-xs-2 " style="cursor:pointer">
 					<ol class="breadcrumb">
-					    <li><a href="#" class="abre_mod_global " data-capa='global_lg'  data-toggle="modal"  data-target="#modal_lg"   data-vars="<?php echo base_url() ?>sart.php/sistemasart/docsvencidos"><i class="glyphicon glyphicon-bell"></i></a></li>
+					    <li><a href="#" class="abre_mod_global docsvencidos" data-capa='global_lg'  data-toggle="modal"  data-target="#modal_lg"   data-vars="<?php echo base_url() ?>sart.php/sistemasart/docsvencidos"><i class="glyphicon glyphicon-bell"></i></a></li>
 						<li><a href="#" class='sign_out'><i class="glyphicon glyphicon-off"></i></a></li>
 						<li><a href="#" class='sign_out'>Salir</a></li>
 					</ol>
@@ -101,6 +102,10 @@ if(isset($grupo)){
 		</div><!--.row-->
 
 	</div><!--.content-->
+	<button class="btn btn-default toastr-notify hide grabaok" data-toastr-title="" data-toastr-type="success"
+			data-toastr-notification="Solicitud grabada con Exito!!!!!" data-toastr-close-others="true">
+	</button>
+    <button class="btn btn-default toastr-notify grabaerror" data-toastr-close-others="true" data-toastr-type="error" data-toastr-notification="" data-toastr-position="toast-top-right"></button>
 	<div class="modal scale fade" id="modal_lg" tabindex="-1" role="dialog" aria-hidden="true">
        	<div class="modal-dialog modal-lg">
        		<div class="modal-content global_lg" id="global_lg">
@@ -127,5 +132,15 @@ if(isset($grupo)){
 	<script src="<?php echo base_url() ?>plugins/datatables/media/js/jquery.dataTables.min.js"></script>
 	<script src="<?php echo base_url() ?>plugins/datatables/themes/bootstrap/dataTables.bootstrap.js"></script>
 	<script src="<?php echo base_url() ?>plugins/jasny-bootstrap/dist/js/jasny-bootstrap.min.js"></script>
+	<script>
+	  	$(document).ready(function () {
+          if('<?php echo $notif;?>' == 0){
+			$('.docsvencidos').click();
+		  }
+          setInterval(function(){
+			consultanotif();
+		  }, 30000);
+        });
+</script>
 </body>
 </html>

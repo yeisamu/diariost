@@ -1069,144 +1069,253 @@ $empresa='';
 							</div><!--.invoice-body-->
 						 <?php
 						        break;
-						         	case 'desvinculados':
-					 ?>
-						    <div class="invoice-heading">
-						     <div class="row margin_0">
-						     	<div class="col-md-12XX" style="padding-bottom:16px;">
-						     	 <center>
-						     	    <h3 class="no_bold" style="margin-top: 0px;">INFORME MOVILES DESVINCULADOS</h3>		
-					 <?php
+						case 'desvinculados':
+			?>
+				<div class="invoice-heading">
+					<div class="row margin_0">
+					<div class="col-md-12XX" style="padding-bottom:16px;">
+						<center>
+						<h3 class="no_bold" style="margin-top: 0px;">INFORME MOVILES DESVINCULADOS</h3>		
+			<?php
 $empresa='';
 //echo $grup;
- if(isset($grup)){ 
-	$empresa='COOMOCART LTDA';
+if(isset($grup)){ 
+$empresa='COOMOCART LTDA';
 ?>	
 <center>
-	<div class="bold"><?php echo $empresa?></div>
+<div class="bold"><?php echo $empresa?></div>
 </center>								     	<?php } ?>									
 
-						     	 <?php if(isset($fini) && $fini!='' ){ ?>	
-						     		<center>
-						     		 <div class="bold">Para la fecha <?php echo $fini.' hasta '.$ffin ?></div>
-						     		</center>	
-						     	<?php } ?>	 
-						     	 </center>
-						     	</div>
-						     </div>
-						    </div>
-							<div class="invoice-body">
-								<div class="row">
-							<?php if($mov){ ?>
-								  <div class="col-md-12 col-xs-12">
-									<table class="table table-bordered border_l_0  head-shadowxx margin_0 bck_table table-hover" style="font-size: 13px;" >
-									     <tr class=" ">
-									         <th width="6%"  class=" border_l_0 border_t_0" style="padding: 3px 0 3px 10px;">
-									           <span style="padding-left:5px;padding-right:5px">MOVIL</span>
-									         </th>
-									         <th  width="6%"  class=" border_l_0 border_t_0" style="padding: 3px 0 3px 10px;">
-									           <span style="padding-left:5px;padding-right:5px">DIARIOS</span>
-									         </th>
-									          <th  width="21%"  class=" border_l_0 border_t_0" style="padding: 3px 0 3px 10px;">
-									           <span style="padding-left:5px;padding-right:5px">RECIBO</span>
-									         </th>
-									         <th width="7%"  class=" border_l_0 border_t_0" style="padding: 3px 0 3px 10px;">
-									           <span style="padding-left:5px;padding-right:5px">CONCEPTO</span>
-									         </th>
-									         <th  width="10%"  class=" border_l_0 border_t_0" style="padding: 3px 0 3px 10px;">
-									           <span style="padding-left:5px;padding-right:5px">ADMIN</span>
-									         </th>
-									          <th  width="10%"  class=" border_l_0 border_t_0" style="padding: 3px 0 3px 10px;">
-									           <span style="padding-left:5px;padding-right:5px">RADIO</span>
-									         </th>
-									          <th  width="10%"  class=" border_l_0 border_t_0" style="padding: 3px 0 3px 10px;">
-									           <span style="padding-left:5px;padding-right:5px">TALLER</span>
-									         </th>
-									          <th  width="10%"  class=" border_l_0 border_t_0" style="padding: 3px 0 3px 10px;">
-									           <span style="padding-left:5px;padding-right:5px">FECHA PAGO</span>
-									         </th>
-									          <th  width="10%"  class=" border_l_0 border_t_0" style="padding: 3px 0 3px 10px;">
-									           <span style="padding-left:5px;padding-right:5px">PAGO HASTA</span>
-									         </th>
-									          <th  width="10%"  class=" border_l_0 border_t_0" style="padding: 3px 0 3px 10px;">
-									           <span style="padding-left:5px;padding-right:5px">TOTAL</span>
-									         </th>
-									     </tr>
-									   <tbody id="global_table_list_items_properties_items_detail">
-                    					<?php
-                    					 
-                    					 	$tdias=0;
-                    					 	$tadmin=0;
-                    					 	$tradio=0;
-                    					 	$ttaller=0;
-                    					 	$tpagos=0;
-                    					  foreach ($mov->result() as $detalle) {
-                    					?>
-									     <tr class="fconcepto">
-									       <td  width="6%" style="word-break: break-all;border-bottom: 1px solid #f0f0f0;padding:0px 0px 0px 6px"><?php echo $detalle->id_movil ?> </td>
-									       <td  width="6%" style="word-break: break-all;border-bottom: 1px solid #f0f0f0;padding:0px 0px 0px 6px"><?php echo $detalle->diarios ?> </td>
-									       <td  width="21%" style="word-break: break-all;border-bottom: 1px solid #f0f0f0;padding:0px 0px 0px 6px">
-									       	<?php echo $detalle->recibo;
-									       	     /* if(isset($fini)){ 
-									       	      	echo ' /'.date('Y-m-d',strtotime($detalle->fecha_create));
-									         }*/ ?>	 
-									       </td>
-									       <td  width="7%" style="word-break: break-all;border-bottom: 1px solid #f0f0f0;padding:0px 0px 0px 6px"><?php echo $detalle->concepto ?> </td>
-									       <td  width="10%" style="word-break: break-all;border-bottom: 1px solid #f0f0f0;padding:0px 0px 0px 6px">$ <?php echo number_format($detalle->admin,0,'.',',') ?> </td>
-									       <td  width="10%" style="word-break: break-all;border-bottom: 1px solid #f0f0f0;padding:0px 0px 0px 6px">$ <?php echo number_format($detalle->radio,0,'.',',') ?> </td>
-									       <td  width="10%" style="word-break: break-all;border-bottom: 1px solid #f0f0f0;padding:0px 0px 0px 6px">$ <?php echo number_format($detalle->taller,0,'.',',') ?> </td>
-									       <td  width="10%" style="word-break: break-all;border-bottom: 1px solid #f0f0f0;padding:0px 0px 0px 6px"><?php echo $detalle->fecha_pago ?> </td>
-									       <td  width="10%" style="word-break: break-all;border-bottom: 1px solid #f0f0f0;padding:0px 0px 0px 6px"><?php echo $detalle->pago_hasta ?> </td>
-									       <td  width="10%" style="word-break: break-all;border-bottom: 1px solid #f0f0f0;padding:0px 0px 0px 6px">$ <?php echo number_format($detalle->total,0,'.',',') ?> </td>
-									      </tr>
-									     <?php
-									     $tdias+=$detalle->diarios;
-									     $tadmin+=$detalle->admin;
-									     $tradio+=$detalle->radio;
-									     $ttaller+=$detalle->taller;
-									     $tpagos+=$detalle->total;
-									       }
-									      ?>
-									         <tr class=" ">
-									            <th width="6%"  class="  border_t_0" style="padding: 0px 0px 0px 10px;">
-									              <span style="" class="pull-right">TOTALES</span>
-									            </th>
-									            <th  width="6%"  class="  border_t_0" style="padding: 0px 0 0px 10px;">
-									              <span style="" class=""> <?php echo $tdias;?></span>
-									            </th>
-									            <th  width="28%" colspan="2"  class="  border_t_0" style="padding: 0px 0 0px 10px;">
-									              <span style="" class="">
-									            </th>
-									            <th  width="10%"  class="  border_t_0" style="padding: 0px 0 0px 10px;">
-									              <span style="" class="">$ <?php echo number_format($tadmin,0,'.',',');?></span>
-									            </th>
-									            <th  width="10%"  class="  border_t_0" style="padding: 0px 0 0px 10px;">
-									              <span style="" class="">$ <?php echo number_format($tradio,0,'.',',');?></span>
-									            </th>
-									            <th  width="10%"  class="  border_t_0" style="padding: 0px 0 0px 10px;">
-									              <span style="" class="">$ <?php echo number_format($ttaller,0,'.',',');?></span>
-									            </th>
-									            <th  width="10%"  class="  border_t_0" style="padding: 0px 0 0px 10px;">
-									            </th>
-									            <th  width="10%"  class="  border_t_0" style="padding: 0px 0 0px 10px;">
-									            </th>
-									            <th  width="10%"  class="  border_t_0" style="padding: 0px 0 0px 10px;">
-									              <span style="" class="">$ <?php echo number_format($tpagos,0,'.',',');?></span>
-									            </th>
-									         </tr>
-									    </tbody> 	
-									  </table>
-									  <?php }else{?>
-									    <div>No hay resultados </div>
-									   <?php }?>
-									  <div class="col-md-12 pull-right">
-									   Fecha de generación Reporte: <?php echo date('Y-m-d H:i:s');?>				
-									  </div>
-									</div>
-								</div>
-							</div><!--.invoice-body-->
-						 <?php
-						   		break;
+						<?php if(isset($fini) && $fini!='' ){ ?>	
+						<center>
+							<div class="bold">Para la fecha <?php echo $fini.' hasta '.$ffin ?></div>
+						</center>	
+					<?php } ?>	 
+						</center>
+					</div>
+					</div>
+				</div>
+				<div class="invoice-body">
+					<div class="row">
+				<?php if($mov){ ?>
+						<div class="col-md-12 col-xs-12">
+						<table class="table table-bordered border_l_0  head-shadowxx margin_0 bck_table table-hover" style="font-size: 13px;" >
+								<tr class=" ">
+									<th width="6%"  class=" border_l_0 border_t_0" style="padding: 3px 0 3px 10px;">
+									<span style="padding-left:5px;padding-right:5px">MOVIL</span>
+									</th>
+									<th  width="6%"  class=" border_l_0 border_t_0" style="padding: 3px 0 3px 10px;">
+									<span style="padding-left:5px;padding-right:5px">DIARIOS</span>
+									</th>
+									<th  width="21%"  class=" border_l_0 border_t_0" style="padding: 3px 0 3px 10px;">
+									<span style="padding-left:5px;padding-right:5px">RECIBO</span>
+									</th>
+									<th width="7%"  class=" border_l_0 border_t_0" style="padding: 3px 0 3px 10px;">
+									<span style="padding-left:5px;padding-right:5px">CONCEPTO</span>
+									</th>
+									<th  width="10%"  class=" border_l_0 border_t_0" style="padding: 3px 0 3px 10px;">
+									<span style="padding-left:5px;padding-right:5px">ADMIN</span>
+									</th>
+									<th  width="10%"  class=" border_l_0 border_t_0" style="padding: 3px 0 3px 10px;">
+									<span style="padding-left:5px;padding-right:5px">RADIO</span>
+									</th>
+									<th  width="10%"  class=" border_l_0 border_t_0" style="padding: 3px 0 3px 10px;">
+									<span style="padding-left:5px;padding-right:5px">TALLER</span>
+									</th>
+									<th  width="10%"  class=" border_l_0 border_t_0" style="padding: 3px 0 3px 10px;">
+									<span style="padding-left:5px;padding-right:5px">FECHA PAGO</span>
+									</th>
+									<th  width="10%"  class=" border_l_0 border_t_0" style="padding: 3px 0 3px 10px;">
+									<span style="padding-left:5px;padding-right:5px">PAGO HASTA</span>
+									</th>
+									<th  width="10%"  class=" border_l_0 border_t_0" style="padding: 3px 0 3px 10px;">
+									<span style="padding-left:5px;padding-right:5px">TOTAL</span>
+									</th>
+								</tr>
+							<tbody id="global_table_list_items_properties_items_detail">
+							<?php
+								
+								$tdias=0;
+								$tadmin=0;
+								$tradio=0;
+								$ttaller=0;
+								$tpagos=0;
+								foreach ($mov->result() as $detalle) {
+							?>
+								<tr class="fconcepto">
+								<td  width="6%" style="word-break: break-all;border-bottom: 1px solid #f0f0f0;padding:0px 0px 0px 6px"><?php echo $detalle->id_movil ?> </td>
+								<td  width="6%" style="word-break: break-all;border-bottom: 1px solid #f0f0f0;padding:0px 0px 0px 6px"><?php echo $detalle->diarios ?> </td>
+								<td  width="21%" style="word-break: break-all;border-bottom: 1px solid #f0f0f0;padding:0px 0px 0px 6px">
+								<?php echo $detalle->recibo;
+										/* if(isset($fini)){ 
+										echo ' /'.date('Y-m-d',strtotime($detalle->fecha_create));
+									}*/ ?>	 
+								</td>
+								<td  width="7%" style="word-break: break-all;border-bottom: 1px solid #f0f0f0;padding:0px 0px 0px 6px"><?php echo $detalle->concepto ?> </td>
+								<td  width="10%" style="word-break: break-all;border-bottom: 1px solid #f0f0f0;padding:0px 0px 0px 6px">$ <?php echo number_format($detalle->admin,0,'.',',') ?> </td>
+								<td  width="10%" style="word-break: break-all;border-bottom: 1px solid #f0f0f0;padding:0px 0px 0px 6px">$ <?php echo number_format($detalle->radio,0,'.',',') ?> </td>
+								<td  width="10%" style="word-break: break-all;border-bottom: 1px solid #f0f0f0;padding:0px 0px 0px 6px">$ <?php echo number_format($detalle->taller,0,'.',',') ?> </td>
+								<td  width="10%" style="word-break: break-all;border-bottom: 1px solid #f0f0f0;padding:0px 0px 0px 6px"><?php echo $detalle->fecha_pago ?> </td>
+								<td  width="10%" style="word-break: break-all;border-bottom: 1px solid #f0f0f0;padding:0px 0px 0px 6px"><?php echo $detalle->pago_hasta ?> </td>
+								<td  width="10%" style="word-break: break-all;border-bottom: 1px solid #f0f0f0;padding:0px 0px 0px 6px">$ <?php echo number_format($detalle->total,0,'.',',') ?> </td>
+								</tr>
+								<?php
+								$tdias+=$detalle->diarios;
+								$tadmin+=$detalle->admin;
+								$tradio+=$detalle->radio;
+								$ttaller+=$detalle->taller;
+								$tpagos+=$detalle->total;
+								}
+								?>
+									<tr class=" ">
+									<th width="6%"  class="  border_t_0" style="padding: 0px 0px 0px 10px;">
+										<span style="" class="pull-right">TOTALES</span>
+									</th>
+									<th  width="6%"  class="  border_t_0" style="padding: 0px 0 0px 10px;">
+										<span style="" class=""> <?php echo $tdias;?></span>
+									</th>
+									<th  width="28%" colspan="2"  class="  border_t_0" style="padding: 0px 0 0px 10px;">
+										<span style="" class="">
+									</th>
+									<th  width="10%"  class="  border_t_0" style="padding: 0px 0 0px 10px;">
+										<span style="" class="">$ <?php echo number_format($tadmin,0,'.',',');?></span>
+									</th>
+									<th  width="10%"  class="  border_t_0" style="padding: 0px 0 0px 10px;">
+										<span style="" class="">$ <?php echo number_format($tradio,0,'.',',');?></span>
+									</th>
+									<th  width="10%"  class="  border_t_0" style="padding: 0px 0 0px 10px;">
+										<span style="" class="">$ <?php echo number_format($ttaller,0,'.',',');?></span>
+									</th>
+									<th  width="10%"  class="  border_t_0" style="padding: 0px 0 0px 10px;">
+									</th>
+									<th  width="10%"  class="  border_t_0" style="padding: 0px 0 0px 10px;">
+									</th>
+									<th  width="10%"  class="  border_t_0" style="padding: 0px 0 0px 10px;">
+										<span style="" class="">$ <?php echo number_format($tpagos,0,'.',',');?></span>
+									</th>
+									</tr>
+							</tbody> 	
+							</table>
+							<?php }else{?>
+							<div>No hay resultados </div>
+							<?php }?>
+							<div class="col-md-12 pull-right">
+							Fecha de generación Reporte: <?php echo date('Y-m-d H:i:s');?>				
+							</div>
+						</div>
+					</div>
+				</div><!--.invoice-body-->
+				<?php
+				break;
+			case 'histovehi':
+			?>
+			<div class="invoice-heading">
+			<div class="row margin_0">
+				<div class="col-md-12XX" style="padding-bottom:16px;">
+					<center>
+					<h3 class="no_bold" style="margin-top: 0px;">INFORME HISTORICO MOVIL</h3>		
+						<?php
+						$empresa='';
+						if(isset($grup)){ 
+							$empresa='COOMOCART LTDA';
+							?>	
+							<center>
+							<div class="bold"><?php echo $empresa?></div>
+							</center>
+						<?php } ?>									
+							<?php if(isset($fini) && $fini!='' ){ ?>	
+							<center>
+								<div class="bold">Para la fecha <?php echo $fini.' hasta '.$ffin ?></div>
+							</center>	
+						<?php } ?>	 
+							</center>
+						</div>
+					</div>
+					</div>
+					<div class="invoice-body">
+						<div class="row">
+					<?php if($mov){ ?>
+							<div class="col-md-12 col-xs-12">
+							<table class="table table-bordered border_l_0  head-shadowxx margin_0 bck_table table-hover" style="font-size: 13px;" >
+								<tr class=" ">
+									<th width="5%"  class=" border_l_0 border_t_0" style="padding: 3px 0 3px 10px;">
+										<span style="padding-left:5px;padding-right:5px">MOVIL</span>
+									</th>
+									<th  width="10%"  class=" border_l_0 border_t_0" style="padding: 3px 0 3px 10px;">
+										<span style="padding-left:5px;padding-right:5px">PROPIETARIO</span>
+									</th>
+										<th  width="5%"  class=" border_l_0 border_t_0" style="padding: 3px 0 3px 10px;">
+										<span style="padding-left:5px;padding-right:5px">PLACA</span>
+									</th>
+									<th width="5%"  class=" border_l_0 border_t_0" style="padding: 3px 0 3px 10px;">
+										<span style="padding-left:5px;padding-right:5px">MODELO</span>
+									</th>
+									<th  width="5%"  class=" border_l_0 border_t_0" style="padding: 3px 0 3px 10px;">
+										<span style="padding-left:5px;padding-right:5px">CLASE</span>
+									</th>
+										<th  width="10%"  class=" border_l_0 border_t_0" style="padding: 3px 0 3px 10px;">
+										<span style="padding-left:5px;padding-right:5px">MARCA</span>
+									</th>
+										<th  width="10%"  class=" border_l_0 border_t_0" style="padding: 3px 0 3px 10px;">
+										<span style="padding-left:5px;padding-right:5px">REFERENCIA</span>
+									</th>
+										<th  width="5%"  class=" border_l_0 border_t_0" style="padding: 3px 0 3px 10px;">
+										<span style="padding-left:5px;padding-right:5px">TIPO</span>
+									</th>
+										<th  width="10%"  class=" border_l_0 border_t_0" style="padding: 3px 0 3px 10px;">
+										<span style="padding-left:5px;padding-right:5px">MOTOR</span>
+									</th>
+										<th  width="10%"  class=" border_l_0 border_t_0" style="padding: 3px 0 3px 10px;">
+										<span style="padding-left:5px;padding-right:5px">SERIE</span>
+									</th>
+									</th>
+										<th  width="5%"  class=" border_l_0 border_t_0" style="padding: 3px 0 3px 10px;">
+										<span style="padding-left:5px;padding-right:5px">CILINDRAJE</span>
+									</th>
+									</th>
+										<th  width="10%"  class=" border_l_0 border_t_0" style="padding: 3px 0 3px 10px;">
+										<span style="padding-left:5px;padding-right:5px">FECHA INGRESO</span>
+									</th>
+									</th>
+										<th  width="10%"  class=" border_l_0 border_t_0" style="padding: 3px 0 3px 10px;">
+										<span style="padding-left:5px;padding-right:5px">FECHA CAMBIO</span>
+									</th>
+								</tr>
+								<tbody id="global_table_list_items_properties_items_detail">
+								<?php
+									foreach ($mov->result() as $detalle) {
+								?>
+								<tr class="fconcepto">
+									<td  width="5%" style="word-break: break-all;border-bottom: 1px solid #f0f0f0;padding:0px 0px 0px 6px"><?php echo $detalle->id_movil ?> </td>
+									<td  width="10%" style="word-break: break-all;border-bottom: 1px solid #f0f0f0;padding:0px 0px 0px 6px"><?php echo $detalle->propietario ?> </td>
+									<td  width="5%" style="word-break: break-all;border-bottom: 1px solid #f0f0f0;padding:0px 0px 0px 6px"><?php echo $detalle->placa; ?></td>
+									<td  width="5%" style="word-break: break-all;border-bottom: 1px solid #f0f0f0;padding:0px 0px 0px 6px"><?php echo $detalle->modelo ?> </td>
+									<td  width="5%" style="word-break: break-all;border-bottom: 1px solid #f0f0f0;padding:0px 0px 0px 6px"><?php echo $detalle->clase ?> </td>
+									<td  width="10%" style="word-break: break-all;border-bottom: 1px solid #f0f0f0;padding:0px 0px 0px 6px"><?php echo $detalle->marca?> </td>
+									<td  width="10%" style="word-break: break-all;border-bottom: 1px solid #f0f0f0;padding:0px 0px 0px 6px"><?php echo $detalle->referencia?> </td>
+									<td  width="5%" style="word-break: break-all;border-bottom: 1px solid #f0f0f0;padding:0px 0px 0px 6px"><?php echo $detalle->tipo?> </td>
+									<td  width="10%" style="word-break: break-all;border-bottom: 1px solid #f0f0f0;padding:0px 0px 0px 6px"><?php echo $detalle->motor ?> </td>
+									<td  width="10%" style="word-break: break-all;border-bottom: 1px solid #f0f0f0;padding:0px 0px 0px 6px"><?php echo $detalle->serie ?> </td>
+									<td  width="5%" style="word-break: break-all;border-bottom: 1px solid #f0f0f0;padding:0px 0px 0px 6px"><?php echo $detalle->cilindraje?> </td>
+									<td  width="10%" style="word-break: break-all;border-bottom: 1px solid #f0f0f0;padding:0px 0px 0px 6px"><?php echo $detalle->fcontrato ?> </td>
+									<td  width="10%" style="word-break: break-all;border-bottom: 1px solid #f0f0f0;padding:0px 0px 0px 6px"><?php echo $detalle->fechaMod ?> </td>
+									</tr>
+								<?php
+									}
+								?>
+								</tbody> 	
+								</table>
+						<?php }else{?>
+						<div>No hay resultados </div>
+						<?php }?>
+						<div class="col-md-12 pull-right">
+						Fecha de generación Reporte: <?php echo date('Y-m-d H:i:s');?>				
+						</div>
+							</div>
+						</div>
+					</div><!--.invoice-body-->
+				<?php
+							break;
 						   }//fin switch
 						 ?>
 						</div><!--.invoice-->

@@ -1131,15 +1131,17 @@ function busqueda()
                         'motor'         => $motor,
                         'serie'         => $chasis,                                 
                         'color'         => '',                                   
-                        'poliza'         => 0,
-                        'dtaller'         => 0,
+                        'poliza'        => 0,
+                        'dtaller'       => 0,
                         'pago_hasta'    => $fechaing,
                         'radio'         => '',
                         'id_prop'       => $id_propietario,
                         'estado'        => $estadomovil,
                         'managerid'     => $id_adm,
                         'cilindraje'     => $cilindra,
-                        'fcontrato'     => $fcontrato); 
+                        'fcontrato'     => $fcontrato,
+                        'fechaMod'      =>date('Y-m-d')
+                      ); 
                          $this->db->insert('historial_movil',$valuedes);
                     }
                           if ( !empty($idoc) && is_array($idoc) ) { 

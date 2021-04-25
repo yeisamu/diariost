@@ -153,7 +153,7 @@ if(isset($grupov)){
 				 			 </div>
 				 			</div><!--.checkbox-->
 				 			<?php if($grupov==''){ ?>
-				 			<div class="checkboxer checkboxer-indigo ">
+				 			<!--div class="checkboxer checkboxer-indigo ">
 				 			  <div class="row">
 				 			   <div class="col-md-2">
 				 				<input type="checkbox" class="grupoinf" value="empresa" id="empresa">
@@ -180,7 +180,7 @@ if(isset($grupov)){
 				 				</div>
 				 			   </div>
 				 			 </div>
-				 			</div><!--.checkbox-->
+				 			</div><.checkbox-->
 				 			<?php }else{ ?>
 				 				<input type="hidden" name="grupo" id="grupo"  value="<?php echo $grupov?>">
 				 			<?php } ?>
@@ -212,14 +212,14 @@ if(isset($grupov)){
 				 				<input type="radio" name="informe" class="tiporeport" id="simit" value="simit">
 				 				<label for="simit">Reporte SIMIT</label>
 				 			</div>
-							<!--div class="radioer radioer-indigo">
-				 				<input type="radio" name="informe" class="tiporeport" id="descuento" value="descuento">
-				 				<label for="descuento">Descuentos</label>
-				 			</div-->
 							<div class="radioer radioer-indigo">
+				 				<input type="radio" name="informe" class="tiporeport" id="histovehi" value="histovehi">
+				 				<label for="histovehi">Historial vehiculos</label>
+				 			</div>
+							<!--div class="radioer radioer-indigo">
 				 				<input type="radio" name="informe" class="tiporeport" id="desvinculados" value="desvinculados">
 				 				<label for="desvinculados">Moviles Desvinculados</label>
-				 			</div>
+				 			</div-->
 				 		</div>
 				 	</div><!--.form-group-->
 
@@ -227,7 +227,7 @@ if(isset($grupov)){
 		          </div><!--form content-->	
 				</div><!--.panel-body-->
 				<div class="modal-footer">
-				      <button type="button" class="btn btn-flat btn-info btn-ripple hide grabando"><i class="fa fa-refresh fa-spin"></i> Grabando...</button>
+				      <button type="button" class="btn btn-flat btn-info btn-ripple hide grabando"><i class="fa fa-refresh fa-spin"></i> Generando...</button>
 				      <button type="button" class="btn btn-flat btn-indigo btn-ripple genera_informe">Generar</button>
 
 				</div>

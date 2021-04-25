@@ -69,7 +69,7 @@
   <link rel="apple-touch-icon" href="<?php echo base_url() ?>img/icons/apple-touch-icon.png">
   <!-- END SHORTCUT AND TOUCH ICONS -->
 </head>
-<body style="overflow:hidden">
+<body style="overflow:auto">
 
    
 <input type="hidden" value="<?php echo base_url() ?>" id="base_url">
@@ -172,24 +172,10 @@
       <?php 
         if($crear=="si"){
       ?>
-      <a class="btn btn-floating btn-red show-on-hover ">
-        <i class="ion-android-arrow-up"></i>
-        <ul class="to-top">
-          <li  >
-           <i class="ion-android-upload btn btn-floating btn-red abre_edit" 
+      <a class="btn btn-floating btn-red show-on-hover  abre_edit" 
               style="margin-left: -7px !important;" data-toggle="modal"  
                data-target="#add_edit_planilla" data-vars="<?php echo base_url() ?>sart.php/sistemasart/add_edit_planilla?tipo=nuevo&menu=planilla">
-           </i>
-          </li>
-          
-          <!-- <li  >
-           <i class="fa fa-taxi btn btn-floating btn-red abre_mod_global " data-capa='taxi_modal'
-              style="margin-left: -1px !important;padding: 10px;" data-toggle="modal"  
-              data-target="#modaluser" data-vars="<?php //echo base_url() ?>sart.php/sistemasart/taximodal?tipo=nuevo&app_ID=<?php //echo $app_ID; ?>">
-           </i>
-          </li> -->
-
-        </ul>
+           <i class="ion-android-upload"></i>
       </a>
       <?php 
         }

@@ -1662,6 +1662,28 @@ $(document).on('click', '.guardaFe', function(e){
   }  
 
 });
+
+$(document).on('click', '.notificaVencidos', function(e){
+  var url=$('#base_url').val();
+  $(this).addClass('hide');
+  $('.enviando').removeClass('hide');
+        $.ajax({
+            url: url+'sart.php/sistemasart/notifVencidos',
+            type: 'GET',
+            dataType: 'json',
+            data: { }
+        }).done(function(data){
+            if(data.validacion == 'ok'){
+                $('.closenotif').click();
+                $('.grabaok' ).data('toastr-notification',data.msn);
+                $('.grabaok').click();
+            }else{
+                $('.grabaerror' ).data('toastr-notification',data.msn);
+                $('.grabaerror').click();
+            }
+        });     
+  return false;
+});
 /* Cambios jcano */
 $(document).on('click', '.saveaddedituser', function(e){
   

@@ -76,8 +76,8 @@
                     <th>Documento</th>
                     <th>Nombre</th>
                     <th>Tel&eacute;fono</th>
-                    <th>Simit</th>
                     <th>Tarjeta</th>
+                    <th>Simit</th>
 					<th>Documentos</th>
                   </tr>
                 </thead>

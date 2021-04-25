@@ -117,6 +117,15 @@ class Sistemasart extends CI_Controller {
 		    $filter_adv = '';
 		    $join='acc_permiso.id_opcion=acc_opcion.id_opcion';
 		    $data['panel'] = $this->Sart_model->getdatosjoin($filter,'acc_permiso','acc_opcion',$join,'left'); 
+			$filter = array('fecha' =>date('Y-m-d'));
+	        $filter_adv = '';
+	        $isnotif= $this->Sart_model->getdatos($filter,'noficacionVencidos','');
+			if($isnotif){
+				$data['notif'] = $isnotif->num_rows();
+			}else{
+				$data['notif'] = 0;
+			}
+
 			$this->load->view('sart/principal',$data); //llama la vista y le entrega como argumento la variable con la info de la base  de datos 
 		}else{
 			$this->index();
@@ -876,15 +885,12 @@ class Sistemasart extends CI_Controller {
 	        	    }//fin de funcion
 public	function genera_informe(){ //Se toman los datos de la ciudad de la bases de datos
 	     	 foreach ($_REQUEST as $var => $val){$$var = $this->db->escape_str($val);}
-
-	     	
-
 	     	  $filter='';
 	     	  $filter_adv ='';
 	     	  $data['id_movil']='';
 	     	  $data['fini']='';
 	     	  $data['ffin']='';
-		  $data['grup']='';	
+		 	  $data['grup']='';	
 	     	  if(isset($id_movil)){
 	     	  		$filter = array('vehiculo.id_movil' => $id_movil);
 	     	  		$data['id_movil']=$id_movil;
@@ -1149,6 +1155,33 @@ public	function genera_informe(){ //Se toman los datos de la ciudad de la bases 
 	     	 		 $orderby='id_movil asc';
 	     	 		 $data['mov'] = $this->Sart_model->listar($filter,$filter_adv,'movil_desvinculados',$camposmov,$orderby) ; 
 	     	 			break;
+					case 'histovehi':
+						$filter_adv='';
+						$filter='';
+						if(isset($fini)){
+							$fini=date('Y-m-d',strtotime($fini));
+							$ffin=date('Y-m-d',strtotime($ffin));
+							
+							$data['fini']=$fini;
+							$data['ffin']=$ffin;
+								if($fini==$ffin){
+									$filter_adv = array('adv1' => " date_format(fechaMod,'%Y-%m-%d') >= '$fini'  ");
+								}else{
+							$filter_adv = array('adv1' => " date_format(fechaMod,'%Y-%m-%d') >= '$fini' and date_format(fechaMod,'%Y-%m-%d') <='$ffin' ");
+							}
+							
+						}
+						if(isset($id_movil)){
+	     	 	      		$filter = array('id_movil' => $id_movil);
+	     	 	      		$data['id_movil']=$id_movil;
+	     	 	        }
+
+	     	    		$join=array('propietario'=>'propietario.id_prop=historial_movil.id_prop','marca'=>'marca.id_marca=historial_movil.id_marca');
+						$camposmov="*,concat_ws(' ',nombre,apellidos) as propietario";
+						$orderby='id_movil asc';
+						$data['mov'] = $this->Sart_model->getdatosjoinfull($filter,$filter_adv,'historial_movil','',$join,'left',$camposmov,$orderby);
+						//echo $this->db->last_query();
+					break;
 	     	 }
 	     	   $data['informe'] =$informe;
 	           $this->load->view('sart/informes/informe',$data);
@@ -1395,7 +1428,7 @@ public	function genera_informe(){ //Se toman los datos de la ciudad de la bases 
 		$conf['aColumns1']=array('id_conductor', 'codigo', 'conductor', 'telefono');
 		$conf['aColumnsunion']='';//array('id_prop','concat_ws(" ",nombre,apellidos)','telefono');
 		$conf['rows']=array('id_conductor', 'codigo','conductor','telefono');
-		$conf['opt']=array('<button type="button" class="btn btn-warning abresimit">Registrar</button>','<button type="button" class="btn btn-success abreGesTc">Admin</button>','<button type="button" class="btn btn-indigo abredocs">Formatos</button>');
+		$conf['opt']=array('<button type="button" class="btn btn-success abreGesTc">Admin</button>','<button type="button" class="btn btn-warning abresimit">Registrar</button>','<button type="button" class="btn btn-indigo abredocs">Formatos</button>');
 		$conf['union']='';//" UNION SELECT id_prop,id_prop,concat_ws(' ',nombre,apellidos) as conductor,telefono FROM propietario where escondu='si'";
      	$filter2 ='';
 	  	$filteradv='';
@@ -1968,7 +2001,7 @@ public function subfijo($xx)
 } // END FUNCTION
 public function docsvencidos(){
 	foreach ($_REQUEST as $var => $val){$$var = $this->db->escape_str($val);}	 
-	$hoy=date('Y-m-d');
+	$hoy=date('Y-m-d', strtotime('+10 days'));
 	$data['docsv']=array();
 	$filter ='';// array('id_movil' => $id);
 	$filter_adv=array('adv1'=>" fecha_ven <= '$hoy' ");
@@ -2003,20 +2036,21 @@ public function docsvencidos(){
 
 }
 public function notifVencidos(){
-	foreach ($_REQUEST as $var => $val){$$var = $this->db->escape_str($val);}	 
-	$hoy=date('Y-m-d');
+	foreach ($_REQUEST as $var => $val){$$var = $this->db->escape_str($val);}	
+	$errorenvioM=0;
+	$enviarCorreo ='';
+	$hoy=date('Y-m-d', strtotime('+10 days'));
 	$data['docsv']=array();
-	$filter ='';// array('id_movil' => $id);
+	$filter ='';
 	$filter_adv=array('adv1'=>" fecha_ven <= '$hoy' ");
 	
 	$orderby='id_movil asc';
-	$camposmov='distinct veh_doc.id_movil,concat_ws("" ,nombre,apellidos)as propi,email';
+	$camposmov='distinct veh_doc.id_movil,concat_ws(" ",nombre,apellidos)as propi,email';
 	$join=array('vehiculo'=>'vehiculo.id_movil=veh_doc.id_movil','propietario'=>'propietario.id_prop=vehiculo.id_prop');
 	$vencivehi= $this->Sart_model->getdatosjoinfull($filter,$filter_adv,'veh_doc','',$join,'',$camposmov,$orderby); 
 	if($vencivehi){
-		
 		foreach($vencivehi->result() as $docvehi){
-			$mensajeven='Estimado xxxxx a continuaci&oacute se relacionan los documentos vencidos del movil '.$docvehi->id_movil.'<ul>';
+			$mensajeven='Estimado '.$docvehi->propi.' a continuaci&oacute;n se relacionan los documentos proximos a vencer o vencidos del movil '.$docvehi->id_movil.'<ul>';
 			$documentovenVh='';
 			$filter =array('id_movil' => $docvehi->id_movil);
 			$filter_adv=array('adv1'=>" fecha_ven <= '$hoy' ");
@@ -2026,45 +2060,55 @@ public function notifVencidos(){
 			$docuvehi=$this->Sart_model->getdatosjoinfull($filter,$filter_adv,'documentos_v','veh_doc',$join,'left',$camposmov,$orderby); 
 			if($docuvehi){
 				foreach($docuvehi->result() as $valudoc){
-					$documentovenVh.='<li>'.$valudoc->descripcion.$docvehi->id_movil.'</li>';
+					$documentovenVh.='<li>'.$valudoc->descripcion.'</li>';
 				}
 			}
-			//$documentovenVh='<li>'.$docvehi->descripcion.'</li>';
-			/*if($idmovil==$docvehi->id_movil){
-				echo	$documentovenVh.='<li>'.$docvehi->descripcion.$idmovil.'</li>';
-			}else{
-				echo $documentovenVh;
-			}*/
 			$mensajeven.=$documentovenVh."</ul> Por favor actualizarlos lo antes posible y reporte la actualizacion a la empresa Coomocart";
 
 			if($docvehi->email != ""){
-				$enviarCorreo = $this->sendMail($docvehi->email,$docvehi->propi,$mensajeven,"¡ Documentos Próximos a Vencer !!");
-				echo "envio";
+				$enviarCorreo = $this->sendMail($docvehi->email,$docvehi->propi,$mensajeven,"¡ Documentos de movil Próximos a Vencer !! -- Coomocart");
 			}
-			echo $documentovenVh;
+			if(!$enviarCorreo){
+				$errorenvioM++;
+			}
 		}
 	}
-	
-/*	$filter =array('ispensionado'=>'no','obligatorio'=>'si');
+
+	$filter =array('documento'=>'LICENCIA DE CONDUCCION','tarjeta_control.estado'=>'1');
 	$filter_adv=array('adv1'=>" fecha_vence <= '$hoy' ");
 	$orderby='con_doc.id_conductor asc';
-	$camposmov='concat_ws(" ",nombres,apellidos) as id_movil,documento,fecha_vence';
-	$join=array('con_doc'=>'con_doc.id_conductor=conductor.id_conductor','documento'=>'documento.id_doc=con_doc.id_doc');
-	$data['docsv'] = $this->Sart_model->getdatosjoinfull($filter,$filter_adv,'conductor','con_doc',$join,'left',$camposmov,$orderby);
-	if($vencidoscond){
-		array_push($data['docsv'],$vencidoscond);
+	$camposmov='distinct con_doc.id_conductor,concat_ws(" ",nombres,apellidos) as conductor,documento,fecha_vence,emailc';
+	$join=array('con_doc'=>'con_doc.id_conductor=conductor.id_conductor','documento'=>'documento.id_doc=con_doc.id_doc','tarjeta_control'=>'tarjeta_control.id_conductor=conductor.id_conductor');
+	$condudocs = $this->Sart_model->getdatosjoinfull($filter,$filter_adv,'conductor','con_doc',$join,'left',$camposmov,$orderby);
+	$mensajevenCond='';
+	$errorenvioC=0;
+	$documentovenVh='';
+	if($condudocs){
+		foreach($condudocs->result() as $docCondu){
+			$mensajevenCond='Estimado '.$docCondu->conductor.' a continuaci&oacute;n se relacionan los documentos proximos a vencer o vencidos <ul>';
+			
+			$documentovenVh.='<li>'.$docCondu->documento.'</li>';
+			$mensajevenCond.=$documentovenVh."</ul> Por favor actualizarlos lo antes posible y reporte la actualizacion a la empresa Coomocart";
+
+			if($docCondu->emailc != ""){
+				$enviarCorreo = $this->sendMail($docCondu->emailc,$docCondu->conductor,$mensajevenCond,"¡ Documentos Próximos a Vencer !! -- Coomocart");
+			}
+			if(!$enviarCorreo){
+				$errorenvioC++;
+			}
+		}
 	}
 
-	$filter =array('ispensionado'=>'si','documento'=>'LICENCIA DE CONDUCCION');
-	$filter_adv=array('adv1'=>" fecha_vence <= '$hoy' ");
-	$orderby='con_doc.id_conductor asc';
-	$camposmov='concat_ws(" ",nombres,apellidos) as id_movil,documento,fecha_vence';
-	$join=array('con_doc'=>'con_doc.id_conductor=conductor.id_conductor','documento'=>'documento.id_doc=con_doc.id_doc');
-	$data['doccondu'] = $this->Sart_model->getdatosjoinfull($filter,$filter_adv,'conductor','con_doc',$join,'left',$camposmov,$orderby); */
-   // if($datapensi){
-		//array_push($data['docsv'],$datapensi);
-	//}
-	//$this->load->view('sart/tarjetactrl/docsvencidos',$data);
+		$respu['validacion'] = 'ok';
+		$respu['msn'] = ' Correos enviados !!';
+		$data2 =array(
+			'fecha'        => date('Y-m-d')
+	    ); 
+
+	   $queries=$this->db->insert('noficacionVencidos',$data2);
+
+
+	echo json_encode($respu);
 
 }
 /************* Nuevas Funcionalidades jcano *******************/

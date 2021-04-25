@@ -18,7 +18,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <th>Movil/conductor</th>
                                         <th>Documento</th>
                                         <th>Fecha vencimiento</th>
-                                        <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -30,7 +29,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <td><?php echo $value->id_movil?></td>
                                 <td><?php echo $value->descripcion?></td>
                                 <td><?php echo $value->fecha_ven?></td>
-                                <td></td>
                             </tr>
                             <?php 
                                     }
@@ -42,7 +40,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <td><?php echo $value->id_movil?></td>
                                     <td><?php echo $value->documento?></td>
                                     <td><?php echo $value->fecha_vence?></td>
-                                    <td></td>
                                 </tr>
                                 <?php 
                                         }
@@ -54,7 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <td><?php echo $value->id_movil?></td>
                                     <td><?php echo $value->documento?></td>
                                     <td><?php echo $value->fecha_vence?></td>
-                                    <td></td>
+
                                 </tr>
                                 <?php 
                                         }
@@ -72,7 +69,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 </div><!--.body modal--> 
 <div class="modal-footer">
-    <button type="button" class="btn btn-flat btn-success btn-ripple closegestarea" data-dismiss="modal">Cerrar</button>
+    <button type="button" class="btn btn-flat btn-success btn-ripple closenotif" data-dismiss="modal">Cerrar</button>
+    <button type="button" class="btn btn-flat btn-info btn-ripple hide enviando" ><i class="fa fa-refresh fa-spin"></i> Enviando...</button>
+    <button type="button" class="btn btn-flat btn-danger btn-ripple notificaVencidos">Notificar</button>
 </div> 
 <script>
 	$(document).ready(function () {
@@ -83,11 +82,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		//	"bServerSide": true,
 		//	"sAjaxSource": '<?php echo base_url() ?>sart.php/sistemasart/datatarjeta?id=<?php //echo $id; ?>',
 			"columnDefs": [
-				{  targets: [3],orderable:false},
-                {  "width": "10%",targets: [0]},
-				{  "width": "25%",targets: [1]},
+                {  "width": "30%",targets: [0]},
+				{  "width": "50%",targets: [1]},
+                {  "width": "20%",targets: [2]}
 			], 
-			"order": [[0, 'asc']],
+			"order": [[2, 'asc'],[0,'desc']],
 			"createdRow": function ( row, data, index ) {
 				row.setAttribute( 'data-iditem',data[0] );
 				row.setAttribute( 'data-capa','');
