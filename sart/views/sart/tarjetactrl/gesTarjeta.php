@@ -93,11 +93,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			  }
 			});
 		 $('#tcTable').on('click', '.printarjeta', function(e) {
+			e.preventDefault();
 		   var url=$('#base_url').val();
 		   var iditem=$(this).parent().parent().data('iditem');
 		   urltc = url+'sart.php/sistemasart/pdf?ntarjeta='+iditem;
            window.open(urltc,'','scrollbars=yes,width='+$(document).width()+',height='+$(document).height()+'');  
-		 }).on('click', '.cerrarTc', function(e){
+		   return false;
+		}).on('click', '.printarjetaAct', function(e) {
+			e.preventDefault();
+		   var url=$('#base_url').val();
+		   var iditem=$(this).parent().parent().data('iditem');
+		   urltc = url+'sart.php/sistemasart/pdfUpdateTc?ntarjeta='+iditem;
+           window.open(urltc,'','scrollbars=yes,width='+$(document).width()+',height='+$(document).height()+'');  
+		   return false;
+		}).on('click', '.cerrarTc', function(e){
 			e.preventDefault();
 			var idTc=$(this).parent().parent().data('iditem');
 			var url=$('#base_url').val();

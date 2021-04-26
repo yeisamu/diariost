@@ -73,183 +73,178 @@ if($empresa){
 	</style>
  </head>
 <body>
-	<table>
-    	<tr>
-    		<td width="54%">
-    			<table>
-    				<tr>
-						<td   style="text-align:center"><div style="font-size: 18px;padding:0mm 20mm 0 70mm;color:#FFF">tarje</div></td>
-					    <td   style="text-align:center;padding:0mm 20mm 0 70mm;">
-							<div style="color:#FFF">control</div>
-							<div style="font-size: 18px;padding:0mm 10mm 15mm 70mm;float:right"><?php echo $datatarjeta->id_tarjeta; ?></div>
-						    
-							
-							<div style="color:#FFF">control</div>
-    					</td>
-    				</tr>
-    				<tr>
-    					<td colspan="2"  style="padding:0mm 2mm 0 78mm;">
-						  <img src="fotos/<?php echo $datatarjeta->foto?>" width="30mm" height="50mm">
-						</td>
-    				</tr>
-					<tr>
-    					<td colspan="2">
-    						<table   width="90%" border="0" class="table table-bordered" style="font-size:16px;margin-top:29mm"> 
-    						   <tr>
-    							<td colspan="3" style="height:10mm;padding:3mm 0 0 5mm;border: 0px none black;">
-    								<strong ><?php echo $datatarjeta->nombres?></strong>
-    							</td>   							
-    						   </tr>
-    						   <tr>
-    							<td colspan="3" style="height:10mm;padding:3mm 0 0 5mm;border: 0px none black">
-    								<strong ><?php echo $datatarjeta->apellidos?></strong>
-    							</td>   							
-    						   </tr>
-    						   <tr>
-    							<td style="height:10mm;padding:3mm 0 0 5mm;border: 0px none black">
-    								<strong ><?php echo $datatarjeta->codigo?></strong>
-    							</td>  
-    							<td colspan="2" style="height:10mm;padding:3mm 0 0 40mm;border: 0px none black">
-    								<strong ><?php echo $datatarjeta->tipo_rh?></strong>
-    							</td>   							
-    						   </tr>
-    						    <tr>
-    							<td style="height:10mm;padding:3mm 0 0 5mm;border: 0px none black">
-									<strong><?php echo $numlic?></strong></div>
-    							</td>  
-    							<td style="height:10mm;padding:3mm 0 0 40mm;border: 0px none black">
-									<strong><?php echo $cat?></strong></div>
-    							</td>  
-    							<td style="height:10mm;padding:3mm 0 0 10mm;border: 0px none black">
-									<strong><?php echo $vencelic?></strong></div>
-    							</td>   							
-    						   </tr>
-    						      <tr>
-    						   	<td colspan="2" style="height:10mm;padding:3mm 0 0 5mm;border: 0px none black">
-    						   		<strong ><?php echo $datatarjeta->direccion?></strong>
-    						   	</td>   							
-    						   	<td style="height:10mm;padding:3mm 0 0 5mm;border: 0px none black">
-    						   		<strong ><?php echo $datatarjeta->telefono?></strong>
-    						   	</td>  
-    						      </tr>
-                                  <tr>
-                                 <td style="height:10mm;padding:3mm 0 0 5mm;border: 0px none black">
-                                    <strong><?php echo $datatarjeta->eps?></strong>
-                                </td>  
-                                <td  style="height:10mm;padding:3mm 0 0 10mm;border: 0px none black">
-                                    <strong><?php echo $datatarjeta->arl?></strong>
-                                </td>   
-								<td  style="height:10mm;padding:3mm 0 0 5mm;border: 0px none black">
-                                    <strong><?php echo $datatarjeta->afp?></strong>
-                                </td>                            
-                               </tr> 
-    						</table>
-    					</td>
-    				</tr>
-					<?php 
-					if($veh_doc[$datatarjeta->id_movil]){
-						foreach ($veh_doc[$datatarjeta->id_movil]->result() as $docs) {
-							if($docs->id_documento=='01'){
-								$soat=$docs->numero;
-								$fsoat=$docs->fecha_ven;
-							}
-							if($docs->id_documento=='02'){
-								$top=$docs->numero;
-								$ftop=$docs->fecha_ven;
-							}
-							if($docs->id_documento=='03'){
-								$contra=$docs->numero;
-								$fcontra=$docs->fecha_ven;
-							}
-							if($docs->id_documento=='04'){
-								$certimov=$docs->numero;
-								$fcertimov=$docs->fecha_ven;
-							}
-						}
+<div style="float: left; width: 48%;">
+       <div style="padding:12mm 2mm 0 60mm">
+	   		<img src="fotos/<?php echo $datatarjeta->foto?>" width="30mm" height="50mm">
+	   </div>
+	   <table   width="90mm" border="0" class="table table-bordered" style="font-size:16px;margin-top:28mm"> 
+			<tr>
+				<td colspan="3" style="height:10mm;padding:3mm 0 0 5mm;border: 0px none black;">
+					<strong ><?php echo $datatarjeta->nombres?></strong>
+				</td>   							
+			</tr>
+			<tr>
+				<td colspan="3" style="height:10mm;padding:3mm 0 0 5mm;border: 0px none black">
+					<strong ><?php echo $datatarjeta->apellidos?></strong>
+				</td>   							
+			</tr>
+			<tr>
+				<td style="height:10mm;padding:3mm 0 0 5mm;border: 0px none black;width:50mm">
+					<strong ><?php echo $datatarjeta->codigo?></strong>
+				</td>  
+				<td colspan="2" style="height:10mm;padding:3mm 0 0 18mm;border: 0px none black">
+					<strong ><?php echo $datatarjeta->tipo_rh?></strong>
+				</td>   							
+			</tr>
+			<tr>
+				<td style="height:10mm;padding:3mm 0 0 5mm;border: 0px none black">
+					<strong><?php echo $numlic?></strong></div>
+				</td>  
+				<td style="height:10mm;padding:3mm 0 0 18mm;border: 0px none black">
+					<strong><?php echo $cat?></strong></div>
+				</td>  
+				<td style="height:10mm;padding:3mm 0 0 5mm;border: 0px none black">
+					<strong><?php echo $vencelic?></strong></div>
+				</td>   							
+			</tr>
+			<tr>
+				<td colspan="2" style="height:10mm;padding:3mm 0 0 5mm;border: 0px none black;width:50mm">
+					<strong ><?php echo $datatarjeta->direccion?></strong>
+				</td>   							
+				<td style="height:10mm;padding:3mm 0 0 5mm;border: 0px none black;width:40mm">
+					<strong ><?php echo $datatarjeta->telefono?></strong>
+				</td>  
+			</tr>
+			<tr>
+				<td style="height:10mm;padding:3mm 0 0 5mm;border: 0px none black;width:15mm">
+					<strong><?php echo $datatarjeta->eps?></strong>
+				</td>  
+				<td  style="height:10mm;padding:3mm 0 0 0mm;border: 0px none black">
+					<strong><?php echo $datatarjeta->arl?></strong>
+				</td>   
+				<td  style="height:10mm;padding:3mm 0 0 5mm;border: 0px none black">
+					<strong><?php echo $datatarjeta->afp?></strong>
+				</td>                            
+			</tr> 
+		</table>
+		<?php 
+			if($veh_doc[$datatarjeta->id_movil]){
+				foreach ($veh_doc[$datatarjeta->id_movil]->result() as $docs) {
+					if($docs->id_documento=='01'){
+						$soat=$docs->numero;
+						$fsoat=$docs->fecha_ven;
 					}
-                    ?>
-    				<tr>
-					 <td colspan="2" style="height:40px">
-    				  <table   width="90%" class="table table-bordered" style="margin-top:38mm;font-size:16px">
-    				   <tr>
-					   <td  style="height:10mm;padding:3mm 0 0 5mm;border: 0px none black"><strong><?php echo $datatarjeta->marca?></strong>
-					    </td>
-						<td  style="height:10mm;padding:3mm 0 0 5mm;border: 0px none black" ><strong><?php echo $datatarjeta->modelo?></strong></td> 
-    				   </tr>
-    				   <tr>
-					   <td  style="height:10mm;padding:3mm 0 0 5mm;border: 0px none black" ><strong><?php echo $datatarjeta->placa?></strong></td>
-    					<td  style="height:10mm;padding:3mm 0 0 5mm;border: 0px none black"><strong><?php echo $datatarjeta->id_movil?></strong></td>
-    				   </tr>
-    				   <tr>
-    					<td  style="height:10mm;padding:3mm 0 0 5mm;border: 0px none black" ><strong><?php echo $certimov?></strong></td>
-    					<td  style="height:10mm;padding:3mm 0 0 5mm;border: 0px none black"><strong> <?php echo $fcertimov?></strong></td>
-    				   </tr>
-    				   <tr>
-    					<td  style="height:10mm;padding:3mm 0 0 5mm;border: 0px none black" ><strong><?php echo $soat?></strong></td>
-    					<td  style="height:10mm;padding:3mm 0 0 5mm;border: 0px none black"><strong><?php echo $fsoat?></strong></td>
-    				   </tr>
-    				   <tr>
-    					<td  style="height:10mm;padding:3mm 0 0 5mm;border: 0px none black" ><strong><?php echo $contra?></strong></td>
-    					<td  style="height:10mm;padding:3mm 0 0 5mm;border: 0px none black"><strong><?php echo $fcontra?></strong></td>
-    				   </tr>
-    				   <tr>
-    					<td  style="height:10mm;padding:3mm 0 0 5mm;border: 0px none black" ><strong><?php echo $top?></strong></td>
-    					<td  style="height:10mm;padding:3mm 0 0 5mm;border: 0px none black"><strong><?php echo $ftop?></strong></td>
-    				   </tr>
-    				  </table>
-    				 </td>
-    				</tr>
-				</table>
-			</td>
-			<td width="2%"></td>
-    		<td width="54%">
-    			<table class=" table-borderedx" style="font-size: 14px;" >
-    			   <!--tr>
-    				<th style="height:25px;padding:0mm 0 0 30mm;position: absolute;top: 10mm;color:#FFF;">&nbsp;FECHA DE VENCIMIENTO</th>
-    			   </tr-->
-				   <tr>
-    				<th>
-    					<table class="table table-bordered">
-    					  <tr>
-    						<td width="30%"  style="height:1mm;padding:0mm 0 0 5mm;border: 0px none black;color:#FFF">&nbsp;fecha ref</td>
-    						
-    						<td width="30%" style="height:1mm;padding:0mm 0 0 5mm;border: 0px none black;color:#FFF">&nbsp;AÑO</td>
-    						<td width="40%" style="height:1mm;padding:0mm 0 0 5mm;border: 0px none black;color:#FFF">&nbsp;FIRMA </td>
-    					  </tr>
-						  <?php 
-						  //$datatarjeta->planilla=1;
-						  for($i=0;$i<13;$i++){ 
-							  if(($i+1)==$datatarjeta->planilla){
-						 $fecharef=date('d-m-Y',strtotime($datatarjeta->fecha_elab));
-						 $fechavig=date('d-m-Y',strtotime($datatarjeta->fecha_vigencia));
-						   ?>
-    					  <tr>
-    					    <td class="altofil" style="height:8mm;padding:3mm 0 0 5mm;border: 0px none black;width:30mm" ><?php echo $fecharef;?></td>
-							<td class="altofil" style="height:8mm;padding:3mm 0 0 15mm;border: 0px none black;width:30mm" ><?php echo $fechavig;?></td>
-    					    <td class="altofil" style="height:8mm;padding:3mm 0 0 5mm;border: 0px none black;width:40mm">
-							<?php if($firmauser!=''){ ?>	
-								<img src="uploads/firmas/<?php echo $firmauser;?>" width="120px" height="8mm">
-							<?php } ?>
-							</td>
-    					  </tr>
-						  <?php }else{ ?>
-						  <tr>
-    					    <td class="altofil" style="height:8mm;padding:3mm 0 0 5mm;border: 0px none black" >&nbsp;</td>
-							<td class="altofil" style="height:8mm;padding:3mm 0 0 5mm;border: 0px none black" >&nbsp;</td>
-    					    <td class="altofil" style="height:8mm;padding:3mm 0 0 5mm;border: 0px none black">&nbsp;</td>
-    					  </tr>
-						   <?php } ?>
-						  <?php } ?>
-						  <tr>
-    					    <td class="altofil" style="height:110mm;border: 0px none black;" >&nbsp;</td>
-    					  </tr>
-						  
-						</table>
-					</th>
-				   </tr>
-				</table>
-			</td>
-    	</tr>
-    </table>
+					if($docs->id_documento=='02'){
+						$top=$docs->numero;
+						$ftop=$docs->fecha_ven;
+					}
+					if($docs->id_documento=='03'){
+						$contra=$docs->numero;
+						$fcontra=$docs->fecha_ven;
+					}
+					if($docs->id_documento=='04'){
+						$certimov=$docs->numero;
+						$fcertimov=$docs->fecha_ven;
+					}
+				}
+			}
+		?>
+		<table   width="90mm" class="table table-bordered" style="margin-top:30mm;font-size:14px">
+			<tr>
+				<td  style="height:8mm;padding:3mm 0 0 5mm;border: 0px none black">
+					<strong><?php echo $datatarjeta->marca?></strong>
+				</td>
+				<td  style="height:8mm;padding:3mm 0 0 5mm;border: 0px none black" >
+					<strong><?php echo $datatarjeta->modelo?></strong>
+				</td> 
+			</tr>
+			<tr>
+				<td  style="height:8mm;padding:3mm 0 0 5mm;border: 0px none black" >
+					<strong><?php echo $datatarjeta->placa?></strong>
+				</td>
+				<td  style="height:8mm;padding:3mm 0 0 5mm;border: 0px none black">
+					<strong><?php echo $datatarjeta->id_movil?></strong>
+				</td>
+			</tr>
+			<tr>
+				<td  style="height:8mm;padding:3mm 0 0 5mm;border: 0px none black" >
+					<strong><?php echo $certimov?></strong>
+				</td>
+				<td  style="height:8mm;padding:3mm 0 0 5mm;border: 0px none black">
+					<strong> <?php echo $fcertimov?></strong>
+				</td>
+			</tr>
+			<tr>
+				<td  style="height:8mm;padding:3mm 0 0 5mm;border: 0px none black" >
+					<strong><?php echo $soat?></strong>
+				</td>
+				<td  style="height:8mm;padding:3mm 0 0 5mm;border: 0px none black">
+					<strong><?php echo $fsoat?></strong>
+				</td>
+			</tr>
+			<tr>
+				<td  style="height:8mm;padding:3mm 0 0 5mm;border: 0px none black" >
+					<strong><?php echo $contra?></strong>
+				</td>
+				<td  style="height:8mm;padding:3mm 0 0 5mm;border: 0px none black">
+					<strong><?php echo $fcontra?></strong>
+				</td>
+			</tr>
+			<tr>
+				<td  style="height:8mm;padding:3mm 0 0 5mm;border: 0px none black" >
+					<strong><?php echo $top?></strong>
+				</td>
+				<td  style="height:8mm;padding:3mm 0 0 5mm;border: 0px none black">
+					<strong><?php echo $ftop?></strong>
+				</td>
+			</tr>
+		</table>
+    </div>
+
+   <div style="float: right; width: 48%">
+   	<table class="table table-bordered"  style="font-size: 22px;">
+	   <tr>
+			<td width="30%"  style="height:1mm;padding:10mm 0 0 5mm;border: 0px none black;color:#FFF">&nbsp;fecha ref</td>
+			
+			<td width="30%" style="height:1mm;padding:10mm 0 0 5mm;border: 0px none black;color:#FFF">&nbsp;AÑO</td>
+			<td width="40%" style="height:1mm;padding:10mm 0 0 5mm;border: 0px none black;color:#FFF">&nbsp;FIRMA </td>
+		</tr>
+		<?php 
+		$altof=8;
+		if($datatarjeta->planilla>10){
+			$altof=12.5;
+		}
+		if($datatarjeta->planilla >8 || $datatarjeta->planilla <= 10  ){
+			$altof=12;
+		}
+		for($i=0;$i<13;$i++){ 
+			if(($i+1)==$datatarjeta->planilla){
+				$fecharef=date('d-m-Y',strtotime($datatarjeta->fecha_elab));
+				$fechavig=date('d-m-Y',strtotime($datatarjeta->fecha_vigencia));
+				?>
+				<tr>
+					<td class="altofil" style="height:8mm;padding:3mm 0 5mm 2mm;border: 0px none black;width:30mm" ><?php echo $fecharef;?></td>
+					<td class="altofil" style="height:8mm;padding:3mm 0 5mm 2mm;border: 0px none black;width:30mm" ><?php echo $fechavig;?></td>
+					<td class="altofil" style="height:8mm;padding:3mm 0 5mm 2mm;border: 0px none black;width:40mm">
+					<?php if($firmauser!=''){ ?>	
+						<img src="uploads/firmas/<?php echo $firmauser;?>" width="100px" height="8mm">
+					<?php } ?>
+					</td>
+				</tr>
+				<?php }else{ ?>
+				    <tr>
+						<td class="altofil" style="height:<?php echo $altof; ?>mm;padding:3mm 0 0 5mm;border: 0px none black" >&nbsp;</td>
+						<td class="altofil" style="height:<?php echo $altof; ?>mm;padding:3mm 0 0 5mm;border: 0px none black" >&nbsp;</td>
+						<td class="altofil" style="height:<?php echo $altof; ?>mm;padding:3mm 0 0 5mm;border: 0px none black">&nbsp;</td>
+    			    </tr>
+				<?php } ?>
+		<?php } ?>	
+	</table>  
+    </div>
+
+    
+
+    <div style="clear: both; margin: 0pt; padding: 0pt; "></div>
+
 </body>
 </html>

@@ -1611,6 +1611,9 @@ $(document).on('click', '.guardaTC', function(e){
                 if(data.tipo=='nuevo'){
                   urltc = url+'sart.php/sistemasart/pdf?ntarjeta='+data.ntc;
                   window.open(urltc,'','scrollbars=yes,width='+$(document).width()+',height='+$(document).height()+'');
+                }else if(data.tipo=='edit'){
+                  urltc = url+'sart.php/sistemasart/pdfUpdateTc?ntarjeta='+data.ntc;
+                  window.open(urltc,'','scrollbars=yes,width='+$(document).width()+',height='+$(document).height()+'');
                 }
                 $('.grabaok' ).data('toastr-notification',data.msn);
                 $('.grabaok').click();

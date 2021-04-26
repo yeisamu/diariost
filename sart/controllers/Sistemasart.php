@@ -1400,8 +1400,29 @@ public	function genera_informe(){ //Se toman los datos de la ciudad de la bases 
 			//$html = $this->load->view('sart/pagos/tarjeta_control',$data);
 			$html = $this->load->view('sart/pagos/tarjeta_control',$data,TRUE);
 			$name="tarjeta.pdf";
-			$this->sma->generate_pdf($html, $name,'I');
+			$this->sma->generate_pdf($html, $name,'I',NULL,NULL,$ntarjeta,NULL);//($html, $name,'I');
         }//fin funcion	
+		function pdfUpdateTc(){
+			foreach ($_REQUEST as $var => $val){$$var = $this->db->escape_str($val);}
+
+			 //$filter2=array('concepto'=>;
+			 $rowtarifa= $this->db->get('tarifas');
+			// echo $this->db->last_query();
+			 $data['tarifas']=$rowtarifa;
+			 $this->db->where('id_tarjeta='.$ntarjeta);
+			 $datatarj= $this->db->get('tarjeta_control as a');
+			 //echo $this->db->last_query();
+			 $data['tarjeta']=$datatarj;
+
+			  $id_user = $_COOKIE['user_ID'];//$_REQUEST['v'];
+			 $filter = array('id_usr' => $id_user);
+			 $data['user'] = $this->Sart_model->getdatos($filter,'acc_usuario',''); 
+			 //echo $this->db->last_query();
+			 //$html = $this->load->view('sart/pagos/tarjeta_control',$data);
+			 $html = $this->load->view('sart/pagos/tarjeta_control_actu',$data,TRUE);
+			 $name="tarjeta.pdf";
+			 $this->sma->generate_pdf($html, $name,'I',NULL,NULL,NULL,NULL);//($html, $name,'I');
+		 }//fin funcion	
 /*********************NUEVAS FUNCIONALIDADES JAVELASQUEZ************/
 	public function tarjetacontrol()
 	  {
@@ -1636,7 +1657,7 @@ public	function genera_informe(){ //Se toman los datos de la ciudad de la bases 
 	 $conf['aColumns1']=array('id_tarjeta','concat_ws(" ",nombres,apellidos) as conductor', 'id_movil','fecha_plazo_a','case estado when 1 then "Abierta" else "Cerrada" end as estado','if(`fecha_plazo_a`<DATE_FORMAT(now(),"%Y/%m/%d"),"Vencido","Vigente") as est_vig');
 	 $conf['aColumnsunion']='';
 	 $conf['rows']=array('id_tarjeta','conductor', 'id_movil','fecha_plazo_a','est_vig','estado');
-	 $conf['opt']=array('<button type="button" class="btn btn-indigo ion-android-print printarjeta"></button>&nbsp;<button type="button" class="btn btn-danger  cerrarTc">Cerrar</button>');
+	 $conf['opt']=array('<button type="button" class="btn btn-success ion-android-print printarjetaAct"></button>&nbsp;<button type="button" class="btn btn-indigo ion-android-print printarjeta"></button>&nbsp;<button type="button" class="btn btn-danger  cerrarTc">Cerrar</button>');
 	 $conf['union']="";
 
 	 $filter2 = array('tarjeta_control.id_conductor' => $id);

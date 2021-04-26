@@ -30,10 +30,10 @@ class Sma
             $margin_bottom = 10;
         }
         if (!$margin_top) {
-            $margin_top = 10;
+            $margin_top = 5;
         }
         $this->load->library('pdf');
-        $pdf = new mPDF('utf-8', 'A4-' . $orientation, '13', '', 10, 10, $margin_top, $margin_bottom, 9, 9);
+        $pdf = new mPDF('utf-8', 'A4-' . $orientation, '13', '', 10, 10, 15, $margin_bottom, 9, 9);
         $pdf->debug = false;
         $pdf->autoScriptToLang = true;
         $pdf->autoLangToFont = true;
@@ -52,7 +52,7 @@ class Sma
 
         $pdf->WriteHTML($content);
         if ($header != '') {
-            $pdf->SetHTMLHeader('<p class="text-center">' . $header . '</p>', '', TRUE);
+            $pdf->SetHTMLHeader('<p class="" style="padding-left:70mm;font-size:20px;">&nbsp;' . $header . '</p>', '', TRUE);
         }
         if ($footer != '') {
             $pdf->SetHTMLFooter('<p class="text-center">' . $footer . '</p>', '', TRUE);
