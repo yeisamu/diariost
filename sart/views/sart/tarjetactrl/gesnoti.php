@@ -113,31 +113,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 }
 			});
 			return false;
-		 })/*.on('click', '.finalizapadre', function(e){
-			e.preventDefault();
-			var id=$(this).data('id');
-			var tipo=$(this).data('tipo');
-			var mod=$(this).data('mod');
-			var url=$('#base_url').val();
-			$(this).html('<i class="fa fa-check-square"></i>');
-			$.ajax({
-			   url: url+'operacion/grabarfinpadre',
-			   type: 'POST',
-			   data: {},
-			   dataType: 'json',
-			   cache: false,
-			   contentType: false,
-			   processData: false
-			}).done(function(data){
-				if(data.validacion == 'ok'){ 
-				  swal("Exito!!", data.msn, "success");
-				  queue_load_all('principal','','tramitaplan'); 
-				}else{
-					swal("Atencion!!", data.msn, "error");
-				}
-			});
-			return false;
-		 });*/
+		 })
 
 	});
 </script>

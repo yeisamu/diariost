@@ -112,6 +112,12 @@ if(isset($grupo)){
        		</div><!--.modal-content-->
        	</div><!--.modal-dialog-->
   </div><!--.modal large-->
+  <div class="modal scale fade" id="modal_medio" tabindex="-1" role="dialog" aria-hidden="true">
+       	<div class="modal-dialog modal-lg">
+       		<div class="modal-content global_medio" id="global_medio">
+       		</div><!--.modal-content-->
+       	</div><!--.modal-dialog-->
+  </div><!--.modal medio-->
 		<!-- BEGIN GLOBAL AND THEME VENDORS -->
 	<script src="<?php echo base_url() ?>js/global-vendors.js"></script>
 	<!-- END GLOBAL AND THEME VENDORS -->
@@ -133,6 +139,7 @@ if(isset($grupo)){
 	<script src="<?php echo base_url() ?>plugins/datatables/themes/bootstrap/dataTables.bootstrap.js"></script>
 	<script src="<?php echo base_url() ?>plugins/jasny-bootstrap/dist/js/jasny-bootstrap.min.js"></script>
 	<script>
+	sart.tablanoti='';
 	  	$(document).ready(function () {
           if('<?php echo $notif;?>' == 0){
 			$('.docsvencidos').click();
