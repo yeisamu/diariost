@@ -108,7 +108,7 @@ if(isset($gfijo)){
                 <a class="btn btn-floating btn-red show-on-hoverx">
                     <!-- <i class="ion-android-arrow-up"></i> -->
                     <i class="ion-android-person-add btn btn-floating btn-red abre_edit" 
-                    style="margin-left: -7px !important;" data-toggle="modal"  
+                    style="margin-left: -7px !important;margin-top: -6px;" data-toggle="modal"  
                         data-target="#edit_doc" data-vars="<?php echo base_url() ?>sart.php/sistemasart/editarprop?tipo=nuevo&menu=prop">
                     </i>
                 </a>
@@ -196,19 +196,19 @@ if(isset($gfijo)){
 			"bServerSide": true,
 			"sAjaxSource": '<?php echo base_url() ?>sart.php/sistemasart/dataprop',
 			"columnDefs": [
-				{  "width": "6%",targets: [0]},
-				{  "width": "7%",targets: [1]},
-				{  "width": "10%",targets: [2]},
-				{  "width": "10%",targets: [3]},
-				{  "width": "10%", targets: [4]}
+				{  "width": "10%",targets: [0]},
+				{  "width": "25%",targets: [1]},
+				{  "width": "25%",targets: [2]},
+				{  "width": "20%",targets: [3]},
+				{  "width": "20%", targets: [4]}
 			], 
 			"order": [[0, 'asc']],
 			"createdRow": function ( row, data, index ) {
 				row.setAttribute( 'data-iditem',data[0] );
-				row.setAttribute( 'data-capa','taxi_modal');
+				row.setAttribute( 'data-capa','edit_modal');
 				row.setAttribute( 'data-toggle','modal');
-				row.setAttribute( 'data-target','#modaltaxi' );
-				row.setAttribute( 'data-vars','<?php echo base_url() ?>sart.php/sistemasart/editarprop?id_prop=<?php echo $array->id_prop ?>&tipo=edit&app_ID=<?php echo $app_ID; ?>&menu=prop' );
+				row.setAttribute( 'data-target','#edit_doc' );
+				row.setAttribute( 'data-vars','<?php echo base_url() ?>sart.php/sistemasart/editarprop?id_prop='+data[0]+'&tipo=edit&app_ID=<?php echo $app_ID; ?>&menu=prop' );
 			},
 			"aLengthMenu": [
 					[5,10,15,25,50,100,-1], 

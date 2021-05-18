@@ -181,8 +181,12 @@ class Sistemasart extends CI_Controller {
 		}else{
 		    $data['grupo']= $this->Sart_model->getcampo('grupo','empresa');
 		}
-		
-		$this->load->view('sart/movil/prop_tabla',$data); //llama la vista y le entrega como argumento la variable con la info de la base  de datos 
+	    $id_user=$_COOKIE['user_ID'];//$_REQUEST['v'];
+		//$filter = array('acc_permiso.id_usr' => $id_user,'tipo' => 'mvc');
+		$filter = array('acc_permiso.id_usr' => $id_user,'id_opcion' => $app_ID);
+		$filter_adv = '';
+		$data['permisos'] = $this->Sart_model->getdatos($filter,'acc_permiso',''); 
+		$this->load->view('sart/movil/gesPropietario',$data); //llama la vista y le entrega como argumento la variable con la info de la base  de datos 
 	  }else{
 			$this->index();
 	  }
@@ -2260,6 +2264,24 @@ public function  dataHistoCondu(){
    $output=$this->Sart_model->GetData($filter2,$filteradv,$join,$tabla,$conf);
    echo json_encode($output);
 }
+public function  dataprop(){
+	//$id=$_REQUEST['id'];
+	$conf=array();
+	$conf['aColumns2']=array('id_prop', 'concat_ws(" ",nombre,apellidos) as prop', 'direccion','telefono','email');
+	$conf['aColumns']=array('id_prop', 'concat_ws(" ",nombre,apellidos)', 'direccion','telefono','email');
+	$conf['aColumns1']=array('id_prop', 'concat_ws(" ",nombre,apellidos)', 'direccion','telefono','email');
+	$conf['aColumnsunion']='';
+	$conf['rows']=array('id_prop', 'prop', 'direccion','telefono','email');
+	$conf['opt']='';
+	$conf['union']="";
+
+	$filter2 = '';//array('id_prop' => $id);
+	$filteradv='';//array('cond1'=>'id_estado <> '.$datastatus->id_configuracion);
+	$tabla="propietario";
+	$join ='';
+	$output=$this->Sart_model->GetData($filter2,$filteradv,$join,$tabla,$conf);
+	echo json_encode($output);
+ }//fin funcion
 /************* Nuevas Funcionalidades jcano *******************/
 public function users(){
 

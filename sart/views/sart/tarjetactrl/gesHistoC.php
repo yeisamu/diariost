@@ -58,9 +58,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			"order": [[0, 'desc']],
 			"createdRow": function ( row, data, index ) {
 				row.setAttribute( 'data-iditem',data[0] );
-				row.setAttribute( 'data-capa','taxi_modal');
-				row.setAttribute( 'data-toggle','modal');
-				row.setAttribute( 'data-target','#modaltaxi' );
+				row.setAttribute( 'data-capa','');
+				row.setAttribute( 'data-toggle','');
+				row.setAttribute( 'data-target','' );
 				row.setAttribute( 'data-vars','<?php echo base_url() ?>sart.php/sistemasart/editarcondu?tipo=edit&id_condu='+data[0] );
 			},
 			"aLengthMenu": [
