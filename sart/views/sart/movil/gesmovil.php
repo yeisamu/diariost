@@ -1,3 +1,22 @@
+<?php 
+if($permisos){
+	$acces=$permisos->row();
+	$add=$acces->crear;
+	$edit=$acces->editar;
+	$leer=$acces->leer;
+}
+if(isset($gfijo)){
+ if($gfijo){
+   $valg=$gfijo;
+ }else{
+   $valg="";	
+ }
+ 
+}else{
+   $valg="";	
+ }
+?>
+
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -21,6 +40,12 @@
 	<link rel="stylesheet" href="<?php echo base_url() ?>css/elements.css">
 	<!-- END CORE CSS -->
 
+	
+	<!-- BEGIN CORE CSS -->
+	<link rel="stylesheet" href="<?php echo base_url() ?>css/admin1.css">
+	<link rel="stylesheet" href="<?php echo base_url() ?>css/elements.css">
+	<!-- END CORE CSS -->
+
 	<!-- BEGIN PLUGINS CSS -->
 	<link rel="stylesheet" href="<?php echo base_url() ?>plugins/bootstrap-table/dist/bootstrap-table.min.css">
 	<link rel="stylesheet" href="<?php echo base_url() ?>plugins/scroll/css/perfect-scrollbar.css">
@@ -38,20 +63,14 @@
 	 <link rel="stylesheet" href="<?php echo base_url(); ?>plugins/datatables/themes/bootstrap/dataTables.bootstrap.css">
 	 <link rel="stylesheet" href="<?php echo base_url() ?>plugins/jasny-bootstrap/dist/css/jasny-bootstrap.min.css">
 
-	<!-- BEGIN SHORTCUT AND TOUCH ICONS -->
-	
-	<link rel="apple-touch-icon" href="<?php echo base_url() ?>img/icons/apple-touch-icon.png">
-	<!-- END SHORTCUT AND TOUCH ICONS -->
 </head>
 <body style="overflow:auto">
-
-   
 <input type="hidden" value="<?php echo base_url() ?>" id="base_url">
- <div class="content" style="padding:0 5px 0 5px">
-		<div class="page-header full-content header-tabs stickyxx fixed bg-indigo" style="width: 100%;left: 40px">
+	<div class="content" style="padding:0 5px 0 5px">
+	    	<div class="page-header full-content header-tabs stickyx fixed bg-indigo" style="width: 100%;left: 40px">
 			<div class="row">
 				<div class="col-xs-10">
-					<h1 style="font-size: 25px;">Gesti&oacute;n Tarjetas de Control<small></small></h1>
+					<h1 style="font-size: 25px;">Gesti&oacute;n Vehiculos & propietarios<small></small></h1>
 				</div><!--.col-->
 				<div class="col-xs-2 menu" data-grupo="<?php echo $valg ?>" style="cursor:pointer">
 					<ol class="breadcrumb">
@@ -61,37 +80,55 @@
 				</div><!--.col-->
 			</div><!--.row-->
 		</div><!--.page-header-->
-    <div class="row"  style="margin-top: 110px;">
+
+	    <div class="row"  style="margin-top: 110px;">
       <div class="col-md-12">
         <div class="panel">
           <div class="panel-heading">
-            <div class="panel-title"><h4>Conductores</h4></div>
+            <div class="panel-title"><h4>Vehiculos</h4></div>
           </div><!--.panel-heading-->
           <div class="panel-body">
             <div class="table-responsive">
-              <table class="display" id="planpadre">
+              <table class="display" id="moviltable">
                 <thead>
                   <tr>
-                    <th>idcond</th>
+                    <th>Movil</th>
+                    <th>Placa</th>
                     <th>Documento</th>
-                    <th>Nombre</th>
+                    <th>Pripietario</th>
+                    <th>Direcci&oacute;n</th>
                     <th>Tel&eacute;fono</th>
-                    <th>Tarjeta</th>
-                    <th>Simit</th>
-					<th>Documentos</th>
+                    <th>Email</th>
+                    <th>Admin</th>
+                    <th>Tel. Admin</th>
+					<th>Observaci&oacute;nes</th>
                   </tr>
                 </thead>
                 <tbody>
                 </tbody>
               </table>
             </div>
+			<?php if($add=='si'){ ?>
 			<div style="position:fixed;bottom:30px;right:30px;z-index:100;">
-			<a class="btn btn-floating btn-red show-on-hover abre_mod_global " data-capa='taxi_modal'
-			   data-toggle="modal"  data-target="#modaltaxi" 
-			   data-vars="<?php echo base_url() ?>sart.php/sistemasart/editarcondu?tipo=nuevo">
-				<i class="ion-android-person-add "></i>
-			</a>
+                <a class="btn btn-floating btn-red show-on-hover ">
+                    <i class="ion-android-arrow-up"></i>
+                    <ul class="to-top">
+                        <li  >
+                        <i class="ion-android-person-add btn btn-floating btn-red abre_edit" 
+                            style="margin-left: -7px !important;" data-toggle="modal"  
+                            data-target="#edit_doc" data-vars="<?php echo base_url() ?>sart.php/sistemasart/editarprop?tipo=nuevo&menu=vehi">
+                        </i>
+                        </li>
+                        <li  >
+                        <i class="fa fa-taxi btn btn-floating btn-red abre_mod_global " data-capa='taxi_modal'
+                            style="margin-left: -1px !important;padding: 10px;" data-toggle="modal"  
+                            data-target="#modaltaxi" data-vars="<?php echo base_url() ?>sart.php/sistemasart/taximodal?tipo=nuevo&app_ID=<?php echo $app_ID; ?>">
+                        </i>
+                        </li>
+                    </ul>
+                </a>
 			</div>
+			<?php } ?>
           </div><!--.panel-body-->
         </div><!--.panel-->
       </div><!--.col-md-12-->
@@ -115,6 +152,12 @@
        		</div><!--.modal-content-->
        	</div><!--.modal-dialog-->
   </div><!--.modal medio-->
+  <div class="modal fade full-height from-left" id="edit_doc" tabindex="-1" role="dialog" aria-hidden="true">
+	 <div class="modal-dialog">
+      <div class="modal-content " id="edit_modal">
+      </div>
+     </div>
+	</div><!--.modal-->
   <div class="modal scale fade" id="modal_lg" tabindex="-1" role="dialog" aria-hidden="true">
        	<div class="modal-dialog modal-lg">
        		<div class="modal-content global_lg" id="global_lg">
@@ -166,26 +209,29 @@
 		Pleasure.init();
 		Layout.init();
 		$(document).ready(function () {
-		 sart.tablacondu=$('#planpadre').DataTable({
+		 sart.tablamovil=$('#moviltable').DataTable({
 			"bProcessing": true,
 			"bServerSide": true,
-			"sAjaxSource": '<?php echo base_url() ?>sart.php/sistemasart/datatramita',
+			"sAjaxSource": '<?php echo base_url() ?>sart.php/sistemasart/datamovil',
 			"columnDefs": [
-				{  targets: [0],visible: false},
-				{  "width": "10%",targets: [1]},
-				{  "width": "20%",targets: [2]},
-				{  "width": "5%",targets: [3], visible:true },
-				{  "width": "5%", targets: [4], visible: true,orderable:false},
-				{  "width": "5%",targets: [5], visible: true,orderable:false},
-				{  "width": "5%",targets: [6], orderable:false}
+				{  "width": "6%",targets: [0]},
+				{  "width": "7%",targets: [1]},
+				{  "width": "10%",targets: [2]},
+				{  "width": "10%",targets: [3], visible:true },
+				{  "width": "10%", targets: [4], visible: true},
+				{  "width": "10%",targets: [5], visible: true},
+				{  "width": "7%",targets: [6]},
+				{  "width": "10%",targets: [7]},
+				{  "width": "10%",targets: [8]},
+				{  "width": "20%",targets: [9]},
 			], 
-			"order": [[2, 'asc']],
+			"order": [[0, 'asc']],
 			"createdRow": function ( row, data, index ) {
 				row.setAttribute( 'data-iditem',data[0] );
 				row.setAttribute( 'data-capa','taxi_modal');
 				row.setAttribute( 'data-toggle','modal');
 				row.setAttribute( 'data-target','#modaltaxi' );
-				row.setAttribute( 'data-vars','<?php echo base_url() ?>sart.php/sistemasart/editarcondu?tipo=edit&id_condu='+data[0] );
+				row.setAttribute( 'data-vars','<?php echo base_url() ?>sart.php/sistemasart/taximodal?tipo=edit&id_movil='+data[0]+'&app_ID=<?php echo $app_ID; ?>' );
 			},
 			"aLengthMenu": [
 					[5,10,15,25,50,100,-1], 
@@ -211,7 +257,7 @@
 				 },
 			  }
 			});
-		 $('#planpadre').on('click', '.editaC', function(e) {
+		 $('#moviltable').on('click', '.editaC', function(e) {
 		   var div=$(this).data('div');
 		   var iditem=$(this).data('iditem');
 		   var status=$(this).data('data-status');
@@ -240,13 +286,6 @@
 			//console.log(control);
 			$('#modaltaxi').modal('show');
 			queue_load_all('#taxi_modal','?id='+control,'gesTarjeta');
-			return false;
-		 }).on('click', '.verhisto', function(e){
-			e.preventDefault();
-			var control=$(this).parent().parent().data('iditem');
-			//console.log(control);
-			$('#modal_medio').modal('show');
-			queue_load_all('#global_medio','?id='+control,'gesHistoCondu');
 			return false;
 		 });
 	  });

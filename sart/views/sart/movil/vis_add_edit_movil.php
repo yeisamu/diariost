@@ -8,6 +8,11 @@
   $editar=$dataper->editar;
   $crear=$dataper->crear;
 }
+if($editar=='no'){
+  $readonly='readonly';
+}else{
+  $readonly='';
+}
 
   if($tipo=='edit'){
    //if($vehi){
@@ -33,11 +38,17 @@
     $fcontrato=$datamov->fcontrato;
     $radio=$datamov->radio;
     $estado=$datamov->estado;
+    $anotaciones=$datamov->obs;
     $campoid='<span>'.$id_movil.'</span><input type="hidden"  name="idmovil" value="'.$id_movil.'" >';
     if(!isset($propietario)){
       $propietario="";
       $manager="";
       $id_prop="";
+    }
+    if(!isset($mananoedit)){
+
+      $mananoedit="";
+
     }
   }else{ 
      $titulo="Agregar Nuevo movil";
@@ -60,6 +71,7 @@
      $fcontrato="";
      $propietario="";
      $manager="";
+     $anotaciones="";
      $campoid='<div class="inputer inputer-indigo floating-label">
                 <div class="input-wrapper">
                  <input type="text" name="idmovil" placeholder="# Movil" class="form-control inpmobilex inputmobile_cborder obligatorio" value="" id="idmovil" >';
@@ -103,7 +115,7 @@
                                                        <div class="col-sm-12">
                                                         <div class="inputer inputer-indigo floating-label" style="margin-top:0px;">
                                                           <div class="input-wrapper">
-                                                           <input type="text" class="form-control inpmobilex inputmobile_cborder obligatorio obligatorio" placeholder="Placa" value="<?php echo $placa?>" name="placa" id="placa" >
+                                                           <input type="text" <?php echo $readonly;?> class="form-control inpmobilex inputmobile_cborder obligatorio obligatorio" placeholder="Placa" value="<?php echo $placa?>" name="placa" id="placa" >
                                                            <?php if($placa==''){ ?>
                                                             <label for="placa">Placa</label> 
                                                            <?php }?>
@@ -119,18 +131,17 @@
                                                          $valcontrato=date('d-m-Y');
                                                          $selfecha="divfecha";
                                                        }else{
-							if($placa==""){
-							 $valfecha=date('d-m-Y');
-                                                         $valcontrato=date('d-m-Y');
-                                                         $selfecha="divfecha";	
-							}else{
+                                                          if($placa==""){
+                                                            $valfecha=date('d-m-Y');
+                                                            $valcontrato=date('d-m-Y');
+                                                            $selfecha="divfecha";	
+                                                          }else{
+                                                            $estrigf="Pago hasta";
 
-							$estrigf="Pago hasta";
-                                                         $valfecha=date('d-m-Y',strtotime($pago_hasta));
-                                                         $valcontrato=date('d-m-Y',strtotime($fcontrato));
-                                                         $selfecha="";
-							}
-                                                         
+                                                            $valfecha=$pago_hasta == '0000-00-00'?date('d-m-Y'):date('d-m-Y',strtotime($pago_hasta));
+                                                            $valcontrato=$fcontrato == '0000-00-00'?date('d-m-Y'):date('d-m-Y',strtotime($fcontrato));
+                                                            $selfecha="divfecha";
+							                                            } 
                                                        }
                                                      ?>
                                                      <div class="form-group">
@@ -180,7 +191,7 @@
 							<label for="clase" class="col-sm-3 " style="padding-top: 7px;padding-left:0px">Modelo</label>
                                                         <div class="inputer inputer-indigo floating-labelx" style="margin-top:0px;">
                                                           <div class="input-wrapper">
-                                                           <input type="text" class="form-control inpmobilex inputmobile_cborder obligatorio" placeholder="Modelo" value="<?php echo $modelo?>" name="modelo" id="modelo" >
+                                                           <input type="text" <?php echo $readonly;?> class="form-control inpmobilex inputmobile_cborder obligatorio" placeholder="Modelo" value="<?php echo $modelo?>" name="modelo" id="modelo" >
                                                            <?php if($modelo==''){ ?>
                                                             <!--label for="modelo" >Modelo</label-->
                                                            <?php }?>
@@ -207,7 +218,7 @@
 <label for="clase" class="col-sm-3 " style="padding-top: 7px;padding-left:0px">Linea</label>
                                                         <div class="inputer inputer-indigo floating-labelx" style="margin-top:0px;">
                                                           <div class="input-wrapper">
-                                                           <input type="text" class="form-control inpmobilex inputmobile_cborder obligatorio" placeholder="Linea" value="<?php echo $referencia?>" name="linea" id="linea" >
+                                                           <input type="text" <?php echo $readonly;?> class="form-control inpmobilex inputmobile_cborder obligatorio" placeholder="Linea" value="<?php echo $referencia?>" name="linea" id="linea" >
                                                             <?php if($referencia==''){ ?>
                                                              <!--label for="linea" >Linea</label-->
                                                             <?php }?>  
@@ -220,7 +231,7 @@
 							<label for="clase" class="col-sm-3 " style="padding-top: 7px;padding-left:0px">Clase</label>
                                                         <div class="inputer inputer-indigo floating-labelx" style="margin-top:0px;">
                                                           <div class="input-wrapper">
-                                                           <input type="text" class="form-control inpmobilex inputmobile_cborder obligatorio" placeholder="Clase" name="clase" value="<?php echo $clase?>" id="clase" >
+                                                           <input type="text" <?php echo $readonly;?> class="form-control inpmobilex inputmobile_cborder obligatorio" placeholder="Clase" name="clase" value="<?php echo $clase?>" id="clase" >
                                                            <?php if($clase==''){ ?>
                                                             <!--label for="clase" >Clase</label-->
                                                            <?php }?>
@@ -234,7 +245,7 @@
 							<label for="clase" class="col-sm-6 " style="padding-top: 7px;padding-left:0px">Tipo Carroceria</label>
                                                         <div class="inputer inputer-indigo floating-labelx" style="margin-top:0px;">
                                                           <div class="input-wrapper">
-                                                           <input type="text" class="form-control inpmobilex inputmobile_cborder obligatorio" placeholder="Tipo Carroceria"  value="<?php echo $tipoc?>" name="tipoc" id="tipoc" >
+                                                           <input type="text" <?php echo $readonly;?> class="form-control inpmobilex inputmobile_cborder obligatorio" placeholder="Tipo Carroceria"  value="<?php echo $tipoc?>" name="tipoc" id="tipoc" >
                                                             <?php if($tipoc==''){ ?>
                                                              <!--label for="tipoc" >Tipo Carroceria</label-->
                                                             <?php }?>
@@ -247,7 +258,7 @@
 							<label for="clase" class="col-sm-3 " style="padding-top: 7px;padding-left:0px">Combustible</label>
                                                         <div class="inputer inputer-indigo floating-labelx" style="margin-top:0px;">
                                                           <div class="input-wrapper">
-                                                           <input type="text" class="form-control inpmobilex inputmobile_cborder obligatorio" placeholder="Combustible" value="<?php echo $combustible?>" name="gas" id="combus" >
+                                                           <input type="text" <?php echo $readonly;?> class="form-control inpmobilex inputmobile_cborder obligatorio" placeholder="Combustible" value="<?php echo $combustible?>" name="gas" id="combus" >
                                                             <?php if($combustible==''){ ?>
                                                              <label for="combus" >Combustible</label>
                                                             <?php }?>
@@ -260,7 +271,7 @@
 							<label for="clase" class="col-sm-3 " style="padding-top: 7px;padding-left:0px"># Motor</label>
                                                         <div class="inputer inputer-indigo floating-labelx" style="margin-top:0px;">
                                                           <div class="input-wrapper">
-                                                           <input type="text" class="form-control inpmobilex inputmobile_cborder obligatorio" placeholder="# Motor" value="<?php echo $motor?>" name="motor" id="motor" >
+                                                           <input type="text" <?php echo $readonly;?> class="form-control inpmobilex inputmobile_cborder obligatorio" placeholder="# Motor" value="<?php echo $motor?>" name="motor" id="motor" >
                                                            <?php if($motor==''){ ?>
                                                             <label for="motor" ># Motor</label>
                                                            <?php }?>
@@ -273,7 +284,7 @@
 							<label for="clase" class="col-sm-3 " style="padding-top: 7px;padding-left:0px"># Chasis</label>
                                                         <div class="inputer inputer-indigo floating-labelx" style="margin-top:0px;">
                                                           <div class="input-wrapper">
-                                                           <input type="text" class="form-control inpmobilex inputmobile_cborder obligatorio" placeholder="# Chasis" name="chasis" value="<?php echo $serie?>" id="chasis" >
+                                                           <input type="text" <?php echo $readonly;?> class="form-control inpmobilex inputmobile_cborder obligatorio" placeholder="# Chasis" name="chasis" value="<?php echo $serie?>" id="chasis" >
                                                             <?php if($serie==''){ ?>
                                                              <label for="chasis" ># Chasis</label>
                                                             <?php }?>
@@ -288,7 +299,7 @@
 							<label for="clase" class="col-sm-3 " style="padding-top: 7px;padding-left:0px">Cilindraje</label>
                                                        <div class="inputer inputer-indigo floating-labelx" style="margin-top:0px;">
                                                          <div class="input-wrapper">
-                                                         <input type="text" class="form-control inpmobilex inputmobile_cborder obligatorioX" value="<?php echo $dtaller?>" placeholder="cilindraje" name="cilindra"  id="cilindra" >
+                                                         <input type="text" <?php echo $readonly;?> class="form-control inpmobilex inputmobile_cborder obligatorioX" value="<?php echo $dtaller?>" placeholder="cilindraje" name="cilindra"  id="cilindra" >
                                                          </div>
                                                        </div>  
                                                        </div>
@@ -297,8 +308,8 @@
                                              </div>
                                            </div>
                                        </div>
-                                       <div class="col-md-7  div_right  div_form_distributions_right" style="border-top: 0px solid #eee;border-left: 1px solid #eee;border-right: none;border-bottom: none;position:relative; margin:0px auto;overflow: hidden;">
-                                            <div class="scroll_rigth_block" style="position:relative; padding:0px; overflow: hidden;">
+                                       <div class="col-md-7  div_rightx  div_form_distributions_right" style="border-top: 0px solid #eee;border-left: 1px solid #eee;border-right: none;border-bottom: none;position:relative; margin:0px auto;/*overflow: hidden;*/">
+                                            <div class="scroll_rigth_blockx" style="position:relative; padding:0px; /*overflow: hidden;*/">
                                                <div class="col-md-12 padding_l_0 "  style="font-size:14px">
                                                  <table class="table table-condensed col-md-12x margin_0 bck_table heder_footer_dis" style="margin-bottom:0px">
                                                      <thead>
@@ -309,7 +320,7 @@
                                                          </tr>
                                                      </thead>
                                                  </table>
-                                                 <div class="div_right_table"  style="font-size:14px;position:relative; margin:0px auto; padding:0px; overflow: hidden;">
+                                                 <div class="div_right_tablex"  style="font-size:14px;position:relative; margin:0px auto; padding:0px; /*overflow: hidden;*/">
                                                      <table class="table table-bordered border_l_0  head-shadowxx margin_0 bck_table table-hover" >
                                                        <thead>
                                                          <tr class=" ">
@@ -372,7 +383,7 @@
                                                          <tr class=" ">
                                                              <td width="5%"  class="  border_t_0">
                                                                <span style="color: #999;"><?php echo $rowdosv->id_documento;?></span>
-                                                               <input type="hidden" name="idoc[]" value="<?php echo  $rowdosv->id_documento;?>"> 
+                                                               <input type="hidden" <?php echo $readonly;?> name="idoc[]" value="<?php echo  $rowdosv->id_documento;?>"> 
                                                              </td>
                                                              <td width="30%"  class="  border_t_0">
                                                                <span style="color: #999;"><?php echo $rowdosv->descripcion;?></span>
@@ -392,7 +403,7 @@
                                                              <td width="21%" class="  border_t_0">
                                                               <div class="inputer inputer-indigo " style="margin-top:0px;">
                                                                <div class="input-wrapper">
-                                                                <input type="text" class="form-control " name="numerodoc[]" value="<?php echo trim($numerodv);?>" style="font-size: 12px;">
+                                                                <input type="text" <?php echo $readonly;?> class="form-control " name="numerodoc[]" value="<?php echo trim($numerodv);?>" style="font-size: 12px;">
                                                                </div>
                                                               </div>
                                                              </td>
@@ -416,9 +427,12 @@
                                                        <div class="col-sm-12">
                                                         <div class="inputerx inputer-indigox floating-labelx" style="margin-top:30px;">
                                                           <div class="input-wrapperx">
+                                                          <?php if($editar=='si'){ ?>
                                                             <select class="selectize-remote2 selinput selobligatorio" name="id_propietario" placeholder="Propietario">
                                                               <option value="<?php echo trim($id_prop);?>" selected="selected"><?php echo trim($propietario);?></option>
                                                             </select>
+                                                          <?php }else{ echo trim($propnoedi);
+                                                                }?>
                                                          </div>
                                                         </div>
                                                        </div>
@@ -427,46 +441,25 @@
                                                        <div class="col-sm-12">
                                                         <div class="" style="margin-top:0px;">
                                                           <div class="input-wrapperw">
+                                                          <?php if($editar=='si'){ ?>
                                                             <select class="selectize-remote2" name="id_adm" placeholder="Administrador">
                                                               <option value="<?php echo trim($id_adm);?>" selected="selected"><?php echo trim($manager);?></option>
                                                             </select>
+                                                            <?php }else{ echo trim($mananoedit);
+                                                                }?>
                                                           </div>
                                                         </div>
                                                        </div>
                                                      </div>
-                                                 <?php 
-                                                 if($tipo=="edit"){
-                                                    if($radio=='si'){
-                                                     $radiosi='checked="checked"';
-                                                     $radiono="";
-                                                    }else{
-                                                     $radiosi='';
-                                                     $radiono='checked="checked"';
-                                                    }
-                                                  }else{
-                                                   $radiosi='checked="checked"';
-                                                   $radiono="";
-                                                  }
+                                                     <div class="form-group">
+                                                        <label class="control-label ">Observaciones</label>
+                                                          <div class="inputer inputer-indigo">
+                                                            <div class="input-wrapper">
+                                                              <textarea name="anotaciones" id="anotaciones" class="form-control js-auto-sizex "><?php echo trim($anotaciones)?></textarea>
+                                                            </div>
+                                                        </div>
+                                                      </div><!--.form-group-->
 
-                                                 ?>
-                                                <?php if($editar=='no' && $crear=='si'){
-                                                 ?>
-                                                 <div class="form-group">
-                                                  <label class="control-label col-sm-2" style="text-align: left;">Radio</label>
-                                                  <div class="clearfix col-sm-10"> 
-                                                    <div class="radioer radioer-indigo form-inline">
-                                                      <input type="radio" <?php echo $radiosi;?>  id="activo" name="radio" value="si" >
-                                                      <label for="activo">Activo</label>
-                                                    </div>
-                                                    <div class="radioer radioer-indigo form-inline">
-                                                      <input type="radio"  <?php echo $radiono;?> id="sinradio" name="radio"  value="no">
-                                                      <input type="hidden" id="vinculado" name="estadomovil" value="1">
-                                                      <label for="sinradio">Inactivo</label>
-                                                    </div>
-                                                  </div>
-                                                 </div>
-                                                 <?php }
-                                                 ?>
                                                 <input type="hidden" id="vinculado" name="estadomovil" value="1">
 
                                                  <?php if($editar=='si'){
@@ -525,16 +518,11 @@
                      </div><!-- fin body modal -->
                      <div class="modal-footer">
                        <button type="button" class="btn btn-flat btn-red btn-ripple cancelataxi" data-dismiss="modal">Cancelar</button>
+                       <?php if($editar=='si'){ ?>
                        <button type="button" class="btn btn-flat btn-info btn-ripple hide grabando" ><i class="fa fa-refresh fa-spin"></i> Grabando...</button>
                        <button type="button" class="btn btn-flat btn-indigo btn-ripple guardamovil" >Grabar</button>
-                       <!-- <button class="btn btn-default toastr-notify" data-toastr-close-others="true" data-toastr-type="success"
-      data-toastr-notification="Solicitud grabada con Exito!!!!!" data-toastr-position="toast-top-right">Top Right</button> -->
+                       <?php } ?>
                      </div>
-                    <!--  <div class="modal-footer restar_div  " style="margin-top:0px">
-                       <button type="button" class="btn btn-default cierra_mov" data-dismiss="modal" >Cancelar</button>
-                       <button type="button" class="btn btn-primary  guardar_form2 " data-execute="after_add_funcion" data-form="#form_movil">Grabar</button>
-                     </div>
-                 </div> --> 
         <script type="text/javascript">
         $(document).ready(function () {
        Pleasure.init();

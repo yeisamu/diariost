@@ -1315,6 +1315,156 @@ $empresa='COOMOCART LTDA';
 						</div>
 					</div><!--.invoice-body-->
 				<?php
+				break;
+				case 'histocondu':
+					?>
+					<div class="invoice-heading">
+					<div class="row margin_0">
+						<div class="col-md-12XX" style="padding-bottom:16px;">
+							<center>
+							<h3 class="no_bold" style="margin-top: 0px;">INFORME HISTORICO CONDUCTOR</h3>		
+								<?php
+								$empresa='';
+								if(isset($grup)){ 
+									$empresa='COOMOCART LTDA';
+									?>	
+									<center>
+									<div class="bold"><?php echo $empresa?></div>
+									</center>
+								<?php } ?>									
+									<?php if(isset($fini) && $fini!='' ){ ?>	
+									<center>
+										<div class="bold">Para la fecha <?php echo $fini.' hasta '.$ffin ?></div>
+									</center>	
+								<?php } ?>	 
+									</center>
+								</div>
+							</div>
+							</div>
+							<div class="invoice-body">
+								<div class="row">
+							<?php if($mov){ ?>
+									<div class="col-md-12 col-xs-12">
+									<table class="table table-bordered border_l_0  head-shadowxx margin_0 bck_table table-hover" style="font-size: 13px;" >
+										<tr class=" ">
+											<th  width="10%"  class=" border_l_0 border_t_0" style="padding: 3px 0 3px 10px;">
+													<span style="padding-left:5px;padding-right:5px">CONDUCTOR</span>
+											</th>
+											<th width="5%"  class=" border_l_0 border_t_0" style="padding: 3px 0 3px 10px;">
+												<span style="padding-left:5px;padding-right:5px">MOVIL</span>
+											</th>
+											
+												<th  width="5%"  class=" border_l_0 border_t_0" style="padding: 3px 0 3px 10px;">
+												<span style="padding-left:5px;padding-right:5px">FECHA INICIO</span>
+											</th>
+											<th width="5%"  class=" border_l_0 border_t_0" style="padding: 3px 0 3px 10px;">
+												<span style="padding-left:5px;padding-right:5px">FECHA FIN</span>
+											</th>
+											<th  width="5%"  class=" border_l_0 border_t_0" style="padding: 3px 0 3px 10px;">
+												<span style="padding-left:5px;padding-right:5px">TARJETA</span>
+											</th>
+												<th  width="10%"  class=" border_l_0 border_t_0" style="padding: 3px 0 3px 10px;">
+												<span style="padding-left:5px;padding-right:5px">DOC. REFERENCIA</span>
+											</th>
+										</tr>
+										<tbody id="global_table_list_items_properties_items_detail">
+										<?php
+											foreach ($mov->result() as $detalle) {
+										?>
+										<tr class="fconcepto">
+											<td  width="10%" style="word-break: break-all;border-bottom: 1px solid #f0f0f0;padding:0px 0px 0px 6px"><?php echo $detalle->conductor ?> </td>
+											<td  width="5%" style="word-break: break-all;border-bottom: 1px solid #f0f0f0;padding:0px 0px 0px 6px"><?php echo $detalle->idMovilHisto ?> </td>
+											
+											<td  width="5%" style="word-break: break-all;border-bottom: 1px solid #f0f0f0;padding:0px 0px 0px 6px"><?php echo $detalle->fechaInicioTC; ?></td>
+											<td  width="5%" style="word-break: break-all;border-bottom: 1px solid #f0f0f0;padding:0px 0px 0px 6px"><?php echo $detalle->fechaFin ?> </td>
+											<td  width="5%" style="word-break: break-all;border-bottom: 1px solid #f0f0f0;padding:0px 0px 0px 6px"><?php echo $detalle->numTarjeta ?> </td>
+											<td  width="10%" style="word-break: break-all;border-bottom: 1px solid #f0f0f0;padding:0px 0px 0px 6px"><?php echo $detalle->docref?> </td>
+											</tr>
+										<?php
+											}
+										?>
+										</tbody> 	
+										</table>
+								<?php }else{?>
+								<div>No hay resultados </div>
+								<?php }?>
+								<div class="col-md-12 pull-right">
+								Fecha de generación Reporte: <?php echo date('Y-m-d H:i:s');?>				
+								</div>
+									</div>
+								</div>
+							</div><!--.invoice-body-->
+						<?php
+							break;
+					case 'suspendemovil':
+						?>
+						<div class="invoice-heading">
+						<div class="row margin_0">
+							<div class="col-md-12XX" style="padding-bottom:16px;">
+								<center>
+								<h3 class="no_bold" style="margin-top: 0px;">INFORME MOVILES A SUSPENDER</h3>		
+									<?php
+									$empresa='';
+									if(isset($grup)){ 
+										$empresa='COOMOCART LTDA';
+										?>	
+										<center>
+										<div class="bold"><?php echo $empresa?></div>
+										</center>
+									<?php } ?>									
+										<?php if(isset($fini) && $fini!='' ){ ?>	
+										<center>
+											<div class="bold">Para la fecha <?php echo $fini.' hasta '.$ffin ?></div>
+										</center>	
+									<?php } ?>	 
+										</center>
+									</div>
+								</div>
+								</div>
+								<div class="invoice-body">
+									<div class="row">
+								<?php if($mov){ ?>
+										<div class="col-md-12 col-xs-12">
+										<table class="table table-bordered border_l_0  head-shadowxx margin_0 bck_table table-hover" style="font-size: 13px;" >
+											<tr class=" ">
+												<th width="5%"  class=" border_l_0 border_t_0" style="padding: 3px 0 3px 10px;">
+													<span style="padding-left:5px;padding-right:5px">MOVIL</span>
+												</th>
+												<th  width="10%"  class=" border_l_0 border_t_0" style="padding: 3px 0 3px 10px;">
+														<span style="padding-left:5px;padding-right:5px">CONDUCTOR</span>
+												</th>
+												<th  width="5%"  class=" border_l_0 border_t_0" style="padding: 3px 0 3px 10px;">
+													<span style="padding-left:5px;padding-right:5px">FECHA VIGENCIA</span>
+												</th>
+												<th  width="10%"  class=" border_l_0 border_t_0" style="padding: 3px 0 3px 10px;">
+													<span style="padding-left:5px;padding-right:5px">DOC. REFERENCIA</span>
+												</th>
+											</tr>
+											<tbody id="global_table_list_items_properties_items_detail">
+											<?php
+												foreach ($mov->result() as $detalle) {
+											?>
+											<tr class="fconcepto">
+												<td  width="5%" style="word-break: break-all;border-bottom: 1px solid #f0f0f0;padding:0px 0px 0px 6px"><?php echo $detalle->id_movil ?> </td>
+												<td  width="10%" style="word-break: break-all;border-bottom: 1px solid #f0f0f0;padding:0px 0px 0px 6px"><?php echo $detalle->conductor ?> </td>
+												<td  width="5%" style="word-break: break-all;border-bottom: 1px solid #f0f0f0;padding:0px 0px 0px 6px"><?php echo $detalle->fecha_vigencia; ?></td>
+												<td  width="10%" style="word-break: break-all;border-bottom: 1px solid #f0f0f0;padding:0px 0px 0px 6px"><?php echo $detalle->docref?> </td>
+												</tr>
+											<?php
+												}
+											?>
+											</tbody> 	
+											</table>
+									<?php }else{?>
+									<div>No hay resultados </div>
+									<?php }?>
+									<div class="col-md-12 pull-right">
+									Fecha de generación Reporte: <?php echo date('Y-m-d H:i:s');?>				
+									</div>
+										</div>
+									</div>
+								</div><!--.invoice-body-->
+							<?php
 							break;
 						   }//fin switch
 						 ?>

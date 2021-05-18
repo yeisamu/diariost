@@ -5,6 +5,7 @@ sart.tablacondu = '';
 sart.tablanoti = '';
 sart.tablaTc = '';
 sart.tablasimit = '';
+sart.tablamovil = '';
 
 function queue_load_all(div,params,control){
   var url=$('#base_url').val();	

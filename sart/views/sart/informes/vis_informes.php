@@ -216,6 +216,14 @@ if(isset($grupov)){
 				 				<input type="radio" name="informe" class="tiporeport" id="histovehi" value="histovehi">
 				 				<label for="histovehi">Historial vehiculos</label>
 				 			</div>
+							<div class="radioer radioer-indigo">
+								<input type="radio" name="informe" class="tiporeport" id="histocondu" value="histocondu">
+								<label for="histocondu">Historial Conductor</label>
+						    </div>
+							<div class="radioer radioer-indigo">
+								<input type="radio" name="informe" class="tiporeport" id="suspendemovil" value="suspendemovil">
+								<label for="suspendemovil">Moviles a suspender</label>
+						    </div>
 							<!--div class="radioer radioer-indigo">
 				 				<input type="radio" name="informe" class="tiporeport" id="desvinculados" value="desvinculados">
 				 				<label for="desvinculados">Moviles Desvinculados</label>

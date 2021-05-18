@@ -1016,13 +1016,14 @@ function busqueda()
                           'pago_hasta'    => $fechaing,
                           'dtaller'       => 0,
                           'color'         => '',                                   
-                          'poliza'         => 0,
-                          'dtaller'         => 0,
+                          'poliza'        => 0,
+                          'dtaller'       => 0,
                           'radio'         => '',
                           'id_prop'       => $id_propietario,
                           'estado'        => $estadomovil,
                           'managerid'     => $id_adm,
-                          'cilindraje'     => $cilindra,
+                          'cilindraje'    => $cilindra,
+                          'obs'           => $anotaciones,
                           'fcontrato'     => $fcontrato); 
 
             $queries=$this->db->insert('vehiculo',$data2);
@@ -1106,14 +1107,15 @@ function busqueda()
                         'motor'         => $motor,
                         'serie'         => $chasis,                                 
                         'color'         => '',                                   
-                        'poliza'         => 0,
-                        'dtaller'         => 0,
+                        'poliza'        => 0,
+                        'dtaller'       => 0,
                         'pago_hasta'    => $fechaing,
                         'radio'         => '',
                         'id_prop'       => $id_propietario,
                         'estado'        => $estadomovil,
                         'managerid'     => $id_adm,
                         'cilindraje'     => $cilindra,
+                        'obs'           => $anotaciones,
                         'fcontrato'     => $fcontrato); 
                     $this->db->where('id_movil', $idmovil);  //localiza la maestro a actualizar
                     $queries=$this->db->update('vehiculo',$data2);
@@ -1224,6 +1226,7 @@ function busqueda()
                                           'managerid'     => '',
                                           'fcontrato'     => '',
                                           'cilindraje'     => '',
+                                          'obs'           => '',
                                           'ultimo_pago'   => ''); 
                             $this->db->where('id_movil', $idmovil);  //localiza la maestro a actualizar
                             $queries=$this->db->update('vehiculo',$data2);
@@ -1819,9 +1822,12 @@ function busqueda()
                 foreach($conf['rows'] as $key =>$valueRow){
                   $row[] =$aRow->$valueRow;
                 }
-                foreach($conf['opt'] as $key =>$valueOpt){
-                  $row[] =$valueOpt;
+                if(array_key_exists('opt',$conf) && $conf['opt']!=''){
+                  foreach($conf['opt'] as $key =>$valueOpt){
+                    $row[] =$valueOpt;
+                  }
                 }
+                
                 $class_row = 'cursor abre_mod_global';
                       $row["DT_RowClass"] = $class_row;
                       $output['aaData'][] = $row;
@@ -2109,6 +2115,16 @@ function busqueda()
             ); 
             $queries=$this->db->insert('tarjeta_control',$data2);
             $idtc = $this->db->insert_id();
+            $datah =array(
+              //'tarjeta'             =>$tarjeta,
+              'idCondu'        => $idconductor,
+              'idMovilHisto'   => $idmovil,
+              'numTarjeta'     => $idtc,
+              'fechaInicioTC'  => $hoy,
+              'docReferencia'  => $docref
+            ); 
+            $queries=$this->db->insert('historico_conductor',$datah);
+
           break;
           case 'edit':
             $this->db->trans_begin();
@@ -2131,6 +2147,22 @@ function busqueda()
             $this->db->where('id_tarjeta', $tarjeta);  //localiza la maestro a actualizar
             $queries=$this->db->update('tarjeta_control',$data2);
             $idtc = '';
+
+            $this->db->where('id_tarjeta',$tarjeta); 
+            $sqlTc = $this->db->get('tarjeta_control');
+            if($sqlTc->num_rows() > 0){
+              $dataTC = $sqlTc->row();
+              //$codigouser = $datauser->documento;
+            }
+            $datah =array(
+              'fechaFin'  => $hoy,
+              'docReferencia'  => $dataTC->id_doc_ref
+            ); 
+            $this->db->where('numTarjeta', $tarjeta);  //localiza la maestro a actualizar
+           // $queries=$this->db->insert('historico_conductor',$datah);
+            $queries=$this->db->update('historico_conductor',$datah);
+
+            // echo $this->db->last_query();
           break;
         }
     

@@ -405,7 +405,7 @@ if($prop){
                       <label class="control-label ">Anotaciones</label>
                         <div class="inputer inputer-indigo">
                           <div class="input-wrapper">
-                            <textarea name="anotaciones" id="anotaciones" class="form-control js-auto-sizex obligatorio"><?php echo trim($anotaciones)?></textarea>
+                            <textarea name="anotaciones" id="anotaciones" class="form-control js-auto-sizex "><?php echo trim($anotaciones)?></textarea>
                           </div>
                       </div>
                     </div><!--.form-group-->
