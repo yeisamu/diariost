@@ -61,7 +61,7 @@ if(isset($grupov)){
 <input type="hidden" value="<?php echo base_url() ?>" id="base_url">
 <input type="hidden"  id="app_ID" value='<?php echo $app_ID ?>'>
 	<div class="content" style="">
-	    	<div class="page-header full-content header-tabs sticky fixed bg-indigo" style="width: 100%;left: 40px">
+	    	<div class="page-header full-content header-tabs stickyx fixed bg-indigo" style="width: 100%;left: 40px">
 			<div class="row">
 				<div class="col-xs-10">
 					<h1 style="font-size: 25px;">Informes<small></small></h1>
@@ -204,7 +204,21 @@ if(isset($grupov)){
 				 				<input type="radio" name="informe" class="tiporeport" id="diarios_movil" value="diarios_movil">
 				 				<label for="diarios_movil">Diarios x movil</label>
 				 			</div-->
+							<?php if($panel){
+									$permiso=$panel->row();
+								  }
+								if($permiso->group_name ==	'Central de Radio'){
+								?>
+							<div class="radioer radioer-indigo">
+								<input type="radio" name="informe" class="tiporeport" id="suspendemovil" value="suspendemovil">
+								<label for="suspendemovil">Moviles a suspender</label>
+						    </div>
 				 			<div class="radioer radioer-indigo">
+				 				<input type="radio" name="informe" class="tiporeport" id="docs_vencidos" value="docs_vencidos">
+				 				<label for="docs_vencidos">Documentos Vencidos</label>
+				 			</div>
+							 <?php }else{ ?>
+							<div class="radioer radioer-indigo">
 				 				<input type="radio" name="informe" class="tiporeport" id="docs_vencidos" value="docs_vencidos">
 				 				<label for="docs_vencidos">Documentos Vencidos</label>
 				 			</div>
@@ -224,6 +238,7 @@ if(isset($grupov)){
 								<input type="radio" name="informe" class="tiporeport" id="suspendemovil" value="suspendemovil">
 								<label for="suspendemovil">Moviles a suspender</label>
 						    </div>
+							<?php } ?>
 							<!--div class="radioer radioer-indigo">
 				 				<input type="radio" name="informe" class="tiporeport" id="desvinculados" value="desvinculados">
 				 				<label for="desvinculados">Moviles Desvinculados</label>

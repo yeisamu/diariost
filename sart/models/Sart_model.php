@@ -2226,6 +2226,7 @@ function busqueda()
                 'login'         => $aliasuser,
                 'clave'         => md5($passuser),
                 'admin'         => $esadmin,
+                'id_group'      => $selgrupo,
                 'estado'        => $estado_user
           ); 
 
@@ -2241,6 +2242,7 @@ function busqueda()
           $dataOption =array(
                 //'id_usr'        => '',
                 'id_usr'        => $idU,
+                'id_group'      => $selgrupo,
                 'id_opcion'     => $row->id_opcion,
                 'permiso'       => 0,             
                 'leer'          => 'no',
@@ -2277,11 +2279,20 @@ function busqueda()
             'login'         => $aliasuser,
             'clave'         => md5($passuser),
             'admin'         => $esadmin,
+            'id_group'      => $selgrupo,
             'estado'        => $estado_user
           ); 
 
         $this->db->where('id_usr', $idp);  //localiza la maestro a actualizar
         $queries=$this->db->update('acc_usuario',$data2);
+
+        // Actualizar el grupo y permisos
+        $datapermisos =array(
+          'id_group' => $selgrupo
+        ); 
+
+        $this->db->where('id_usr', $idp);
+        $queryper=$this->db->update('acc_permiso',$datapermisos);
 
         break;
       }
@@ -2298,6 +2309,45 @@ function busqueda()
       return $resp=array('guarda'=>'error','motivo'=>'found','idprop'=>$idp);
     }  
 
+  }
+
+  function save_edit_groups(){
+
+    //echo $id_usr;
+
+    date_default_timezone_set('America/Bogota');
+     
+    foreach ($_REQUEST as $var => $val){$$var = $this->db->escape_str($val);}
+
+    $hoy=date('Y-m-d');
+    
+    if($tipo=='nuevo'){
+
+      $data2 =array(
+        'group_name'        => $namegroup
+      ); 
+
+      $queries=$this->db->insert('acc_group_user',$data2);
+
+    }else{ 
+
+      $data2 =array(
+        'group_name'        => $namegroup
+      ); 
+
+      $this->db->where('id_group', $idg);
+      $queries=$this->db->update('acc_group_user',$data2);
+
+    }
+     
+//$this->db->affected_rows()>0
+
+    if($queries){
+      return $resp=array('guarda'=>'ok');
+    }else{
+      return $resp=array('guarda'=>'error','motivo'=>'Error al guardar');
+    }
+     
   }
 
   function save_change_status(){
@@ -2318,7 +2368,7 @@ function busqueda()
       ); 
     }
 
-    $this->db->where('id_usr', $id_usr);  //localiza la maestro a actualizar
+    $this->db->where('id_group', $id_group);  //localiza la maestro a actualizar
     $this->db->where('id_opcion', $id_opcion); 
     $queries=$this->db->update('acc_permiso',$dtedit);
 
@@ -2348,7 +2398,8 @@ function busqueda()
       ); 
     }
 
-    $this->db->where('id_usr', $id_usr);  //localiza la maestro a actualizar
+    //$this->db->where('id_usr', $id_usr);  //localiza la maestro a actualizar
+    $this->db->where('id_group', $id_group); 
     $this->db->where('id_opcion', $id_opcion); 
     $this->db->where('id_permiso', $permiso); 
     $queries=$this->db->update('acc_permiso',$dtedit);

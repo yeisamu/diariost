@@ -115,18 +115,32 @@ class Sistemasart extends CI_Controller {
 			//$filter = array('acc_permiso.id_usr' => $id_user,'tipo' => 'mvc');
 			$filter = array('acc_permiso.id_usr' => $id_user,'tipo' => 'mvc', 'acc_permiso.permiso' => '1');
 		    $filter_adv = '';
-		    $join='acc_permiso.id_opcion=acc_opcion.id_opcion';
-		    $data['panel'] = $this->Sart_model->getdatosjoin($filter,'acc_permiso','acc_opcion',$join,'left'); 
-			$filter = array('fecha' =>date('Y-m-d'));
-	        $filter_adv = '';
-	        $isnotif= $this->Sart_model->getdatos($filter,'noficacionVencidos','');
-			if($isnotif){
-				$data['notif'] = $isnotif->num_rows();
+		    $join=array('acc_opcion'=>'acc_permiso.id_opcion=acc_opcion.id_opcion','acc_group_user'=>'acc_group_user.id_group=acc_permiso.id_group');
+			$camposmov='*';
+			$orderby='';
+		    $permi = $this->Sart_model->getdatosjoinfull($filter,$filter_adv,'acc_permiso','',$join,'left',$camposmov,$orderby);
+		    if($permi){
+				$data['panel']=$permi;
+				$dataG=$permi->row();
+				echo $dataG->group_name;
+				if(strpos($dataG->group_name,'Secretaría')){
+					$filter = array('fecha' =>date('Y-m-d'));
+					$filter_adv = '';
+					$isnotif= $this->Sart_model->getdatos($filter,'noficacionVencidos','');
+					if($isnotif){
+						$data['notif'] = $isnotif->num_rows();
+					}else{
+						$data['notif'] = 0;
+					}
+				}else{
+					$data['notif'] = 0;
+				}		
+				$this->load->view('sart/principal',$data); //llama la vista y le entrega como argumento la variable con la info de la base  de datos 
 			}else{
-				$data['notif'] = 0;
+				$this->index();
 			}
 
-			$this->load->view('sart/principal',$data); //llama la vista y le entrega como argumento la variable con la info de la base  de datos 
+
 		}else{
 			$this->index();
 		}
@@ -1257,11 +1271,20 @@ public	function genera_informe(){ //Se toman los datos de la ciudad de la bases 
 	     		}else{
 	     			$data['grupov'] = '';
 	     		}
-	     		$id_user=$_COOKIE['user_ID'];//$_REQUEST['v'];
+				$id_user=$_COOKIE['user_ID'];//$_REQUEST['v'];
+				//$filter = array('acc_permiso.id_usr' => $id_user,'tipo' => 'mvc');
+				$filter = array('acc_permiso.id_usr' => $id_user,'tipo' => 'mvc', 'acc_permiso.permiso' => '1');
+				$filter_adv = '';
+				$join=array('acc_opcion'=>'acc_permiso.id_opcion=acc_opcion.id_opcion','acc_group_user'=>'acc_group_user.id_group=acc_permiso.id_group');
+				$camposmov='*';
+				$orderby='';
+				$data['panel'] = $this->Sart_model->getdatosjoinfull($filter,$filter_adv,'acc_permiso','',$join,'left',$camposmov,$orderby);
+
+	     		/*$id_user=$_COOKIE['user_ID'];//$_REQUEST['v'];
 	     		$filter = array('acc_permiso.id_usr' => $id_user,'tipo' => 'mvc');
 	     	    $filter_adv = '';
 	     	    $join='acc_permiso.id_opcion=acc_opcion.id_opcion';
-	     	    $data['panel'] = $this->Sart_model->getdatosjoin($filter,'acc_permiso','acc_opcion',$join,'left'); 
+	     	    $data['panel'] = $this->Sart_model->getdatosjoin($filter,'acc_permiso','acc_opcion',$join,'left'); */
 	     		$data['app_ID'] = $_REQUEST['app_ID'];
 	     		$data['grupo']= $this->Sart_model->getcampo('grupo','empresa');
 	     		$this->load->view('sart/informes/vis_informes',$data); //llama la vista y le entrega como argumento la variable con la info de la base  de datos 
@@ -2295,24 +2318,22 @@ public function users(){
 		 }
 
 		 $id_user = $_COOKIE['user_ID'];//$_REQUEST['v'];
-		 //$filter = array('acc_usuario.id_usr' => $id_user,'tipo' => 'mvc');
-		 $filter = '';
+		 $filter = array('acc_usuario.estado' => 'activo');
 		 $filter_adv = '';
 		 $join = '';
-		 //$data['panel'] = $this->Sart_model->getdatosjoin($filter,'acc_usuario','acc_permiso',$join,''); 
 		 $data['app_ID'] = $_REQUEST['app_ID'];
 		 $data['grupo']= $this->Sart_model->getcampo('grupo','empresa');
-		 //SELECT * FROM `acc_permiso` JOIN `acc_opcion` ON `acc_permiso`.`id_opcion`=`acc_opcion`.`id_opcion` WHERE 1 and `acc_permiso`.`id_usr` = '1' and `tipo` = 'mvc'
-		 //SELECT * FROM `acc_usuario` U JOIN acc_permiso P ON U.id_usr = P.id_usr JOIN acc_opcion O ON P.id_opcion = O.id_opcion JOIN acc_grupo G ON O.id_grupo = G.id_grupo GROUP BY P.id_usr
-		 $this->db->order_by("acc_usuario.id_usr", "ASC"); 
-		$data['usuario'] = $this->db->get('acc_usuario');
 
-		   $appID=$_REQUEST['app_ID'];
+		$join='acc_usuario.id_group=acc_group_user.id_group';
+		$data['usuario'] = $this->Sart_model->getdatosjoin($filter,'acc_usuario','acc_group_user',$join,'left');
+
+		$appID=$_REQUEST['app_ID'];
 		$filter = array('acc_permiso.id_usr' => $id_user,'tipo' => 'mvc','acc_permiso.id_opcion' => $appID);
-		   $filter_adv = '';
-		   $join='acc_permiso.id_opcion=acc_opcion.id_opcion';
-		   $data['permisos'] = $this->Sart_model->getdatosjoin($filter,'acc_permiso','acc_opcion',$join,'left');
+		$filter_adv = '';
+		$join2='acc_permiso.id_opcion=acc_opcion.id_opcion';
+		$data['permisos'] = $this->Sart_model->getdatosjoin($filter,'acc_permiso','acc_opcion',$join2,'left');
 
+		$data['groupusr']= $this->Sart_model->selectall('group_name','acc_group_user');
 
 		 $this->load->view('sart/usuario/usuario',$data);
 	 }else{
@@ -2336,6 +2357,7 @@ function add_edit_usr(){ //Se toman los datos de la ciudad de la bases de datos
    }
 
    $data['tipodoc']= $this->Sart_model->selectall('tipo_doc','tipo_doc');
+   $data['groupusr']= $this->Sart_model->selectall('group_name','acc_group_user');
 
    $data['tipo'] = $tipo;
 
@@ -2365,6 +2387,25 @@ function saveuser(){
 		echo json_encode($respu);
 }
 
+function savegroup(){
+	 
+	$resp=$this->Sart_model->save_edit_groups(); // Envio de los datos a la base de datos 
+	
+	if($resp['guarda']== 'ok'){
+		
+		$respu['validacion'] = 'ok';
+		 $respu['msn'] = ' Guardado con Exito!!';
+
+	}else{
+		  
+		  $respu['validacion'] = 'fail';
+		  $respu['msn'] = $resp['motivo'];
+
+	}
+				  //======================================
+		echo json_encode($respu);
+}
+
 function usermodal(){ 
 
 	foreach ($_REQUEST as $var => $val){$$var = $this->db->escape_str($val);}
@@ -2376,10 +2417,10 @@ function usermodal(){
 	   //JOIN acc_opcion O ON P.id_opcion = O.id_opcion 
 	   //JOIN acc_grupo G ON O.id_grupo = G.id_grupo 
 	   //WHERE O.tipo = 'mvc' and U.id_usr = 1
-
-	   $this->db->where('O.tipo="mvc"');
-	   $this->db->where('U.id_usr='.$id_usr);
-	$this->db->join('acc_permiso as P','U.id_usr = P.id_usr','JOIN');
+	$this->db->group_by("opcion");
+	$this->db->where('O.tipo="mvc"');
+	$this->db->where('U.id_group='.$id_group);
+	$this->db->join('acc_permiso as P','U.id_group = P.id_group','JOIN');
 	$this->db->join('acc_opcion as O','P.id_opcion = O.id_opcion','JOIN');
 	$this->db->join('acc_grupo as G','O.id_grupo = G.id_grupo','JOIN');
 	$this->db->order_by("O.opcion", "ASC"); 
@@ -2534,6 +2575,29 @@ public function delete_file(){
 	 echo json_encode($respu);
 }
 
+	function add_edit_groups(){ //Se toman los datos de la ciudad de la bases de datos
+
+	   $tipo=$_REQUEST['tipo'];
+	   $menu=$_REQUEST['menu'];
+	   $data['menu'] = $menu;
+
+	   if($tipo=='edit'){
+		   $id = $_REQUEST['id_group'];
+		   $filter = array('id_group' => $id);
+		   $filter_adv = '';
+		   $data['group'] = $this->Sart_model->getdatos($filter,'acc_group_user',''); 	       
+	   }else{
+		   $data['group'] = false;
+	   }
+
+	   //$data['tipodoc']= $this->Sart_model->selectall('tipo_doc','tipo_doc');
+	   //$data['groupusr']= $this->Sart_model->selectall('group_name','acc_group_user');
+
+	   $data['tipo'] = $tipo;
+
+	   $this->load->view('sart/usuario/add_edit_groups',$data);
+	}
+
 	public function planilla(){
 
     	if(isset($_COOKIE['user_ID'])){
@@ -2562,7 +2626,7 @@ public function delete_file(){
 	       	$appID=$_REQUEST['app_ID'];
 	        $filter = array('acc_permiso.id_usr' => $id_user,'tipo' => 'mvc','acc_permiso.id_opcion' => $appID);
 	       	$filter_adv = '';
-	       	$join='acc_permiso.id_opcion=acc_opcion.id_opcion';
+	       	$join=array('acc_opcion'=>'acc_permiso.id_opcion=acc_opcion.id_opcion');
 	       	$data['permisos'] = $this->Sart_model->getdatosjoin($filter,'acc_permiso','acc_opcion',$join,'left');
 
 

@@ -108,7 +108,7 @@ if(!isset($permisos)){
                           <div class="checkboxer checkboxer-indigo ">
                             <div class="row">
                               <div class="col-md-2">
-                                <input type="checkbox" class="infocheck change_status" value="<?php echo $array->permiso; ?>" id="permiso<?php echo $array->id_permiso; ?>" <?php echo $chkpermiso; ?> data-idusr="<?php echo $array->id_usr; ?>" data-appid="<?php echo $app_ID; ?>" data-vars="<?php echo base_url() ?>sart.php/sistemasart/changestatus?id_usr=<?php echo $array->id_usr; ?>&id_opcion=<?php echo $array->id_opcion; ?>&permiso=<?php echo $array->permiso; ?>">
+                                <input type="checkbox" class="infocheck change_status" value="<?php echo $array->permiso; ?>" id="permiso<?php echo $array->id_permiso; ?>" <?php echo $chkpermiso; ?> data-idusr="<?php echo $array->id_usr; ?>" data-idgroup="<?php echo $array->id_group; ?>" data-appid="<?php echo $app_ID; ?>" data-vars="<?php echo base_url() ?>sart.php/sistemasart/changestatus?id_usr=<?php echo $array->id_usr; ?>&id_opcion=<?php echo $array->id_opcion; ?>&permiso=<?php echo $array->permiso; ?>&id_group=<?php echo $array->id_group; ?>">
                                 <label for="permiso<?php echo $array->id_permiso;?>"></label>
                               </div>
                             </div>
@@ -129,7 +129,7 @@ if(!isset($permisos)){
                           <div class="checkboxer checkboxer-indigo ">
                             <div class="row">
                               <div class="col-md-2">
-                                <input type="checkbox" class="infocheck change_status" value="<?php echo $array->leer; ?>" id="leer<?php echo $array->id_permiso; ?>" <?php echo $chkleer; ?> data-idusr="<?php echo $array->id_usr; ?>" data-appid="<?php echo $app_ID; ?>" data-vars="<?php echo base_url() ?>sart.php/sistemasart/changepriv?id_usr=<?php echo $array->id_usr; ?>&id_opcion=<?php echo $array->id_opcion; ?>&permiso=<?php echo $array->id_permiso; ?>&campo=leer&valor=<?php echo $array->leer; ?>">
+                                <input type="checkbox" class="infocheck change_status" value="<?php echo $array->leer; ?>" id="leer<?php echo $array->id_permiso; ?>" <?php echo $chkleer; ?> data-idusr="<?php echo $array->id_usr; ?>" data-idgroup="<?php echo $array->id_group; ?>" data-appid="<?php echo $app_ID; ?>" data-vars="<?php echo base_url() ?>sart.php/sistemasart/changepriv?id_usr=<?php echo $array->id_usr; ?>&id_opcion=<?php echo $array->id_opcion; ?>&permiso=<?php echo $array->id_permiso; ?>&campo=leer&valor=<?php echo $array->leer; ?>&id_group=<?php echo $array->id_group; ?>">
                                 <label for="leer<?php echo $array->id_permiso; ?>"></label>
                               </div>
                             </div>
@@ -150,7 +150,7 @@ if(!isset($permisos)){
                           <div class="checkboxer checkboxer-indigo">
                             <div class="row">
                               <div class="col-md-2">
-                                <input type="checkbox" class="infocheck change_status" value="<?php echo $array->borrar; ?>" id="borrar<?php echo $array->id_permiso; ?>" <?php echo $chkborrar; ?> data-idusr="<?php echo $array->id_usr; ?>" data-appid="<?php echo $app_ID; ?>" data-vars="<?php echo base_url() ?>sart.php/sistemasart/changepriv?id_usr=<?php echo $array->id_usr; ?>&id_opcion=<?php echo $array->id_opcion; ?>&permiso=<?php echo $array->id_permiso; ?>&campo=borrar&valor=<?php echo $array->borrar; ?>">
+                                <input type="checkbox" class="infocheck change_status" value="<?php echo $array->borrar; ?>" id="borrar<?php echo $array->id_permiso; ?>" <?php echo $chkborrar; ?> data-idusr="<?php echo $array->id_usr; ?>" data-idgroup="<?php echo $array->id_group; ?>" data-appid="<?php echo $app_ID; ?>" data-vars="<?php echo base_url() ?>sart.php/sistemasart/changepriv?id_usr=<?php echo $array->id_usr; ?>&id_opcion=<?php echo $array->id_opcion; ?>&permiso=<?php echo $array->id_permiso; ?>&campo=borrar&valor=<?php echo $array->borrar; ?>&id_group=<?php echo $array->id_group; ?>">
                                 <label for="borrar<?php echo $array->id_permiso; ?>"></label>
                               </div>
                             </div>
@@ -171,7 +171,7 @@ if(!isset($permisos)){
                           <div class="checkboxer checkboxer-indigo">
                             <div class="row">
                               <div class="col-md-2">
-                                <input type="checkbox" class="infocheck change_status" value="<?php echo $array->crear; ?>" id="crear<?php echo $array->id_permiso; ?>" <?php echo $chkcrear; ?> data-idusr="<?php echo $array->id_usr; ?>" data-appid="<?php echo $app_ID; ?>" data-vars="<?php echo base_url() ?>sart.php/sistemasart/changepriv?id_usr=<?php echo $array->id_usr; ?>&id_opcion=<?php echo $array->id_opcion; ?>&permiso=<?php echo $array->id_permiso; ?>&campo=crear&valor=<?php echo $array->crear; ?>">
+                                <input type="checkbox" class="infocheck change_status" value="<?php echo $array->crear; ?>" id="crear<?php echo $array->id_permiso; ?>" <?php echo $chkcrear; ?> data-idusr="<?php echo $array->id_usr; ?>" data-idgroup="<?php echo $array->id_group; ?>" data-appid="<?php echo $app_ID; ?>" data-vars="<?php echo base_url() ?>sart.php/sistemasart/changepriv?id_usr=<?php echo $array->id_usr; ?>&id_opcion=<?php echo $array->id_opcion; ?>&permiso=<?php echo $array->id_permiso; ?>&campo=crear&valor=<?php echo $array->crear; ?>&id_group=<?php echo $array->id_group; ?>">
                                 <label for="crear<?php echo $array->id_permiso; ?>"></label>
                               </div>
                             </div>
@@ -191,7 +191,7 @@ if(!isset($permisos)){
                           <div class="checkboxer checkboxer-indigo ">
                             <div class="row">
                               <div class="col-md-2">
-                                <input type="checkbox" class="infocheck change_status" value="<?php echo $array->editar; ?>" id="editar<?php echo $array->id_permiso; ?>" <?php echo $chkeditar; ?> data-idusr="<?php echo $array->id_usr; ?>" data-appid="<?php echo $app_ID; ?>" data-vars="<?php echo base_url() ?>sart.php/sistemasart/changepriv?id_usr=<?php echo $array->id_usr; ?>&id_opcion=<?php echo $array->id_opcion; ?>&permiso=<?php echo $array->id_permiso; ?>&campo=editar&valor=<?php echo $array->editar; ?>">
+                                <input type="checkbox" class="infocheck change_status" value="<?php echo $array->editar; ?>" id="editar<?php echo $array->id_permiso; ?>" <?php echo $chkeditar; ?> data-idusr="<?php echo $array->id_usr; ?>" data-idgroup="<?php echo $array->id_group; ?>" data-appid="<?php echo $app_ID; ?>" data-vars="<?php echo base_url() ?>sart.php/sistemasart/changepriv?id_usr=<?php echo $array->id_usr; ?>&id_opcion=<?php echo $array->id_opcion; ?>&permiso=<?php echo $array->id_permiso; ?>&campo=editar&valor=<?php echo $array->editar; ?>&id_group=<?php echo $array->id_group; ?>">
                                 <label for="editar<?php echo $array->id_permiso; ?>"></label>
                               </div>
                             </div>

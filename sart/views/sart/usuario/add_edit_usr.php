@@ -14,9 +14,8 @@ if($user){
   $login      =   $datauser->login;
   $esadmin    =   $datauser->admin;
   $estado     =   $datauser->estado;
- 
-  $datatd     = $tipodoc->row();
-  $tipdoc     = $datatd->tipo_doc;
+  $id_group   =   $datauser->id_group;
+  $tipdoc     =   $datauser->tipo_doc;
 
   $titulo="Modificar Usuario";
     
@@ -50,9 +49,8 @@ if($user){
   $documento  =   '';
   $login      =   '';
   $estado     =   '';
-
-  $datatd     = $tipodoc->row();
-  $tipdoc     = $datatd->tipo_doc;
+  $tipdoc     = '';
+  $id_group   = '';
 
   $esadminsi='';
   $esadminno='checked="checked"';
@@ -146,7 +144,7 @@ if($user){
                     <div class="col-md-6">
                       <div class="inputer inputer-indigo">
                         <div class="input-wrapper">
-                          <input type="text"  name="emailuser" value="<?php echo trim($email)?>" id="emailuser" class="form-control inputmask inputmask-email obligatorio">
+                          <input type="text"  name="emailuser" value="<?php echo $email; ?>" id="emailuser" class="form-control obligatorio">
                         </div>
                       </div>
                     </div>
@@ -173,6 +171,26 @@ if($user){
                       </div>
                     </div>
                   </div><!--.form-group-->
+
+                  <div class="form-group">
+                    <label class="control-label col-md-4">Grupo</label>
+                    <div class="col-md-6">
+                      <div class="inputer inputer-indigo">
+                        <div class="input-wrapper">
+                          <select class="selecter selpop selobligatorio" name="selgrupo" id="selgrupo" data-style="btn-indigo" data-width="100%">
+                            <option selected="selected" value="">Seleccione</option>
+                            <?php 
+                              foreach ($groupusr->result() as $keygrp) {
+                            ?>
+                                <option value=" <?php echo $keygrp->id_group; ?>"  <?php if($id_group==$keygrp->id_group) echo'selected="selected"'?>> <?php echo $keygrp->group_name ?></option>
+                            <?php
+                             }  
+                            ?>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div><!--.form-group-->
                   
                   <div class="form-group">
                     <label class="control-label col-md-4">Tel&eacute;fono</label>
@@ -184,6 +202,7 @@ if($user){
                       </div>
                     </div>
                   </div><!--.form-group-->
+                  
 
                   <div class="form-group">
                     <label class="control-label col-md-4">¿Es Administrador?</label>

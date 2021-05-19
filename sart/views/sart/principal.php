@@ -46,7 +46,7 @@ if(isset($grupo)){
 	<!-- END SHORTCUT AND TOUCH ICONS -->
 </head>
 <body>
-
+<?php echo $notif;?>
    
 <input type="hidden" value="<?php echo base_url() ?>" id="base_url">
 	<div class="content user_ID">
@@ -141,7 +141,7 @@ if(isset($grupo)){
 	<script>
 	sart.tablanoti='';
 	  	$(document).ready(function () {
-          if('<?php echo $notif;?>' == 0){
+          if('<?php echo trim($notif);?>' == '0'){
 			$('.docsvencidos').click();
 		  }
           setInterval(function(){

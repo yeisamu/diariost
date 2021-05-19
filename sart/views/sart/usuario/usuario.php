@@ -26,6 +26,7 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<html lang="es">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -101,94 +102,179 @@
 
         <input type="hidden" value="<?php echo base_url() ?>" id="base_url">
         <div class="content" style="padding:0 5px 0 5px">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="panel">
-                <div class="panel-heading">
-                  <div class="panel-title"><h4>Usuarios</h4></div>
-                </div><!--.panel-heading-->
-                <div class="panel-body">
+          
+          <div class="col-md-5" style="border-style: double;border-left: none;">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="panel">
+                  <div class="panel-heading">
+                    <div class="panel-title"><h4>Grupos</h4></div>
+                  </div><!--.panel-heading-->
+                  <div class="panel-body">
 
-                  <table class="display datatables-crud" id="tableUser">
-                    <thead>
-                      <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Email</th>
-                        <th>Tel&eacute;fono</th>
-                        <th>Documento</th>
-                        <th>Acciones</th>
-                      </tr>
-                    </thead>
+                    <table class="display datatables-crud" id="tableGroups">
+                      <thead>
+                        <tr>
+                          <th>ID</th>
+                          <th>Grupo</th>
+                          <th>Acciones</th>
+                        </tr>
+                      </thead>
 
-                    <tbody>
-                     <?php 
-                       if($usuario){
-                        foreach ($usuario->result() as $array) {?>
-                      <tr>
-                        <td style="word-break: break-all;"><?php echo $array->id_usr; ?></td>
-                        <td style="word-break: break-all;"><?php echo $array->nombre; ?></td>
-                        <td style="word-break: break-all;"><?php echo $array->email; ?></td>
-                        <td style="word-break: break-all;"><?php echo $array->phone; ?></td>
-                        <td style="word-break: break-all;"><?php echo $array->documento; ?></td>
-                        <td style="word-break: break-all;">
-                          
-                          <?php 
-                            if($crear=="si"){
-                          ?>
+                      <tbody>
+                       <?php 
+                         if($groupusr){
+                          foreach ($groupusr->result() as $keyg) {?>
+                        <tr>
+                          <td style="word-break: break-all;"><?php echo $keyg->id_group; ?></td>
+                          <td style="word-break: break-all;"><?php echo $keyg->group_name; ?></td>
+                          <td style="word-break: break-all;">
+                            
+                            <?php 
+                              if($crear=="si"){
+                            ?>
 
-                          <button class="btn btn-success btn-xs abre_mod_global" data-capa='user_modal'
-                          data-toggle="modal" style="cursor:pointer" 
-                          data-target="#modaluser" data-vars="<?php echo base_url() ?>sart.php/sistemasart/usermodal?tipo=edit&id_usr=<?php echo $array->id_usr; ?>&app_ID=<?php echo $app_ID; ?>">
-                            <span class="glyphicon glyphicon-eye-open"></span>
-                          </button>
+                            <button class="btn btn-success btn-xs abre_mod_global" data-capa='user_modal'
+                            data-toggle="modal" style="cursor:pointer" 
+                            data-target="#modaluser" data-vars="<?php echo base_url() ?>sart.php/sistemasart/usermodal?tipo=edit&id_group=<?php echo $keyg->id_group; ?>&app_ID=<?php echo $app_ID; ?>">
+                              <span class="glyphicon glyphicon-eye-open"></span>
+                            </button>
 
-                          <?php 
+                            <?php 
+                              }
+                            ?>
+
+                            <?php 
+                              if($editar=="si"){
+                            ?>
+                            <button class="btn btn-primary btn-xs abre_group" data-toggle="modal" data-target="#add_edit_groups" data-vars="<?php echo base_url() ?>sart.php/sistemasart/add_edit_groups?tipo=edit&menu=user&id_group=<?php echo $keyg->id_group; ?>">
+                              <span class="glyphicon glyphicon-pencil"></span>
+                            </button>
+
+                            <?php 
+                              }
+                            ?>
+
+                            <?php 
+                              if($borrar=="si"){
+                            ?>
+                            <button class="btn btn-danger btn-xs delete" data-vars="<?php echo base_url() ?>sart.php/sistemasart/grabardelgroup?id_group=<?php echo $keyg->id_group; ?>">
+                              <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                            <?php 
+                              }
+                            ?>
+
+                          </td>
+                        </tr>
+                        <?php 
                             }
-                          ?>
-
-                          <?php 
-                            if($editar=="si"){
-                          ?>
-                          <button class="btn btn-primary btn-xs abre_edit" data-toggle="modal" data-target="#add_edit_user" data-vars="<?php echo base_url() ?>sart.php/sistemasart/add_edit_usr?tipo=edit&menu=user&id_usr=<?php echo $array->id_usr; ?>">
-                            <span class="glyphicon glyphicon-pencil"></span>
-                          </button>
-
-                          <?php 
-                            }
-                          ?>
-
-                          <?php 
-                            if($borrar=="si"){
-                          ?>
-                          <button class="btn btn-danger btn-xs delete" data-vars="<?php echo base_url() ?>sart.php/sistemasart/grabardelusr?id_usr=<?php echo $array->id_usr; ?>">
-                            <span class="glyphicon glyphicon-trash"></span>
-                          </button>
-                          <?php 
-                            }
-                          ?>
-
-                          <button class="btn btn-warning btn-xs abre_edit" data-toggle="modal" data-target="#add_edit_user" data-vars="<?php echo base_url() ?>sart.php/sistemasart/add_edit_firma?tipo=edit&menu=user&id_usr=<?php echo $array->id_usr; ?>">
-                            <span class="glyphicon glyphicon-upload"></span>
-                          </button>
-
-                          <button class="btn btn-info btn-xs abre_edit" data-toggle="modal" data-target="#add_edit_user"  data-vars="<?php echo base_url() ?>sart.php/sistemasart/generar_qr?id_usr=<?php echo $array->id_usr; ?>" style="display: none;">
-                            <span class="glyphicon glyphicon-qrcode"></span>
-                          </button>
-
-                        </td>
-                      </tr>
-                      <?php 
                           }
-                        }
-                     ?>
-                    </tbody>
-                  </table>
+                       ?>
+                      </tbody>
+                    </table>
 
-                </div><!--.panel-body-->
-              </div><!--.panel-->
-            </div><!--.col-md-12-->
-          </div><!--.row-->
+                  </div><!--.panel-body-->
+                </div><!--.panel-->
+              </div><!--.col-md-12-->
+            </div><!--.row-->
+
+          </div> <!--.col-md-5-->
+
+          <!-- ########################## Usuarios ########################-->
+          <div class="col-md-7" style="padding-left: 10px;border-style: double;border-right: none; border-left: none; border-bottom: none;">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="panel">
+                  <div class="panel-heading">
+                    <div class="panel-title"><h4>Usuarios</h4></div>
+                  </div><!--.panel-heading-->
+                  <div class="panel-body">
+
+                    <table class="display datatables-crud" id="tableUser">
+                      <thead>
+                        <tr>
+                          <th>ID</th>
+                          <th>Nombre</th>
+                          <th>Grupo</th>
+                          <th>Email</th>
+                          <th style="display:none;">Tel&eacute;fono</th>
+                          <th style="display:none;">Documento</th>
+                          <th>Acciones</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                       <?php 
+                         if($usuario){
+                          foreach ($usuario->result() as $array) {?>
+                        <tr>
+                          <td style="word-break: break-all;"><?php echo $array->id_usr; ?></td>
+                          <td style="word-break: break-all;"><?php echo $array->nombre; ?></td>
+                          <td style="word-break: break-all;"><?php echo $array->group_name; ?></td>
+                          <td style="word-break: break-all;"><?php echo $array->email; ?></td>
+                          <td style="word-break: break-all;display: none;"><?php echo $array->phone; ?></td>
+                          <td style="word-break: break-all;display: none;"><?php echo $array->documento; ?></td>
+                          <td style="word-break: break-all;">
+                            
+                            <?php 
+                              if($crear=="si"){
+                            ?>
+
+                            <button class="btn btn-success btn-xs abre_mod_global" data-capa='user_modal'
+                            data-toggle="modal" style="cursor:pointer; display:none;" 
+                            data-target="#modaluser" data-vars="<?php echo base_url() ?>sart.php/sistemasart/usermodal?tipo=edit&id_usr=<?php echo $array->id_usr; ?>&app_ID=<?php echo $app_ID; ?>">
+                              <span class="glyphicon glyphicon-eye-open"></span>
+                            </button>
+
+                            <?php 
+                              }
+                            ?>
+
+                            <?php 
+                              if($editar=="si"){
+                            ?>
+                            <button class="btn btn-primary btn-xs abre_edit" data-toggle="modal" data-target="#add_edit_user" data-vars="<?php echo base_url() ?>sart.php/sistemasart/add_edit_usr?tipo=edit&menu=user&id_usr=<?php echo $array->id_usr; ?>">
+                              <span class="glyphicon glyphicon-pencil"></span>
+                            </button>
+
+                            <?php 
+                              }
+                            ?>
+
+                            <?php 
+                              if($borrar=="si"){
+                            ?>
+                            <button class="btn btn-danger btn-xs delete" data-vars="<?php echo base_url() ?>sart.php/sistemasart/grabardelusr?id_usr=<?php echo $array->id_usr; ?>">
+                              <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                            <?php 
+                              }
+                            ?>
+
+                            <button class="btn btn-warning btn-xs abre_edit" data-toggle="modal" data-target="#add_edit_user" data-vars="<?php echo base_url() ?>sart.php/sistemasart/add_edit_firma?tipo=edit&menu=user&id_usr=<?php echo $array->id_usr; ?>">
+                              <span class="glyphicon glyphicon-upload"></span>
+                            </button>
+
+                            <button class="btn btn-info btn-xs abre_edit" data-toggle="modal" data-target="#add_edit_user"  data-vars="<?php echo base_url() ?>sart.php/sistemasart/generar_qr?id_usr=<?php echo $array->id_usr; ?>" style="display: none;">
+                              <span class="glyphicon glyphicon-qrcode"></span>
+                            </button>
+
+                          </td>
+                        </tr>
+                        <?php 
+                            }
+                          }
+                       ?>
+                      </tbody>
+                    </table>
+
+                  </div><!--.panel-body-->
+                </div><!--.panel-->
+              </div><!--.col-md-12-->
+            </div><!--.row-->
+
+        </div> <!--.col-md-6-->
 
         </div><!--.content-->
      
@@ -200,12 +286,30 @@
       <?php 
         if($crear=="si"){
       ?>
-      <a class="btn btn-floating btn-red show-on-hover abre_edit" 
+      <a class="btn btn-floating btn-red show-on-hover ">
+        <i class="ion-android-arrow-up"></i>
+        <ul class="to-top">
+          <li  >
+           <i class="ion-android-person-add btn btn-floating btn-red abre_edit" 
               style="margin-left: -7px !important;" data-toggle="modal"  
                data-target="#add_edit_user" data-vars="<?php echo base_url() ?>sart.php/sistemasart/add_edit_usr?tipo=nuevo&menu=user">
+           </i>
+          </li>
+          <li  >
+           <i class="fa fa-group btn btn-floating btn-red abre_group" style="margin-left: -7px !important;" data-toggle="modal"  
+               data-target="#add_edit_groups" data-vars="<?php echo base_url() ?>sart.php/sistemasart/add_edit_groups?tipo=nuevo&menu=user">
+           </i>
+          </li>
+        </ul>
+      </a>
+
+      <!-- <a class="btn btn-floating btn-red show-on-hover abre_edit" 
+              style="margin-left: -7px !important;" data-toggle="modal"  
+               data-target="#add_edit_user" data-vars="<?php //echo base_url() ?>sart.php/sistemasart/add_edit_usr?tipo=nuevo&menu=user">
            <i class="ion-android-person-add ">
            </i>
-      </a>
+      </a> -->
+
       <?php 
         }
       ?>
@@ -224,79 +328,26 @@
     <button class="btn btn-default toastr-notify hide grabaerror" data-toastr-close-others="true" data-toastr-type="error"
     data-toastr-notification="" data-toastr-position="toast-top-right"></button>
 
-  <div class="modal fade full-height from-right" id="panel-modal2" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Nueva Solicitud de Documento</h4>
-        </div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-md-12">
-
-              <div class="panel">
-                <div class="panel-body">
-                  <form action="#" class="form-horizontal" id="adddoc">
-                    <div class="form-content">
-                      <div class="form-group">
-                        <label class="control-label col-md-5">Nombre del documento</label>
-                        <div class="col-md-6">
-                          <div class="inputer inputer-green">
-                            <div class="input-wrapper">
-                              <input type="text"  name="ndoc" id="ndoc" class="form-control">
-                              <input type="hidden" name="id_proc" id="id_proc" value="<?php //echo $id_proc ?>" >
-                            </div>
-                          </div>
-                        </div>
-                      </div><!--.form-group-->
-                      <div class="form-group">
-                        <label class="control-label col-md-5">Detalle</label>
-                        <div class="col-md-6">
-                          <div class="inputer inputer-green">
-                            <div class="input-wrapper">
-                              <textarea name="detallen" class="form-control"></textarea>
-                            </div>
-                          </div>
-                        </div>
-                      </div><!--.form-group-->
-                      <div class="form-group">
-                        <label class="control-label col-md-5">Solicitante</label>
-                        <div class="col-md-6">
-                          <div class="inputer inputer-green">
-                            <div class="input-wrapper">
-                              <input type="text" name="solicita" class="form-control">
-                            </div>
-                          </div>
-                        </div>
-                      </div><!--.form-group-->
-
-                    </div><!--.form-content-->
-                  </form>
-                </div><!--.panel-body-->
-              </div><!--.panel-->
-
-            </div><!--.col-md-12-->
-          </div><!--.row--> 
-        </div><!--.body modal-->  
-        <div class="modal-footer">
-          <button type="button" class="btn btn-flat btn-red btn-ripple cancelaform" data-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-flat btn-green btn-ripple guardanuevo" >Grabar</button>
-        </div>
+  <div class="modal fade full-height from-left" id="add_edit_groups" tabindex="-1" role="dialog" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content" id="edit_group">
       </div>
-    </div>
+     </div>
   </div><!--.modal-->
+
   <div class="modal fade full-height from-left" id="add_edit_user" tabindex="-1" role="dialog" aria-hidden="true">
    <div class="modal-dialog">
       <div class="modal-content" id="edit_modal">
       </div>
      </div>
   </div><!--.modal-->
-    <div class="modal fade full-height from-left" id="borrar_doc" tabindex="-1" role="dialog" aria-hidden="true">
-     <div class="modal-dialog">
-        <div class="modal-content " id="borrar_modal">
-        </div>
-       </div>
-    </div><!--.modal--> 
+
+  <div class="modal fade full-height from-left" id="borrar_doc" tabindex="-1" role="dialog" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content " id="borrar_modal">
+      </div>
+     </div>
+  </div><!--.modal--> 
 
   <div class="modal fade full-scream" id="modaluser" style="overflow-y: hidden;" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
@@ -348,26 +399,42 @@
 
       $("#dt-new").hide();
       $("#dt-deleteall").hide();
+      
+      $('#tableGroups').dataTable({
+        'columns': [{
+          'orderable': false
+          }, {
+          'orderable': true
+          }, {
+          'orderable': false
+        }],
+        /*'order': [
+          [1, "asc"]
+        ],*/
+          //'dom': '<"toolbar pull-left">frtip'
+      });
 
-      $('.datatables-crud').dataTable({
-      'columns': [{
-        'orderable': false
-        }, {
-        'orderable': true
-        }, {
-        'orderable': true
-        }, {
-        'orderable': true
-        }, {
-        'orderable': false
-        },{
-        'orderable': false
-      }],
-      /*'order': [
-        [1, "asc"]
-      ],*/
-      'dom': '<"toolbar pull-left">frtip'
-    });
+      $('#tableUser').dataTable({
+        'columns': [{
+          'orderable': false
+          }, {
+          'orderable': true
+          }, {
+          'orderable': true
+          }, {
+          'orderable': true
+          }, {
+          'orderable': false
+          },{
+          'orderable': false
+          }, {
+          'orderable': false
+        }],
+        /*'order': [
+          [1, "asc"]
+        ],*/
+          //'dom': '<"toolbar pull-left">frtip'
+      });
 
     });
   </script>

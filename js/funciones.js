@@ -447,6 +447,18 @@ $(document).on('click', '.abre_edit', function(e){
     });
     return false;
 });
+$(document).on('click', '.abre_group', function(e){
+   var details = $(this).data('vars');
+    $.ajax({
+        url: details,
+        type: 'GET',
+        dataType: 'html',
+    }).done(function(data){
+
+        $('#edit_group').html(data);
+    });
+    return false;
+});
 $(document).on('click', '.abre_del', function(e){
    var details = $(this).data('vars');
     $.ajax({
@@ -1765,10 +1777,61 @@ $(document).on('click', '.saveaddedituser', function(e){
 
 });
 
+$(document).on('click', '.saveaddeditgroup', function(e){
+  
+  var details  = $('#addeditgroup').serialize();
+
+  $(this).addClass('hide');
+
+  var menu = $(this).data('menu');
+
+  $('.grabando').removeClass('hide');
+
+  if(validarCampos('#addeditgroup')){
+        
+    var url=$('#base_url').val();
+    
+    $.ajax({
+
+      url: url+'sart.php/sistemasart/savegroup?'+details,
+      type: 'GET',
+      dataType: 'json',
+      data: { }
+
+    }).done(function(data){
+        
+      if(data.validacion == 'ok'){
+        
+        $('.cancelaformedit').click();
+                   
+        location.reload();
+        $('.grabaok' ).data('toastr-notification',data.msn);
+        $('.grabaok').click();
+          
+        // queue_load_all('#busqueda_list','','listar_tabla');
+         
+      }else{
+
+          $('.grabaerror' ).data('toastr-notification',data.msn);
+          $('.grabaerror').click();
+          $('.grabando').addClass('hide');
+          $('.guardaedit').removeClass('hide');        
+      }
+
+    }); 
+
+  }else{
+    $(this).removeClass('hide');
+    $('.grabando').addClass('hide');   
+  }  
+
+});
+
 $(document).on('click', '.change_status', function(e){
     
     var details = $(this).data('vars');
     var idusr   = $(this).data('idusr');
+    var idgroup = $(this).data('idgroup');
     var appid   = $(this).data('appid');
     var url     = $('#base_url').val();
 
@@ -1786,7 +1849,7 @@ $(document).on('click', '.change_status', function(e){
           /*var paredi='?id_usr='+idusr+'&tipo=edit'
           queue_load_all('#modaluser',paredi,'usermodal');*/
 
-          var details = url+"sart.php/sistemasart/usermodal?tipo=edit&id_usr="+idusr+"&app_ID="+appid;
+          var details = url+"sart.php/sistemasart/usermodal?tipo=edit&id_usr="+idusr+"&app_ID="+appid+"&id_group="+idgroup;
           console.log(details)
           //var details = $(this).data('vars');
           //var capa = $(this).data('capa');
