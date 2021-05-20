@@ -1,5 +1,31 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+ 
+if($permisos){
+	$acces=$permisos->row();
+	$add=$acces->crear;
+	$edit=$acces->editar;
+	$leer=$acces->leer;
+	$grupoUsr=$acces->id_group;
+	echo $grupoName=$acces->group_name;
+	echo strpos($acces->group_name,'Secretaría');
+	if(strpos($acces->group_name,'Secretaría') === false){
+		$visibleField=',visible:false';
+	}else{
+		$visibleField='';
+	}
+}
+if(isset($gfijo)){
+ if($gfijo){
+   $valg=$gfijo;
+ }else{
+   $valg="";	
+ }
+ 
+}else{
+   $valg="";	
+ }
+
 ?>
 <div class="modal-header">
     <h4 class="modal-title">Gesti&oacute;n de Notificaciones</h4>
@@ -47,7 +73,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				{  targets: [0],visible: false},
 				{  "width": "30%",targets: [1]},
 				{  "width": "20%",targets: [2]},
-				{  "width": "5%",targets: [3], orderable:false}
+				{  "width": "5%",targets: [3], orderable:false<?php echo $visibleField;?>}
 			], 
 			"order": [[2, 'asc']],
 			"createdRow": function ( row, data, index ) {

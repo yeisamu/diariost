@@ -1,3 +1,28 @@
+<?php 
+if($permisos){
+	$acces=$permisos->row();
+	$add=$acces->crear;
+	$edit=$acces->editar;
+	$leer=$acces->leer;
+	$grupoUsr=$acces->id_group;
+	$grupoName=$acces->group_name;
+	if($grupoName=='Tesorería'){
+		$visibleField=',visible:false';
+	}else{
+		$visibleField='';
+	}
+}
+if(isset($gfijo)){
+ if($gfijo){
+   $valg=$gfijo;
+ }else{
+   $valg="";	
+ }
+ 
+}else{
+   $valg="";	
+ }
+?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -39,7 +64,7 @@
 	 <link rel="stylesheet" href="<?php echo base_url() ?>plugins/jasny-bootstrap/dist/css/jasny-bootstrap.min.css">
 
 	<!-- BEGIN SHORTCUT AND TOUCH ICONS -->
-	
+	<link rel="shortcut icon" href="<?php echo base_url() ?>img/icons/favicon.ico">
 	<link rel="apple-touch-icon" href="<?php echo base_url() ?>img/icons/apple-touch-icon.png">
 	<!-- END SHORTCUT AND TOUCH ICONS -->
 </head>
@@ -160,9 +185,11 @@
 
      <script>
 	$(document).ready(function () {
-		setInterval(function(){
+		<?php if(strpos($grupoName,'Secretaría') !== false){ ?>
+          setInterval(function(){
 			consultanotif();
-		}, 30000);
+		  }, 30000);
+		  <?php } ?>
 		Pleasure.init();
 		Layout.init();
 		$(document).ready(function () {
@@ -175,9 +202,9 @@
 				{  "width": "10%",targets: [1]},
 				{  "width": "20%",targets: [2]},
 				{  "width": "5%",targets: [3], visible:true },
-				{  "width": "5%", targets: [4], visible: true,orderable:false},
-				{  "width": "5%",targets: [5], visible: true,orderable:false},
-				{  "width": "5%",targets: [6], orderable:false}
+				{  "width": "5%", targets: [4], visible: true,orderable:false<?php echo $visibleField;?>},
+				{  "width": "5%",targets: [5], visible: true,orderable:false<?php echo $visibleField;?>},
+				{  "width": "5%",targets: [6], orderable:false<?php echo $visibleField;?>}
 			], 
 			"order": [[2, 'asc']],
 			"createdRow": function ( row, data, index ) {

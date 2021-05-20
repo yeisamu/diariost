@@ -122,8 +122,9 @@ class Sistemasart extends CI_Controller {
 		    if($permi){
 				$data['panel']=$permi;
 				$dataG=$permi->row();
-				echo $dataG->group_name;
-				if(strpos($dataG->group_name,'Secretaría')){
+				$dataG->group_name;
+				if(strpos($dataG->group_name,'Secretaría') !== false){
+					
 					$filter = array('fecha' =>date('Y-m-d'));
 					$filter_adv = '';
 					$isnotif= $this->Sart_model->getdatos($filter,'noficacionVencidos','');
@@ -133,7 +134,7 @@ class Sistemasart extends CI_Controller {
 						$data['notif'] = 0;
 					}
 				}else{
-					$data['notif'] = 0;
+					$data['notif'] = 1;
 				}		
 				$this->load->view('sart/principal',$data); //llama la vista y le entrega como argumento la variable con la info de la base  de datos 
 			}else{
@@ -271,9 +272,19 @@ class Sistemasart extends CI_Controller {
 		}
 		$id_user=$_COOKIE['user_ID'];//$_REQUEST['v'];
 		//$filter = array('acc_permiso.id_usr' => $id_user,'tipo' => 'mvc');
+		$filter = array('acc_permiso.id_usr' => $id_user,'acc_permiso.permiso' => '1','acc_opcion.id_opcion' => $app_ID);
+		$filter_adv = '';
+		$join=array('acc_opcion'=>'acc_permiso.id_opcion=acc_opcion.id_opcion','acc_group_user'=>'acc_group_user.id_group=acc_permiso.id_group');
+		$camposmov='*';
+		$orderby='';
+		$data['permisos'] = $this->Sart_model->getdatosjoinfull($filter,$filter_adv,'acc_permiso','',$join,'left',$camposmov,$orderby);
+		    
+
+		/*$id_user=$_COOKIE['user_ID'];//$_REQUEST['v'];
+		//$filter = array('acc_permiso.id_usr' => $id_user,'tipo' => 'mvc');
 		$filter = array('acc_permiso.id_usr' => $id_user,'id_opcion' => $app_ID);
 		$filter_adv = '';
-		$data['permisos'] = $this->Sart_model->getdatos($filter,'acc_permiso',''); 
+		$data['permisos'] = $this->Sart_model->getdatos($filter,'acc_permiso',''); */
 		$this->load->view('sart/movil/gesmovil',$data); //llama la vista y le entrega como argumento la variable con la info de la base  de datos 
 	  }else{
 			$this->index();
@@ -1523,6 +1534,15 @@ public	function genera_informe(){ //Se toman los datos de la ciudad de la bases 
 		}else{
 			$data['valg'] = '';
 		}
+		$appID=$_REQUEST['app_ID'];
+		$id_user=$_COOKIE['user_ID'];//$_REQUEST['v'];
+		//$filter = array('acc_permiso.id_usr' => $id_user,'tipo' => 'mvc');
+		$filter = array('acc_permiso.id_usr' => $id_user,'tipo' => 'mvc', 'acc_permiso.permiso' => '1','acc_permiso.id_opcion' => $appID);
+		$filter_adv = '';
+		$join=array('acc_opcion'=>'acc_permiso.id_opcion=acc_opcion.id_opcion','acc_group_user'=>'acc_group_user.id_group=acc_permiso.id_group');
+		$camposmov='*';
+		$orderby='';
+		$data['permisos'] = $this->Sart_model->getdatosjoinfull($filter,$filter_adv,'acc_permiso','',$join,'left',$camposmov,$orderby);
 		$this->load->view('sart/tarjetactrl/tarjetactrol',$data);
 	  }
 	public function  datatramita(){
@@ -1614,6 +1634,15 @@ public	function genera_informe(){ //Se toman los datos de la ciudad de la bases 
 		$filter = '';
 		$filter_adv = '';
 		$data['noti'] = $this->Sart_model->selectall('control','novedad_diario'); 
+		$id_user=$_COOKIE['user_ID'];//$_REQUEST['v'];
+		//$filter = array('acc_permiso.id_usr' => $id_user,'tipo' => 'mvc');
+		$filter = array('acc_permiso.id_usr' => $id_user);
+		$filter_adv = '';
+		$join=array('acc_opcion'=>'acc_permiso.id_opcion=acc_opcion.id_opcion','acc_group_user'=>'acc_group_user.id_group=acc_permiso.id_group');
+		$camposmov='*';
+		$orderby='';
+		$data['permisos'] = $this->Sart_model->getdatosjoinfull($filter,$filter_adv,'acc_permiso','',$join,'left',$camposmov,$orderby);
+
 		$this->load->view('sart/tarjetactrl/gesnoti',$data);
 	}//fin funcion
 	public function  datanoti(){
@@ -2616,6 +2645,7 @@ public function delete_file(){
      	    $join = '';
      		$data['app_ID'] = $_REQUEST['app_ID'];
      		$data['grupo']= $this->Sart_model->getcampo('grupo','empresa');
+			 $appID=$_REQUEST['app_ID'];
 
      		$this->db->order_by("cartera.id", "ASC"); 
      		$this->db->order_by("cartera.cartera", "ASC"); 
@@ -2623,11 +2653,20 @@ public function delete_file(){
      		$this->db->order_by("cartera.movil", "ASC"); 
 	    	$data['planilla'] = $this->db->get('cartera');
 
-	       	$appID=$_REQUEST['app_ID'];
-	        $filter = array('acc_permiso.id_usr' => $id_user,'tipo' => 'mvc','acc_permiso.id_opcion' => $appID);
+			$id_user=$_COOKIE['user_ID'];//$_REQUEST['v'];
+			//$filter = array('acc_permiso.id_usr' => $id_user,'tipo' => 'mvc');
+			$filter = array('acc_permiso.id_usr' => $id_user,'tipo' => 'mvc', 'acc_permiso.permiso' => '1','acc_permiso.id_opcion' => $appID);
+		    $filter_adv = '';
+		    $join=array('acc_opcion'=>'acc_permiso.id_opcion=acc_opcion.id_opcion','acc_group_user'=>'acc_group_user.id_group=acc_permiso.id_group');
+			$camposmov='*';
+			$orderby='';
+		    $data['permisos'] = $this->Sart_model->getdatosjoinfull($filter,$filter_adv,'acc_permiso','',$join,'left',$camposmov,$orderby);
+		    
+
+	       /* $filter = array('acc_permiso.id_usr' => $id_user,'tipo' => 'mvc','acc_permiso.id_opcion' => $appID);
 	       	$filter_adv = '';
 	       	$join=array('acc_opcion'=>'acc_permiso.id_opcion=acc_opcion.id_opcion');
-	       	$data['permisos'] = $this->Sart_model->getdatosjoin($filter,'acc_permiso','acc_opcion',$join,'left');
+	       	$data['permisos'] = $this->Sart_model->getdatosjoin($filter,'acc_permiso','acc_opcion',$join,'left');*/
 
 
      		$this->load->view('sart/planilla/planilla',$data);

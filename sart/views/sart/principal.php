@@ -50,14 +50,17 @@ if(isset($grupo)){
    
 <input type="hidden" value="<?php echo base_url() ?>" id="base_url">
 	<div class="content user_ID">
-	    	<div class="page-header full-content header-tabs sticky fixed bg-indigo" style="width: 100%;left: 40px;">
+	    	<div class="page-header full-content header-tabs stickyx fixed bg-indigo" style="width: 100%;left: 40px;">
 			<div class="row">
 				<div class="col-xs-10">
 					<h1 style="font-size: 25px;">Sistema De Gesti&oacute;n <small></small></h1>
 				</div><!--.col-->
 				<div class="col-xs-2 " style="cursor:pointer">
 					<ol class="breadcrumb">
-					    <li><a href="#" class="abre_mod_global docsvencidos" data-capa='global_lg'  data-toggle="modal"  data-target="#modal_lg"   data-vars="<?php echo base_url() ?>sart.php/sistemasart/docsvencidos"><i class="glyphicon glyphicon-bell"></i></a></li>
+					<?php //if(trim($notif == 0)){ ?>
+					    <li><a href="#" class="abre_mod_global docsvencidos" data-capa='global_lg'  data-toggle="modal"  data-target="#modal_lg"   data-vars="<?php echo base_url() ?>sart.php/sistemasart/docsvencidos"><i class="glyphicon glyphicon-bell"></i></a>
+						</li>
+						<?php //} ?>
 						<li><a href="#" class='sign_out'><i class="glyphicon glyphicon-off"></i></a></li>
 						<li><a href="#" class='sign_out'>Salir</a></li>
 					</ol>
@@ -70,7 +73,7 @@ if(isset($grupo)){
 		  if($panel){
 		  	foreach ($panel->result() as $apps) {
 		  	   //  echo $detalle->codigo
-		  	 /// $tipo=$apps->tipo_solicitud;
+				 $grupoName=$apps->group_name;
 		   
 		  ?>
 			<div class="col-md-4">
@@ -144,9 +147,11 @@ if(isset($grupo)){
           if('<?php echo trim($notif);?>' == '0'){
 			$('.docsvencidos').click();
 		  }
+		  <?php if(strpos($grupoName,'Secretaría') !== false){ ?>
           setInterval(function(){
 			consultanotif();
 		  }, 30000);
+		  <?php } ?>
         });
 </script>
 </body>

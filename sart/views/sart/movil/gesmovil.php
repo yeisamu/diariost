@@ -4,6 +4,13 @@ if($permisos){
 	$add=$acces->crear;
 	$edit=$acces->editar;
 	$leer=$acces->leer;
+	$grupoUsr=$acces->id_group;
+	$grupoName=$acces->group_name;
+	if($grupoName=='Central de Radio'){
+		$visibleField=',visible:false';
+	}else{
+		$visibleField='';
+	}
 }
 if(isset($gfijo)){
  if($gfijo){
@@ -62,7 +69,10 @@ if(isset($gfijo)){
 	 <link rel="stylesheet" href="<?php echo base_url(); ?>plugins/datatables/media/css/jquery.dataTables.min.css">
 	 <link rel="stylesheet" href="<?php echo base_url(); ?>plugins/datatables/themes/bootstrap/dataTables.bootstrap.css">
 	 <link rel="stylesheet" href="<?php echo base_url() ?>plugins/jasny-bootstrap/dist/css/jasny-bootstrap.min.css">
-
+	<!-- BEGIN SHORTCUT AND TOUCH ICONS -->
+	<link rel="shortcut icon" href="<?php echo base_url() ?>img/icons/favicon.ico">
+	<link rel="apple-touch-icon" href="<?php echo base_url() ?>img/icons/apple-touch-icon.png">
+	<!-- END SHORTCUT AND TOUCH ICONS -->
 </head>
 <body style="overflow:auto">
 <input type="hidden" value="<?php echo base_url() ?>" id="base_url">
@@ -203,9 +213,11 @@ if(isset($gfijo)){
 
      <script>
 	$(document).ready(function () {
-		setInterval(function(){
+		<?php if(strpos($grupoName,'Secretaría') !== false){ ?>
+          setInterval(function(){
 			consultanotif();
-		}, 30000);
+		  }, 30000);
+		  <?php } ?>
 		Pleasure.init();
 		Layout.init();
 		$(document).ready(function () {
@@ -216,7 +228,7 @@ if(isset($gfijo)){
 			"columnDefs": [
 				{  "width": "6%",targets: [0]},
 				{  "width": "7%",targets: [1]},
-				{  "width": "10%",targets: [2]},
+				{  "width": "10%",targets: [2]<?php echo $visibleField;?>},
 				{  "width": "10%",targets: [3], visible:true },
 				{  "width": "10%", targets: [4], visible: true},
 				{  "width": "10%",targets: [5], visible: true},

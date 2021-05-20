@@ -82,7 +82,7 @@
 <input type="hidden" id="idapp" value="<?php echo $app_ID; ?>">
   
   <div class="content" style="padding:0 5px 0 5px">
-    <div class="page-header full-content header-tabs sticky fixed bg-indigo" style="width: 100%;left: 40px">
+    <div class="page-header full-content header-tabs stickyx fixed bg-indigo" style="width: 100%;left: 40px">
       <div class="row">
         <div class="col-xs-10">
           <h1 style="font-size: 25px;">Gesti&oacute;n de Usuarios<small></small></h1>
