@@ -2173,7 +2173,7 @@ public function docsvencidos(){
 		array_push($data['docsvehi'],$vencivehi->result());
 	} */ 
 	
-	$filter =array('ispensionado'=>'no','obligatorio'=>'si');
+	$filter =array('ispensionado'=>'no','obligatorio'=>'si','estadoCondu'=>'act');
 	$filter_adv=array('adv1'=>" fecha_vence <= '$hoyEps' and fecha_vence <> '0000-00-00'");
 	$orderby='con_doc.id_conductor asc';
 	$camposmov='concat_ws(" ",nombres,apellidos) as id_movil,documento,fecha_vence';
@@ -2183,7 +2183,7 @@ public function docsvencidos(){
 		array_push($data['docsv'],$vencidoscond);
 	}*/
 
-	$filter =array('ispensionado'=>'si','documento'=>'LICENCIA DE CONDUCCION');
+	$filter =array('ispensionado'=>'si','documento'=>'LICENCIA DE CONDUCCION','estadoCondu'=>'act');
 	$filter_adv=array('adv1'=>" fecha_vence <= '$hoy' ");
 	$orderby='con_doc.id_conductor asc';
 	$camposmov='concat_ws(" ",nombres,apellidos) as id_movil,documento,fecha_vence';

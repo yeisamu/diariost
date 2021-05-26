@@ -18,6 +18,7 @@ if($prop){
   $foto=$dataprop->foto;
   $lnace=$dataprop->lugarNace;
   $anotaciones=$dataprop->anotaciones;
+  $status=$dataprop->estadoCondu;
   $fnace=date('d-m-Y',strtotime($dataprop->fecha_nace));
 
   $titulo="Modificar Conductor";
@@ -28,6 +29,15 @@ if($prop){
     $esact='';
     $esinac='checked="checked"';
   }
+
+  if($status=='act'){
+    $isact='checked="checked"';
+    $isnotact='';
+  }else{
+    $isact='';
+    $isnotact='checked="checked"';
+  }
+
   $campoid='<span>'.$id.'</span><input type="hidden"  name="idp" value="'.$id.'" ><input type="hidden"  name="id_condu" value="'.$idcondu.'" >';
 
 }else{ 
@@ -43,6 +53,8 @@ if($prop){
   $ispensionado="";
   $esact='';
   $esinac='checked="checked"';
+  $isnotact='';
+  $isact='checked="checked"';
   $vencelic='';
   $licencia='';
   $cate='';
@@ -55,6 +67,7 @@ if($prop){
   $obs='El vehículo MOVIL *** lo he recibido en calidad de arrendamiento, según contrato verbal que tengo con el (a) señor (a) ***********, a quien cancelo la suma diaria de $*******.oo, la cual es entregada en la ********* de la ciudad de ********.';
   $foto='';
   $fnace='';
+  $status="";
   
   $campoid='<div class="inputer inputer-indigo">
               <div class="input-wrapper">
@@ -266,6 +279,28 @@ if($prop){
                         </div>
                       </div>
                     </div><!--.form-group-->
+                   </div>
+                 </div>
+                 <div class="row">
+                   <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="control-label col-md-4">Estado</label>
+                      <div class="col-md-6">
+                        <div class="clearfix">
+                          <div class="radioer radioer-indigo form-inline">
+                            <input type="radio" name="stadusC" id="estadoactC" value="act" <?php echo $isact?> >
+                            <label for="estadoactC">Activo</label>
+                          </div>
+                          <div class="radioer radioer-indigo form-inline">
+                            <input type="radio" name="stadusC" id="estado_inacC" value="inact" <?php echo $isnotact?>>
+                            <label for="estado_inacC">Inactivo</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div><!--.form-group-->
+                   </div>
+                   <div class="col-md-6">
+                    
                    </div>
                  </div>
                  <div class="row">

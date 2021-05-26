@@ -1888,6 +1888,7 @@ function busqueda()
                             'observacion'         => $obs,
                             'experiencia_laboral' => $expe,
                             'ispensionado'        => $pensionado,
+                            'estadoCondu'         => $stadusC,
                             'foto'                => $idp.'.'.$ext
                     ); 
               }else{
@@ -1905,6 +1906,7 @@ function busqueda()
                           'emailc'              => $emailc,
                           'observacion'         => $obs,
                           'experiencia_laboral' => $expe,
+                          'estadoCondu'         => $stadusC,
                           'ispensionado'        => $pensionado
                     ); 
               }
@@ -1955,6 +1957,7 @@ function busqueda()
                             'observacion'         => $obs,
                             'experiencia_laboral' => $expe,
                             'ispensionado'        => $pensionado,
+                            'estadoCondu'         => $stadusC,
                             'foto'                => $idp.'.'.$ext,
                             'fecha_crea'          =>date('Y-m-d')
                   ); 
@@ -1972,6 +1975,7 @@ function busqueda()
                             'telefonoa'           => $telacu,
                             'emailc'              => $emailc,
                             'ispensionado'        => $pensionado,
+                            'estadoCondu'         => $stadusC,
                             'observacion'         => $obs,
                             'experiencia_laboral' => $expe,
                             'fecha_crea'          =>date('Y-m-d')
