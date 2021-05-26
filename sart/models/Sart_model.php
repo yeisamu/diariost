@@ -940,9 +940,12 @@ function busqueda()
               }
            }else{
             $this->db->where('codigo',$idp);
-            $datacon=$this->db->get('conductor')->row();
-            $this->db->delete('conductor',array('id_conductor'=>$datacon->id_conductor)); 
-            $this->db->delete('con_doc',array('id_conductor'=>$datacon->id_conductor)); 
+            $datacon=$this->db->get('conductor');
+            if($datacon->num_rows>0){
+             $datacon->row();
+               $this->db->delete('conductor',array('id_conductor'=>$datacon->id_conductor)); 
+               $this->db->delete('con_doc',array('id_conductor'=>$datacon->id_conductor)); 
+             }
            }
 	    	  break;
 	   }

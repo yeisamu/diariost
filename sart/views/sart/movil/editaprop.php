@@ -164,7 +164,7 @@ if($prop){
                     <div class="col-md-6">
                       <div class="inputer inputer-indigo">
                         <div class="input-wrapper">
-                          <input type="text"  name="emailprop" value="<?php echo trim($email)?>" id="emailprop" class="form-control inputmask inputmask-email obligatorio">
+                          <input type="text"  name="emailprop" value="<?php echo trim($email)?>" id="emailprop" class="form-control inputmaskx inputmask-emailx obligatorio">
                         </div>
                       </div>
                     </div>

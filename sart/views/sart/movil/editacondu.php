@@ -343,7 +343,7 @@ if($prop){
                           </td>
                           <td  width="16%"  class="  border_t_0">
                             <div class="input-group divfecha">
-                              <input type="text" readonly class="form-control datepicker" style="cursor:pointer;font-size: 12px;" name="fexp<?php echo $i;?>" id="fexp<?php echo $i;?>" value="<?php echo $ffin;?>">                                            
+                              <input type="text" readonly class="form-control datepicker" style="cursor:pointer;font-size: 12px;" name="fexp<?php echo $i;?>" id="fexp<?php echo $i;?>" value="<?php echo $fini;?>">                                            
                             </div>
 
                           </td>
