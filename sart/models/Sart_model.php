@@ -911,7 +911,12 @@ function busqueda()
 			     $queries=$this->db->update('propietario',$data2);
 
            if($escondu=='si'){
-              $data =array(
+
+            $this->db->where('codigo',$idp); 
+            $query = $this->db->get('conductor');
+            if($query->num_rows() == 0){
+               
+               $data =array(
                             'codigo'       => $idp,
                             'nombres'        => $nombreprop,
                             'apellidos'     => $apellprop,
@@ -938,6 +943,7 @@ function busqueda()
                     $this->db->insert('con_doc',$valuedocs);
                 }
               }
+            }
            }else{
             $this->db->where('codigo',$idp);
             $datacon=$this->db->get('conductor');
@@ -2139,6 +2145,7 @@ function busqueda()
             $fvigencia=date('Y-m-d H:i:s',strtotime($fechavig));
             $filatc=$filact+1;
             $data2 =array(
+                     'fecha_elab'          => $hoy,
                     'fecha_vigencia'      => $fvigencia,
                     'fecha_plazo_a'       => $fplazoa,
                     'id_doc_ref'          => $docref,

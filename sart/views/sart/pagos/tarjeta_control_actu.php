@@ -92,11 +92,11 @@ $firmauser='';
 				$fechavig=date('d-m-Y',strtotime($datatarjeta->fecha_vigencia));
 				?>
 				<tr>
-					<td class="altofil" style="height:8mm;padding:3mm 0 5mm 2mm;border: 0px none black;width:30mm" ><?php echo $fecharef;?></td>
-					<td class="altofil" style="height:8mm;padding:3mm 0 5mm 2mm;border: 0px none black;width:30mm" ><?php echo $fechavig;?></td>
+					<td class="altofil" style="height:8mm;padding:3mm 0 5mm 2mm;border: 0px none black;width:35mm" ><?php echo $fecharef;?></td>
+					<td class="altofil" style="height:8mm;padding:3mm 0 5mm 2mm;border: 0px none black;width:35mm" ><?php echo $fechavig;?></td>
 					<td class="altofil" style="height:8mm;padding:3mm 0 5mm 2mm;border: 0px none black;width:40mm">
 					<?php if($firmauser!=''){ ?>	
-						<img src="uploads/firmas/<?php echo $firmauser;?>" width="100px" height="8mm">
+						<img src="uploads/firmas/<?php echo $firmauser;?>" width="150px" height="8mm">
 					<?php } ?>
 					</td>
 				</tr>
